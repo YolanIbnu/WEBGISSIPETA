@@ -166,9 +166,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       console.log("AppProvider: Starting initial data load...");
 
       try {
+        // Fetch stocks and settings in parallel, but handle them as they arrive
         const [dbData, settingsData] = await Promise.all([
-          fetchAllStokKayu(),
-          fetchSystemSettings()
+          fetchAllStokKayu().catch(e => { console.error("Stocks fetch failed", e); return null; }),
+          fetchSystemSettings().catch(e => { console.error("Settings fetch failed", e); return null; })
         ]);
 
         if (dbData && dbData.length > 0) {
@@ -188,6 +189,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       } catch (err) {
         console.error("AppProvider: Error during initial load", err);
       } finally {
+        // Always finish loading even if things failed
         setIsLoading(false);
         console.log("AppProvider: Initial load finished");
       }
