@@ -1,0 +1,205 @@
+// ============================================================
+// SUPABASE SERVICE LAYER FOR SIPETA TPK
+// ============================================================
+
+import { createClient } from '@supabase/supabase-js';
+
+// Pastikan variabel environment ada, atau gunakan string kosong fallback untuk mencegah error build
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+
+// Create Supabase client
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// ============================================================
+// DATABASE TYPES
+// ============================================================
+
+export type LogStatus = "Available" | "Sold";
+
+export interface StokKayu {
+  id: string; // TPK-A01
+  zone: string;
+  wood_type: string;
+  volume: number;
+  log_count: number;
+  grade: string;
+  status: LogStatus;
+  updated_by?: string;
+  tanggal?: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+// Transform from DB format to UI format
+// UI Format disesuaikan dengan kebutuhan GeoJSON properties
+export interface LogItem {
+  id: string;
+  zone: string;
+  woodType: string;
+  volume: number;
+  logCount: number;
+  grade: string;
+  status: LogStatus;
+  updated_by?: string;
+  tanggal?: string;
+}
+
+// ============================================================
+// TRANSFORM FUNCTIONS
+// ============================================================
+
+function transformToLogItem(row: StokKayu): LogItem {
+  return {
+    id: row.id,
+    zone: row.zone,
+    woodType: row.wood_type,
+    volume: Number(row.volume), // Ensure number type from Postgres Numeric
+    logCount: row.log_count,
+    grade: row.grade,
+    status: row.status,
+    updated_by: row.updated_by,
+    tanggal: row.tanggal,
+  };
+}
+
+function transformToStokKayu(item: Partial<LogItem>): Partial<StokKayu> {
+  const result: Partial<StokKayu> = {};
+
+  if (item.woodType !== undefined) result.wood_type = item.woodType;
+  // Pastikan dikonversi ke Number agar tidak error tipe data di database
+  if (item.volume !== undefined) result.volume = Number(item.volume);
+  if (item.logCount !== undefined) result.log_count = Number(item.logCount);
+  if (item.grade !== undefined) result.grade = item.grade;
+  if (item.status !== undefined) result.status = item.status;
+  if (item.updated_by !== undefined) result.updated_by = item.updated_by;
+  if (item.tanggal !== undefined) result.tanggal = item.tanggal;
+  return result;
+}
+
+// ============================================================
+// DATABASE FUNCTIONS (REALTIME)
+// ============================================================
+
+/**
+ * Fetch all stok_kayu records
+ */
+export async function fetchAllStokKayu(): Promise<LogItem[]> {
+  try {
+    const { data, error } = await supabase
+      .from('stok_kayu')
+      .select('*')
+      .order('id');
+
+    if (error) {
+      console.error('Supabase fetch error:', error);
+      throw error;
+    }
+
+    return (data || []).map(transformToLogItem);
+  } catch (error) {
+    console.error('Error fetching stok_kayu:', error);
+    return [];
+  }
+}
+
+/**
+ * Update a stok_kayu record by ID
+ */
+export async function updateStokKayu(
+  id: string,
+  updates: Partial<LogItem>
+): Promise<LogItem | null> {
+  const dbUpdates = transformToStokKayu(updates);
+
+  console.log('Sending update to Supabase:', { id, dbUpdates }); // Debugging Log
+
+  try {
+    const { data, error } = await supabase
+      .from('stok_kayu')
+      .update(dbUpdates)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Supabase UPDATE ERROR:', error); // Supaya muncul di Console F12
+      throw error;
+    }
+
+    console.log('Update success:', data);
+    return data ? transformToLogItem(data) : null;
+  } catch (error) {
+    console.error('Error updating stok_kayu:', error);
+    return null;
+  }
+}
+
+// ============================================================
+// PROFILE & AUTH FUNCTIONS
+// ============================================================
+
+export interface UserProfile {
+  id: string;
+  username: string;
+  full_name: string;
+  role: 'admin' | 'staff';
+  avatar_url?: string;
+}
+
+export async function fetchUserProfile(userId: string): Promise<UserProfile | null> {
+  try {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .single();
+
+    if (error) {
+      // Jika profile tidak ditemukan (mungkin trigger belum jalan/gagal), return default helper
+      console.warn('Profile fetch warning:', error.message);
+      return null;
+    }
+
+    return data as UserProfile;
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    return null;
+  }
+}
+
+/**
+ * Get stok_kayu by zone
+ */
+export async function fetchStokKayuByZone(zone: string): Promise<LogItem[]> {
+  try {
+    const { data, error } = await supabase
+      .from('stok_kayu')
+      .select('*')
+      .eq('zone', zone);
+
+    if (error) throw error;
+
+    return (data || []).map(transformToLogItem);
+  } catch (error) {
+    console.error('Error fetching stok_kayu by zone:', error);
+    return [];
+  }
+}
+
+/**
+ * Subscribe to realtime changes on stok_kayu table
+ * This allows the map to update instantly across all clients
+ */
+export function subscribeToStokKayu(
+  onUpdate: (payload: any) => void
+) {
+  return supabase
+    .channel('stok_kayu_changes')
+    .on(
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'stok_kayu' },
+      onUpdate
+    )
+    .subscribe();
+}
