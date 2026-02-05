@@ -147,25 +147,32 @@ export interface UserProfile {
   avatar_url?: string;
 }
 
-export async function fetchUserProfile(userId: string): Promise<UserProfile | null> {
-  try {
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId)
-      .single();
+export async function fetchUserProfile(userId: string, retries = 3): Promise<UserProfile | null> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
 
-    if (error) {
-      // Jika profile tidak ditemukan (mungkin trigger belum jalan/gagal), return default helper
-      console.warn('Profile fetch warning:', error.message);
-      return null;
+      if (error) {
+        console.warn(`Profile fetch attempt ${i + 1} failed:`, error.message);
+        // If it's the last attempt, return null
+        if (i === retries - 1) return null;
+        // Wait before retrying (exponential backoff or fixed delay)
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+        continue;
+      }
+
+      return data as UserProfile;
+    } catch (error) {
+      console.error(`Error fetching user profile (attempt ${i + 1}):`, error);
+      if (i === retries - 1) return null;
+      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
     }
-
-    return data as UserProfile;
-  } catch (error) {
-    console.error('Error fetching user profile:', error);
-    return null;
   }
+  return null;
 }
 
 /**

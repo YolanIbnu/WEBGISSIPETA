@@ -72,8 +72,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const logout = useCallback(async () => {
-    await supabase.auth.signOut();
-    setUser(null);
+    try {
+      // Clear user state immediately for best UX, especially on mobile
+      setUser(null);
+      await supabase.auth.signOut();
+      // Optional: force reload to clear all states if needed, 
+      // but setUser(null) should be enough given the current app structure.
+    } catch (err) {
+      console.error("Logout error:", err);
+      // Ensure user is still cleared even on error
+      setUser(null);
+    }
   }, []);
 
   const updateWoodBlock = useCallback(
@@ -95,8 +104,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const handleUserSession = async (userId: string, email: string) => {
     const profile = await fetchUserProfile(userId);
 
-    // Default fallback if profile missing (waiting for trigger)
-    const role = profile?.role || 'staff';
+    // If profile is still null after retries, use smarter fallbacks
+    let role: UserRole = 'staff';
+
+    if (profile?.role) {
+      role = profile.role as UserRole;
+    } else if (email.toLowerCase().includes('admin')) {
+      // Fallback: If profile fetch fails but email contains 'admin', 
+      // temporarily grant admin role so the user isn't stuck as staff
+      role = 'admin';
+    }
+
     const fullName = profile?.full_name || email.split('@')[0];
 
     setUser({

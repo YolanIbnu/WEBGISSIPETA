@@ -81,8 +81,8 @@ export function AppSidebar({ currentPage, onPageChange, isOpen, onClose }: AppSi
                 }}
                 variant={isActive ? "default" : "ghost"}
                 className={`w-full justify-start gap-3 rounded-lg ${isActive
-                    ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                    : "text-emerald-100 hover:bg-emerald-900 hover:text-white"
+                  ? "bg-emerald-600 text-white hover:bg-emerald-700"
+                  : "text-emerald-100 hover:bg-emerald-900 hover:text-white"
                   }`}
               >
                 <Icon className="h-5 w-5" />
@@ -92,8 +92,8 @@ export function AppSidebar({ currentPage, onPageChange, isOpen, onClose }: AppSi
           })}
         </div>
 
-        {/* User Profile */}
-        <div className="p-4 border-t border-emerald-900 space-y-3">
+        {/* User Profile & Logout */}
+        <div className="p-4 pb-8 border-t border-emerald-900 space-y-3">
           <Separator className="bg-emerald-900" />
           <Card className="bg-emerald-900 border-emerald-800 p-3">
             <div className="flex items-center gap-2 mb-2">
@@ -110,7 +110,8 @@ export function AppSidebar({ currentPage, onPageChange, isOpen, onClose }: AppSi
           <Button
             onClick={logout}
             variant="ghost"
-            className="w-full justify-start gap-2 text-emerald-100 hover:bg-emerald-900 hover:text-red-300"
+            type="button"
+            className="w-full justify-start gap-2 text-emerald-100 hover:bg-emerald-900 hover:text-red-300 active:scale-95 transition-transform"
           >
             <LogOut className="h-5 w-5" />
             <span>Logout</span>
