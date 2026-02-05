@@ -131,81 +131,40 @@ function StaffRegistrationForm() {
 }
 
 export function Settings() {
-  const { user } = useApp();
+  const { user, settings, updateSettings, isLoading: globalLoading } = useApp();
   const canEditSettings = user?.role === "admin";
-
-  // System Settings State
-  const [settings, setSettings] = useState({
-    tpk_name: "TPK Cabak",
-    location: "Desa Cabak, Jawa Tengah",
-    capacity: "500 m³",
-    total_area: "250 Hektar",
-    zones: "Zona A, Zona B"
-  });
-  const [loadingSettings, setLoadingSettings] = useState(true);
 
   // Edit State
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editForm, setEditForm] = useState(settings);
   const [isSaving, setIsSaving] = useState(false);
 
+  // Sync editForm with global settings when dialog opens
   useEffect(() => {
-    fetchSettings();
-  }, []);
-
-  const fetchSettings = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('system_settings')
-        .select('*')
-        .single();
-
-      if (data) {
-        setSettings({
-          tpk_name: data.tpk_name,
-          location: data.location,
-          capacity: data.capacity,
-          total_area: data.total_area || "250 Hektar",
-          zones: data.zones || "Zona A, Zona B"
-        });
-        setEditForm({
-          tpk_name: data.tpk_name,
-          location: data.location,
-          capacity: data.capacity,
-          total_area: data.total_area || "250 Hektar",
-          zones: data.zones || "Zona A, Zona B"
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching settings:", error);
-    } finally {
-      setLoadingSettings(false);
+    if (isDialogOpen) {
+      setEditForm(settings);
     }
-  };
+  }, [isDialogOpen, settings]);
 
   const handleSaveSettings = async () => {
     setIsSaving(true);
-    try {
-      const { error } = await supabase
-        .from('system_settings')
-        .upsert({
-          id: 1,
-          ...editForm,
-          updated_by: user?.id,
-          updated_at: new Date().toISOString()
-        });
-
-      if (error) throw error;
-
-      setSettings(editForm);
+    const success = await updateSettings(editForm);
+    if (success) {
       setIsDialogOpen(false);
-    } catch (error) {
-      console.error("Error saving settings:", error);
+    } else {
       alert("Gagal menyimpan pengaturan.");
-    } finally {
-      setIsSaving(false);
     }
+    setIsSaving(false);
   };
+
+  if (globalLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-8">
+        <Loader2 className="h-8 w-8 animate-spin text-emerald-600 mr-2" />
+        <span className="text-emerald-950 font-medium">Memuat Pengaturan...</span>
+      </div>
+    );
+  }
 
   return (
     <div className="p-8 space-y-8">
@@ -297,23 +256,23 @@ export function Settings() {
           <div className="space-y-4">
             <div>
               <p className="text-sm text-slate-600 mb-1">Nama TPK</p>
-              <p className="text-lg font-semibold text-slate-900">{loadingSettings ? "Loading..." : settings.tpk_name}</p>
+              <p className="text-lg font-semibold text-slate-900">{globalLoading ? "Loading..." : settings.tpk_name}</p>
             </div>
             <div>
               <p className="text-sm text-slate-600 mb-1">Lokasi</p>
-              <p className="text-lg font-semibold text-slate-900">{loadingSettings ? "Loading..." : settings.location}</p>
+              <p className="text-lg font-semibold text-slate-900">{globalLoading ? "Loading..." : settings.location}</p>
             </div>
             <div>
               <p className="text-sm text-slate-600 mb-1">Kapasitas Total</p>
-              <p className="text-lg font-semibold text-slate-900">{loadingSettings ? "Loading..." : settings.capacity}</p>
+              <p className="text-lg font-semibold text-slate-900">{globalLoading ? "Loading..." : settings.capacity}</p>
             </div>
             <div>
               <p className="text-sm text-slate-600 mb-1">Luas Area</p>
-              <p className="text-lg font-semibold text-slate-900">{loadingSettings ? "Loading..." : settings.total_area}</p>
+              <p className="text-lg font-semibold text-slate-900">{globalLoading ? "Loading..." : settings.total_area}</p>
             </div>
             <div>
               <p className="text-sm text-slate-600 mb-1">Zona</p>
-              <p className="text-lg font-semibold text-slate-900">{loadingSettings ? "Loading..." : settings.zones}</p>
+              <p className="text-lg font-semibold text-slate-900">{globalLoading ? "Loading..." : settings.zones}</p>
             </div>
 
 

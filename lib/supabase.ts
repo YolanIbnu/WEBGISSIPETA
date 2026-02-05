@@ -45,6 +45,14 @@ export interface LogItem {
   tanggal?: string;
 }
 
+export interface SystemSettings {
+  tpk_name: string;
+  location: string;
+  capacity: string;
+  total_area: string;
+  zones: string;
+}
+
 // ============================================================
 // TRANSFORM FUNCTIONS
 // ============================================================
@@ -82,25 +90,31 @@ function transformToStokKayu(item: Partial<LogItem>): Partial<StokKayu> {
 // ============================================================
 
 /**
- * Fetch all stok_kayu records
+ * Fetch all stok_kayu records with retry
  */
-export async function fetchAllStokKayu(): Promise<LogItem[]> {
-  try {
-    const { data, error } = await supabase
-      .from('stok_kayu')
-      .select('*')
-      .order('id');
+export async function fetchAllStokKayu(retries = 3): Promise<LogItem[]> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const { data, error } = await supabase
+        .from('stok_kayu')
+        .select('*')
+        .order('id');
 
-    if (error) {
-      console.error('Supabase fetch error:', error);
-      throw error;
+      if (error) {
+        console.warn(`Fetch stok_kayu attempt ${i + 1} failed:`, error.message);
+        if (i === retries - 1) return [];
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+        continue;
+      }
+
+      return (data || []).map(transformToLogItem);
+    } catch (error) {
+      console.error(`Error fetching stok_kayu (attempt ${i + 1}):`, error);
+      if (i === retries - 1) return [];
+      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
     }
-
-    return (data || []).map(transformToLogItem);
-  } catch (error) {
-    console.error('Error fetching stok_kayu:', error);
-    return [];
   }
+  return [];
 }
 
 /**
@@ -176,31 +190,34 @@ export async function fetchUserProfile(userId: string, retries = 3): Promise<Use
 }
 
 /**
- * Get stok_kayu by zone
+ * Get stok_kayu by zone with retry
  */
-export async function fetchStokKayuByZone(zone: string): Promise<LogItem[]> {
-  try {
-    const { data, error } = await supabase
-      .from('stok_kayu')
-      .select('*')
-      .eq('zone', zone);
+export async function fetchStokKayuByZone(zone: string, retries = 3): Promise<LogItem[]> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const { data, error } = await supabase
+        .from('stok_kayu')
+        .select('*')
+        .eq('zone', zone);
 
-    if (error) throw error;
+      if (error) {
+        console.warn(`Fetch zone attempt ${i + 1} failed:`, error.message);
+        if (i === retries - 1) return [];
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+        continue;
+      }
 
-    return (data || []).map(transformToLogItem);
-  } catch (error) {
-    console.error('Error fetching stok_kayu by zone:', error);
-    return [];
+      return (data || []).map(transformToLogItem);
+    } catch (error) {
+      console.error(`Error fetching zone (attempt ${i + 1}):`, error);
+      if (i === retries - 1) return [];
+      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+    }
   }
+  return [];
 }
 
-/**
- * Subscribe to realtime changes on stok_kayu table
- * This allows the map to update instantly across all clients
- */
-export function subscribeToStokKayu(
-  onUpdate: (payload: any) => void
-) {
+export function subscribeToStokKayu(onUpdate: (payload: any) => void) {
   return supabase
     .channel('stok_kayu_changes')
     .on(
@@ -209,4 +226,58 @@ export function subscribeToStokKayu(
       onUpdate
     )
     .subscribe();
+}
+
+/**
+ * Fetch system settings with retry
+ */
+export async function fetchSystemSettings(retries = 3): Promise<SystemSettings | null> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const { data, error } = await supabase
+        .from('system_settings')
+        .select('*')
+        .eq('id', 1)
+        .single();
+
+      if (error) {
+        console.warn(`Settings fetch attempt ${i + 1} failed:`, error.message);
+        if (i === retries - 1) return null;
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+        continue;
+      }
+
+      return data as SystemSettings;
+    } catch (error) {
+      console.error(`Error fetching settings (attempt ${i + 1}):`, error);
+      if (i === retries - 1) return null;
+      await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+    }
+  }
+  return null;
+}
+
+/**
+ * Update system settings
+ */
+export async function updateSystemSettings(settings: Partial<SystemSettings>, userId?: string): Promise<boolean> {
+  try {
+    const { error } = await supabase
+      .from('system_settings')
+      .upsert({
+        id: 1,
+        ...settings,
+        updated_by: userId,
+        updated_at: new Date().toISOString()
+      });
+
+    if (error) {
+      console.error("Supabase settings update error:", error);
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error("Error updating settings:", error);
+    return false;
+  }
 }

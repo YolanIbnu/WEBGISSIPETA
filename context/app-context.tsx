@@ -7,6 +7,9 @@ import {
   updateStokKayu,
   subscribeToStokKayu,
   fetchUserProfile,
+  fetchSystemSettings,
+  updateSystemSettings,
+  SystemSettings,
   LogItem,
   supabase
 } from "@/lib/supabase";
@@ -32,6 +35,11 @@ interface AppContextType {
   geoJsonData: GeoJSONCollection;
   updateWoodBlock: (id: string, updates: Partial<WoodBlock>) => Promise<boolean>;
   isLoading: boolean;
+
+  // Settings
+  settings: SystemSettings;
+  updateSettings: (newSettings: Partial<SystemSettings>) => Promise<boolean>;
+  refreshSettings: () => Promise<void>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -44,6 +52,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [woodBlocks, setWoodBlocks] = useState<WoodBlock[]>(
     TPK_GEOJSON_DATA.features.map((f) => f.properties)
   );
+
+  const [settings, setSettings] = useState<SystemSettings>({
+    tpk_name: "TPK Cabak",
+    location: "Desa Cabak, Jawa Tengah",
+    capacity: "500 m³",
+    total_area: "250 Hektar",
+    zones: "Zona A, Zona B"
+  });
 
   // ============================================================
   // LOGIN & LOGOUT ACTIONS
@@ -100,6 +116,21 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     [user] // Add user dependency
   );
 
+  const refreshSettings = useCallback(async () => {
+    const data = await fetchSystemSettings();
+    if (data) {
+      setSettings(data);
+    }
+  }, []);
+
+  const updateSettings = useCallback(async (newSettings: Partial<SystemSettings>) => {
+    const success = await updateSystemSettings(newSettings, user?.id);
+    if (success) {
+      await refreshSettings();
+    }
+    return success;
+  }, [user, refreshSettings]);
+
   // Helper to fetch profile and set user state
   const handleUserSession = async (userId: string, email: string) => {
     const profile = await fetchUserProfile(userId);
@@ -150,6 +181,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     };
 
     loadData();
+
+    // 1b. Fetch Settings
+    refreshSettings();
 
     // 2. Subscribe to Realtime Changes for Stok Kayu
     const subscription = subscribeToStokKayu((payload) => {
@@ -212,6 +246,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         geoJsonData,
         updateWoodBlock,
         isLoading,
+        settings,
+        updateSettings,
+        refreshSettings
       }}
     >
       {children}

@@ -8,35 +8,18 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 
 export function Dashboard() {
-  const { woodBlocks } = useApp();
+  const { woodBlocks, settings, isLoading } = useApp();
 
-  const [settings, setSettings] = useState({
-    tpk_name: "TPK Cabak",
-    location: "Desa Cabak, Jawa Tengah",
-    capacity: "500 m³",
-    total_area: "250 Hektar",
-    zones: "Zona A, Zona B"
-  });
-
-  useEffect(() => {
-    async function fetchSettings() {
-      try {
-        const { data } = await supabase.from('system_settings').select('*').single();
-        if (data) {
-          setSettings({
-            tpk_name: data.tpk_name,
-            location: data.location,
-            capacity: data.capacity,
-            total_area: data.total_area || "250 Hektar",
-            zones: data.zones || "Zona A, Zona B"
-          });
-        }
-      } catch (e) {
-        console.error("Error loading settings", e);
-      }
-    }
-    fetchSettings();
-  }, []);
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-12 w-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-emerald-950 font-medium animate-pulse">Memuat Data Dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   // Calculate metrics
   const totalVolume = woodBlocks.reduce((sum, block) => sum + block.volume, 0);
