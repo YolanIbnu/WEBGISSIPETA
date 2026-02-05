@@ -8,7 +8,7 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
 export function Laporan() {
-  const { woodBlocks } = useApp();
+  const { woodBlocks, settings } = useApp();
 
   const handleExportExcel = () => {
     // 1. Prepare data for Excel
@@ -54,6 +54,9 @@ export function Laporan() {
   const totalLogs = woodBlocks.reduce((sum, b) => sum + b.logCount, 0);
   const availableCount = woodBlocks.filter((b) => b.status === "Available").length;
   const soldCount = woodBlocks.filter((b) => b.status === "Sold").length;
+
+  // Extract numeric capacity for percentage calculation (e.g., "750 m3" -> 750)
+  const capacityValue = parseFloat(settings.capacity) || 500;
 
   return (
     <div className="p-8 space-y-8">
@@ -143,12 +146,13 @@ export function Laporan() {
           </div>
           <div className="flex justify-between pb-2 border-b">
             <span>Kapasitas Total:</span>
-            <span className="font-semibold">500 m³</span>
+            <span className="font-semibold">{settings.capacity}</span>
           </div>
           <div className="flex justify-between pb-2 border-b">
             <span>Penggunaan Kapasitas:</span>
-            <span className="font-semibold">{((totalVolume / 500) * 100).toFixed(1)}%</span>
+            <span className="font-semibold">{((totalVolume / capacityValue) * 100).toFixed(1)}%</span>
           </div>
+
           <div className="flex justify-between">
             <span>Status Sistem:</span>
             <span className="font-semibold text-green-600">Online</span>
