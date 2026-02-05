@@ -131,59 +131,69 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     return success;
   }, [user, refreshSettings]);
 
-  // Helper to fetch profile and set user state
   const handleUserSession = async (userId: string, email: string) => {
+    // 1. Set preliminary user immediately to allow navigation if not already set
+    // This fixes the "stuck on login screen" issue while waiting for profile fetch.
+    setUser(prev => {
+      if (prev && prev.id === userId) return prev;
+      return {
+        id: userId,
+        username: email,
+        role: email.toLowerCase().includes('admin') ? 'admin' : 'staff' as UserRole,
+        full_name: email.split('@')[0]
+      };
+    });
+
     const profile = await fetchUserProfile(userId);
 
-    // If profile is still null after retries, use smarter fallbacks
-    let role: UserRole = 'staff';
-
-    if (profile?.role) {
-      role = profile.role as UserRole;
-    } else if (email.toLowerCase().includes('admin')) {
-      // Fallback: If profile fetch fails but email contains 'admin', 
-      // temporarily grant admin role so the user isn't stuck as staff
-      role = 'admin';
+    if (profile) {
+      setUser({
+        id: userId,
+        username: email,
+        role: profile.role as UserRole,
+        full_name: profile.full_name
+      });
     }
-
-    const fullName = profile?.full_name || email.split('@')[0];
-
-    setUser({
-      id: userId,
-      username: email,
-      role: role,
-      full_name: fullName
-    });
   };
 
   // ============================================================
   // LOAD DATA & AUTH STATE ON MOUNT
   // ============================================================
   useEffect(() => {
-    // 1. Fetch Stok Kayu Data
-    const loadData = async () => {
+    // 1. Consolidate Initial Data Fetch (Stocks & Settings)
+    const loadInitialData = async () => {
       setIsLoading(true);
-      const dbData = await fetchAllStokKayu();
+      console.log("AppProvider: Starting initial data load...");
 
-      if (dbData && dbData.length > 0) {
-        // Merge DB data with local GeoJSON properties structure
-        setWoodBlocks((prevBlocks) => {
-          return prevBlocks.map(block => {
-            const dbItem = dbData.find(d => d.id === block.id);
-            if (dbItem) {
-              return { ...block, ...dbItem };
-            }
-            return block;
+      try {
+        const [dbData, settingsData] = await Promise.all([
+          fetchAllStokKayu(),
+          fetchSystemSettings()
+        ]);
+
+        if (dbData && dbData.length > 0) {
+          console.log("AppProvider: Stocks loaded", dbData.length);
+          setWoodBlocks((prevBlocks) => {
+            return prevBlocks.map(block => {
+              const dbItem = dbData.find(d => d.id === block.id);
+              return dbItem ? { ...block, ...dbItem } : block;
+            });
           });
-        });
+        }
+
+        if (settingsData) {
+          console.log("AppProvider: Settings loaded", settingsData.tpk_name);
+          setSettings(settingsData);
+        }
+      } catch (err) {
+        console.error("AppProvider: Error during initial load", err);
+      } finally {
+        setIsLoading(false);
+        console.log("AppProvider: Initial load finished");
       }
-      setIsLoading(false);
     };
 
-    loadData();
-
-    // 1b. Fetch Settings
-    refreshSettings();
+    loadInitialData();
 
     // 2. Subscribe to Realtime Changes for Stok Kayu
     const subscription = subscribeToStokKayu((payload) => {

@@ -262,22 +262,28 @@ export async function fetchSystemSettings(retries = 3): Promise<SystemSettings |
  */
 export async function updateSystemSettings(settings: Partial<SystemSettings>, userId?: string): Promise<boolean> {
   try {
+    const updatePayload: any = {
+      id: 1,
+      ...settings,
+      updated_at: new Date().toISOString()
+    };
+
+    // Only include updated_by if we have a valid userId to avoid foreign key errors
+    if (userId) {
+      updatePayload.updated_by = userId;
+    }
+
     const { error } = await supabase
       .from('system_settings')
-      .upsert({
-        id: 1,
-        ...settings,
-        updated_by: userId,
-        updated_at: new Date().toISOString()
-      });
+      .upsert(updatePayload, { onConflict: 'id' });
 
     if (error) {
-      console.error("Supabase settings update error:", error);
+      console.error("Supabase settings update error detail:", error);
       return false;
     }
     return true;
   } catch (error) {
-    console.error("Error updating settings:", error);
+    console.error("Error updating system settings crashed:", error);
     return false;
   }
 }
