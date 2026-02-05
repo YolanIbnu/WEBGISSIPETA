@@ -168,20 +168,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // 4. Auto-logout when tab is hidden (per user request)
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden' && user) {
-        console.log('User left the tab, logging out...');
-        logout();
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, [user, logout]);
+  // Auto-logout removed as it was too aggressive and caused issues on mobile/Netlify
+  // when browsers momentarily hide the tab during redirects or system dialogs.
 
   // Update GeoJSON when wood blocks change (Reactive)
   const geoJsonData: GeoJSONCollection = {

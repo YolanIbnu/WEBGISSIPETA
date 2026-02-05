@@ -32,15 +32,28 @@ function StaffRegistrationForm() {
     setMessage(null);
 
     try {
-      // PERINGATAN: Client-side creation akan me-login user baru otomatis
-      // Kita gunakan opsi data untuk mengirim metadata role: 'staff'
-      const { data, error } = await supabase.auth.signUp({
+      // Create a secondary client specifically for registration 
+      // to avoid logging out the currently logged-in admin.
+      const { createClient } = await import('@supabase/supabase-js');
+      const authClient = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        {
+          auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+            detectSessionInUrl: false
+          }
+        }
+      );
+
+      const { data, error } = await authClient.auth.signUp({
         email,
         password,
         options: {
           data: {
             full_name: fullName,
-            role: 'staff' // Trigger database akan membaca ini
+            role: 'staff'
           }
         }
       });
@@ -50,17 +63,12 @@ function StaffRegistrationForm() {
       if (data.user) {
         setMessage({
           type: 'success',
-          text: 'Akun Staff berhasil dibuat! Anda akan ter-logout otomatis dan masuk sebagai staff baru tersebut. Silakan logout dan login kembali sebagai Admin jika ingin melanjutkan sesi Admin.'
+          text: 'Akun Staff berhasil dibuat! Sesi Admin Anda tetap aktif. Staff baru dapat login menggunakan kredensial yang Anda berikan.'
         });
         // Reset form
         setEmail("");
         setPassword("");
         setFullName("");
-
-        // Opsional: Paksa reload agar auth state sinkron
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
       }
     } catch (err: any) {
       setMessage({ type: 'error', text: err.message || "Gagal membuat akun." });
