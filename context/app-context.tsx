@@ -260,8 +260,46 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Auto-logout removed as it was too aggressive and caused issues on mobile/Netlify
-  // when browsers momentarily hide the tab during redirects or system dialogs.
+  // ============================================================
+  // INACTIVITY LOGOUT (30 MINUTES)
+  // ============================================================
+  useEffect(() => {
+    if (!user) return;
+
+    let inactivityTimer: NodeJS.Timeout;
+
+    const resetInactivityTimer = () => {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+
+      // Logout setelah 30 menit tidak ada aktivitas
+      inactivityTimer = setTimeout(async () => {
+        console.log("Inactivity detected, logging out automatically.");
+        await logout();
+        // Optional: you can add a toast notification here if you have a toast system
+      }, 30 * 60 * 1000);
+    };
+
+    // Events that count as activity
+    const activityEvents = [
+      'mousedown', 'mousemove', 'keydown',
+      'scroll', 'touchstart', 'click'
+    ];
+
+    // Add listeners
+    activityEvents.forEach(event => {
+      window.addEventListener(event, resetInactivityTimer);
+    });
+
+    // Initial start
+    resetInactivityTimer();
+
+    return () => {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      activityEvents.forEach(event => {
+        window.removeEventListener(event, resetInactivityTimer);
+      });
+    };
+  }, [user, logout]);
 
   // Update GeoJSON when wood blocks change (Reactive)
   const geoJsonData: GeoJSONCollection = {
