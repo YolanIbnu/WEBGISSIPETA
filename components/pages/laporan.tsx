@@ -1,6 +1,7 @@
 "use client";
 
 import { useApp } from "@/context/app-context";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileDown, Calendar, FileSpreadsheet } from "lucide-react";
@@ -8,7 +9,8 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
 export function Laporan() {
-  const { woodBlocks, settings } = useApp();
+  const { woodBlocks, settings, getHistory } = useApp();
+  const [isExportingHistory, setIsExportingHistory] = useState(false);
 
   const handleExportExcel = () => {
     // 1. Prepare data for Excel
@@ -26,28 +28,57 @@ export function Laporan() {
     // 2. Create Worksheet
     const worksheet = XLSX.utils.json_to_sheet(dataToExport);
 
-    // 3. Format width (Optional but good for "rapih")
+    // 3. Format width
     const wscols = [
-      { wch: 10 }, // ID
-      { wch: 15 }, // Tanggal
-      { wch: 20 }, // Zona
-      { wch: 15 }, // Jenis Kayu
-      { wch: 12 }, // Volume
-      { wch: 15 }, // Jumlah Batang
-      { wch: 10 }, // Grade
-      { wch: 10 }, // Status
+      { wch: 10 }, { wch: 15 }, { wch: 20 }, { wch: 15 },
+      { wch: 12 }, { wch: 15 }, { wch: 10 }, { wch: 10 },
     ];
     worksheet['!cols'] = wscols;
 
-    // 4. Create Workbook
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Laporan Stok");
-
-    // 5. Generate Buffer and Download
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Laporan Stok Saat Ini");
     const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
     const data = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8" });
+    saveAs(data, `Laporan_Stok_Sekarang_${new Date().toISOString().split("T")[0]}.xlsx`);
+  };
 
-    saveAs(data, `Laporan_Stok_TPK_${new Date().toISOString().split("T")[0]}.xlsx`);
+  const handleExportHistory = async () => {
+    setIsExportingHistory(true);
+    try {
+      const history = await getHistory();
+
+      if (history.length === 0) {
+        alert("Belum ada data riwayat yang tersimpan. Lakukan update data stok terlebih dahulu.");
+        return;
+      }
+
+      const dataToExport = history.map((h) => ({
+        "ID Blok": h.id,
+        "Tanggal Record": h.tanggal,
+        "Zona": h.zone,
+        "Jenis Kayu": h.woodType,
+        "Volume (m³)": h.volume,
+        "Batang": h.logCount,
+        "Grade": h.grade,
+        "Status": h.status
+      }));
+
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      worksheet['!cols'] = [
+        { wch: 12 }, { wch: 15 }, { wch: 20 }, { wch: 15 },
+        { wch: 12 }, { wch: 10 }, { wch: 10 }, { wch: 10 }
+      ];
+
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Riwayat Stok");
+      const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+      const data = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8" });
+      saveAs(data, `Riwayat_Stok_Lengkap_${new Date().toISOString().split("T")[0]}.xlsx`);
+    } catch (err) {
+      console.error("Export history failed:", err);
+    } finally {
+      setIsExportingHistory(false);
+    }
   };
 
   const totalVolume = woodBlocks.reduce((sum, b) => sum + b.volume, 0);
@@ -95,9 +126,9 @@ export function Laporan() {
         <Card className="p-6 border-2 border-emerald-200 hover:shadow-lg transition-shadow">
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h3 className="text-lg font-semibold text-emerald-950 mb-1">Export to Excel</h3>
+              <h3 className="text-lg font-semibold text-emerald-950 mb-1">Export Stok Saat Ini</h3>
               <p className="text-sm text-slate-600">
-                Unduh data dalam format Excel (.xlsx) yang rapih
+                Unduh status persediaan terbaru dalam format Excel
               </p>
             </div>
             <FileSpreadsheet className="h-8 w-8 text-emerald-600" />
@@ -107,27 +138,31 @@ export function Laporan() {
             className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
           >
             <FileDown className="h-4 w-4 mr-2" />
-            Download Excel
+            Download Excel Stok
           </Button>
         </Card>
 
-        {/* Monthly Report */}
+        {/* Historical Export */}
         <Card className="p-6 border-2 border-blue-200 hover:shadow-lg transition-shadow">
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h3 className="text-lg font-semibold text-blue-950 mb-1">Laporan Bulanan</h3>
+              <h3 className="text-lg font-semibold text-blue-950 mb-1">Riwayat Perubahan (History)</h3>
               <p className="text-sm text-slate-600">
-                Laporan persediaan bulan ini ({new Date().toLocaleDateString("id-ID", { year: "numeric", month: "long" })})
+                Laporan catatan perubahan stok dari waktu ke waktu
               </p>
             </div>
             <Calendar className="h-8 w-8 text-blue-600" />
           </div>
-          <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled>
+          <Button
+            onClick={handleExportHistory}
+            disabled={isExportingHistory}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+          >
             <Calendar className="h-4 w-4 mr-2" />
-            Download PDF
+            {isExportingHistory ? "Memproses..." : "Download Riwayat Lengkap"}
           </Button>
           <p className="text-xs text-slate-500 mt-2 text-center">
-            Fitur ini akan segera tersedia
+            {isExportingHistory ? "Mengambil data dari database..." : "Data riwayat akan diakumulasi setiap kali ada update."}
           </p>
         </Card>
       </div>

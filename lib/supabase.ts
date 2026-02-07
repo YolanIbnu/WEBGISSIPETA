@@ -94,7 +94,11 @@ function transformToStokKayu(item: Partial<LogItem>): Partial<StokKayu> {
   if (item.grade !== undefined) result.grade = item.grade;
   if (item.status !== undefined) result.status = item.status;
   if (item.updated_by !== undefined) result.updated_by = item.updated_by;
-  if (item.tanggal !== undefined) result.tanggal = item.tanggal;
+
+  // Selalu gunakan tanggal hari ini (WIB/Local) jika melakukan update
+  // Format: YYYY-MM-DD
+  result.tanggal = new Date().toLocaleDateString('en-CA'); // en-CA gives YYYY-MM-DD
+
   return result;
 }
 
@@ -155,10 +159,63 @@ export async function updateStokKayu(
     }
 
     console.log('Update success:', data);
+
+    // 2. Simpan ke Riwayat (History) untuk Laporan Bulanan
+    // Kita abaikan error jika tabel history belum dibuat agar tidak merusak flow utama
+    if (data) {
+      const historyData = {
+        block_id: data.id,
+        zone: data.zone,
+        wood_type: data.wood_type,
+        volume: data.volume,
+        log_count: data.log_count,
+        grade: data.grade,
+        status: data.status,
+        updated_by: data.updated_by,
+        tanggal: data.tanggal
+      };
+
+      supabase.from('stok_kayu_history').insert(historyData).then(({ error: hError }) => {
+        if (hError) console.warn('History table not found or error. Please run the SQL migration.', hError.message);
+      });
+    }
+
     return data ? transformToLogItem(data) : null;
   } catch (error) {
     console.error('Error updating stok_kayu:', error);
     return null;
+  }
+}
+
+/**
+ * Fetch historical data for reports
+ */
+export async function fetchStokHistory(month?: string): Promise<LogItem[]> {
+  try {
+    let query = supabase.from('stok_kayu_history').select('*').order('tanggal', { ascending: false });
+
+    if (month) {
+      // month parameter expected as 'YYYY-MM'
+      query = query.filter('tanggal', 'gte', `${month}-01`).filter('tanggal', 'lte', `${month}-31`);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+
+    return (data || []).map((row: any) => ({
+      id: row.block_id, // Map back to 'id' for consistency in UI
+      zone: row.zone,
+      woodType: row.wood_type,
+      volume: Number(row.volume),
+      logCount: row.log_count,
+      grade: row.grade,
+      status: row.status,
+      updated_by: row.updated_by,
+      tanggal: row.tanggal,
+    }));
+  } catch (error) {
+    console.error('Error fetching history:', error);
+    return [];
   }
 }
 

@@ -96,3 +96,30 @@ ON public.system_settings FOR INSERT WITH CHECK (auth.role() = 'authenticated');
 INSERT INTO public.system_settings (id, tpk_name, location, capacity, total_area, zones)
 VALUES (1, 'TPK Cabak', 'Desa Cabak, Jawa Tengah', '500 m³', '250 Hektar', 'Zona A, Zona B')
 ON CONFLICT (id) DO NOTHING;
+
+-- ==========================================
+-- TABLE: stok_kayu_history (Riwayat Stok)
+-- ==========================================
+CREATE TABLE IF NOT EXISTS public.stok_kayu_history (
+    id BIGSERIAL PRIMARY KEY,
+    block_id TEXT NOT NULL,
+    zone TEXT,
+    wood_type TEXT,
+    volume NUMERIC,
+    log_count INTEGER,
+    grade TEXT,
+    status TEXT,
+    updated_by UUID REFERENCES auth.users(id),
+    tanggal DATE DEFAULT CURRENT_DATE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
+);
+
+-- Enable RLS
+ALTER TABLE public.stok_kayu_history ENABLE ROW LEVEL SECURITY;
+
+-- Policies
+CREATE POLICY "History viewable by everyone" 
+ON public.stok_kayu_history FOR SELECT USING (true);
+
+CREATE POLICY "History insertable by authenticated users" 
+ON public.stok_kayu_history FOR INSERT WITH CHECK (auth.role() = 'authenticated');

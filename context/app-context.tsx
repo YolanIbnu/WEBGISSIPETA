@@ -9,6 +9,7 @@ import {
   fetchUserProfile,
   fetchSystemSettings,
   updateSystemSettings,
+  fetchStokHistory,
   SystemSettings,
   LogItem,
   supabase
@@ -41,6 +42,7 @@ interface AppContextType {
   updateSettings: (newSettings: Partial<SystemSettings>) => Promise<boolean>;
   refreshSettings: () => Promise<void>;
   refreshData: () => Promise<void>;
+  getHistory: (month?: string) => Promise<LogItem[]>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -157,6 +159,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setIsLoading(false);
     }
+  }, []);
+
+  const getHistory = useCallback(async (month?: string) => {
+    return await fetchStokHistory(month);
   }, []);
 
   const handleUserSession = async (userId: string, email: string) => {
@@ -327,7 +333,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         settings,
         updateSettings,
         refreshSettings,
-        refreshData
+        refreshData,
+        getHistory
       }}
     >
       {children}

@@ -20,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "sonner";
 
 interface EditModalProps {
   blockId: string | null;
@@ -38,7 +39,6 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
     logCount: "",
     grade: "",
     status: "Available" as "Available" | "Sold",
-    tanggal: new Date().toISOString().split('T')[0],
   });
   const [isSaving, setIsSaving] = useState(false);
 
@@ -53,7 +53,6 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
         logCount: currentBlock.logCount.toString(),
         grade: currentBlock.grade,
         status: currentBlock.status,
-        tanggal: currentBlock.tanggal || new Date().toISOString().split('T')[0],
       });
     }
   }, [currentBlock, isOpen]);
@@ -62,23 +61,31 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!blockId) return;
 
     setIsSaving(true);
-    // Simulate API call
-    setTimeout(() => {
-      updateWoodBlock(blockId, {
+    try {
+      const success = await updateWoodBlock(blockId, {
         woodType: formData.woodType,
         volume: parseFloat(formData.volume),
         logCount: parseInt(formData.logCount),
         grade: formData.grade,
         status: formData.status,
-        tanggal: formData.tanggal,
       });
+
+      if (success) {
+        toast.success(`Data ${blockId} berhasil diperbarui`);
+        onClose();
+      } else {
+        toast.error(`Gagal memperbarui data ${blockId}. Periksa koneksi atau database.`);
+      }
+    } catch (err) {
+      console.error("Save error:", err);
+      toast.error("Terjadi kesalahan sistem saat menyimpan.");
+    } finally {
       setIsSaving(false);
-      onClose();
-    }, 300);
+    }
   };
 
   if (!currentBlock) return null;
@@ -185,20 +192,6 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
               </SelectContent>
             </Select>
           </div>
-
-          {/* Tanggal */}
-          <div className="space-y-2">
-            <Label htmlFor="tanggal" className="text-slate-700">
-              Tanggal
-            </Label>
-            <Input
-              id="tanggal"
-              type="date"
-              value={formData.tanggal}
-              onChange={(e) => handleChange("tanggal", e.target.value)}
-              className="bg-slate-50"
-            />
-          </div>
         </div>
 
         <DialogFooter>
@@ -219,7 +212,7 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
             {isSaving ? "Menyimpan..." : "Simpan Perubahan"}
           </Button>
         </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      </DialogContent >
+    </Dialog >
   );
 }
