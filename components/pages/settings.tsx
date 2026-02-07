@@ -18,22 +18,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 function StaffRegistrationForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setMessage(null);
-
-    try {
+    const registerAction = async () => {
       // Create a secondary client specifically for registration 
-      // to avoid logging out the currently logged-in admin.
       const { createClient } = await import('@supabase/supabase-js');
       const authClient = createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -59,22 +54,20 @@ function StaffRegistrationForm() {
       });
 
       if (error) throw error;
+      if (!data.user) throw new Error("Gagal membuat akun.");
 
-      if (data.user) {
-        setMessage({
-          type: 'success',
-          text: 'Akun Staff berhasil dibuat! Sesi Admin Anda tetap aktif. Staff baru dapat login menggunakan kredensial yang Anda berikan.'
-        });
-        // Reset form
-        setEmail("");
-        setPassword("");
-        setFullName("");
-      }
-    } catch (err: any) {
-      setMessage({ type: 'error', text: err.message || "Gagal membuat akun." });
-    } finally {
-      setIsLoading(false);
-    }
+      // Reset form on success
+      setEmail("");
+      setPassword("");
+      setFullName("");
+      return true;
+    };
+
+    toast.promise(registerAction(), {
+      loading: "Sedang membuat akun staff...",
+      success: "Akun Staff berhasil dibuat!",
+      error: (err) => err.message || "Gagal membuat akun staff."
+    });
   };
 
   return (
@@ -112,18 +105,12 @@ function StaffRegistrationForm() {
         />
       </div>
 
-      {message && (
-        <div className={`p-3 rounded text-sm ${message.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-          {message.text}
-        </div>
-      )}
 
       <div className="bg-amber-50 p-3 rounded text-xs text-amber-800 border border-amber-200">
         <strong>Catatan Penting:</strong> Membuat akun baru akan otomatis logout dari sesi Admin saat ini.
       </div>
 
-      <Button type="submit" disabled={isLoading} className="w-full bg-purple-700 hover:bg-purple-800">
-        {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+      <Button type="submit" className="w-full bg-purple-700 hover:bg-purple-800">
         Buat Akun Staff
       </Button>
     </form>
@@ -146,15 +133,16 @@ export function Settings() {
     }
   }, [isDialogOpen, settings]);
 
+
   const handleSaveSettings = async () => {
-    setIsSaving(true);
-    const success = await updateSettings(editForm);
-    if (success) {
-      setIsDialogOpen(false);
-    } else {
-      alert("Gagal menyimpan pengaturan.");
-    }
-    setIsSaving(false);
+    // Close immediately
+    setIsDialogOpen(false);
+
+    toast.promise(updateSettings(editForm), {
+      loading: "Sedang menyimpan pengaturan...",
+      success: "Pengaturan berhasil diperbarui",
+      error: "Gagal menyimpan pengaturan"
+    });
   };
 
   if (globalLoading) {

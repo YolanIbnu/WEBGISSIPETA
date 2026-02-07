@@ -56,6 +56,7 @@ export interface LogItem {
   status: LogStatus;
   updated_by?: string;
   tanggal?: string;
+  id_history?: number;
 }
 
 export interface SystemSettings {
@@ -70,7 +71,7 @@ export interface SystemSettings {
 // TRANSFORM FUNCTIONS
 // ============================================================
 
-function transformToLogItem(row: StokKayu): LogItem {
+export function transformToLogItem(row: StokKayu): LogItem {
   return {
     id: row.id,
     zone: row.zone,
@@ -84,7 +85,7 @@ function transformToLogItem(row: StokKayu): LogItem {
   };
 }
 
-function transformToStokKayu(item: Partial<LogItem>): Partial<StokKayu> {
+export function transformToStokKayu(item: Partial<LogItem>): Partial<StokKayu> {
   const result: Partial<StokKayu> = {};
 
   if (item.woodType !== undefined) result.wood_type = item.woodType;
@@ -150,7 +151,7 @@ export async function updateStokKayu(
       .from('stok_kayu')
       .update(dbUpdates)
       .eq('id', id)
-      .select()
+      .select('id, zone, wood_type, volume, log_count, grade, status, updated_by, tanggal')
       .single();
 
     if (error) {
@@ -192,7 +193,7 @@ export async function updateStokKayu(
  */
 export async function fetchStokHistory(month?: string): Promise<LogItem[]> {
   try {
-    let query = supabase.from('stok_kayu_history').select('*').order('tanggal', { ascending: false });
+    let query = supabase.from('stok_kayu_history').select('*').order('id', { ascending: false });
 
     if (month) {
       // month parameter expected as 'YYYY-MM'
@@ -212,6 +213,7 @@ export async function fetchStokHistory(month?: string): Promise<LogItem[]> {
       status: row.status,
       updated_by: row.updated_by,
       tanggal: row.tanggal,
+      id_history: row.id,
     }));
   } catch (error) {
     console.error('Error fetching history:', error);
@@ -295,7 +297,22 @@ export function subscribeToStokKayu(onUpdate: (payload: any) => void) {
       { event: '*', schema: 'public', table: 'stok_kayu' },
       onUpdate
     )
-    .subscribe();
+    .subscribe((status) => {
+      console.log('Realtime Stok Kayu status:', status);
+    });
+}
+
+export function subscribeToSystemSettings(onUpdate: (payload: any) => void) {
+  return supabase
+    .channel('system_settings_changes')
+    .on(
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'system_settings', filter: 'id=eq.1' },
+      onUpdate
+    )
+    .subscribe((status) => {
+      console.log('Realtime Settings status:', status);
+    });
 }
 
 /**

@@ -38,6 +38,7 @@ export function DataStok({ onEditBlock }: DataStokProps) {
   const [activeTab, setActiveTab] = useState<"current" | "history">("current");
   const [historyData, setHistoryData] = useState<LogItem[]>([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
+  const [historySortOrder, setHistorySortOrder] = useState<"desc" | "asc">("desc");
 
   const filteredBlocks = woodBlocks.filter((block) => {
     const matchesSearch = block.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -69,6 +70,23 @@ export function DataStok({ onEditBlock }: DataStokProps) {
     setShowModal(false);
     setEditingId(null);
   };
+
+  const sortedHistory = [...historyData].sort((a, b) => {
+    const idA = a.id_history || 0;
+    const idB = b.id_history || 0;
+    const dateA = a.tanggal || "";
+    const dateB = b.tanggal || "";
+
+    if (historySortOrder === "desc") {
+      return idB - idA || dateB.localeCompare(dateA);
+    } else {
+      return idA - idB || dateA.localeCompare(dateB);
+    }
+  });
+
+  // Note: Since I changed fetchStokHistory to order by id DESC, 
+  // the initial data is already sorted DESC.
+  // The client side sort here provides the toggle functionality.
 
   // Calculate totals for filtered results
   const totalVolume = filteredBlocks.reduce((sum, b) => sum + b.volume, 0);
@@ -223,7 +241,17 @@ export function DataStok({ onEditBlock }: DataStokProps) {
               <TableHeader className="bg-blue-950">
                 <TableRow className="border-0 hover:bg-blue-950">
                   <TableHead className="text-white">ID Blok</TableHead>
-                  <TableHead className="text-white">Tanggal Record</TableHead>
+                  <TableHead
+                    className="text-white cursor-pointer hover:bg-blue-900 transition-colors"
+                    onClick={() => setHistorySortOrder(prev => prev === "desc" ? "asc" : "desc")}
+                  >
+                    <div className="flex items-center gap-2">
+                      Tanggal Record
+                      <span className="text-[10px] opacity-70">
+                        {historySortOrder === "desc" ? "▼ (Terbaru)" : "▲ (Terlama)"}
+                      </span>
+                    </div>
+                  </TableHead>
                   <TableHead className="text-white text-right">Volume (m³)</TableHead>
                   <TableHead className="text-white text-right">Jumlah Batang</TableHead>
                   <TableHead className="text-white">Status</TableHead>
@@ -245,7 +273,7 @@ export function DataStok({ onEditBlock }: DataStokProps) {
                     </TableCell>
                   </TableRow>
                 ) : (
-                  historyData.map((record, index) => (
+                  sortedHistory.map((record, index) => (
                     <TableRow key={index} className={index % 2 === 0 ? "bg-white" : "bg-slate-50"}>
                       <TableCell className="font-semibold text-blue-900">{record.id}</TableCell>
                       <TableCell className="text-slate-700">{record.tanggal}</TableCell>

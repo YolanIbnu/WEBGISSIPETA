@@ -40,7 +40,6 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
     grade: "",
     status: "Available" as "Available" | "Sold",
   });
-  const [isSaving, setIsSaving] = useState(false);
 
   const currentBlock = woodBlocks.find((b) => b.id === blockId);
 
@@ -64,28 +63,23 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
   const handleSave = async () => {
     if (!blockId) return;
 
-    setIsSaving(true);
-    try {
-      const success = await updateWoodBlock(blockId, {
-        woodType: formData.woodType,
-        volume: parseFloat(formData.volume),
-        logCount: parseInt(formData.logCount),
-        grade: formData.grade,
-        status: formData.status,
-      });
+    // Close modal immediately for better UX (as we have optimistic UI)
+    onClose();
 
-      if (success) {
-        toast.success(`Data ${blockId} berhasil diperbarui`);
-        onClose();
-      } else {
-        toast.error(`Gagal memperbarui data ${blockId}. Periksa koneksi atau database.`);
-      }
-    } catch (err) {
-      console.error("Save error:", err);
-      toast.error("Terjadi kesalahan sistem saat menyimpan.");
-    } finally {
-      setIsSaving(false);
-    }
+    // Use toast.promise for better visibility of background progress
+    const updatePromise = updateWoodBlock(blockId, {
+      woodType: formData.woodType,
+      volume: parseFloat(formData.volume),
+      logCount: parseInt(formData.logCount),
+      grade: formData.grade,
+      status: formData.status,
+    });
+
+    toast.promise(updatePromise, {
+      loading: `Sedang menyimpan perubahan ${blockId}...`,
+      success: `Data ${blockId} berhasil diperbarui`,
+      error: `Gagal memperbarui data ${blockId}.`
+    });
   };
 
   if (!currentBlock) return null;
@@ -199,17 +193,15 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
             type="button"
             variant="outline"
             onClick={onClose}
-            disabled={isSaving}
           >
             Batal
           </Button>
           <Button
             type="button"
             onClick={handleSave}
-            disabled={isSaving}
             className="bg-emerald-600 hover:bg-emerald-700 text-white"
           >
-            {isSaving ? "Menyimpan..." : "Simpan Perubahan"}
+            Simpan Perubahan
           </Button>
         </DialogFooter>
       </DialogContent >

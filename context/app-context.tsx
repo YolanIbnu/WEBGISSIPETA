@@ -6,6 +6,8 @@ import {
   fetchAllStokKayu,
   updateStokKayu,
   subscribeToStokKayu,
+  subscribeToSystemSettings,
+  transformToLogItem,
   fetchUserProfile,
   fetchSystemSettings,
   updateSystemSettings,
@@ -134,8 +136,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     return success;
   }, [user, refreshSettings]);
 
-  const refreshData = useCallback(async () => {
-    setIsLoading(true);
+  const refreshData = useCallback(async (silent = false) => {
+    if (!silent) setIsLoading(true);
     try {
       const [dbData, settingsData] = await Promise.all([
         fetchAllStokKayu(),
@@ -157,7 +159,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     } catch (err) {
       console.error("Refresh data failed:", err);
     } finally {
-      setIsLoading(false);
+      if (!silent) setIsLoading(false);
     }
   }, []);
 
@@ -232,18 +234,29 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     loadInitialData();
 
     // 2. Subscribe to Realtime Changes for Stok Kayu
-    const subscription = subscribeToStokKayu((payload) => {
-      console.log('Realtime update received:', payload);
+    const woodSubscription = subscribeToStokKayu((payload) => {
+      console.log('Realtime update received (Stok Kayu):', payload);
       if (payload.new && payload.new.id) {
+        // Transform DB data (snake_case) to UI data (camelCase)
+        const renamedData = transformToLogItem(payload.new as any);
+
         setWoodBlocks((prev) =>
           prev.map((block) =>
-            block.id === payload.new.id ? { ...block, ...payload.new } : block
+            block.id === renamedData.id ? { ...block, ...renamedData } : block
           )
         );
       }
     });
 
-    // 3. Check Active Session & Listen to Auth Changes
+    // 3. Subscribe to Realtime Changes for System Settings
+    const settingsSubscription = subscribeToSystemSettings((payload: any) => {
+      console.log('Realtime update received (Settings):', payload);
+      if (payload.new) {
+        setSettings(payload.new as SystemSettings);
+      }
+    });
+
+    // 4. Check Active Session & Listen to Auth Changes
     const initAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
@@ -260,11 +273,20 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
-    return () => {
-      subscription.unsubscribe();
-      authListener.subscription.unsubscribe();
+    // 5. Refresh data when tab regains focus (to handle potential lost realtime connections)
+    const onFocus = () => {
+      console.log("Window focused: Refreshing data to ensure synchronization...");
+      refreshData(true);
     };
-  }, []);
+    window.addEventListener('focus', onFocus);
+
+    return () => {
+      woodSubscription.unsubscribe();
+      settingsSubscription.unsubscribe();
+      authListener.subscription.unsubscribe();
+      window.removeEventListener('focus', onFocus);
+    };
+  }, [refreshData]);
 
   // ============================================================
   // INACTIVITY LOGOUT (30 MINUTES)
