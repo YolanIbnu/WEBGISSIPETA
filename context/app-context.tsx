@@ -40,6 +40,7 @@ interface AppContextType {
   settings: SystemSettings;
   updateSettings: (newSettings: Partial<SystemSettings>) => Promise<boolean>;
   refreshSettings: () => Promise<void>;
+  refreshData: () => Promise<void>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -130,6 +131,33 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
     return success;
   }, [user, refreshSettings]);
+
+  const refreshData = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const [dbData, settingsData] = await Promise.all([
+        fetchAllStokKayu(),
+        fetchSystemSettings()
+      ]);
+
+      if (dbData && dbData.length > 0) {
+        setWoodBlocks((prevBlocks) => {
+          return prevBlocks.map(block => {
+            const dbItem = dbData.find(d => d.id === block.id);
+            return dbItem ? { ...block, ...dbItem } : block;
+          });
+        });
+      }
+
+      if (settingsData) {
+        setSettings(settingsData);
+      }
+    } catch (err) {
+      console.error("Refresh data failed:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   const handleUserSession = async (userId: string, email: string) => {
     // 1. Set preliminary user immediately to allow navigation if not already set
@@ -260,7 +288,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         settings,
         updateSettings,
-        refreshSettings
+        refreshSettings,
+        refreshData
       }}
     >
       {children}

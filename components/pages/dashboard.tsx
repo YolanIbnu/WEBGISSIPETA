@@ -6,11 +6,19 @@ import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Toolti
 import { TreePine, Package, Scale } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { Button } from "@/components/ui/button";
 
 export function Dashboard() {
-  const { woodBlocks, settings, isLoading } = useApp();
+  const { woodBlocks, settings, isLoading, refreshData } = useApp();
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  if (isLoading) {
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await refreshData();
+    setIsRefreshing(false);
+  };
+
+  if (isLoading && !isRefreshing) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
         <div className="flex flex-col items-center gap-4">
@@ -52,9 +60,20 @@ export function Dashboard() {
   return (
     <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl sm:text-4xl font-bold text-emerald-950 mb-1 sm:mb-2">Dashboard</h1>
-        <p className="text-sm sm:text-base text-slate-600">TPK Cabak - Sistem Informasi Peta TPK</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl sm:text-4xl font-bold text-emerald-950 mb-1 sm:mb-2">Dashboard</h1>
+          <p className="text-sm sm:text-base text-slate-600">TPK Cabak - Sistem Informasi Peta TPK</p>
+        </div>
+        <Button
+          onClick={handleRefresh}
+          disabled={isRefreshing}
+          variant="outline"
+          className="bg-white border-emerald-200 text-emerald-900 hover:bg-emerald-50 self-start sm:self-center"
+        >
+          <div className={`mr-2 h-4 w-4 border-2 border-emerald-600 border-t-transparent rounded-full ${isRefreshing ? 'animate-spin' : ''}`}></div>
+          {isRefreshing ? "Menyegarkan..." : "Segarkan Data"}
+        </Button>
       </div>
 
       {/* TPK Profile Card */}
