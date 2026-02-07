@@ -5,6 +5,7 @@ import { PageType } from "@/components/app-layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { ConnectionStatus } from "@/components/connection-status";
 import {
   LayoutDashboard,
   Map,
@@ -32,7 +33,7 @@ const MENU_ITEMS = [
 ];
 
 export function AppSidebar({ currentPage, onPageChange, isOpen, onClose }: AppSidebarProps) {
-  const { user, logout } = useApp();
+  const { user, logout, refreshData } = useApp();
 
   return (
     <>
@@ -106,6 +107,11 @@ export function AppSidebar({ currentPage, onPageChange, isOpen, onClose }: AppSi
               </div>
             </div>
           </Card>
+
+          {/* Connection Status Indicator */}
+          <div className="px-1 py-2">
+            <ConnectionStatus onRefresh={refreshData} />
+          </div>
 
           <Button
             onClick={logout}

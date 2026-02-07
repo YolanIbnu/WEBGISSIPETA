@@ -199,7 +199,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     // 1. Consolidate Initial Data Fetch (Stocks & Settings)
     const loadInitialData = async () => {
       setIsLoading(true);
-      console.log("AppProvider: Starting initial data load...");
+      console.log("🔄 AppProvider: Starting initial data load...");
 
       try {
         // Fetch stocks and settings in parallel, but handle them as they arrive
@@ -209,7 +209,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         ]);
 
         if (dbData && dbData.length > 0) {
-          console.log("AppProvider: Stocks loaded", dbData.length);
+          console.log("✅ AppProvider: Stocks loaded", dbData.length);
           setWoodBlocks((prevBlocks) => {
             return prevBlocks.map(block => {
               const dbItem = dbData.find(d => d.id === block.id);
@@ -219,23 +219,23 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         }
 
         if (settingsData) {
-          console.log("AppProvider: Settings loaded", settingsData.tpk_name);
+          console.log("✅ AppProvider: Settings loaded", settingsData.tpk_name);
           setSettings(settingsData);
         }
       } catch (err) {
-        console.error("AppProvider: Error during initial load", err);
+        console.error("❌ AppProvider: Error during initial load", err);
       } finally {
         // Always finish loading even if things failed
         setIsLoading(false);
-        console.log("AppProvider: Initial load finished");
+        console.log("✅ AppProvider: Initial load finished");
       }
     };
 
     loadInitialData();
 
     // 2. Subscribe to Realtime Changes for Stok Kayu
-    const woodSubscription = subscribeToStokKayu((payload) => {
-      console.log('Realtime update received (Stok Kayu):', payload);
+    let woodSubscription = subscribeToStokKayu((payload) => {
+      console.log('🔔 Realtime update received (Stok Kayu):', payload);
       if (payload.new && payload.new.id) {
         // Transform DB data (snake_case) to UI data (camelCase)
         const renamedData = transformToLogItem(payload.new as any);
@@ -249,8 +249,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     });
 
     // 3. Subscribe to Realtime Changes for System Settings
-    const settingsSubscription = subscribeToSystemSettings((payload: any) => {
-      console.log('Realtime update received (Settings):', payload);
+    let settingsSubscription = subscribeToSystemSettings((payload: any) => {
+      console.log('🔔 Realtime update received (Settings):', payload);
       if (payload.new) {
         setSettings(payload.new as SystemSettings);
       }
@@ -273,18 +273,78 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
-    // 5. Refresh data when tab regains focus (to handle potential lost realtime connections)
+    // 5. Window Focus Event - Refresh data when tab regains focus
     const onFocus = () => {
-      console.log("Window focused: Refreshing data to ensure synchronization...");
+      console.log("👁️ Window focused: Refreshing data to ensure synchronization...");
       refreshData(true);
     };
     window.addEventListener('focus', onFocus);
+
+    // 6. Visibility Change Event - Critical for mobile
+    // Mobile browsers pause tabs differently than desktop
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        console.log("👁️ Tab became visible: Force refresh data...");
+
+        // Re-subscribe to realtime to ensure connection is alive
+        woodSubscription.unsubscribe();
+        settingsSubscription.unsubscribe();
+
+        woodSubscription = subscribeToStokKayu((payload) => {
+          console.log('🔔 Realtime update received (Stok Kayu):', payload);
+          if (payload.new && payload.new.id) {
+            const renamedData = transformToLogItem(payload.new as any);
+            setWoodBlocks((prev) =>
+              prev.map((block) =>
+                block.id === renamedData.id ? { ...block, ...renamedData } : block
+              )
+            );
+          }
+        });
+
+        settingsSubscription = subscribeToSystemSettings((payload: any) => {
+          console.log('🔔 Realtime update received (Settings):', payload);
+          if (payload.new) {
+            setSettings(payload.new as SystemSettings);
+          }
+        });
+
+        // Also refresh data to catch any missed updates
+        refreshData(true);
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    // 7. Online/Offline Detection - Auto refresh when back online
+    const onOnline = () => {
+      console.log("🌐 Network back online: Refreshing data...");
+      refreshData(true);
+    };
+    window.addEventListener('online', onOnline);
+
+    // 8. Periodic Refresh for Mobile (every 30 seconds when active)
+    // This ensures data freshness even if realtime fails
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    let periodicRefreshInterval: NodeJS.Timeout | null = null;
+
+    if (isMobile) {
+      console.log("📱 Mobile device detected: Enabling periodic refresh every 30s");
+      periodicRefreshInterval = setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          console.log("🔄 Periodic refresh (mobile)...");
+          refreshData(true);
+        }
+      }, 30000); // 30 seconds
+    }
 
     return () => {
       woodSubscription.unsubscribe();
       settingsSubscription.unsubscribe();
       authListener.subscription.unsubscribe();
       window.removeEventListener('focus', onFocus);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      window.removeEventListener('online', onOnline);
+      if (periodicRefreshInterval) clearInterval(periodicRefreshInterval);
     };
   }, [refreshData]);
 
