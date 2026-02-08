@@ -1,59 +1,45 @@
-import React from "react"
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
-import { Toaster } from 'sonner'
-import { AppProvider } from '@/context/app-context'
-import './globals.css'
-
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+import type { Metadata } from "next";
+import "./globals.css";
+import { AppProvider } from "@/context/app-context";
 
 export const metadata: Metadata = {
-  title: 'SIPETA TPK - Sistem Informasi Peta TPK',
-  description: 'Sistem Informasi Peta TPK (Taman Produksi Kayu) dengan fitur GIS terintegrasi untuk manajemen persediaan kayu di Perhutani Cabak.',
-  generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+  title: "SIPETA - Sistem Informasi Peta TPK",
+  description: "Sistem Manajemen Persediaan Kayu Terpadu untuk monitoring dan kontrol stok real-time dengan teknologi GIS terkini",
+  // CRITICAL: Prevent ALL caching to ensure real-time data
+  other: {
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+    'Pragma': 'no-cache',
+    'Expires': '0',
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
+    <html lang="id" suppressHydrationWarning>
       <head>
+        {/* CRITICAL: Leaflet CSS for map tiles */}
         <link
           rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
           crossOrigin=""
         />
+
+        {/* CRITICAL META TAGS: Force no-cache on mobile browsers */}
+        <meta httpEquiv="Cache-Control" content="no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
+        <meta name="robots" content="noindex, nofollow" />
       </head>
-      <body className={`font-sans antialiased`}>
+      <body className="antialiased" suppressHydrationWarning>
         <AppProvider>
           {children}
         </AppProvider>
-        <Analytics />
-        <Toaster position="top-center" richColors />
       </body>
     </html>
-  )
+  );
 }

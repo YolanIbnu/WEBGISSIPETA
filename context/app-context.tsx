@@ -16,6 +16,7 @@ import {
   LogItem,
   supabase
 } from "@/lib/supabase";
+import { checkAppVersion, disableBFCache } from "@/lib/cache-utils";
 
 export type UserRole = "admin" | "staff";
 
@@ -196,6 +197,20 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   // LOAD DATA & AUTH STATE ON MOUNT
   // ============================================================
   useEffect(() => {
+    // 0. CRITICAL: Disable browser caching mechanisms
+    // This is ESSENTIAL for mobile devices to get fresh data
+    if (typeof window !== 'undefined') {
+      console.log('🔧 Initializing cache management...');
+
+      // Check app version and clear cache if updated
+      checkAppVersion();
+
+      // Disable browser back/forward cache (critical for mobile Safari/Chrome)
+      disableBFCache();
+
+      console.log('✅ Cache management initialized');
+    }
+
     // 1. Consolidate Initial Data Fetch (Stocks & Settings)
     const loadInitialData = async () => {
       setIsLoading(true);
