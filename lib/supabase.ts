@@ -108,21 +108,16 @@ export function transformToStokKayu(item: Partial<LogItem>): Partial<StokKayu> {
 // ============================================================
 
 /**
- * Fetch all stok_kayu records with retry and cache-busting
+ * Fetch all stok_kayu records with retry
+ * Simplified to prevent AbortError issues
  */
 export async function fetchAllStokKayu(retries = 3): Promise<LogItem[]> {
   for (let i = 0; i < retries; i++) {
     try {
-      // CRITICAL: Add timestamp to prevent browser/device caching
-      // This ensures fresh data on every request across all devices
-      const cacheBuster = `_t=${Date.now()}_${Math.random()}`;
-
       const { data, error } = await supabase
         .from('stok_kayu')
         .select('*')
-        .order('id')
-        // Add a filter that's always true but includes our cache buster
-        .or(`id.neq.${cacheBuster},id.eq.id`);
+        .order('id');
 
       if (error) {
         console.warn(`Fetch stok_kayu attempt ${i + 1} failed:`, error.message);
@@ -323,19 +318,16 @@ export function subscribeToSystemSettings(onUpdate: (payload: any) => void) {
 }
 
 /**
- * Fetch system settings with retry and cache-busting
+ * Fetch system settings with retry
+ * Simplified to prevent AbortError
  */
 export async function fetchSystemSettings(retries = 3): Promise<SystemSettings | null> {
   for (let i = 0; i < retries; i++) {
     try {
-      // Add timestamp to prevent caching
-      const cacheBuster = Date.now();
-
       const { data, error } = await supabase
         .from('system_settings')
         .select('*')
         .eq('id', 1)
-        .or(`tpk_name.neq._t${cacheBuster},id.eq.1`) // Cache buster that always evaluates to get id=1
         .single();
 
       if (error) {
