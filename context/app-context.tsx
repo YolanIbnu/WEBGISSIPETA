@@ -295,37 +295,18 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     };
     window.addEventListener('focus', onFocus);
 
-    // 6. Visibility Change Event - Critical for mobile
-    // Mobile browsers pause tabs differently than desktop
+    // 6. Visibility Change Event - Optimized to prevent excessive reconnections
+    let lastVisibilityChange = Date.now();
     const onVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        console.log("👁️ Tab became visible: Force refresh data...");
-
-        // Re-subscribe to realtime to ensure connection is alive
-        woodSubscription.unsubscribe();
-        settingsSubscription.unsubscribe();
-
-        woodSubscription = subscribeToStokKayu((payload) => {
-          console.log('🔔 Realtime update received (Stok Kayu):', payload);
-          if (payload.new && payload.new.id) {
-            const renamedData = transformToLogItem(payload.new as any);
-            setWoodBlocks((prev) =>
-              prev.map((block) =>
-                block.id === renamedData.id ? { ...block, ...renamedData } : block
-              )
-            );
-          }
-        });
-
-        settingsSubscription = subscribeToSystemSettings((payload: any) => {
-          console.log('🔔 Realtime update received (Settings):', payload);
-          if (payload.new) {
-            setSettings(payload.new as SystemSettings);
-          }
-        });
-
-        // Also refresh data to catch any missed updates
-        refreshData(true);
+        const now = Date.now();
+        // Only refresh if more than 5 seconds since last visibility change
+        // This prevents rapid refresh when switching tabs
+        if (now - lastVisibilityChange > 5000) {
+          console.log("👁️ Tab became visible: Refreshing data...");
+          refreshData(true);
+          lastVisibilityChange = now;
+        }
       }
     };
     document.addEventListener('visibilitychange', onVisibilityChange);
