@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select";
 import { useInventory } from "@/context/inventory-context";
 import type { LogItem, LogStatus } from "@/lib/supabase";
+import { toast } from "sonner";
 
 interface UpdateModalProps {
   logId: string | null;
@@ -51,10 +52,24 @@ export function UpdateModal({ logId, isOpen, onClose }: UpdateModalProps) {
     e.preventDefault();
     if (logId) {
       setIsSaving(true);
-      // Optimistic update happens inside updateLog
-      await updateLog(logId, formData);
-      setIsSaving(false);
+
+      // Close modal immediately for better UX
       onClose();
+
+      // Use toast.promise for background save with visual feedback
+      const updatePromise = updateLog(logId, formData);
+
+      toast.promise(updatePromise, {
+        loading: `Menyimpan perubahan ${logId}...`,
+        success: `Data ${logId} berhasil diperbarui!`,
+        error: `Gagal memperbarui data ${logId}`,
+      });
+
+      try {
+        await updatePromise;
+      } finally {
+        setIsSaving(false);
+      }
     }
   };
 

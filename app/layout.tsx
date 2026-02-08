@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AppProvider } from "@/context/app-context";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "SIPETA - Sistem Informasi Peta TPK",
@@ -39,6 +40,7 @@ export default function RootLayout({
         <AppProvider>
           {children}
         </AppProvider>
+        <Toaster />
       </body>
     </html>
   );
