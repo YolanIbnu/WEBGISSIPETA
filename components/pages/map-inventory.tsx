@@ -140,6 +140,13 @@ export function MapInventory({ onEditBlock }: MapInventoryProps) {
                     <p className="font-semibold text-slate-900 text-sm">{selectedFeature.zone}</p>
                   </div>
 
+                  {selectedFeature.tpkName && (
+                    <div className="col-span-2 bg-emerald-50/50 p-3 rounded-xl border border-emerald-100">
+                      <p className="text-[10px] text-emerald-600 font-medium mb-1">TPK</p>
+                      <p className="font-bold text-emerald-900 text-sm">{selectedFeature.tpkName}</p>
+                    </div>
+                  )}
+
                   <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100">
                     <p className="text-[10px] text-slate-500 font-medium mb-1">Jenis Kayu</p>
                     <p className="font-bold text-emerald-900 text-sm">{selectedFeature.woodType}</p>

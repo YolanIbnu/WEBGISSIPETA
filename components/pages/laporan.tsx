@@ -4,9 +4,11 @@ import { useApp } from "@/context/app-context";
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileDown, Calendar, FileSpreadsheet } from "lucide-react";
+import { FileDown, Calendar, FileSpreadsheet, FileText } from "lucide-react";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 export function Laporan() {
   const { woodBlocks, settings, getHistory } = useApp();
@@ -17,7 +19,7 @@ export function Laporan() {
     const dataToExport = woodBlocks.map((block) => ({
       "ID": block.id,
       "Tanggal": block.tanggal || "-",
-      "Zona": block.zone,
+      "TPK / Zona": block.tpkName || block.zone,
       "Jenis Kayu": block.woodType,
       "Volume (m³)": block.volume,
       "Jumlah Batang": block.logCount,
@@ -55,7 +57,7 @@ export function Laporan() {
       const dataToExport = history.map((h) => ({
         "ID Blok": h.id,
         "Tanggal Record": h.tanggal,
-        "Zona": h.zone,
+        "TPK / Zona": h.tpkName || h.zone,
         "Jenis Kayu": h.woodType,
         "Volume (m³)": h.volume,
         "Batang": h.logCount,
@@ -76,6 +78,86 @@ export function Laporan() {
       saveAs(data, `Riwayat_Stok_Lengkap_${new Date().toISOString().split("T")[0]}.xlsx`);
     } catch (err) {
       console.error("Export history failed:", err);
+    } finally {
+      setIsExportingHistory(false);
+    }
+  };
+
+  const handleExportPDF = () => {
+    const doc = new jsPDF();
+
+    // Header
+    doc.setFontSize(18);
+    doc.text("Laporan Stok Kayu - Saat Ini", 14, 20);
+    doc.setFontSize(11);
+    doc.text(`${settings.tpk_name || "SIPETA"}`, 14, 28);
+    doc.text(`Tanggal: ${new Date().toLocaleDateString("id-ID")}`, 14, 34);
+
+    // Table data
+    const tableData = woodBlocks.map((block) => [
+      block.id,
+      block.tanggal || "-",
+      block.tpkName || block.zone || "-",
+      block.woodType,
+      block.volume.toFixed(1),
+      block.logCount.toString(),
+      block.grade,
+      block.status
+    ]);
+
+    autoTable(doc, {
+      head: [["ID", "Tanggal", "TPK / Zona", "Jenis", "Volume (m³)", "Batang", "Grade", "Status"]],
+      body: tableData,
+      startY: 40,
+      styles: { fontSize: 8 },
+      headStyles: { fillColor: [5, 89, 65] },
+    });
+
+    doc.save(`Laporan_Stok_${new Date().toISOString().split("T")[0]}.pdf`);
+  };
+
+  const handleExportHistoryPDF = async () => {
+    setIsExportingHistory(true);
+    try {
+      const history = await getHistory();
+
+      if (history.length === 0) {
+        alert("Belum ada data riwayat yang tersimpan.");
+        return;
+      }
+
+      const doc = new jsPDF();
+
+      // Header
+      doc.setFontSize(18);
+      doc.text("Laporan Riwayat Stok Kayu", 14, 20);
+      doc.setFontSize(11);
+      doc.text(`${settings.tpk_name || "SIPETA"}`, 14, 28);
+      doc.text(`Tanggal: ${new Date().toLocaleDateString("id-ID")}`, 14, 34);
+
+      // Table data
+      const tableData = history.map((h) => [
+        h.id || "-",
+        h.tanggal || "-",
+        h.tpkName || h.zone || "-",
+        h.woodType || "-",
+        h.volume.toFixed(1),
+        h.logCount.toString(),
+        h.grade || "-",
+        h.status || "-"
+      ]);
+
+      autoTable(doc, {
+        head: [["ID", "Tanggal", "TPK / Zona", "Jenis", "Volume (m³)", "Batang", "Grade", "Status"]],
+        body: tableData,
+        startY: 40,
+        styles: { fontSize: 8 },
+        headStyles: { fillColor: [30, 58, 138] },
+      });
+
+      doc.save(`Riwayat_Stok_${new Date().toISOString().split("T")[0]}.pdf`);
+    } catch (err) {
+      console.error("Export history PDF failed:", err);
     } finally {
       setIsExportingHistory(false);
     }
@@ -128,18 +210,28 @@ export function Laporan() {
             <div>
               <h3 className="text-lg font-semibold text-emerald-950 mb-1">Export Stok Saat Ini</h3>
               <p className="text-sm text-slate-600">
-                Unduh status persediaan terbaru dalam format Excel
+                Unduh status persediaan terbaru dalam format Excel atau PDF
               </p>
             </div>
             <FileSpreadsheet className="h-8 w-8 text-emerald-600" />
           </div>
-          <Button
-            onClick={handleExportExcel}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
-          >
-            <FileDown className="h-4 w-4 mr-2" />
-            Download Excel Stok
-          </Button>
+          <div className="space-y-2">
+            <Button
+              onClick={handleExportExcel}
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+            >
+              <FileSpreadsheet className="h-4 w-4 mr-2" />
+              Download Excel (.xlsx)
+            </Button>
+            <Button
+              onClick={handleExportPDF}
+              variant="outline"
+              className="w-full border-emerald-600 text-emerald-700 hover:bg-emerald-50"
+            >
+              <FileText className="h-4 w-4 mr-2" />
+              Download PDF
+            </Button>
+          </div>
         </Card>
 
         {/* Historical Export */}
@@ -153,14 +245,25 @@ export function Laporan() {
             </div>
             <Calendar className="h-8 w-8 text-blue-600" />
           </div>
-          <Button
-            onClick={handleExportHistory}
-            disabled={isExportingHistory}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-          >
-            <Calendar className="h-4 w-4 mr-2" />
-            {isExportingHistory ? "Memproses..." : "Download Riwayat Lengkap"}
-          </Button>
+          <div className="space-y-2">
+            <Button
+              onClick={handleExportHistory}
+              disabled={isExportingHistory}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              <FileSpreadsheet className="h-4 w-4 mr-2" />
+              {isExportingHistory ? "Memproses..." : "Download Excel (.xlsx)"}
+            </Button>
+            <Button
+              onClick={handleExportHistoryPDF}
+              disabled={isExportingHistory}
+              variant="outline"
+              className="w-full border-blue-600 text-blue-700 hover:bg-blue-50"
+            >
+              <FileText className="h-4 w-4 mr-2" />
+              {isExportingHistory ? "Memproses..." : "Download PDF"}
+            </Button>
+          </div>
           <p className="text-xs text-slate-500 mt-2 text-center">
             {isExportingHistory ? "Mengambil data dari database..." : "Data riwayat akan diakumulasi setiap kali ada update."}
           </p>

@@ -1,6 +1,7 @@
 export interface WoodBlock {
   id: string;
   zone: string;
+  tpkName?: string; // Nama TPK yang dapat diedit
   woodType: string;
   volume: number;
   logCount: number;

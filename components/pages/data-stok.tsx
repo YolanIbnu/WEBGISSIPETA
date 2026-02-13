@@ -43,7 +43,8 @@ export function DataStok({ onEditBlock }: DataStokProps) {
   const filteredBlocks = woodBlocks.filter((block) => {
     const matchesSearch = block.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       block.woodType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      block.zone.toLowerCase().includes(searchTerm.toLowerCase());
+      block.zone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (block.tpkName && block.tpkName.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesStatus = statusFilter === "all" || block.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
@@ -177,7 +178,7 @@ export function DataStok({ onEditBlock }: DataStokProps) {
                   <TableRow className="border-0 hover:bg-emerald-950">
                     <TableHead className="text-white">ID</TableHead>
                     <TableHead className="text-white">Terakhir Update</TableHead>
-                    <TableHead className="text-white">Zona</TableHead>
+                    <TableHead className="text-white">TPK / Zona</TableHead>
                     <TableHead className="text-white">Jenis Kayu</TableHead>
                     <TableHead className="text-white text-right">Volume (m³)</TableHead>
                     <TableHead className="text-white text-right">Jumlah Batang</TableHead>
@@ -194,7 +195,7 @@ export function DataStok({ onEditBlock }: DataStokProps) {
                     >
                       <TableCell className="font-semibold text-emerald-950">{block.id}</TableCell>
                       <TableCell className="text-slate-700">{block.tanggal || "-"}</TableCell>
-                      <TableCell className="text-slate-700">{block.zone}</TableCell>
+                      <TableCell className="text-slate-700 font-medium">{block.tpkName || block.zone}</TableCell>
                       <TableCell className="text-slate-700">{block.woodType}</TableCell>
                       <TableCell className="text-right text-slate-700">{block.volume.toFixed(1)}</TableCell>
                       <TableCell className="text-right text-slate-700">{block.logCount}</TableCell>
@@ -256,7 +257,7 @@ export function DataStok({ onEditBlock }: DataStokProps) {
                   <TableHead className="text-white text-right">Jumlah Batang</TableHead>
                   <TableHead className="text-white">Status</TableHead>
                   <TableHead className="text-white">Jenis</TableHead>
-                  <TableHead className="text-white">Zone</TableHead>
+                  <TableHead className="text-white">TPK / Zone</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -291,7 +292,7 @@ export function DataStok({ onEditBlock }: DataStokProps) {
                         </Badge>
                       </TableCell>
                       <TableCell className="text-slate-600">{record.woodType}</TableCell>
-                      <TableCell className="text-slate-600">{record.zone}</TableCell>
+                      <TableCell className="text-slate-600">{record.tpkName || record.zone}</TableCell>
                     </TableRow>
                   ))
                 )}

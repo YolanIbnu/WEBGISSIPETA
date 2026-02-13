@@ -34,6 +34,7 @@ const GRADES = ["A.I", "A.II", "B.I", "B.II", "C.I", "C.II"];
 export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
   const { woodBlocks, updateWoodBlock } = useApp();
   const [formData, setFormData] = useState({
+    tpkName: "",
     woodType: "",
     volume: "",
     logCount: "",
@@ -47,6 +48,7 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
   useEffect(() => {
     if (currentBlock && isOpen) {
       setFormData({
+        tpkName: currentBlock.tpkName || "",
         woodType: currentBlock.woodType,
         volume: currentBlock.volume.toString(),
         logCount: currentBlock.logCount.toString(),
@@ -68,6 +70,7 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
 
     // Use toast.promise for better visibility of background progress
     const updatePromise = updateWoodBlock(blockId, {
+      tpkName: formData.tpkName || undefined,
       woodType: formData.woodType,
       volume: parseFloat(formData.volume),
       logCount: parseInt(formData.logCount),
@@ -95,6 +98,21 @@ export function EditModal({ blockId, isOpen, onClose }: EditModalProps) {
         </DialogHeader>
 
         <div className="space-y-4 py-4">
+          {/* Nama TPK */}
+          <div className="space-y-2">
+            <Label htmlFor="tpkName" className="text-slate-700">
+              Nama TPK
+            </Label>
+            <Input
+              id="tpkName"
+              type="text"
+              value={formData.tpkName}
+              onChange={(e) => handleChange("tpkName", e.target.value)}
+              placeholder="Contoh: TPK 40"
+              className="bg-slate-50"
+            />
+          </div>
+
           {/* Jenis Kayu */}
           <div className="space-y-2">
             <Label htmlFor="woodType" className="text-slate-700">

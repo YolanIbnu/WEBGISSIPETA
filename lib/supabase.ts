@@ -33,6 +33,7 @@ export type LogStatus = "Available" | "Sold";
 export interface StokKayu {
   id: string; // TPK-A01
   zone: string;
+  tpk_name?: string; // Nama TPK yang dapat diedit
   wood_type: string;
   volume: number;
   log_count: number;
@@ -49,6 +50,7 @@ export interface StokKayu {
 export interface LogItem {
   id: string;
   zone: string;
+  tpkName?: string; // Nama TPK yang dapat diedit
   woodType: string;
   volume: number;
   logCount: number;
@@ -75,6 +77,7 @@ export function transformToLogItem(row: StokKayu): LogItem {
   return {
     id: row.id,
     zone: row.zone,
+    tpkName: row.tpk_name,
     woodType: row.wood_type,
     volume: Number(row.volume), // Ensure number type from Postgres Numeric
     logCount: row.log_count,
@@ -88,6 +91,7 @@ export function transformToLogItem(row: StokKayu): LogItem {
 export function transformToStokKayu(item: Partial<LogItem>): Partial<StokKayu> {
   const result: Partial<StokKayu> = {};
 
+  if (item.tpkName !== undefined) result.tpk_name = item.tpkName;
   if (item.woodType !== undefined) result.wood_type = item.woodType;
   // Pastikan dikonversi ke Number agar tidak error tipe data di database
   if (item.volume !== undefined) result.volume = Number(item.volume);
@@ -153,7 +157,7 @@ export async function updateStokKayu(
       .from('stok_kayu')
       .update(dbUpdates)
       .eq('id', id)
-      .select('id, zone, wood_type, volume, log_count, grade, status, updated_by, tanggal')
+      .select('id, zone, tpk_name, wood_type, volume, log_count, grade, status, updated_by, tanggal')
       .single();
 
     if (error) {
@@ -169,6 +173,7 @@ export async function updateStokKayu(
       const historyData = {
         block_id: data.id,
         zone: data.zone,
+        tpk_name: data.tpk_name,
         wood_type: data.wood_type,
         volume: data.volume,
         log_count: data.log_count,
@@ -208,6 +213,7 @@ export async function fetchStokHistory(month?: string): Promise<LogItem[]> {
     return (data || []).map((row: any) => ({
       id: row.block_id, // Map back to 'id' for consistency in UI
       zone: row.zone,
+      tpkName: row.tpk_name,
       woodType: row.wood_type,
       volume: Number(row.volume),
       logCount: row.log_count,
