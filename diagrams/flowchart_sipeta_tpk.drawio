@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="2074" dy="1156" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="3000" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- ===== MULAI (Oval) ===== -->
+    <mxCell id="mulai" value="MULAI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=12;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="720" y="30" width="120" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Garis dari MULAI ke bawah -->
+    <mxCell id="line_mulai_down" value="" style="endArrow=none;html=1;strokeColor=#B85450;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="780" y="80" as="sourcePoint" />
+        <mxPoint x="780" y="130" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Garis T horizontal -->
+    <mxCell id="line_t_horizontal" value="" style="endArrow=none;html=1;strokeColor=#B85450;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="280" y="130" as="sourcePoint" />
+        <mxPoint x="1280" y="130" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Garis turun ke ADMIN -->
+    <mxCell id="line_t_admin" value="" style="endArrow=classic;html=1;strokeColor=#B85450;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="280" y="130" as="sourcePoint" />
+        <mxPoint x="280" y="175" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- Garis turun ke STAFF -->
+    <mxCell id="line_t_staff" value="" style="endArrow=classic;html=1;strokeColor=#B85450;strokeWidth=2;" edge="1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="1280" y="130" as="sourcePoint" />
+        <mxPoint x="1280" y="175" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- ══════════════════════════════════════ -->
+    <!--        KOLOM ADMIN (Kiri)              -->
+    <!-- ══════════════════════════════════════ -->
+
+    <!-- A1: ADMIN LOGIN -->
+    <mxCell id="a1" value="ADMIN LOGIN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="175" width="180" height="45" as="geometry" />
+    </mxCell>
+
+    <!-- A2: INPUT EMAIL DAN PASSWORD -->
+    <mxCell id="a2" value="INPUT EMAIL&#xa;DAN PASSWORD" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="260" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: PROFILES (samping kiri A2) -->
+    <mxCell id="db_prof_a" value="DATABASE&#xa;PROFILES" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="10" y="250" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_a2_dbp" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a2" target="db_prof_a" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- A3: MENERIMA AKSES DASHBOARD ADMIN -->
+    <mxCell id="a3" value="MENERIMA AKSES&#xa;DASHBOARD ADMIN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="350" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- A4: MELIHAT DASHBOARD -->
+    <mxCell id="a4" value="MELIHAT DASHBOARD&#xa;(STATISTIK TOTAL BLOK,&#xa;VOLUME, STATUS)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="440" width="180" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- A5: MEMBUKA MAP INVENTORY -->
+    <mxCell id="a5" value="MEMBUKA HALAMAN&#xa;MAP INVENTORY" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="540" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- A6: MELIHAT PETA -->
+    <mxCell id="a6" value="MELIHAT PETA DAN&#xa;POLYGON BLOK KAYU" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="630" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: STOK_KAYU (samping kiri A6) -->
+    <mxCell id="db_stok_a" value="DATABASE&#xa;STOK_KAYU" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="10" y="620" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_a6_dbs" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a6" target="db_stok_a" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- A7: KLIK POLYGON -->
+    <mxCell id="a7" value="KLIK POLYGON&#xa;BLOK KAYU DI PETA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="720" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- A8: MELIHAT DETAIL -->
+    <mxCell id="a8" value="MELIHAT DETAIL BLOK&#xa;(ID, ZONA, NAMA TPK,&#xa;JENIS KAYU, VOLUME,&#xa;LOG, GRADE, STATUS)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="810" width="180" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- A9: KLIK EDIT -->
+    <mxCell id="a9" value="KLIK TOMBOL EDIT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="920" width="180" height="45" as="geometry" />
+    </mxCell>
+
+    <!-- A10: INPUT DATA STOK BARU -->
+    <mxCell id="a10" value="INPUT DATA STOK BARU&#xa;(NAMA TPK, ZONA,&#xa;JENIS KAYU, VOLUME,&#xa;JUMLAH LOG, GRADE, STATUS)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1005" width="180" height="75" as="geometry" />
+    </mxCell>
+
+    <!-- A11: MENYIMPAN PERUBAHAN -->
+    <mxCell id="a11" value="MENYIMPAN&#xa;PERUBAHAN DATA STOK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1120" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: STOK_KAYU update (samping kiri A11) -->
+    <mxCell id="db_stok_upd" value="DATABASE&#xa;STOK_KAYU" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="10" y="1075" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_a11_dbs" value="" style="endArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a11" target="db_stok_upd" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- DB: STOK_KAYU_HISTORY (samping kiri bawah A11) -->
+    <mxCell id="db_hist_a" value="DATABASE&#xa;STOK_KAYU_HISTORY" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="10" y="1155" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_a11_dbh" value="" style="endArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a11" target="db_hist_a" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- A12: MEMBUKA LAPORAN -->
+    <mxCell id="a12" value="MEMBUKA&#xa;HALAMAN LAPORAN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1210" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- A13: PILIH FILTER BULAN -->
+    <mxCell id="a13" value="PILIH FILTER BULAN" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1300" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: STOK_KAYU_HISTORY (samping kiri A13) -->
+    <mxCell id="db_hist_lap" value="DATABASE&#xa;STOK_KAYU_HISTORY" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="10" y="1290" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_a13_dbh" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a13" target="db_hist_lap" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- A14: TAMPILKAN TABEL -->
+    <mxCell id="a14" value="TAMPILKAN TABEL&#xa;LAPORAN RIWAYAT STOK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1390" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- A15: EXPORT EXCEL -->
+    <mxCell id="a15" value="EXPORT LAPORAN&#xa;KE EXCEL (.XLSX)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1480" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- ═══ FITUR KHUSUS ADMIN ═══ -->
+
+    <!-- A16: MEMBUAT AKUN STAFF BARU -->
+    <mxCell id="a16" value="MEMBUAT AKUN&#xa;STAFF BARU" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1570" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: PROFILES create staff -->
+    <mxCell id="db_prof_create" value="DATABASE&#xa;PROFILES" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="10" y="1560" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_a16_dbp" value="" style="endArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a16" target="db_prof_create" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- A17: MEMBUKA PENGATURAN -->
+    <mxCell id="a17" value="MEMBUKA HALAMAN&#xa;PENGATURAN SISTEM" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1660" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- A18: INPUT PENGATURAN -->
+    <mxCell id="a18" value="INPUT PENGATURAN&#xa;(NAMA TPK, LOKASI,&#xa;KAPASITAS, LUAS AREA, ZONA)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1750" width="180" height="65" as="geometry" />
+    </mxCell>
+
+    <!-- DB: SYSTEM_SETTINGS -->
+    <mxCell id="db_settings" value="DATABASE&#xa;SYSTEM_SETTINGS" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="10" y="1745" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_a18_dbs" value="" style="endArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a18" target="db_settings" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- A19: NOTIFIKASI -->
+    <mxCell id="a19" value="NOTIFIKASI&#xa;&quot;PENGATURAN BERHASIL&#xa;DISIMPAN&quot;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="190" y="1855" width="180" height="55" as="geometry" />
+    </mxCell>
+
+    <!-- END ADMIN -->
+    <mxCell id="end_admin" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="262" y="1950" width="35" height="35" as="geometry" />
+    </mxCell>
+    <mxCell id="end_admin_lbl" value="END" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="249" y="1990" width="60" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- ===== PANAH ADMIN (vertikal) ===== -->
+    <mxCell id="va1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a1" target="a2" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a2" target="a3" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a3" target="a4" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a4" target="a5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va5" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a5" target="a6" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va6" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a6" target="a7" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va7" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a7" target="a8" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va8" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a8" target="a9" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va9" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a9" target="a10" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va10" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a10" target="a11" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va11" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a11" target="a12" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va12" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a12" target="a13" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va13" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a13" target="a14" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va14" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a14" target="a15" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va15" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a15" target="a16" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va16" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a16" target="a17" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va17" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a17" target="a18" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va18" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a18" target="a19" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="va19" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="a19" target="end_admin" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+    <!-- ══════════════════════════════════════ -->
+    <!--        KOLOM STAFF (Kanan)             -->
+    <!-- ══════════════════════════════════════ -->
+
+    <!-- S1: STAFF LOGIN -->
+    <mxCell id="s1" value="STAFF LOGIN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="175" width="180" height="45" as="geometry" />
+    </mxCell>
+
+    <!-- S2: INPUT EMAIL DAN PASSWORD -->
+    <mxCell id="s2" value="INPUT EMAIL&#xa;DAN PASSWORD" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="260" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: PROFILES (samping kanan S2) -->
+    <mxCell id="db_prof_s" value="DATABASE&#xa;PROFILES" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="250" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_s2_dbp" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s2" target="db_prof_s" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- S3: MENERIMA AKSES DASHBOARD STAFF -->
+    <mxCell id="s3" value="MENERIMA AKSES&#xa;DASHBOARD STAFF" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="350" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- S4: MELIHAT DASHBOARD -->
+    <mxCell id="s4" value="MELIHAT DASHBOARD&#xa;(STATISTIK TOTAL BLOK,&#xa;VOLUME, STATUS)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="440" width="180" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- S5: MEMBUKA MAP INVENTORY -->
+    <mxCell id="s5" value="MEMBUKA HALAMAN&#xa;MAP INVENTORY" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="540" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- S6: MELIHAT PETA -->
+    <mxCell id="s6" value="MELIHAT PETA DAN&#xa;POLYGON BLOK KAYU" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="630" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: STOK_KAYU (samping kanan S6) -->
+    <mxCell id="db_stok_s" value="DATABASE&#xa;STOK_KAYU" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="620" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_s6_dbs" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s6" target="db_stok_s" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- S7: KLIK POLYGON -->
+    <mxCell id="s7" value="KLIK POLYGON&#xa;BLOK KAYU DI PETA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="720" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- S8: MELIHAT DETAIL BLOK -->
+    <mxCell id="s8" value="MELIHAT DETAIL BLOK&#xa;(ID, ZONA, NAMA TPK,&#xa;JENIS KAYU, VOLUME,&#xa;LOG, GRADE, STATUS)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="810" width="180" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- S9: KLIK TOMBOL EDIT -->
+    <mxCell id="s9" value="KLIK TOMBOL EDIT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="920" width="180" height="45" as="geometry" />
+    </mxCell>
+
+    <!-- S10: INPUT DATA STOK BARU -->
+    <mxCell id="s10" value="INPUT DATA STOK BARU&#xa;(NAMA TPK, ZONA,&#xa;JENIS KAYU, VOLUME,&#xa;JUMLAH LOG, GRADE, STATUS)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="1005" width="180" height="75" as="geometry" />
+    </mxCell>
+
+    <!-- S11: MENYIMPAN PERUBAHAN -->
+    <mxCell id="s11" value="MENYIMPAN&#xa;PERUBAHAN DATA STOK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="1120" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: STOK_KAYU update staff -->
+    <mxCell id="db_stok_s_upd" value="DATABASE&#xa;STOK_KAYU" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="1075" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_s11_dbs" value="" style="endArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s11" target="db_stok_s_upd" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- DB: STOK_KAYU_HISTORY staff -->
+    <mxCell id="db_hist_s" value="DATABASE&#xa;STOK_KAYU_HISTORY" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="1155" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_s11_dbh" value="" style="endArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s11" target="db_hist_s" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- S12: MEMBUKA LAPORAN -->
+    <mxCell id="s12" value="MEMBUKA&#xa;HALAMAN LAPORAN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="1210" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- S13: PILIH FILTER BULAN -->
+    <mxCell id="s13" value="PILIH FILTER BULAN" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="1300" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DB: STOK_KAYU_HISTORY staff laporan -->
+    <mxCell id="db_hist_s_lap" value="DATABASE&#xa;STOK_KAYU_HISTORY" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontStyle=1;fontSize=9;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1420" y="1290" width="130" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="arr_s13_dbh" value="" style="endArrow=classic;startArrow=classic;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s13" target="db_hist_s_lap" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- S14: TAMPILKAN TABEL -->
+    <mxCell id="s14" value="TAMPILKAN TABEL&#xa;LAPORAN RIWAYAT STOK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="1390" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- S15: EXPORT EXCEL -->
+    <mxCell id="s15" value="EXPORT LAPORAN&#xa;KE EXCEL (.XLSX)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=15;fillColor=#F5E6CC;strokeColor=#B85450;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1190" y="1480" width="180" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- END STAFF -->
+    <mxCell id="end_staff" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="1262" y="1570" width="35" height="35" as="geometry" />
+    </mxCell>
+    <mxCell id="end_staff_lbl" value="END" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=10;fontFamily=Arial;" vertex="1" parent="1">
+      <mxGeometry x="1249" y="1610" width="60" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- ===== PANAH STAFF (vertikal) ===== -->
+    <mxCell id="vs1" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s1" target="s2" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs2" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s2" target="s3" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs3" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s3" target="s4" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs4" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s4" target="s5" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs5" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s5" target="s6" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs6" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s6" target="s7" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs7" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s7" target="s8" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs8" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s8" target="s9" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs9" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s9" target="s10" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs10" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s10" target="s11" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs11" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s11" target="s12" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs12" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s12" target="s13" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs13" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s13" target="s14" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs14" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s14" target="s15" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="vs15" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#B85450;strokeWidth=1.5;" edge="1" source="s15" target="end_staff" parent="1"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+  </root>
+</mxGraphModel>

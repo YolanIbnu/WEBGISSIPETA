@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useApp } from "@/context/app-context";
 import { LogItem } from "@/lib/supabase";
 import { Card } from "@/components/ui/card";
@@ -22,7 +22,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Search, Edit2 } from "lucide-react";
+import { Search, Edit2, CalendarDays, Filter } from "lucide-react";
 import { EditModal } from "@/components/edit-modal";
 
 interface DataStokProps {
@@ -39,6 +39,20 @@ export function DataStok({ onEditBlock }: DataStokProps) {
   const [historyData, setHistoryData] = useState<LogItem[]>([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const [historySortOrder, setHistorySortOrder] = useState<"desc" | "asc">("desc");
+  const [historyMonthFilter, setHistoryMonthFilter] = useState<string>("all");
+
+  // Generate daftar bulan (12 bulan terakhir)
+  const monthOptions = useMemo(() => {
+    const months: { value: string; label: string }[] = [];
+    const now = new Date();
+    for (let i = 0; i < 12; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+      const label = d.toLocaleDateString("id-ID", { year: "numeric", month: "long" });
+      months.push({ value, label });
+    }
+    return months;
+  }, []);
 
   const filteredBlocks = woodBlocks.filter((block) => {
     const matchesSearch = block.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -49,18 +63,19 @@ export function DataStok({ onEditBlock }: DataStokProps) {
     return matchesSearch && matchesStatus;
   });
 
-  const fetchHistory = async () => {
+  const fetchHistory = async (month?: string) => {
     setIsLoadingHistory(true);
-    const data = await getHistory();
+    const filterMonth = month !== undefined ? month : historyMonthFilter;
+    const data = await getHistory(filterMonth === "all" ? undefined : filterMonth);
     setHistoryData(data);
     setIsLoadingHistory(false);
   };
 
   useEffect(() => {
     if (activeTab === "history") {
-      fetchHistory();
+      fetchHistory(historyMonthFilter);
     }
-  }, [activeTab]);
+  }, [activeTab, historyMonthFilter]);
 
   const handleEdit = (id: string) => {
     setEditingId(id);
@@ -231,11 +246,45 @@ export function DataStok({ onEditBlock }: DataStokProps) {
       ) : (
         /* History Log Table */
         <Card className="bg-white overflow-hidden">
-          <div className="p-4 border-b bg-slate-50 flex justify-between items-center">
-            <p className="text-sm text-slate-600">Catatan setiap perubahan data (paling baru di atas)</p>
-            <Button size="sm" variant="outline" onClick={fetchHistory} disabled={isLoadingHistory}>
-              {isLoadingHistory ? "Memuat..." : "Refresh Riwayat"}
-            </Button>
+          <div className="p-4 border-b bg-slate-50">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <p className="text-sm text-slate-600">Catatan setiap perubahan data (paling baru di atas)</p>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                {/* Filter Bulan */}
+                <div className="relative flex-1 sm:flex-none">
+                  <CalendarDays className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400 pointer-events-none" />
+                  <select
+                    value={historyMonthFilter}
+                    onChange={(e) => setHistoryMonthFilter(e.target.value)}
+                    className="w-full sm:w-52 pl-8 pr-3 py-2 bg-white border rounded-md text-sm outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer"
+                  >
+                    <option value="all">📅 Semua Bulan</option>
+                    {monthOptions.map((m) => (
+                      <option key={m.value} value={m.value}>
+                        {m.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <Button size="sm" variant="outline" onClick={() => fetchHistory()} disabled={isLoadingHistory}>
+                  {isLoadingHistory ? "Memuat..." : "Refresh"}
+                </Button>
+              </div>
+            </div>
+            {historyMonthFilter !== "all" && (
+              <div className="mt-2 flex items-center gap-2">
+                <Filter className="h-3.5 w-3.5 text-blue-600" />
+                <span className="text-xs text-blue-700 font-medium">
+                  Filter aktif: {monthOptions.find(m => m.value === historyMonthFilter)?.label || historyMonthFilter}
+                </span>
+                <button
+                  onClick={() => setHistoryMonthFilter("all")}
+                  className="text-xs text-red-500 hover:text-red-700 underline ml-1"
+                >
+                  Hapus filter
+                </button>
+              </div>
+            )}
           </div>
           <div className="overflow-x-auto">
             <Table>

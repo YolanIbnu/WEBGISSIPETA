@@ -204,7 +204,13 @@ export async function fetchStokHistory(month?: string): Promise<LogItem[]> {
 
     if (month) {
       // month parameter expected as 'YYYY-MM'
-      query = query.filter('tanggal', 'gte', `${month}-01`).filter('tanggal', 'lte', `${month}-31`);
+      // Calculate proper date range (handles Feb, 30-day months, etc.)
+      const [year, mon] = month.split('-').map(Number);
+      const firstDay = `${month}-01`;
+      // First day of NEXT month (handles year rollover too, e.g. Dec -> Jan next year)
+      const nextMonth = new Date(year, mon, 1); // Date months are 0-based, so `mon` (1-based) gives next month
+      const nextMonthStr = `${nextMonth.getFullYear()}-${String(nextMonth.getMonth() + 1).padStart(2, '0')}-01`;
+      query = query.gte('tanggal', firstDay).lt('tanggal', nextMonthStr);
     }
 
     const { data, error } = await query;

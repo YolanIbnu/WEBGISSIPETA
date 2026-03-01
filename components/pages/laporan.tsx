@@ -1,10 +1,10 @@
 "use client";
 
 import { useApp } from "@/context/app-context";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileDown, Calendar, FileSpreadsheet, FileText } from "lucide-react";
+import { FileDown, Calendar, FileSpreadsheet, FileText, CalendarDays, Filter } from "lucide-react";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
@@ -13,6 +13,30 @@ import autoTable from "jspdf-autotable";
 export function Laporan() {
   const { woodBlocks, settings, getHistory } = useApp();
   const [isExportingHistory, setIsExportingHistory] = useState(false);
+  const [reportMonthFilter, setReportMonthFilter] = useState<string>("all");
+
+  // Generate daftar bulan (12 bulan terakhir)
+  const monthOptions = useMemo(() => {
+    const months: { value: string; label: string }[] = [];
+    const now = new Date();
+    for (let i = 0; i < 12; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+      const label = d.toLocaleDateString("id-ID", { year: "numeric", month: "long" });
+      months.push({ value, label });
+    }
+    return months;
+  }, []);
+
+  const getMonthLabel = (val: string) => {
+    if (val === "all") return "Semua Bulan";
+    return monthOptions.find(m => m.value === val)?.label || val;
+  };
+
+  const getFileSuffix = (val: string) => {
+    if (val === "all") return "Lengkap";
+    return monthOptions.find(m => m.value === val)?.label.replace(/ /g, "_") || val;
+  };
 
   const handleExportExcel = () => {
     // 1. Prepare data for Excel
@@ -47,10 +71,14 @@ export function Laporan() {
   const handleExportHistory = async () => {
     setIsExportingHistory(true);
     try {
-      const history = await getHistory();
+      const filterMonth = reportMonthFilter === "all" ? undefined : reportMonthFilter;
+      const history = await getHistory(filterMonth);
 
       if (history.length === 0) {
-        alert("Belum ada data riwayat yang tersimpan. Lakukan update data stok terlebih dahulu.");
+        alert(filterMonth
+          ? `Tidak ada data riwayat di bulan ${getMonthLabel(reportMonthFilter)}. Coba pilih bulan lain.`
+          : "Belum ada data riwayat yang tersimpan. Lakukan update data stok terlebih dahulu."
+        );
         return;
       }
 
@@ -72,10 +100,11 @@ export function Laporan() {
       ];
 
       const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Riwayat Stok");
+      const sheetName = filterMonth ? `Riwayat ${getMonthLabel(reportMonthFilter)}` : "Riwayat Stok";
+      XLSX.utils.book_append_sheet(workbook, worksheet, sheetName.substring(0, 31));
       const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
       const data = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8" });
-      saveAs(data, `Riwayat_Stok_Lengkap_${new Date().toISOString().split("T")[0]}.xlsx`);
+      saveAs(data, `Riwayat_Stok_${getFileSuffix(reportMonthFilter)}_${new Date().toISOString().split("T")[0]}.xlsx`);
     } catch (err) {
       console.error("Export history failed:", err);
     } finally {
@@ -119,10 +148,14 @@ export function Laporan() {
   const handleExportHistoryPDF = async () => {
     setIsExportingHistory(true);
     try {
-      const history = await getHistory();
+      const filterMonth = reportMonthFilter === "all" ? undefined : reportMonthFilter;
+      const history = await getHistory(filterMonth);
 
       if (history.length === 0) {
-        alert("Belum ada data riwayat yang tersimpan.");
+        alert(filterMonth
+          ? `Tidak ada data riwayat di bulan ${getMonthLabel(reportMonthFilter)}.`
+          : "Belum ada data riwayat yang tersimpan."
+        );
         return;
       }
 
@@ -133,7 +166,10 @@ export function Laporan() {
       doc.text("Laporan Riwayat Stok Kayu", 14, 20);
       doc.setFontSize(11);
       doc.text(`${settings.tpk_name || "SIPETA"}`, 14, 28);
-      doc.text(`Tanggal: ${new Date().toLocaleDateString("id-ID")}`, 14, 34);
+      const periodText = filterMonth
+        ? `Periode: ${getMonthLabel(reportMonthFilter)}`
+        : `Tanggal: ${new Date().toLocaleDateString("id-ID")}`;
+      doc.text(periodText, 14, 34);
 
       // Table data
       const tableData = history.map((h) => [
@@ -155,7 +191,7 @@ export function Laporan() {
         headStyles: { fillColor: [30, 58, 138] },
       });
 
-      doc.save(`Riwayat_Stok_${new Date().toISOString().split("T")[0]}.pdf`);
+      doc.save(`Riwayat_Stok_${getFileSuffix(reportMonthFilter)}_${new Date().toISOString().split("T")[0]}.pdf`);
     } catch (err) {
       console.error("Export history PDF failed:", err);
     } finally {
@@ -245,6 +281,41 @@ export function Laporan() {
             </div>
             <Calendar className="h-8 w-8 text-blue-600" />
           </div>
+
+          {/* Month Filter for Report */}
+          <div className="mb-4">
+            <label className="text-xs font-medium text-slate-600 mb-1.5 block">Filter Periode Laporan:</label>
+            <div className="relative">
+              <CalendarDays className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400 pointer-events-none" />
+              <select
+                value={reportMonthFilter}
+                onChange={(e) => setReportMonthFilter(e.target.value)}
+                className="w-full pl-8 pr-3 py-2 bg-slate-50 border rounded-md text-sm outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer"
+              >
+                <option value="all">📅 Semua Bulan (Lengkap)</option>
+                {monthOptions.map((m) => (
+                  <option key={m.value} value={m.value}>
+                    {m.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {reportMonthFilter !== "all" && (
+              <div className="mt-1.5 flex items-center gap-1.5">
+                <Filter className="h-3 w-3 text-blue-600" />
+                <span className="text-xs text-blue-700 font-medium">
+                  Laporan untuk: {getMonthLabel(reportMonthFilter)}
+                </span>
+                <button
+                  onClick={() => setReportMonthFilter("all")}
+                  className="text-xs text-red-500 hover:text-red-700 underline ml-1"
+                >
+                  Reset
+                </button>
+              </div>
+            )}
+          </div>
+
           <div className="space-y-2">
             <Button
               onClick={handleExportHistory}
@@ -252,7 +323,7 @@ export function Laporan() {
               className="w-full bg-blue-600 hover:bg-blue-700 text-white"
             >
               <FileSpreadsheet className="h-4 w-4 mr-2" />
-              {isExportingHistory ? "Memproses..." : "Download Excel (.xlsx)"}
+              {isExportingHistory ? "Memproses..." : `Download Excel${reportMonthFilter !== "all" ? " (" + getMonthLabel(reportMonthFilter) + ")" : ""}`}
             </Button>
             <Button
               onClick={handleExportHistoryPDF}
@@ -261,11 +332,11 @@ export function Laporan() {
               className="w-full border-blue-600 text-blue-700 hover:bg-blue-50"
             >
               <FileText className="h-4 w-4 mr-2" />
-              {isExportingHistory ? "Memproses..." : "Download PDF"}
+              {isExportingHistory ? "Memproses..." : `Download PDF${reportMonthFilter !== "all" ? " (" + getMonthLabel(reportMonthFilter) + ")" : ""}`}
             </Button>
           </div>
           <p className="text-xs text-slate-500 mt-2 text-center">
-            {isExportingHistory ? "Mengambil data dari database..." : "Data riwayat akan diakumulasi setiap kali ada update."}
+            {isExportingHistory ? "Mengambil data dari database..." : "Pilih bulan di atas untuk cetak laporan per bulan."}
           </p>
         </Card>
       </div>

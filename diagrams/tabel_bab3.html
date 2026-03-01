@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabel BAB 3 - Skripsi SIPETA TPK</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            color: #000;
+        }
+        h2 {
+            text-align: center;
+            font-size: 14pt;
+            margin-top: 40px;
+            margin-bottom: 5px;
+            page-break-before: auto;
+        }
+        h3 {
+            font-size: 12pt;
+            margin-top: 30px;
+            margin-bottom: 5px;
+        }
+        .tabel-judul {
+            text-align: center;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-bottom: 8px;
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 25px;
+            font-size: 11pt;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 6px 8px;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            text-align: center;
+        }
+        td.center {
+            text-align: center;
+        }
+        td.no {
+            text-align: center;
+            width: 35px;
+        }
+        .section-divider {
+            border: none;
+            border-top: 2px solid #333;
+            margin: 50px 0;
+        }
+        .note {
+            font-style: italic;
+            font-size: 10pt;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        @media print {
+            body { margin: 0; padding: 10px; }
+            .note { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<h2>TABEL-TABEL BAB III</h2>
+<p class="note">Petunjuk: Buka file ini di browser → Select tabel yang diinginkan → Ctrl+C → Paste di Word (Ctrl+V). Tabel akan langsung rapih.</p>
+
+<hr class="section-divider">
+
+<!-- ============================================ -->
+<!-- 3.4.1 USE CASE DIAGRAM -->
+<!-- ============================================ -->
+
+<h3>3.4.1 Use Case Diagram</h3>
+
+<p class="tabel-judul">Tabel 3.1 Daftar <i>Use Case</i> Sistem SIPETA TPK</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Kode</th>
+            <th><i>Use Case</i></th>
+            <th>Deskripsi</th>
+            <th>Aktor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td class="center">UC01</td>
+            <td><i>Login</i></td>
+            <td>Autentikasi pengguna untuk masuk ke dalam sistem</td>
+            <td>Admin, Staff, <i>Supabase System</i></td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td class="center">UC02</td>
+            <td><i>Logout</i></td>
+            <td>Keluar dari sesi aktif sistem</td>
+            <td>Admin, Staff</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td class="center">UC03</td>
+            <td>Melihat <i>Dashboard</i></td>
+            <td>Menampilkan ringkasan analitik inventaris kayu</td>
+            <td>Admin, Staff</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td class="center">UC04</td>
+            <td>Melihat Peta Inventori</td>
+            <td>Menampilkan peta <i>WebGIS</i> interaktif dengan poligon blok kaveling</td>
+            <td>Admin, Staff</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td class="center">UC05</td>
+            <td>Melihat Detail Blok Kayu</td>
+            <td>Menampilkan detail atribut stok kayu melalui klik poligon pada peta</td>
+            <td>Admin, Staff</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td class="center">UC06</td>
+            <td>Mengedit Data Stok Kayu</td>
+            <td>Memodifikasi atribut data stok kayu pada blok kaveling</td>
+            <td>Admin, Staff, <i>Supabase System</i></td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td class="center">UC07</td>
+            <td>Melihat Data Stok Kayu</td>
+            <td>Menampilkan tabel kompilasi data stok seluruh blok kaveling</td>
+            <td>Admin, Staff</td>
+        </tr>
+        <tr>
+            <td class="no">8</td>
+            <td class="center">UC08</td>
+            <td>Melihat Riwayat Stok</td>
+            <td>Menampilkan jejak audit perubahan data stok secara historis</td>
+            <td>Admin, Staff</td>
+        </tr>
+        <tr>
+            <td class="no">9</td>
+            <td class="center">UC09</td>
+            <td>Melihat Laporan Bulanan</td>
+            <td>Menampilkan laporan riwayat perubahan data stok berdasarkan bulan</td>
+            <td>Admin, Staff</td>
+        </tr>
+        <tr>
+            <td class="no">10</td>
+            <td class="center">UC10</td>
+            <td><i>Export</i> Laporan ke <i>Excel</i></td>
+            <td>Mengekstrak laporan data stok ke dalam format file <i>.xlsx</i></td>
+            <td>Admin, Staff</td>
+        </tr>
+        <tr>
+            <td class="no">11</td>
+            <td class="center">UC11</td>
+            <td>Mengelola Pengaturan Sistem</td>
+            <td>Mengatur profil operasional TPK (nama, lokasi, kapasitas, area, zona)</td>
+            <td>Admin</td>
+        </tr>
+        <tr>
+            <td class="no">12</td>
+            <td class="center">UC12</td>
+            <td>Mengelola Akun Pengguna</td>
+            <td>Membuat dan mengelola akun Staff</td>
+            <td>Admin</td>
+        </tr>
+        <tr>
+            <td class="no">13</td>
+            <td class="center">UC13</td>
+            <td>Menerima <i>Update Realtime</i></td>
+            <td>Menerima pembaruan data secara otomatis via <i>WebSocket</i></td>
+            <td>Admin, Staff, <i>Supabase System</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<hr class="section-divider">
+
+<!-- ============================================ -->
+<!-- 3.4.2 CLASS DIAGRAM -->
+<!-- ============================================ -->
+
+<h3>3.4.2 <i>Class Diagram</i></h3>
+
+<p class="tabel-judul">Tabel 3.2 Atribut dan Operasi Kelas <i>User</i> (Tabel <i>profiles</i>)</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Atribut</th>
+            <th>Tipe Data</th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>id</td>
+            <td>UUID</td>
+            <td><i>Primary Key</i>, <i>Foreign Key</i> → auth_users.id</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>username</td>
+            <td>String</td>
+            <td><i>Unique</i>, NOT NULL</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>full_name</td>
+            <td>String</td>
+            <td>Nama lengkap pengguna</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>avatar_url</td>
+            <td>String</td>
+            <td>URL foto profil pengguna</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>role</td>
+            <td>Enum</td>
+            <td>Peran pengguna: <i>admin</i> atau <i>staff</i> (CHECK <i>constraint</i>)</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>created_at</td>
+            <td>DateTime</td>
+            <td>Waktu pembuatan akun</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>updated_at</td>
+            <td>DateTime</td>
+            <td>Waktu pembaruan terakhir</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><b>Operasi:</b> login(), logout(), updateProfile()</td>
+        </tr>
+    </tfoot>
+</table>
+
+<p class="tabel-judul">Tabel 3.3 Atribut dan Operasi Kelas <i>StokKayu</i> (Tabel stok_kayu)</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Atribut</th>
+            <th>Tipe Data</th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>id</td>
+            <td>String</td>
+            <td><i>Primary Key</i></td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>zone</td>
+            <td>String</td>
+            <td>Zona blok kaveling, NOT NULL</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>tpk_name</td>
+            <td>String</td>
+            <td>Nama TPK</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>wood_type</td>
+            <td>String</td>
+            <td>Jenis kayu, NOT NULL</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>volume</td>
+            <td>Numeric</td>
+            <td>Volume kayu (m³), DEFAULT 0</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>log_count</td>
+            <td>Integer</td>
+            <td>Jumlah batang kayu, DEFAULT 0</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>grade</td>
+            <td>String</td>
+            <td>Grade kualitas kayu</td>
+        </tr>
+        <tr>
+            <td class="no">8</td>
+            <td>status</td>
+            <td>Enum</td>
+            <td>Status blok: <i>Available</i> atau <i>Sold</i> (CHECK <i>constraint</i>)</td>
+        </tr>
+        <tr>
+            <td class="no">9</td>
+            <td>updated_by</td>
+            <td>UUID</td>
+            <td><i>Foreign Key</i> → auth_users.id</td>
+        </tr>
+        <tr>
+            <td class="no">10</td>
+            <td>coordinates</td>
+            <td>JSONB</td>
+            <td>Koordinat poligon blok dalam format GeoJSON</td>
+        </tr>
+        <tr>
+            <td class="no">11</td>
+            <td>tanggal</td>
+            <td>Date</td>
+            <td>Tanggal pembaruan data, DEFAULT CURRENT_DATE</td>
+        </tr>
+        <tr>
+            <td class="no">12</td>
+            <td>created_at</td>
+            <td>DateTime</td>
+            <td>Waktu pembuatan data</td>
+        </tr>
+        <tr>
+            <td class="no">13</td>
+            <td>updated_at</td>
+            <td>DateTime</td>
+            <td>Waktu pembaruan terakhir</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><b>Operasi:</b> fetchAll(), fetchByZone(), update()</td>
+        </tr>
+    </tfoot>
+</table>
+
+<p class="tabel-judul">Tabel 3.4 Atribut dan Operasi Kelas <i>StokKayuHistory</i> (Tabel stok_kayu_history)</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Atribut</th>
+            <th>Tipe Data</th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>id</td>
+            <td>BigSerial</td>
+            <td><i>Primary Key</i>, <i>Auto Increment</i></td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>block_id</td>
+            <td>String</td>
+            <td><i>Foreign Key</i> → stok_kayu.id</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>zone</td>
+            <td>String</td>
+            <td>Zona blok kaveling</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>tpk_name</td>
+            <td>String</td>
+            <td>Nama TPK</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>wood_type</td>
+            <td>String</td>
+            <td>Jenis kayu</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>volume</td>
+            <td>Numeric</td>
+            <td>Volume kayu (m³)</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>log_count</td>
+            <td>Integer</td>
+            <td>Jumlah batang kayu</td>
+        </tr>
+        <tr>
+            <td class="no">8</td>
+            <td>grade</td>
+            <td>String</td>
+            <td>Grade kualitas kayu</td>
+        </tr>
+        <tr>
+            <td class="no">9</td>
+            <td>status</td>
+            <td>String</td>
+            <td>Status blok saat perubahan</td>
+        </tr>
+        <tr>
+            <td class="no">10</td>
+            <td>updated_by</td>
+            <td>UUID</td>
+            <td><i>Foreign Key</i> → auth_users.id</td>
+        </tr>
+        <tr>
+            <td class="no">11</td>
+            <td>tanggal</td>
+            <td>Date</td>
+            <td>Tanggal perubahan, DEFAULT CURRENT_DATE</td>
+        </tr>
+        <tr>
+            <td class="no">12</td>
+            <td>created_at</td>
+            <td>DateTime</td>
+            <td>Waktu pencatatan riwayat</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><b>Operasi:</b> insert(), fetchByMonth(), exportToExcel()</td>
+        </tr>
+    </tfoot>
+</table>
+
+<p class="tabel-judul">Tabel 3.5 Atribut dan Operasi Kelas <i>SystemSettings</i> (Tabel system_settings)</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Atribut</th>
+            <th>Tipe Data</th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>id</td>
+            <td>Integer</td>
+            <td><i>Primary Key</i>, DEFAULT 1 (<i>singleton record</i>)</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>tpk_name</td>
+            <td>String</td>
+            <td>Nama TPK, NOT NULL</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>location</td>
+            <td>String</td>
+            <td>Lokasi TPK, NOT NULL</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>capacity</td>
+            <td>String</td>
+            <td>Kapasitas TPK, NOT NULL</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>total_area</td>
+            <td>String</td>
+            <td>Luas area TPK, DEFAULT '250 Hektar'</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>zones</td>
+            <td>String</td>
+            <td>Daftar zona, DEFAULT 'Zona A, Zona B'</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>updated_by</td>
+            <td>UUID</td>
+            <td><i>Foreign Key</i> → auth_users.id</td>
+        </tr>
+        <tr>
+            <td class="no">8</td>
+            <td>updated_at</td>
+            <td>DateTime</td>
+            <td>Waktu pembaruan terakhir</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><b>Operasi:</b> fetch(), update()</td>
+        </tr>
+    </tfoot>
+</table>
+
+<hr class="section-divider">
+
+<!-- ============================================ -->
+<!-- 3.5 PERANCANGAN BASIS DATA -->
+<!-- ============================================ -->
+
+<h3>3.5 Perancangan Basis Data</h3>
+
+<p class="tabel-judul">Tabel 3.6 Struktur Tabel <i>profiles</i></p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Kolom</th>
+            <th>Tipe Data</th>
+            <th><i>Constraint</i></th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>id</td>
+            <td>UUID</td>
+            <td>PRIMARY KEY, FOREIGN KEY → auth_users.id</td>
+            <td>Identifikasi unik pengguna, merujuk ke tabel autentikasi <i>Supabase</i></td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>username</td>
+            <td>TEXT</td>
+            <td>UNIQUE, NOT NULL</td>
+            <td>Nama pengguna yang unik untuk identifikasi</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>full_name</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>Nama lengkap pengguna</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>role</td>
+            <td>TEXT</td>
+            <td>CHECK (admin, staff)</td>
+            <td>Peran pengguna dalam sistem</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>avatar_url</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>URL foto profil pengguna</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>created_at</td>
+            <td>TIMESTAMPTZ</td>
+            <td>DEFAULT NOW()</td>
+            <td>Waktu pembuatan akun</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>updated_at</td>
+            <td>TIMESTAMPTZ</td>
+            <td>DEFAULT NOW()</td>
+            <td>Waktu pembaruan terakhir</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.7 Struktur Tabel stok_kayu</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Kolom</th>
+            <th>Tipe Data</th>
+            <th><i>Constraint</i></th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>id</td>
+            <td>TEXT</td>
+            <td>PRIMARY KEY</td>
+            <td>Identifikasi unik blok kaveling</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>zone</td>
+            <td>TEXT</td>
+            <td>NOT NULL</td>
+            <td>Zona lokasi blok kaveling</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>tpk_name</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>Nama TPK tempat blok berada</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>wood_type</td>
+            <td>TEXT</td>
+            <td>NOT NULL</td>
+            <td>Jenis kayu yang tersimpan</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>volume</td>
+            <td>NUMERIC</td>
+            <td>DEFAULT 0</td>
+            <td>Volume kayu dalam satuan m³</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>log_count</td>
+            <td>INTEGER</td>
+            <td>DEFAULT 0</td>
+            <td>Jumlah batang kayu</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>grade</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>Grade kualitas kayu</td>
+        </tr>
+        <tr>
+            <td class="no">8</td>
+            <td>status</td>
+            <td>TEXT</td>
+            <td>CHECK (<i>Available</i>, <i>Sold</i>)</td>
+            <td>Status ketersediaan blok kayu</td>
+        </tr>
+        <tr>
+            <td class="no">9</td>
+            <td>updated_by</td>
+            <td>UUID</td>
+            <td>FOREIGN KEY → auth_users.id</td>
+            <td>ID pengguna yang melakukan pembaruan</td>
+        </tr>
+        <tr>
+            <td class="no">10</td>
+            <td>coordinates</td>
+            <td>JSONB</td>
+            <td>-</td>
+            <td>Koordinat poligon blok dalam format GeoJSON</td>
+        </tr>
+        <tr>
+            <td class="no">11</td>
+            <td>tanggal</td>
+            <td>DATE</td>
+            <td>DEFAULT CURRENT_DATE</td>
+            <td>Tanggal pembaruan data stok</td>
+        </tr>
+        <tr>
+            <td class="no">12</td>
+            <td>created_at</td>
+            <td>TIMESTAMPTZ</td>
+            <td>DEFAULT NOW()</td>
+            <td>Waktu pembuatan data</td>
+        </tr>
+        <tr>
+            <td class="no">13</td>
+            <td>updated_at</td>
+            <td>TIMESTAMPTZ</td>
+            <td>DEFAULT NOW()</td>
+            <td>Waktu pembaruan terakhir</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.8 Struktur Tabel stok_kayu_history</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Kolom</th>
+            <th>Tipe Data</th>
+            <th><i>Constraint</i></th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>id</td>
+            <td>BIGSERIAL</td>
+            <td>PRIMARY KEY</td>
+            <td>Identifikasi unik riwayat, <i>auto increment</i></td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>block_id</td>
+            <td>TEXT</td>
+            <td>FOREIGN KEY → stok_kayu.id</td>
+            <td>Referensi ke blok kaveling yang diubah</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>zone</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>Zona blok saat perubahan</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>tpk_name</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>Nama TPK saat perubahan</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>wood_type</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>Jenis kayu saat perubahan</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>volume</td>
+            <td>NUMERIC</td>
+            <td>-</td>
+            <td>Volume kayu saat perubahan (m³)</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>log_count</td>
+            <td>INTEGER</td>
+            <td>-</td>
+            <td>Jumlah batang kayu saat perubahan</td>
+        </tr>
+        <tr>
+            <td class="no">8</td>
+            <td>grade</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>Grade kualitas kayu saat perubahan</td>
+        </tr>
+        <tr>
+            <td class="no">9</td>
+            <td>status</td>
+            <td>TEXT</td>
+            <td>-</td>
+            <td>Status blok saat perubahan</td>
+        </tr>
+        <tr>
+            <td class="no">10</td>
+            <td>updated_by</td>
+            <td>UUID</td>
+            <td>FOREIGN KEY → auth_users.id</td>
+            <td>ID pengguna yang melakukan perubahan</td>
+        </tr>
+        <tr>
+            <td class="no">11</td>
+            <td>tanggal</td>
+            <td>DATE</td>
+            <td>DEFAULT CURRENT_DATE</td>
+            <td>Tanggal perubahan data</td>
+        </tr>
+        <tr>
+            <td class="no">12</td>
+            <td>created_at</td>
+            <td>TIMESTAMPTZ</td>
+            <td>DEFAULT NOW()</td>
+            <td>Waktu pencatatan riwayat</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.9 Struktur Tabel system_settings</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama Kolom</th>
+            <th>Tipe Data</th>
+            <th><i>Constraint</i></th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>id</td>
+            <td>INTEGER</td>
+            <td>PRIMARY KEY, DEFAULT 1</td>
+            <td>Identifikasi unik, hanya satu baris (<i>singleton</i>)</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>tpk_name</td>
+            <td>TEXT</td>
+            <td>NOT NULL</td>
+            <td>Nama TPK</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>location</td>
+            <td>TEXT</td>
+            <td>NOT NULL</td>
+            <td>Lokasi TPK</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>capacity</td>
+            <td>TEXT</td>
+            <td>NOT NULL</td>
+            <td>Kapasitas daya tampung TPK</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>total_area</td>
+            <td>TEXT</td>
+            <td>DEFAULT '250 Hektar'</td>
+            <td>Luas total area TPK</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>zones</td>
+            <td>TEXT</td>
+            <td>DEFAULT 'Zona A, Zona B'</td>
+            <td>Daftar zona yang tersedia</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>updated_by</td>
+            <td>UUID</td>
+            <td>FOREIGN KEY → auth_users.id</td>
+            <td>ID Admin yang melakukan pembaruan</td>
+        </tr>
+        <tr>
+            <td class="no">8</td>
+            <td>updated_at</td>
+            <td>TIMESTAMPTZ</td>
+            <td>DEFAULT NOW()</td>
+            <td>Waktu pembaruan terakhir</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr class="section-divider">
+
+<!-- ============================================ -->
+<!-- 3.7 BLACK BOX TESTING -->
+<!-- ============================================ -->
+
+<h3>3.7 Rencana Pengujian Sistem (<i>Black Box Testing</i>)</h3>
+
+<p class="tabel-judul">Tabel 3.10 Skenario Pengujian Modul Autentikasi</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Skenario Pengujian</th>
+            <th>Data Masukan (<i>Input</i>)</th>
+            <th>Hasil yang Diharapkan (<i>Expected Output</i>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td><i>Login</i> dengan akun Admin yang valid</td>
+            <td><i>Email</i> dan <i>password</i> Admin yang terdaftar</td>
+            <td>Berhasil masuk ke <i>Dashboard</i> dengan akses penuh (Edit Stok, <i>User Management</i>, Pengaturan Sistem)</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td><i>Login</i> dengan akun Staff yang valid</td>
+            <td><i>Email</i> dan <i>password</i> Staff yang terdaftar</td>
+            <td>Berhasil masuk ke <i>Dashboard</i> dengan akses Edit Stok, tanpa <i>User Management</i> dan Pengaturan Sistem</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td><i>Login</i> dengan <i>email</i> yang tidak terdaftar</td>
+            <td><i>Email</i> yang belum terdaftar di sistem</td>
+            <td>Menampilkan pesan <i>error</i> "Email tidak ditemukan"</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td><i>Login</i> dengan <i>password</i> yang salah</td>
+            <td><i>Email</i> valid dengan <i>password</i> yang salah</td>
+            <td>Menampilkan pesan <i>error</i> "Password salah"</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td><i>Login</i> dengan kolom kosong</td>
+            <td>Kolom <i>email</i> dan/atau <i>password</i> dikosongkan</td>
+            <td>Menampilkan pesan validasi "Kolom wajib diisi"</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td><i>Logout</i> dari sistem</td>
+            <td>Klik tombol <i>Logout</i></td>
+            <td>Sesi dihapus, pengguna di-<i>redirect</i> ke halaman <i>Login</i></td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>Mengakses halaman tanpa <i>login</i></td>
+            <td>Mengakses URL <i>Dashboard</i> tanpa sesi aktif</td>
+            <td>Pengguna di-<i>redirect</i> ke halaman <i>Login</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.11 Skenario Pengujian Modul <i>Dashboard</i></p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Skenario Pengujian</th>
+            <th>Data Masukan (<i>Input</i>)</th>
+            <th>Hasil yang Diharapkan (<i>Expected Output</i>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>Menampilkan ringkasan <i>dashboard</i></td>
+            <td>Pengguna berhasil <i>login</i> dan masuk ke <i>Dashboard</i></td>
+            <td>Kartu informasi Total Blok, Volume, Jumlah Log, dan Rasio Status (<i>Available/Sold</i>) ditampilkan</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>Validasi data <i>dashboard</i> terhadap <i>database</i></td>
+            <td>Data statistik pada <i>Dashboard</i></td>
+            <td>Data yang ditampilkan sesuai dengan data di <i>database</i> Supabase</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>Pembaruan <i>realtime</i> pada <i>dashboard</i></td>
+            <td>Data stok diubah oleh pengguna lain</td>
+            <td>Kartu informasi <i>dashboard</i> diperbarui secara otomatis tanpa <i>reload</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.12 Skenario Pengujian Modul Peta Inventori</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Skenario Pengujian</th>
+            <th>Data Masukan (<i>Input</i>)</th>
+            <th>Hasil yang Diharapkan (<i>Expected Output</i>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>Menampilkan peta <i>WebGIS</i></td>
+            <td>Membuka halaman <i>Map Inventory</i></td>
+            <td>Peta <i>Leaflet.js</i> ditampilkan dengan poligon <i>GeoJSON</i> blok kaveling</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>Klik poligon blok kaveling</td>
+            <td>Klik pada poligon di peta</td>
+            <td><i>Popup</i> detail blok muncul (ID, Zona, Nama TPK, Jenis Kayu, Volume, Log, Grade, Status)</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>Admin klik poligon blok</td>
+            <td>Admin mengklik poligon di peta</td>
+            <td>Tombol "Edit" muncul pada <i>popup</i> detail blok</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>Staff klik poligon blok</td>
+            <td>Staff mengklik poligon di peta</td>
+            <td>Tombol "Edit" muncul pada <i>popup</i> detail blok (sama seperti Admin)</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>Pewarnaan poligon berdasarkan status</td>
+            <td>Data status blok di <i>database</i></td>
+            <td>Poligon berwarna hijau untuk status <i>Available</i> dan merah untuk status <i>Sold</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.13 Skenario Pengujian Modul Edit Stok Kayu</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Skenario Pengujian</th>
+            <th>Data Masukan (<i>Input</i>)</th>
+            <th>Hasil yang Diharapkan (<i>Expected Output</i>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>Membuka modal edit data stok</td>
+            <td>Klik tombol "Edit" pada <i>popup</i> detail blok</td>
+            <td>Modal formulir edit terbuka dengan data stok terkini terisi otomatis</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>Menyimpan data stok yang valid</td>
+            <td>Mengisi semua kolom formulir dengan data valid dan klik "Simpan"</td>
+            <td>Data berhasil disimpan, notifikasi "<i>toast</i>" sukses muncul, modal tertutup</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>Menyimpan data dengan kolom kosong</td>
+            <td>Mengosongkan kolom wajib dan klik "Simpan"</td>
+            <td>Menampilkan pesan <i>error</i> validasi pada kolom yang kosong</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>Menyimpan data dengan tipe tidak valid</td>
+            <td>Mengisi kolom Volume dengan huruf (bukan angka)</td>
+            <td>Menampilkan pesan <i>error</i> validasi tipe data</td>
+        </tr>
+        <tr>
+            <td class="no">5</td>
+            <td>Membatalkan edit data stok</td>
+            <td>Klik tombol "Batal" pada modal edit</td>
+            <td>Modal tertutup tanpa perubahan data</td>
+        </tr>
+        <tr>
+            <td class="no">6</td>
+            <td>Verifikasi pencatatan riwayat otomatis</td>
+            <td>Menyimpan perubahan data stok yang valid</td>
+            <td>Entri riwayat baru tercatat secara otomatis di tabel stok_kayu_history</td>
+        </tr>
+        <tr>
+            <td class="no">7</td>
+            <td>Pembaruan <i>realtime</i> setelah edit</td>
+            <td>Admin/Staff menyimpan perubahan data stok</td>
+            <td>Pengguna lain menerima pembaruan data secara otomatis tanpa <i>reload</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.14 Skenario Pengujian Modul Data Stok dan Riwayat</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Skenario Pengujian</th>
+            <th>Data Masukan (<i>Input</i>)</th>
+            <th>Hasil yang Diharapkan (<i>Expected Output</i>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>Menampilkan tabel data stok kayu</td>
+            <td>Membuka halaman Data Stok</td>
+            <td>Tabel data stok seluruh blok kaveling ditampilkan secara lengkap</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>Menampilkan tab riwayat perubahan</td>
+            <td>Klik tab "Riwayat" pada halaman Data Stok</td>
+            <td>Tabel data historis perubahan stok ditampilkan</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>Validasi konsistensi data</td>
+            <td>Membandingkan data pada tabel dengan <i>database</i></td>
+            <td>Data yang ditampilkan sesuai dan konsisten dengan data di <i>database</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.15 Skenario Pengujian Modul Laporan</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Skenario Pengujian</th>
+            <th>Data Masukan (<i>Input</i>)</th>
+            <th>Hasil yang Diharapkan (<i>Expected Output</i>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>Menampilkan halaman laporan</td>
+            <td>Membuka halaman Laporan</td>
+            <td>Halaman laporan ditampilkan dengan filter bulan tersedia</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>Filter laporan bulan yang berisi data</td>
+            <td>Memilih bulan yang memiliki data riwayat perubahan</td>
+            <td>Tabel laporan riwayat stok ditampilkan sesuai bulan yang dipilih</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>Filter laporan bulan yang kosong</td>
+            <td>Memilih bulan yang tidak memiliki data riwayat</td>
+            <td>Menampilkan pesan "Tidak ada data untuk bulan ini"</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td><i>Export</i> laporan ke <i>Excel</i></td>
+            <td>Klik tombol "<i>Export Excel</i>" setelah filter bulan</td>
+            <td>File laporan_stok_[bulan]<i>.xlsx</i> berhasil diunduh</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.16 Skenario Pengujian Modul Pengaturan Sistem</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Skenario Pengujian</th>
+            <th>Data Masukan (<i>Input</i>)</th>
+            <th>Hasil yang Diharapkan (<i>Expected Output</i>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td>Menampilkan halaman pengaturan</td>
+            <td>Admin membuka halaman Pengaturan Sistem</td>
+            <td>Formulir pengaturan ditampilkan dengan data terkini (Nama TPK, Lokasi, Kapasitas, Luas Area, Zona)</td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>Menyimpan perubahan pengaturan</td>
+            <td>Admin mengubah data pengaturan dan klik "Simpan"</td>
+            <td>Data berhasil disimpan, notifikasi "Pengaturan berhasil disimpan" muncul</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>Staff mengakses halaman pengaturan</td>
+            <td>Staff mencoba membuka halaman Pengaturan Sistem</td>
+            <td>Akses diblokir, Staff di-<i>redirect</i> atau menu tidak ditampilkan</td>
+        </tr>
+        <tr>
+            <td class="no">4</td>
+            <td>Pembaruan <i>realtime</i> pengaturan</td>
+            <td>Admin menyimpan perubahan pengaturan</td>
+            <td>Seluruh pengguna menerima pembaruan pengaturan secara otomatis</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="tabel-judul">Tabel 3.17 Skenario Pengujian Modul Keamanan dan Otorisasi</p>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Skenario Pengujian</th>
+            <th>Data Masukan (<i>Input</i>)</th>
+            <th>Hasil yang Diharapkan (<i>Expected Output</i>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="no">1</td>
+            <td><i>Auto-logout</i> setelah 30 menit tidak aktif</td>
+            <td>Pengguna tidak melakukan aktivitas selama 30 menit</td>
+            <td>Sesi dihapus otomatis, pengguna di-<i>redirect</i> ke halaman <i>Login</i></td>
+        </tr>
+        <tr>
+            <td class="no">2</td>
+            <td>Staff mengakses menu <i>User Management</i></td>
+            <td>Staff mencoba mengakses fitur membuat akun pengguna baru</td>
+            <td>Menu <i>User Management</i> tidak ditampilkan / akses diblokir</td>
+        </tr>
+        <tr>
+            <td class="no">3</td>
+            <td>Staff mengakses URL Pengaturan Sistem</td>
+            <td>Staff memasukkan URL halaman Pengaturan Sistem secara langsung</td>
+            <td>Akses diblokir, Staff di-<i>redirect</i> ke halaman <i>Dashboard</i></td>
+        </tr>
+    </tbody>
+</table>
+
+<br><br>
+<p style="text-align: center; color: #888; font-style: italic;">— Akhir Tabel BAB III —</p>
+
+</body>
+</html>

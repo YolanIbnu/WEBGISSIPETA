@@ -1,0 +1,240 @@
+@startuml flowchart_sipeta_tpk
+title FLOWCHART SISTEM SIPETA TPK\nSistem Informasi Peta Tempat Penimbunan Kayu - Perhutani Cabak
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam defaultFontSize 10
+
+skinparam activity {
+  BackgroundColor #FAF0DC
+  BorderColor #C4A882
+  BorderThickness 1.5
+  FontColor #000000
+  FontSize 10
+  DiamondBackgroundColor #FAF0DC
+  DiamondBorderColor #C4A882
+  DiamondFontColor #000000
+  StartColor #228B22
+  EndColor #000000
+}
+
+skinparam swimlane {
+  BorderColor #888888
+  BorderThickness 1
+  TitleBackgroundColor #DDDDDD
+  TitleFontColor #000000
+  TitleFontSize 11
+  TitleFontStyle bold
+}
+
+skinparam ArrowColor #CC0000
+skinparam ArrowThickness 1.5
+
+|ADMIN|
+start
+
+' ============================================================
+' LOGIN ADMIN
+' ============================================================
+:INPUT USERNAME\nDAN PASSWORD;
+note right: <<Input>>
+
+|SYSTEM APLIKASI|
+:Cek Sesi Aktif\ndi Session Storage;
+
+if (Sesi Masih Aktif?) then (YA)
+  :Langsung ke Dashboard;
+else (TIDAK)
+  :Tampilkan Halaman Login;
+endif
+
+:Validasi Form Login;
+
+if (Kredensial Valid?) then (TIDAK)
+  :Tampilkan Pesan Error;
+  note right: Kembali ke form
+else (YA)
+endif
+
+|DATABASE SUPABASE|
+:[[DB: AUTH.USERS]]\nVerifikasi Email & Password;
+
+|SYSTEM APLIKASI|
+:Ambil Profil User\ndari Tabel PROFILES;
+
+|DATABASE SUPABASE|
+:[[DB: PROFILES]]\nKembalikan Data Profil\n(id, full_name, role);
+
+|SYSTEM APLIKASI|
+if (Role = Admin?) then (YA)
+  :Aktifkan Fitur\nEdit & Pengaturan;
+else (TIDAK / Staff)
+  |STAFF|
+  :Aktifkan Mode\nRead-Only;
+  |SYSTEM APLIKASI|
+endif
+
+:Muat Data Awal\n(stok_kayu + system_settings)\nsecara Paralel;
+
+|DATABASE SUPABASE|
+:[[DB: STOK_KAYU]]\nKembalikan Data Stok;
+:[[DB: SYSTEM_SETTINGS]]\nKembalikan Pengaturan;
+
+|SYSTEM APLIKASI|
+:Aktifkan Realtime\nSubscription;
+:Tampilkan Dashboard Utama;
+
+' ============================================================
+' MELIHAT PETA INVENTORI
+' ============================================================
+|ADMIN|
+:Klik Menu\n"Map Inventory";
+
+|SYSTEM APLIKASI|
+:Render Peta Leaflet.js\n+ Polygon GeoJSON\nBlok Kayu;
+
+|ADMIN|
+:Klik Polygon\nBlok Kayu di Peta;
+
+|SYSTEM APLIKASI|
+:Tampilkan Popup Detail Blok\n(ID, Zona, Nama TPK,\nJenis Kayu, Volume,\nJumlah Log, Grade, Status);
+
+if (Role = Admin?) then (YA)
+  :Tampilkan Tombol "Edit";
+else (TIDAK / Staff)
+  |STAFF|
+  :Tampilkan Info\nRead-Only Saja;
+  |SYSTEM APLIKASI|
+endif
+
+' ============================================================
+' UPDATE DATA STOK KAYU (Admin Only)
+' ============================================================
+|ADMIN|
+:Klik Tombol "Edit";
+
+|SYSTEM APLIKASI|
+:Buka Modal Edit\ndengan Data Saat Ini;
+
+|ADMIN|
+:INPUT DATA BARU\n(Nama TPK, Zona,\nJenis Kayu, Volume,\nJumlah Log, Grade, Status);
+note right: <<Input>>
+
+:Klik Tombol "Simpan";
+
+|SYSTEM APLIKASI|
+if (Input Valid?) then (TIDAK)
+  :Tampilkan Error Validasi;
+  note right: Kembali ke form
+else (YA)
+endif
+
+:Optimistic Update\n(Perbarui UI Langsung);
+
+|DATABASE SUPABASE|
+:[[DB: STOK_KAYU]]\nUPDATE stok_kayu\nSET ... WHERE id = ?;
+
+if (Update Berhasil?) then (TIDAK)
+  |SYSTEM APLIKASI|
+  :Rollback UI;
+  :Tampilkan Toast Error;
+else (YA)
+endif
+
+:[[DB: STOK_KAYU_HISTORY]]\nINSERT Riwayat\nPerubahan Otomatis;
+
+|SYSTEM APLIKASI|
+:Broadcast Realtime\nke Semua Klien;
+
+|STAFF|
+:Terima Update Realtime;
+:UI Staff Diperbarui Otomatis;
+
+|SYSTEM APLIKASI|
+:Tutup Modal Edit;
+
+|ADMIN|
+:Notifikasi\n"Data Berhasil\nDiperbarui ✓";
+
+' ============================================================
+' LAPORAN & EXPORT EXCEL
+' ============================================================
+:Klik Menu "Laporan";
+
+|SYSTEM APLIKASI|
+:Tampilkan Halaman Laporan;
+
+|ADMIN|
+:PILIH FILTER BULAN;
+note right: <<Input>>
+
+|DATABASE SUPABASE|
+:[[DB: STOK_KAYU_HISTORY]]\nSELECT * WHERE tanggal\nBETWEEN [bulan]-01\nAND [bulan]-31;
+
+|SYSTEM APLIKASI|
+if (Data Ditemukan?) then (TIDAK)
+  :Tampilkan Pesan\n"Tidak Ada Data\nUntuk Bulan Ini";
+else (YA)
+  :Tampilkan Tabel\nLaporan Riwayat Stok;
+endif
+
+|ADMIN|
+if (Klik Export Excel?) then (YA)
+  |SYSTEM APLIKASI|
+  :Proses Data\ndengan Library xlsx;
+  :Download File\nlaporan_stok_[bulan].xlsx;
+else (TIDAK)
+endif
+
+' ============================================================
+' PENGATURAN SISTEM (Admin Only)
+' ============================================================
+|ADMIN|
+:Klik Menu "Pengaturan";
+
+|DATABASE SUPABASE|
+:[[DB: SYSTEM_SETTINGS]]\nSELECT * WHERE id = 1;
+
+|ADMIN|
+:INPUT PENGATURAN\n(Nama TPK, Lokasi,\nKapasitas, Luas Area, Zona);
+note right: <<Input>>
+
+:Klik "Simpan Pengaturan";
+
+|DATABASE SUPABASE|
+:[[DB: SYSTEM_SETTINGS]]\nUPSERT system_settings\nWHERE id = 1;
+
+if (Simpan Berhasil?) then (TIDAK)
+  |SYSTEM APLIKASI|
+  :Tampilkan Error Toast;
+else (YA)
+  |ADMIN|
+  :Notifikasi\n"Pengaturan Berhasil\nDisimpan ✓";
+endif
+
+|SYSTEM APLIKASI|
+:Broadcast Settings\nRealtime ke Semua Klien;
+
+' ============================================================
+' AUTO-LOGOUT
+' ============================================================
+if (Tidak Ada Aktivitas\n30 Menit?) then (YA)
+  :Timer 30 Menit Habis;
+
+  |DATABASE SUPABASE|
+  :[[DB: AUTH.USERS]]\nsupabase.auth.signOut()\nHapus Session Token;
+
+  |SYSTEM APLIKASI|
+  :Hapus State User;
+  :Redirect ke Halaman Login;
+else (TIDAK)
+  :Lanjut Memantau Aktivitas;
+endif
+
+|STAFF|
+stop
+
+|ADMIN|
+stop
+
+@enduml
