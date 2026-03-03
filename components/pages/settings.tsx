@@ -394,7 +394,7 @@ export function Settings() {
             <span className="font-semibold">Teknologi:</span> Next.js 14, React Leaflet, Tailwind CSS, Recharts
           </p>
           <p className="pt-2 text-xs text-slate-600">
-            © 2024 Perhutani Cabak. All rights reserved.
+            © 2026 Perhutani Cabak. All rights reserved.
           </p>
         </div>
       </Card>
