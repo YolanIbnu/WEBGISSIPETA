@@ -3,6 +3,7 @@
 // ============================================================
 
 import { createClient } from '@supabase/supabase-js';
+import { StatusType, CacatKayuType } from './geojson-data';
 
 // Pastikan variabel environment ada, atau gunakan string kosong fallback untuk mencegah error build
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -28,7 +29,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 // DATABASE TYPES
 // ============================================================
 
-export type LogStatus = "Available" | "Sold";
+export type LogStatus = StatusType;
 
 export interface StokKayu {
   id: string; // TPK-A01
@@ -39,6 +40,12 @@ export interface StokKayu {
   log_count: number;
   grade: string;
   status: LogStatus;
+  cacat_kayu?: string;
+  panjang1?: number;
+  panjang2?: number;
+  diameter1?: number;
+  diameter2?: number;
+  tahun_produksi?: number;
   updated_by?: string;
   tanggal?: string;
   created_at?: string;
@@ -56,6 +63,12 @@ export interface LogItem {
   logCount: number;
   grade: string;
   status: LogStatus;
+  cacatKayu?: CacatKayuType;
+  panjang1?: number;
+  panjang2?: number;
+  diameter1?: number;
+  diameter2?: number;
+  tahunProduksi?: number;
   updated_by?: string;
   tanggal?: string;
   id_history?: number;
@@ -83,6 +96,12 @@ export function transformToLogItem(row: StokKayu): LogItem {
     logCount: row.log_count,
     grade: row.grade,
     status: row.status,
+    cacatKayu: row.cacat_kayu as CacatKayuType | undefined,
+    panjang1: row.panjang1 != null ? Number(row.panjang1) : undefined,
+    panjang2: row.panjang2 != null ? Number(row.panjang2) : undefined,
+    diameter1: row.diameter1 != null ? Number(row.diameter1) : undefined,
+    diameter2: row.diameter2 != null ? Number(row.diameter2) : undefined,
+    tahunProduksi: row.tahun_produksi != null ? Number(row.tahun_produksi) : undefined,
     updated_by: row.updated_by,
     tanggal: row.tanggal,
   };
@@ -98,6 +117,12 @@ export function transformToStokKayu(item: Partial<LogItem>): Partial<StokKayu> {
   if (item.logCount !== undefined) result.log_count = Number(item.logCount);
   if (item.grade !== undefined) result.grade = item.grade;
   if (item.status !== undefined) result.status = item.status;
+  if (item.cacatKayu !== undefined) result.cacat_kayu = item.cacatKayu;
+  if (item.panjang1 !== undefined) result.panjang1 = Number(item.panjang1);
+  if (item.panjang2 !== undefined) result.panjang2 = Number(item.panjang2);
+  if (item.diameter1 !== undefined) result.diameter1 = Number(item.diameter1);
+  if (item.diameter2 !== undefined) result.diameter2 = Number(item.diameter2);
+  if (item.tahunProduksi !== undefined) result.tahun_produksi = Number(item.tahunProduksi);
   if (item.updated_by !== undefined) result.updated_by = item.updated_by;
 
   // Selalu gunakan tanggal hari ini (WIB/Local) jika melakukan update
@@ -157,7 +182,7 @@ export async function updateStokKayu(
       .from('stok_kayu')
       .update(dbUpdates)
       .eq('id', id)
-      .select('id, zone, tpk_name, wood_type, volume, log_count, grade, status, updated_by, tanggal')
+      .select('id, zone, tpk_name, wood_type, volume, log_count, grade, status, cacat_kayu, panjang1, panjang2, diameter1, diameter2, tahun_produksi, updated_by, tanggal')
       .single();
 
     if (error) {
@@ -179,6 +204,12 @@ export async function updateStokKayu(
         log_count: data.log_count,
         grade: data.grade,
         status: data.status,
+        cacat_kayu: data.cacat_kayu,
+        panjang1: data.panjang1,
+        panjang2: data.panjang2,
+        diameter1: data.diameter1,
+        diameter2: data.diameter2,
+        tahun_produksi: data.tahun_produksi,
         updated_by: data.updated_by,
         tanggal: data.tanggal
       };
@@ -225,6 +256,12 @@ export async function fetchStokHistory(month?: string): Promise<LogItem[]> {
       logCount: row.log_count,
       grade: row.grade,
       status: row.status,
+      cacatKayu: row.cacat_kayu as CacatKayuType | undefined,
+      panjang1: row.panjang1 != null ? Number(row.panjang1) : undefined,
+      panjang2: row.panjang2 != null ? Number(row.panjang2) : undefined,
+      diameter1: row.diameter1 != null ? Number(row.diameter1) : undefined,
+      diameter2: row.diameter2 != null ? Number(row.diameter2) : undefined,
+      tahunProduksi: row.tahun_produksi != null ? Number(row.tahun_produksi) : undefined,
       updated_by: row.updated_by,
       tanggal: row.tanggal,
       id_history: row.id,

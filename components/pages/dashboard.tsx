@@ -44,8 +44,12 @@ export function Dashboard() {
   // Calculate metrics
   const totalVolume = woodBlocks.reduce((sum, block) => sum + block.volume, 0);
   const totalLogs = woodBlocks.reduce((sum, block) => sum + block.logCount, 0);
-  const availableBlocks = woodBlocks.filter((b) => b.status === "Available").length;
-  const soldBlocks = woodBlocks.filter((b) => b.status === "Sold").length;
+
+  // Status distribution
+  const haraBlocks = woodBlocks.filter((b) => b.status === "HARA").length;
+  const lokalBlocks = woodBlocks.filter((b) => b.status === "LOKAL").length;
+  const industriBlocks = woodBlocks.filter((b) => b.status === "INDUSTRI").length;
+  const vinirBlocks = woodBlocks.filter((b) => b.status === "VINIR").length;
 
   // Wood species distribution
   const speciesData = woodBlocks.reduce(
@@ -61,13 +65,15 @@ export function Dashboard() {
     [] as { name: string; value: number }[]
   );
 
-  // Sales performance
-  const salesData = [
-    { name: "Available", value: availableBlocks },
-    { name: "Sold", value: soldBlocks },
+  // Status distribution chart data
+  const statusData = [
+    { name: "HARA", value: haraBlocks },
+    { name: "LOKAL", value: lokalBlocks },
+    { name: "INDUSTRI", value: industriBlocks },
+    { name: "VINIR", value: vinirBlocks },
   ];
 
-  const COLORS = ["#10b981", "#ef4444"];
+  const STATUS_COLORS = ["#f59e0b", "#10b981", "#3b82f6", "#a855f7"];
 
   return (
     <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
@@ -216,12 +222,12 @@ export function Dashboard() {
           </Card>
         </AnimatedSection>
 
-        {/* Sales Performance */}
+        {/* Status Distribution */}
         <AnimatedSection delay={900}>
           <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
-            <h3 className="text-lg font-semibold text-emerald-950 mb-4">Performa Penjualan</h3>
+            <h3 className="text-lg font-semibold text-emerald-950 mb-4">Distribusi Status</h3>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={salesData}>
+              <BarChart data={statusData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
                 <XAxis dataKey="name" tick={{ fill: "#64748b" }} />
                 <YAxis tick={{ fill: "#64748b" }} />
@@ -235,13 +241,16 @@ export function Dashboard() {
                 />
                 <Bar
                   dataKey="value"
-                  fill="#10b981"
                   isAnimationActive={chartsReady}
                   animationBegin={400}
                   animationDuration={1400}
                   animationEasing="ease-out"
                   radius={[6, 6, 0, 0]}
-                />
+                >
+                  {statusData.map((entry, index) => (
+                    <Cell key={`cell-status-${index}`} fill={STATUS_COLORS[index % STATUS_COLORS.length]} />
+                  ))}
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </Card>

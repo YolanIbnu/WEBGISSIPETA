@@ -1,562 +1,1544 @@
-Rancang Bangun Website Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak 
-Berbasis Metode Prototype
-
- 
-
-
+Rancang Bangun Website Sistem Informasi Geografis (SIG)
+Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak
+Menggunakan Metode Web Development Life Cycle (WDLC)
 Disusun Oleh:
 Yolan Ibnu Prasetya
 1222002009
-
-
-
-
-PROGRAM STUDI SISTEM INFORMASI 
-FAKULTAS TEKNIK DAN ILMU KOMPUTER 
-UNIVERSITAS BAKRIE 
-JAKARTA 
-2026 
+PROGRAM STUDI SISTEM INFORMASI
+FAKULTAS TEKNIK DAN ILMU KOMPUTER
+UNIVERSITAS BAKRIE
+JAKARTA
+2026
+i
 KATA PENGANTAR
-Puji dan syukur penulis panjatkan ke hadirat Allah SWT atas segala rahmat, hidayah, dan karunia-Nya, sehingga penulis dapat menyelesaikan penyusunan Skripsi ini tepat pada waktunya. Skripsi yang berjudul “Rancang Bangun Website Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak Berbasis Metode Prototype” ini disusun sebagai salah satu syarat untuk memperoleh gelar Sarjana pada Program Studi Sistem Informasi, Universitas Bakrie.
-Penulis menyadari bahwa penyusunan Skripsi ini tidak akan terwujud tanpa bantuan, bimbingan, dan dukungan dari berbagai pihak. Oleh karena itu, pada kesempatan ini penulis ingin menyampaikan terima kasih yang tulus kepada:
-1.	Bapak Zakiul Fahmi Jailani, S.Kom., selaku Dosen Pembimbing yang telah meluangkan waktu, tenaga, dan pikiran untuk memberikan bimbingan dan arahan kepada penulis selama penyusunan skripsi ini.
-2.	Bapak X. dan Bapak X, atas segala ilmu, masukan, dan motivasi akademik yang diberikan yang sangat membantu penulis dalam menyelesaikan penelitian ini.
-3.	Bapak X Dan Jajaran Staff, selaku Pembimbing Lapangan di TPK Cabak yang telah memberikan izin penelitian, data, serta wawasan teknis mengenai kondisi lapangan yang sangat berharga bagi penulis.
-4.	Kedua orang tua dan keluarga tercinta yang senantiasa memberikan doa tulus, kasih sayang, dan dukungan material maupun moral yang tak terhingga hingga penulis dapat menyelesaikan pendidikan ini.
-Penulis menyadari bahwa Skripsi ini masih jauh dari kesempurnaan. Oleh karena itu, kritik dan saran yang membangun sangat penulis harapkan demi pengembangan ilmu pengetahuan di masa mendatang.
-
-
-Yolan Ibnu Prasetya 
+Puji dan syukur penulis panjatkan ke hadirat Allah SWT atas segala rahmat, hidayah, dan
+karunia-Nya, sehingga penulis dapat menyelesaikan penyusunan Skripsi ini tepat pada
+waktunya. Skripsi yang berjudul “Rancang Bangun Website Sistem Informasi Geografis
+(SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak Menggunakan Metode Web Development Life Cycle (WDLC)” ini disusun sebagai salah satu syarat untuk memperoleh gelar Sarjana pada
+Program Studi Sistem Informasi, Universitas Bakrie.
+Penulis menyadari bahwa penyusunan Skripsi ini tidak akan terwujud tanpa bantuan,
+bimbingan, dan dukungan dari berbagai pihak. Oleh karena itu, pada kesempatan ini penulis
+ingin menyampaikan terima kasih yang tulus kepada:
+1. Bapak Zakiul Fahmi Jailani, S.Kom., selaku Dosen Pembimbing yang telah
+meluangkan waktu, tenaga, dan pikiran untuk memberikan bimbingan dan arahan
+kepada penulis selama penyusunan skripsi ini.
+2. Bapak X. dan Bapak X, atas segala ilmu, masukan, dan motivasi akademik yang
+diberikan yang sangat membantu penulis dalam menyelesaikan penelitian ini.
+3. Bapak X Dan Jajaran Staff, selaku Pembimbing Lapangan di TPK Cabak yang telah
+memberikan izin penelitian, data, serta wawasan teknis mengenai kondisi lapangan
+yang sangat berharga bagi penulis.
+4. Kedua orang tua dan keluarga tercinta yang senantiasa memberikan doa tulus, kasih
+sayang, dan dukungan material maupun moral yang tak terhingga hingga penulis
+dapat menyelesaikan pendidikan ini.
+Penulis menyadari bahwa Skripsi ini masih jauh dari kesempurnaan. Oleh karena itu, kritik
+dan saran yang membangun sangat penulis harapkan demi pengembangan ilmu pengetahuan
+di masa mendatang.
+Yolan Ibnu Prasetya
+ii
 DAFTAR ISI
-KATA PENGANTAR	i
-DAFTAR ISI	ii
-DAFTAR TABEL	iv
-DAFTAR GAMBAR	v
-DAFTAR LAMPIRAN	vi
-BAB I PENDAHULUAN	1
-1.1	Latar Belakang Masalah	1
-1.2	Rumusan Masalah	3
-1.3	Tujuan Penelitian	4
-1.4 Manfaat Penelitian	4
-1.4.1 Manfaat Teoritis	4
-1.4.2 Manfaat Praktis	4
-1.5 Ruang Lingkup Penelitian	5
+KATA PENGANTAR ............................................................................................................i
+DAFTAR ISI .........................................................................................................................ii
+DAFTAR TABEL.................................................................................................................. v
+DAFTAR GAMBAR............................................................................................................ vi
+DAFTAR LAMPIRAN.......................................................................................................vii
+BAB I PENDAHULUAN ..................................................................................................... 1
+1.1 Latar Belakang Masalah......................................................................................1
+1.2 Rumusan Masalah................................................................................................3
+1.3 Tujuan Penelitian..................................................................................................4
+1.4 Manfaat Penelitian .....................................................................................................4
+1.4.1 Manfaat Teoritis...................................................................................................4
+1.4.2 Manfaat Praktis...................................................................................................4
+1.5 Ruang Lingkup Penelitian.........................................................................................5
 BAB II TINJAUAN PUSTAKA DAN LANDASAN TEORI	6
-2.1 Penelitian Terdahulu	6
-2.2 Sistem Informasi dan Inventarisasi	10
-2.3 Tempat Penimbunan Kayu (TPK) dan Pengelolaan Kayu	10
-2.4 Sistem Informasi Geografis (SIG) dan WebGIS	11
-2.5 Teknologi Pengembangan Web	12
-2.5.1 Next.js Next.js	12
-2.5.2 React.js	13
-2.5.3 TypeScript	13
-2.5.4 Tailwind CSS	14
-2.6 Backend dan Basis Data	14
-2.6.1 Supabase	14
-2.6.2 PostgreSQL	14
-2.7 Pemetaan dan Visualisasi Spasial	15
-2.7.1 Leaflet.js	15
-2.7.2 GeoJSON	15
-2.8 Metode Pengembangan Perangkat Lunak (Prototype)	16
-2.9 Metode Pengujian Sistem	17
-2.9.1 Black Box Testing	17
-2.10 Pemodelan dan Perancangan Sistem	18
-2.10.1 Data Flow Diagram (DFD)	18
-2.10.2 Flowchart	18
-2.10.3 Unified Modeling Language (UML)	19
-BAB III	20
-ANALISIS DAN PERANCANGAN SISTEM	20
-3.1 Analisis Sistem yang Sedang Berjalan	20
-3.2 Analisis Kebutuhan Sistem	21
-3.2.1 Kebutuhan Fungsional	21
-3.2.2 Kebutuhan Non-Fungsional	23
-
-
-
-	
- 
+2.1 Sistem Informasi dan Inventarisasi	6
+2.2 Tempat Penimbunan Kayu (TPK) dan Pengelolaan Kayu	7
+2.3 Sistem Informasi Geografis (SIG) dan WebGIS	8
+2.4 Teknologi Pengembangan Web	9
+2.4.1 Next.js	9
+2.4.2 React.js	10
+2.4.3 TypeScript	10
+2.4.4 Tailwind CSS	11
+2.5 Backend dan Basis Data	11
+2.5.1 Supabase	11
+2.5.2 PostgreSQL	12
+2.6 Pemetaan dan Visualisasi Spasial	12
+2.6.1 Leaflet.js	12
+2.6.2 GeoJSON	13
+2.6.3 Quantum Geographic Information System (QGIS)	13
+2.7 Metode Pengembangan Perangkat Lunak (WDLC)	14
+2.8 Metode Pengujian Sistem	15
+2.8.1 Black Box Testing	15
+2.9 Pemodelan dan Perancangan Sistem	16
+2.9.1 Data Flow Diagram (DFD)	16
+2.9.2 Flowchart	16
+2.9.3 Unified Modeling Language (UML)	17
+2.10 Penelitian Terdahulu	18
+BAB III METODOLOGI PENELITIAN	20
+3.1 Kerangka Pemikiran	20
+3.2 Analisis Sistem yang Sedang Berjalan	21
+3.3 Analisis Kebutuhan Sistem	22
+3.3.1 Kebutuhan Fungsional	22
+3.3.2 Kebutuhan Non-Fungsional	23
+3.4 Perancangan Alur Sistem (Flowchart)	24
+3.5 Perancangan Unified Modeling Language (UML)	27
+3.5.1 Use Case Diagram	27
+3.5.2 Class Diagram	31
+3.5.3 Activity Diagram	37
+3.5.4 Sequence Diagram	41
+3.6 Perancangan Basis Data	44
+3.7 Perancangan Antarmuka Pengguna (User Interface)	49
+3.7.1 Rancangan Halaman Login	49
+3.7.2 Rancangan Halaman Dashboard	49
+3.7.3 Rancangan Halaman Peta Inventori (WebGIS)	50
+3.7.4 Rancangan Modal Edit Data Stok Kayu	51
+3.7.5 Rancangan Halaman Data Stok Kayu	51
+3.7.6 Rancangan Halaman Laporan	52
+3.7.7 Rancangan Halaman Pengaturan Sistem	52
+3.8 Rencana Pengujian Sistem (Black Box Testing)	53
+3.9 Rencana Deployment dan Version Control	54
+3.10 Alokasi Waktu Penelitian	55
+v
 DAFTAR TABEL
-
-
- 
+vi
 DAFTAR GAMBAR
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+vii
 DAFTAR LAMPIRAN
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+1
 BAB I PENDAHULUAN
-1.1	Latar Belakang Masalah
-Industri kehutanan memegang peranan vital dalam perekonomian global dan keseimbangan ekologis, menuntut pengelolaan sumber daya alam yang transparan, akurat, dan berkelanjutan. Pengelolaan hasil hutan, khususnya kayu, memerlukan mekanisme monitoring yang ketat mulai dari penebangan hingga distribusi ke Tempat Penimbunan Kayu (TPK). Ketidakakuratan data dalam rantai pasok ini sering kali menyebabkan kerugian finansial yang signifikan bagi negara maupun perusahaan pengelola. Oleh karena itu, modernisasi sistem pencatatan dan pemetaan Stok Kayu Jati menjadi kebutuhan mendesak di era transformasi digital saat ini.
-Indonesia sebagai salah satu negara penghasil kayu tropis terbesar di dunia menghadapi tantangan besar dalam manajemen logistik kehutanan. Pengelolaan Stok Kayu Jati di TPK sering kali masih mengandalkan metode konvensional yang rentan terhadap human error dan manipulasi data. Kondisi ini memperlambat proses pengambilan keputusan strategis terkait penjualan dan distribusi kayu.
-TPK Cabak, sebagai salah satu pusat penimbunan kayu, menghadapi tantangan nyata dalam hal efisiensi pencarian lokasi kaveling dan pembaruan data stok yang masih bersifat semi-manual. Petugas lapangan sering kali kesulitan menemukan lokasi spesifik tumpukan kayu tertentu karena luasnya area dan minimnya petunjuk visual secara digital. Ketiadaan peta digital yang terintegrasi dengan data stok menyebabkan waktu pelayanan menjadi lama dan audit stok menjadi proses yang melelahkan.
-Permasalahan di TPK Cabak tersebut menuntut adanya sistem yang tidak hanya sekadar mencatat angka persediaan, tetapi juga memetakan posisi kayu secara visual. Perkembangan teknologi informasi, khususnya Sistem Informasi Geografis (SIG), menawarkan solusi komprehensif. Okyusmarianto, Sadjati, dan Ikhsani (2024) menegaskan bahwa pembangunan sistem informasi WebGIS sangat krusial untuk evaluasi lahan dan hutan. Pemanfaatan WebGIS ini juga dapat diimplementasikan secara mikro untuk pemetaan lokasi spesifik seperti persebaran stok barang. Ate (2024) dalam penelitiannya menunjukkan bahwa WebGIS mampu memetakan lokasi secara presisi, yang dalam konteks ini sangat ideal untuk memetakan tumpukan kayu (kaveling) di area TPK yang luas.
-Sistem inventarisasi merupakan komponen krusial lain yang harus bersinergi dengan pemetaan spasial. Yasin dan Zaini (2024) menyoroti bahwa sistem inventarisasi manual memiliki banyak kelemahan, sehingga migrasi ke sistem berbasis web menjadi solusi yang tidak terelakkan. Transformasi digital dalam inventarisasi kayu memerlukan pendekatan spesifik mengingat kompleksitas variabel seperti jenis kayu, volume, dan kelas kualitas yang memerlukan basis data terstruktur. Hal ini didukung oleh Agustine dan Handayani (2025) yang berhasil membuktikan bahwa digitalisasi aplikasi inventory produksi kayu sangat efektif untuk meningkatkan efisiensi pencatatan barang masuk dan keluar.
-Integrasi antara data tabular inventaris dan data spasial lokasi kaveling menjadi kunci penyelesaian masalah ini. Diperlukan sebuah arsitektur sistem modern yang mampu menangani beban data besar sekaligus menyajikan antarmuka peta yang responsif. Pengembangan sistem ini akan memanfaatkan teknologi web modern yang berfokus pada kecepatan rendering halaman dan pengelolaan basis data secara real-time. Dengan fitur pembaruan seketika (real-time), saat petugas memperbarui status stok atau memindahkan lokasi kaveling, informasi tersebut akan langsung diketahui oleh administrator atau pimpinan tanpa adanya jeda waktu (lag informasi).
-Untuk memastikan kebutuhan pengguna terpenuhi secara bertahap, pengembangan sistem informasi ini akan menggunakan Metode Prototype. Pendekatan ini memungkinkan interaksi intensif antara pengembang dan pengguna akhir selama proses perancangan. Aprilisa dan Aulia (2024) serta Asfari (2024) menyatakan bahwa perancangan sistem inventaris menggunakan metode prototype mampu menghasilkan perangkat lunak yang sesuai dengan kebutuhan operasional perusahaan, meminimalisir kesalahan fungsional, dan meningkatkan akurasi data stok barang secara signifikan.
-Penelitian ini berusaha mengisi celah penelitian (research gap) dengan mengintegrasikan teknologi pemetaan WebGIS interaktif dan manajemen inventaris logistik yang berjalan secara real-time. Sebagian besar penelitian sebelumnya, seperti yang dilakukan Agustine dan Handayani (2025), berfokus pada inventaris kayu namun belum menyertakan aspek pemetaan spasial mendetail. Sementara penelitian WebGIS lainnya sering kali terpisah dari modul inventaris logistik yang dinamis.
-Berdasarkan urgensi modernisasi di TPK Cabak dan potensi teknologi yang ada, penelitian ini bertujuan merancang sebuah sistem komprehensif. Solusi yang ditawarkan diharapkan mampu menjawab tantangan efisiensi dan akurasi data. Atas dasar pemikiran tersebut, penulis mengangkat judul penelitian: "Rancang Bangun Website Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak Menggunakan Metode Prototype".
-1.2	Rumusan Masalah
-Berdasarkan identifikasi masalah di atas, maka rumusan masalah dalam penelitian ini adalah:
-1.	Bagaimana merancang dan membangun Website Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak menggunakan Metode Prototype?
-2.	Bagaimana memvisualisasikan letak dan status kaveling tumpukan kayu pada peta interaktif agar mempermudah pelacakan fisik di lapangan?
-3.	Siapa saja pengguna yang akan berinteraksi dengan sistem ini, serta bagaimana merancang pembagian hak akses (role) mereka dalam proses pengelolaan data inventaris kayu?
-1.3	Tujuan Penelitian
+1.1Latar Belakang Masalah
+Industri kehutanan memegang peranan vital dalam perekonomian global dan
+keseimbangan ekologis, menuntut pengelolaan sumber daya alam yang transparan,
+akurat, dan berkelanjutan. Pengelolaan hasil hutan, khususnya kayu, memerlukan
+mekanisme monitoring yang ketat mulai dari penebangan hingga distribusi ke Tempat
+Penimbunan Kayu (TPK). Ketidakakuratan data dalam rantai pasok ini sering kali
+menyebabkan kerugian finansial yang signifikan bagi negara maupun perusahaan
+pengelola. Oleh karena itu, modernisasi sistem pencatatan dan pemetaan Stok Kayu Jati
+menjadi kebutuhan mendesak di era transformasi digital saat ini.
+Indonesia sebagai salah satu negara penghasil kayu tropis terbesar di dunia
+menghadapi tantangan besar dalam manajemen logistik kehutanan. Pengelolaan Stok
+Kayu Jati di TPK sering kali masih mengandalkan metode konvensional yang rentan
+terhadap human error dan manipulasi data. Kondisi ini memperlambat proses
+pengambilan keputusan strategis terkait penjualan dan distribusi kayu.
+TPK Cabak, sebagai salah satu pusat penimbunan kayu, menghadapi tantangan
+nyata dalam hal efisiensi pencarian lokasi kaveling dan pembaruan data stok yang masih
+bersifat semi-manual. Petugas lapangan sering kali kesulitan menemukan lokasi spesifik
+tumpukan kayu tertentu karena luasnya area dan minimnya petunjuk visual secara digital.
+Ketiadaan peta digital yang terintegrasi dengan data stok menyebabkan waktu pelayanan
+menjadi lama dan audit stok menjadi proses yang melelahkan.
+Permasalahan di TPK Cabak tersebut menuntut adanya sistem yang tidak hanya
+sekadar mencatat angka persediaan, tetapi juga memetakan posisi kayu secara visual.
+Perkembangan teknologi informasi, khususnya Sistem Informasi Geografis (SIG),
+menawarkan solusi komprehensif. Okyusmarianto, Sadjati, dan Ikhsani (2024)
+menegaskan bahwa pembangunan sistem informasi WebGIS sangat krusial untuk
+2
+evaluasi lahan dan hutan. Pemanfaatan WebGIS ini juga dapat diimplementasikan secara
+mikro untuk pemetaan lokasi spesifik seperti persebaran stok barang. Ate (2024) dalam
+penelitiannya menunjukkan bahwa WebGIS mampu memetakan lokasi secara presisi,
+yang dalam konteks ini sangat ideal untuk memetakan tumpukan kayu (kaveling) di area
+TPK yang luas.
+Sistem inventarisasi merupakan komponen krusial lain yang harus bersinergi
+dengan pemetaan spasial. Yasin dan Zaini (2024) menyoroti bahwa sistem inventarisasi
+manual memiliki banyak kelemahan, sehingga migrasi ke sistem berbasis web menjadi
+solusi yang tidak terelakkan. Transformasi digital dalam inventarisasi kayu memerlukan
+pendekatan spesifik mengingat kompleksitas variabel seperti jenis kayu, volume, dan
+kelas kualitas yang memerlukan basis data terstruktur. Hal ini didukung oleh Agustine
+dan Handayani (2025) yang berhasil membuktikan bahwa digitalisasi aplikasi inventory
+produksi kayu sangat efektif untuk meningkatkan efisiensi pencatatan barang masuk dan
+keluar.
+Integrasi antara data tabular inventaris dan data spasial lokasi kaveling menjadi
+kunci penyelesaian masalah ini. Diperlukan sebuah arsitektur sistem modern yang
+mampu menangani beban data besar sekaligus menyajikan antarmuka peta yang
+responsif. Pengembangan sistem ini akan memanfaatkan teknologi web modern yang
+berfokus pada kecepatan rendering halaman dan pengelolaan basis data secara real-time.
+Dengan fitur pembaruan seketika (real-time), saat petugas memperbarui status stok atau
+memindahkan lokasi kaveling, informasi tersebut akan langsung diketahui oleh
+administrator atau pimpinan tanpa adanya jeda waktu (lag informasi).
+Untuk memastikan kebutuhan pengguna terpenuhi secara bertahap,
+pengembangan sistem informasi ini akan menggunakan Metode Web Development Life Cycle (WDLC). Pendekatan
+ini memungkinkan interaksi intensif antara pengembang dan pengguna akhir selama
+proses perancangan. Aprilisa dan Aulia (2024) serta Asfari (2024) menyatakan bahwa
+perancangan sistem inventaris menggunakan metode Web Development Life Cycle (WDLC) mampu menghasilkan
+3
+perangkat lunak yang sesuai dengan kebutuhan operasional perusahaan, meminimalisir
+kesalahan fungsional, dan meningkatkan akurasi data stok barang secara signifikan.
+Penelitian ini berusaha mengisi celah penelitian (research gap) dengan
+mengintegrasikan teknologi pemetaan WebGIS interaktif dan manajemen inventaris
+logistik yang berjalan secara real-time. Sebagian besar penelitian sebelumnya, seperti
+yang dilakukan Agustine dan Handayani (2025), berfokus pada inventaris kayu namun
+belum menyertakan aspek pemetaan spasial mendetail. Sementara penelitian WebGIS
+lainnya sering kali terpisah dari modul inventaris logistik yang dinamis.
+Berdasarkan urgensi modernisasi di TPK Cabak dan potensi teknologi yang ada,
+penelitian ini bertujuan merancang sebuah sistem komprehensif. Solusi yang ditawarkan
+diharapkan mampu menjawab tantangan efisiensi dan akurasi data. Atas dasar pemikiran
+tersebut, penulis mengangkat judul penelitian: "Rancang Bangun Website Sistem
+Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak
+Menggunakan Metode Web Development Life Cycle (WDLC)".
+1.2Rumusan Masalah
+Berdasarkan identifikasi masalah di atas, maka rumusan masalah dalam penelitian
+ini adalah:
+1. Bagaimana merancang dan membangun Website Sistem Informasi Geografis
+(SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak menggunakan
+Metode Web Development Life Cycle (WDLC)?
+2. Bagaimana memvisualisasikan letak dan status kaveling tumpukan kayu pada
+peta interaktif agar mempermudah pelacakan fisik di lapangan?
+3. Siapa saja pengguna yang akan berinteraksi dengan sistem ini, serta bagaimana
+merancang pembagian hak akses (role) mereka dalam proses pengelolaan data
+inventaris kayu?
+4
+1.3Tujuan Penelitian
 Berdasarkan rumusan masalah di atas, tujuan dari penelitian ini adalah sebagai berikut:
-1.	Merancang dan membangun Website Sistem Informasi Geografis (SIG) untuk inventarisasi dan pemetaan Stok Kayu Jati di TPK Cabak menggunakan Metode Prototype.
-2.	Memvisualisasikan letak dan status kaveling tumpukan kayu pada peta interaktif berbasis WebGIS guna mempermudah pelacakan fisik di lapangan.
-3.	Merancang pembagian hak akses (role) pengguna dalam sistem untuk mengelola proses pengelolaan data inventaris kayu secara terstruktur dan aman.
+1. Merancang dan membangun Website Sistem Informasi Geografis (SIG) untuk
+inventarisasi dan pemetaan Stok Kayu Jati di TPK Cabak menggunakan
+Metode Web Development Life Cycle (WDLC).
+2. Memvisualisasikan letak dan status kaveling tumpukan kayu pada peta
+interaktif berbasis WebGIS guna mempermudah pelacakan fisik di lapangan.
+3. Merancang pembagian hak akses (role) pengguna dalam sistem untuk
+mengelola proses pengelolaan data inventaris kayu secara terstruktur dan
+aman.
 1.4 Manfaat Penelitian
 Adapun manfaat yang diharapkan dari penelitian ini adalah sebagai berikut:
 1.4.1 Manfaat Teoritis
-Penelitian ini diharapkan dapat memperkaya khazanah keilmuan di bidang Sistem Informasi Geografis (SIG) dan Teknologi Informasi, khususnya mengenai integrasi antara manajemen inventaris komoditas kehutanan dengan pemetaan spasial berbasis web modern (Modern Web Stack). Selain itu, hasil penelitian ini dapat menjadi rujukan akademis bagi penelitian selanjutnya terkait efektivitas implementasi basis data real-time dan Metode Prototype dalam merancang bangun sistem informasi operasional berskala industri.
+Penelitian ini diharapkan dapat memperkaya khazanah keilmuan di bidang
+Sistem Informasi Geografis (SIG) dan Teknologi Informasi, khususnya mengenai
+integrasi antara manajemen inventaris komoditas kehutanan dengan pemetaan spasial
+berbasis web modern (Modern Web Stack). Selain itu, hasil penelitian ini dapat
+menjadi rujukan akademis bagi penelitian selanjutnya terkait efektivitas
+implementasi basis data real-time dan Metode Web Development Life Cycle (WDLC) dalam merancang bangun
+sistem informasi operasional berskala industri.
 1.4.2 Manfaat Praktis
-1)	Bagi TPK Cabak: Memberikan solusi aplikasi yang dapat mempermudah proses administrasi, mempercepat pencarian lokasi kayu, dan meningkatkan akurasi laporan stok.
-2)	Bagi Petugas: Membantu petugas lapangan dan administrator dalam mengelola data kayu secara efisien, transparan, dan mengurangi risiko kesalahan pencatatan.
-3)	Bagi Penulis: Sebagai sarana implementasi ilmu yang telah didapatkan selama perkuliahan serta pengalaman dalam mengembangkan sistem skala industri.
+1) Bagi TPK Cabak: Memberikan solusi aplikasi yang dapat mempermudah
+proses administrasi, mempercepat pencarian lokasi kayu, dan meningkatkan
+akurasi laporan stok.
+5
+2) Bagi Petugas: Membantu petugas lapangan dan administrator dalam
+mengelola data kayu secara efisien, transparan, dan mengurangi risiko
+kesalahan pencatatan.
+3) Bagi Penulis: Sebagai sarana implementasi ilmu yang telah didapatkan selama
+perkuliahan serta pengalaman dalam mengembangkan sistem skala industri.
 1.5 Ruang Lingkup Penelitian
-Agar penelitian ini lebih terarah dan fokus, penulis menetapkan batasan masalah sebagai berikut:
-1.	Objek penelitian dilakukan di TPK Cabak Kec Jiken, Kab Blora, Provinsi Jawa Tengah dengan fokus pada inventarisasi dan pemetaan Stok Kayu Jati.
-2.	Sistem dibangun berbasis web menggunakan framework Next.js dan React untuk sisi frontend.
-3.	Pemetaan geografis menggunakan library Leaflet JS dengan fitur penandaan lokasi (marker) dan poligon area kaveling.
-4.	Basis data menggunakan Supabase (PostgreSQL) dengan memanfaatkan fitur Real-time Subscription.
-5.	Sistem hanya mencakup proses inventarisasi (barang masuk, mutasi lokasi, barang keluar) dan pemetaan, tidak membahas aspek transaksi keuangan atau penggajian pegawai. 
+Agar penelitian ini lebih terarah dan fokus, penulis menetapkan batasan masalah
+sebagai berikut:
+1. Objek penelitian dilakukan di TPK Cabak Kec Jiken, Kab Blora, Provinsi Jawa
+Tengah dengan fokus pada inventarisasi dan pemetaan Stok Kayu Jati.
+2. Sistem dibangun berbasis web menggunakan framework Next.js dan React
+untuk sisi frontend.
+3. Pemetaan geografis menggunakan library Leaflet JS dengan fitur penandaan
+lokasi (marker) dan poligon area kaveling.
+4. Basis data menggunakan Supabase (PostgreSQL) dengan memanfaatkan fitur
+Real-time Subscription.
+5. Sistem hanya mencakup proses inventarisasi (barang masuk, mutasi lokasi,
+barang keluar) dan pemetaan, tidak membahas aspek transaksi keuangan atau
+penggajian pegawai.
+6
 BAB II TINJAUAN PUSTAKA DAN LANDASAN TEORI
-2.1 Penelitian Terdahulu
-Penelitian terdahulu menjadi rujukan utama dalam penyusunan penelitian ini guna mengetahui posisi, keunggulan, serta perbedaan inovasi yang ditawarkan dibandingkan dengan sistem yang sudah ada sebelumnya. Tinjauan terhadap beberapa literatur sebelumnya membantu dalam mengidentifikasi celah penelitian (research gap) yang akan diselesaikan. Berikut adalah beberapa penelitian terdahulu yang relevan:
-Menurut Agustine dan Handayani (2025) dengan judul "Rancang Bangun Aplikasi Inventory Produksi Kayu Berbasis Web dan Mobile: Studi Kasus UD Sulur Jati". Penelitian ini berfokus pada digitalisasi pencatatan logistik kayu untuk meminimalisir kesalahan data barang masuk dan keluar. Hasil dari penelitian tersebut membuktikan bahwa sistem informasi berbasis web sangat efektif dalam meningkatkan efisiensi pendataan stok kayu. Namun, kelemahan dari penelitian ini adalah pengelolaan data masih sebatas tabular (tabel teks) dan belum menyertakan representasi visual spasial (peta) untuk melacak letak fisik tumpukan kayu di lapangan.
-Penelitian kedua oleh Ramadhan, Irawan, dan Juardi (2023) yang berjudul "Penerapan Sistem Informasi Geografis Dengan Tools Qgis Dalam Pemetaan Penurunan Lahan Pertanian Kabupaten Karawang". Penelitian ini berhasil memanfaatkan QGIS sebagai alat pra-pemrosesan data spasial untuk mendigitasi dan memetakan wilayah secara akurat. Meskipun teknologi pemetaan spasial yang digunakan sangat presisi, penelitian ini hanya berfokus pada pemetaan objek statis (lahan pertanian) dan tidak terintegrasi dengan modul pergerakan barang logistik yang dinamis.
-Penelitian ketiga dilakukan oleh Nugraha, Rianto, Rezkika, dan Haryono (2026) dengan judul "Rancang Bangun Aplikasi Manajemen Proyek Berbasis Web Menggunakan React dan Supabase Pada Yayasan Sa'adatul Atholibin". Penelitian ini mengimplementasikan kerangka kerja React.js pada sisi frontend dan Supabase sebagai Backend-as-a-Service (BaaS). Penggunaan kedua teknologi ini terbukti menghasilkan antarmuka yang sangat responsif serta kemampuan sinkronisasi data secara real-time tanpa perlu memuat ulang halaman secara penuh. Akan tetapi, implementasi pada penelitian ini difokuskan pada manajemen proyek, bukan untuk rendering peta digital (WebGIS).
-Berdasarkan ketiga penelitian terdahulu tersebut, dapat disimpulkan bahwa belum ada sistem yang mengintegrasikan pencatatan inventaris komoditas kayu secara real-time dengan visualisasi pemetaan geografis (WebGIS). Oleh karena itu, penelitian ini hadir untuk menjembatani celah tersebut dengan mengintegrasikan pilar manajemen logistik, teknologi Modern Web Stack (Next.js dan Supabase), serta pemetaan interaktif (QGIS dan Leaflet JS) ke dalam satu platform utuh.
-Untuk lebih memperjelas letak perbedaan dan kebaruan (novelty) dari penelitian ini dibandingkan dengan penelitian-penelitian sebelumnya, rangkuman perbandingannya disajikan 
-	
-No	Peneliti & Tahun	Judul Penelitian	Fokus & Teknologi Utama	Perbedaan dengan Penelitian Ini
-1	Agustine & Handayani (2025)	Rancang Bangun Aplikasi Inventory Produksi Kayu Berbasis Web dan Mobile	Fokus pada manajemen stok kayu. Menggunakan teknologi web konvensional.	Tidak memiliki fitur WebGIS (peta) untuk pelacakan fisik kaveling tumpukan kayu.
-2	Ramadhan, Irawan, & Juardi (2023)	Penerapan Sistem Informasi Geografis Dengan Tools Qgis Dalam Pemetaan Penurunan Lahan Pertanian 	Fokus pada SIG dan pemetaan poligon wilayah menggunakan QGIS.	Objek penelitian statis (lahan) dan tidak terintegrasi dengan modul manajemen inventaris barang.
-3	Nugraha, Rianto, Rezkika, & Haryono (2026)	Rancang Bangun Aplikasi Manajemen Proyek Berbasis Web Menggunakan React dan Supabase 	Fokus pada penggunaan React.js dan Supabase untuk fitur real-time.	Diimplementasikan untuk manajemen proyek, tidak memiliki fungsionalitas visualisasi peta spasial (SIG).
-4	Yolan Ibnu Prasetya (Penelitian Ini - 2026)	Rancang Bangun Website Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak Berbasis Metode Prototype	Integrasi WebGIS (QGIS +Leaflet), Inventaris Kayu, Next.js, dan database real-time Supabase.	Menggabungkan sistem inventaris logistik yang dinamis dengan visualisasi pemetaan kaveling secara real-time dalam satu platform modern.
+2.1 Sistem Informasi dan Inventarisasi
+Sistem informasi merepresentasikan sebuah ekosistem komputasi yang
+memfasilitasi proses pengumpulan, penyimpanan, pemrosesan, dan pendistribusian
+data menjadi keluaran informasi yang memiliki nilai guna bagi organisasi. Menurut
+Hafizah dan Agustin (2024), sebuah sistem informasi berbasis web yang ideal
+mengintegrasikan prosedur fungsional dengan infrastruktur teknologi untuk
+mengotomatisasi proses bisnis konvensional agar menjadi lebih efisien dan
+transparan. Dalam operasional suatu instansi, sistem ini bertindak sebagai tulang
+punggung yang menjamin kelancaran arus komunikasi data antardivisi, mereduksi
+potensi human error, serta menunjang percepatan pengambilan keputusan strategis
+oleh pihak manajerial.
+Sebagai salah satu instrumen turunan dari sistem informasi, inventarisasi atau
+manajemen persediaan memegang peranan krusial dalam pengendalian aset logistik.
+Menurut Asfari (2024), sistem informasi inventarisasi difungsikan secara spesifik
+untuk memonitor seluruh siklus pergerakan aset barang yang mencakup proses
+pemasukan, penyimpanan, hingga pengeluaran. Ketiadaan sistem inventarisasi yang
+valid kerap memicu terjadinya asimetri pelaporan antara pembukuan administratif
+dengan ketersediaan fisik di lapangan. Oleh karena itu, implementasi Sistem
+Pemetaan dan Inventarisasi Tempat Penimbunan Kayu (SIPETA TPK) diinisiasi guna
+memastikan bahwa pengelolaan stok kayu jati dan rimba di TPK Cabak terekam
+secara komprehensif, akurat, dan dapat dilacak jejak distribusinya secara terstruktur.
+2.2 Tempat Penimbunan Kayu (TPK) dan Pengelolaan Kayu
+Tempat Penimbunan Kayu (TPK) merupakan fasilitas logistik vital dalam
+ekosistem industri kehutanan yang difungsikan sebagai titik transit utama bagi hasil
+tebangan dari kawasan hutan produksi sebelum didistribusikan ke konsumen atau
+industri pengolahan lanjutan. TPK bertugas untuk menerima, mengukur,
+mengklasifikasi, dan menata kayu dalam bentuk log (gelondongan) berdasarkan
+7
+spesifikasi mutu dan dimensinya. Karakteristik pengelolaan komoditas kayu
+menuntut presisi administratif yang tinggi, mengingat jenis kayu unggulan seperti Jati
+memiliki klasifikasi grade (A1, A2, A3) serta kubikasi volume yang sangat
+mempengaruhi nilai ekuilibrium ekonominya (Agustine & Handayani, 2025).
+Proses pengelolaan kayu secara konvensional sering kali berbenturan dengan
+berbagai permasalahan fundamental, seperti keterbatasan akurasi pencatatan manual,
+kesulitan melacak lokasi penempatan kaveling kayu spesifik di area penimbunan
+yang luas, hingga lambatnya proses sinkronisasi data stok akibat prosedur birokrasi
+yang panjang. Menurut Wiranata (2023), analisis manajemen persediaan kayu log
+yang tidak optimal berpotensi menyebabkan depresiasi kualitas kayu akibat waktu
+simpan yang terlalu lama atau memicu fenomena kekosongan stok. Dalam konteks
+TPK Cabak, permasalahan pelacakan tumpukan kayu dan pendataan aset inilah yang
+akan diselesaikan melalui digitalisasi beralaskan pemetaan geografis, sehingga
+alokasi spasial kayu jati di lapangan dapat selaras dengan basis data di tingkat
+manajerial.
+2.3 Sistem Informasi Geografis (SIG) dan WebGIS
+Sistem Informasi Geografis (SIG) adalah sebuah kerangka teknologi berbasis
+komputer yang direkayasa untuk mengakuisisi, menyimpan, memanipulasi, dan
+memvisualisasikan data yang memiliki ikatan referensi koordinat spasial di
+permukaan bumi. Menurut Surachman (2024), fungsionalitas utama SIG terletak
+pada kemampuannya memadukan data geometri berupa titik (point), garis (line),
+maupun poligon (polygon) dengan data atribut deskriptif ke dalam sebuah antarmuka
+visual berlapis (layering). Melalui pendekatan spasial ini, proses identifikasi lokasi
+objek, pemetaan distribusi fasilitas, hingga kalkulasi jarak geografis dapat
+divisualisasikan secara holistik.
+Konvergensi antara kapabilitas analitik SIG dengan penetrasi jaringan internet
+melahirkan inovasi yang dikenal sebagai WebGIS. Menurut Ate (2024), WebGIS
+8
+merepresentasikan sistem pemetaan interaktif di mana informasi spasial
+didistribusikan langsung ke sisi klien (client-side) dan dapat diakses murni melalui
+aplikasi peramban web (web browser). Arsitektur ini mengeliminasi kewajiban
+instalasi perangkat lunak sistem pemetaan yang berat pada perangkat pengguna,
+sehingga jangkauan aksesibilitasnya menjadi jauh lebih luas dan universal (Tarmizi
+& Ridha, 2021). Pada penelitian ini, arsitektur WebGIS didayagunakan untuk
+menghadirkan visualisasi real-time dari denah kaveling dan posisi tumpukan kayu di
+TPK Cabak tanpa membebani perangkat keras pengguna akhir.
+2.4 Teknologi Pengembangan Web
+Pengembangan aplikasi berbasis web modern telah bertransformasi dari
+sekadar perancangan antarmuka dokumen statis menjadi orkestrasi rekayasa
+perangkat lunak interaktif yang mampu merespons masukan pengguna secara
+kompleks. Menurut Restu (2024), rancang bangun arsitektur web mensyaratkan
+kolaborasi antara lapisan antarmuka pengguna (frontend) yang intuitif dengan
+infrastruktur server yang tangguh agar fungsionalitas bisnis dapat berjalan secara
+optimal dan independen melintasi berbagai sistem operasi. Penggunaan teknologi
+web dipilih sebagai landasan platform sistem karena menawarkan sifat crossplatform, kemudahan deployment, serta skalabilitas yang tinggi.
+2.4.1 Next.js
+Next.js merupakan kerangka kerja (framework) berbasis JavaScript yang
+direkayasa untuk mengoptimalkan performa aplikasi web modern melalui
+kapabilitas perenderan sisi peladen (Server-Side Rendering/SSR) dan
+pembuatan situs statis (Static Site Generation/SSG). Menurut Hanafi, Haq,
+dan Agustin (2024), pendekatan rendering berbasis Next.js terbukti secara
+empiris mampu mereduksi waktu muat halaman secara drastis, meningkatkan
+kinerja Search Engine Optimization (SEO), serta menjamin kehalusan
+navigasi antarhalaman berkat mekanisme pemuatan file-based routing. Lebih
+9
+lanjut, Sanjaya dan Saputra (2023) menyatakan bahwa integrasi Next.js
+sangat ideal bagi sistem manajemen data yang mensyaratkan lalu lintas
+informasi berintensitas tinggi tanpa mengorbankan stabilitas klien.
+2.4.2 React.js
+React.js adalah pustaka antar-muka (library front-end) yang
+mempromosikan paradigma arsitektur berbasis komponen (component-based
+architecture), di mana setiap elemen visual web dibangun menjadi modul
+independen yang dapat digunakan kembali (reusable). Beroperasi di atas
+mekanisme Virtual DOM (Document Object Model), React memastikan
+bahwa hanya komponen yang mengalami modifikasi status (state) saja yang
+akan diperbarui di layar peramban. Menurut Rachman, Shalahudin, dan
+Radifa (2023), penggunaan pustaka React di dalam ekosistem Next.js
+memberdayakan pengembang untuk menciptakan interaktivitas pengguna
+yang sangat dinamis, reaktif, dan mulus secara visual.
+2.4.3 TypeScript
+TypeScript hadir sebagai superset dari bahasa pemrograman
+JavaScript yang mengintroduksi fitur pengetikan statis opsional (static type-
+checking). Integrasi TypeScript pada fase kompilasi kode berfungsi sebagai
+protokol keamanan internal yang memitigasi anomali logika (bug) dan galat
+(error) tipe data sebelum aplikasi didistribusikan ke lingkungan produksi
+(Restu, 2024). Pengaplikasian bahasa ini menggaransi tingkat integritas
+struktur kode yang jauh lebih kokoh (type safety), membuat proses
+pemeliharaan serta pelacakan struktur aliran data spasial di dalam sistem
+WebGIS menjadi lebih terprediksi dan efisien.
+10
+2.4.4 Tailwind CSS
+Tailwind CSS merupakan kerangka kerja Cascading Style Sheets
+(CSS) yang mendobrak konvensi desain tradisional melalui paradigma utility-
+first. Alih-alih menulis ratusan baris kode style secara terpisah, pengembang
+dapat menyusun desain tata letak antarmuka secara presisi langsung pada
+penanda HyperText Markup Language (HTML) menggunakan kelas-kelas
+utilitas yang telah diprakonfigurasi. Menurut Azhariyah dan Mukhlis (2023),
+penerapan framework Tailwind CSS sangat efektif dalam mengakselerasi
+proses perancangan visual bagian front-end, sekaligus menjamin tercapainya
+responsivitas tampilan antarmuka yang presisi pada berbagai resolusi gawai.
+2.5 Backend dan Basis Data
+2.5.1 Supabase
+Supabase diposisikan sebagai platform Backend-as-a-Service (BaaS)
+sumber terbuka (open-source) yang mengintegrasikan serangkaian
+fungsionalitas vital arsitektur peladen tanpa mensyaratkan pengelolaan
+infrastruktur server secara manual. Menurut Nugraha et al. (2026),
+pemanfaatan Supabase sebagai solusi arsitektur backend terbukti sangat andal
+karena ia secara otomatis memfasilitasi kebutuhan modul Autentikasi (Auth),
+Penyimpanan Aset (Storage), dan Manajemen Basis Data yang skalabel. Fitur
+unggulan dari platform ini adalah Supabase Realtime yang mentransmisikan
+perubahan data seketika melalui protokol WebSocket, serta mekanisme Row
+Level Security (RLS) yang mengamankan otoritas akses data hingga ke
+tingkatan baris entri individual pengguna.
+2.5.2 PostgreSQL
+Berfungsi sebagai mesin penggerak utama di balik kapabilitas
+Supabase, PostgreSQL merupakan sistem manajemen basis data relasional
+11
+tingkat entitas korporat yang dikenal akan ketangguhannya menjaga integritas
+referensial. Menurut Nugraha et al. (2026), integrasi basis data modern sangat
+ditunjang oleh fleksibilitas PostgreSQL yang tidak hanya andal dalam
+mengeksekusi kueri relasional konvensional, tetapi juga mendukung
+manipulasi tipe data semistruktur seperti JSONB serta dukungan ragam
+ekstensi tingkat lanjut, termasuk ekstensi pemrosesan geometri spasial.
+Hubungan hierarkis antara PostgreSQL dan Supabase melahirkan ekosistem
+manajemen backend yang luar biasa adaptif untuk proyek berbasis data berat.
+2.6 Pemetaan dan Visualisasi Spasial
+2.6.1 Leaflet.js
+Leaflet.js adalah pustaka JavaScript open-source yang dirancang
+secara minimalis guna menyematkan komponen peta geografis berkinerja
+tinggi ke dalam aplikasi web. Menurut Uzlah et al. (2025), utilitas struktural
+Leaflet sangat mumpuni dalam mengeksekusi visualisasi interaktif seperti
+penyematan titik penanda (marker), pengikatan popup deskripsi objek, serta
+pembentukan geometri poligon area batas wilayah. Agar dapat berjalan
+harmonis di dalam ekosistem kerangka React, Leaflet diintegrasikan melalui
+paket react-leaflet. Menurut Lisakiyanto dan S (2024), manipulasi pustaka
+Leaflet merupakan metode yang paling rasional dan ringan dalam merender
+distribusi koordinat spasial (hotspot) dengan tanpa mendegradasi waktu muat
+aplikasi peramban.
+2.6.2 GeoJSON
+Guna merender visualisasi topografi yang akurat pada antarmuka peta,
+diperlukan format transmisi pertukaran data keruangan yang disepakati secara
+global. Menurut Mauliza, Achmady, dan Nurfebruary (2024), GeoJSON
+(Geographic JavaScript Object Notation) adalah format representasi standar
+12
+yang mendayagunakan struktur hierarki sintaks JSON untuk merumuskan
+fitur geografi beserta atribut meta-datanya. Dengan dukungannya terhadap
+berbagai tipe geometri seperti persendian titik (Point) hingga luasan area
+majemuk (MultiPolygon), GeoJSON berperan krusial sebagai jembatan yang
+menghubungkan raw data spasial dari sistem basis data menuju kerangka
+mesin perender Leaflet di lingkungan WebGIS.
+2.6.3 Quantum Geographic Information System (QGIS)
+QGIS (Quantum Geographic Information System) adalah perangkat
+lunak Sistem Informasi Geografis (SIG) sumber terbuka (open-source) yang
+memungkinkan pengguna untuk membuat, mengedit, memvisualisasikan,
+menganalisis, dan mempublikasikan informasi geospasial. Menurut
+Ramadhan, Irawan, dan Juardi (2023), QGIS sangat efektif sebagai alat pra-
+pemrosesan data spasial karena kemampuannya dalam mendigitasi objek
+geografis, melakukan georeferensi, serta mengelola berbagai format data
+vektor dan raster. Dalam konteks penelitian ini, QGIS digunakan untuk
+mendigitasi batas-batas kaveling tumpukan kayu di TPK Cabak dan
+mengekspornya ke format GeoJSON, yang kemudian akan diintegrasikan ke
+dalam WebGIS berbasis Leaflet.js.
+13
+2.7 Metode Pengembangan Perangkat Lunak (WDLC)
+Metodologi Web Development Life Cycle (WDLC) merupakan paradigma pengembangan perangkat lunak
+yang iteratif, berlandaskan pada prinsip pembuatan purwarupa aplikasi sedini
+mungkin untuk memfasilitasi demonstrasi visual kepada pengguna akhir sebelum
+sistem final diimplementasikan. Menurut Aprilisa dan Aulia (2024), siklus metode
+purwarupa mengizinkan klien untuk melihat, menguji, dan mengevaluasi cetak biru
+(blueprint) interaktif, sehingga pengembang dapat mengkalibrasi fungsionalitas fitur
+berdasarkan umpan balik empiris. Proses tahapan metode ini bergulir secara
+sekuensial meliputi analisis kebutuhan awal, perancangan desain kilat (quick design),
+pembentukan purwarupa, evaluasi pengguna pelanggan, penyempurnaan aplikasi,
+hingga tahapan rilis akhir.
+Kelebihan fundamental dari pendekatan ini adalah kapabilitasnya dalam
+mengakomodasi perubahan spesifikasi atau restrukturisasi kebutuhan (requirements)
+di tengah masa pengembangan dengan risiko yang terukur (Asfari, 2024). Namun,
+tantangan terbesarnya bermuara pada probabilitas terjadinya revisi yang
+berkepanjangan apabila batasan ruang lingkup purwarupa tidak disepakati secara
+tegas. Pemilihan metode Web Development Life Cycle (WDLC) pada studi kasus SIPETA TPK dilatarbelakangi
+oleh urgensi kebutuhan Admin dan Kepala TPK Cabak yang belum familiar dengan
+arsitektur WebGIS, sehingga komunikasi teknis melalui purwarupa interaktif dinilai
+sebagai strategi mitigasi miskomunikasi yang paling efektif. Alur kerja metode
+pengembangan ini dapat dilihat pada Gambar 2.1.
+14
+Gambar 2.1 Alur Metode Web Development Life Cycle (WDLC)
+2.8 Metode Pengujian Sistem
+2.8.1 Black Box Testing
+Black Box Testing adalah metode pengujian perangkat lunak yang
+berfokus pada kesesuaian antara masukan (input) dan keluaran (output) sistem
+tanpa memeriksa kode program internal. Menurut Suharyono, Kartini, dan
+Junaidi (2024), tujuan utama pengujian ini adalah memastikan bahwa setiap
+fungsi pada aplikasi berjalan sesuai dengan spesifikasi yang telah ditentukan.
+Dalam pelaksanaannya, terdapat dua teknik utama yang digunakan:
+1) Equivalence Partitioning (EP): Teknik yang membagi data input ke dalam
+kelompok-kelompok yang dianggap setara, sehingga cukup menguji satu
+perwakilan dari setiap kelompok untuk mengurangi jumlah skenario
+pengujian.
+2) Boundary Value Analysis (BVA): Teknik yang menguji nilai-nilai pada
+batas minimum dan maksimum dari suatu masukan, karena kesalahan
+program paling sering terjadi pada nilai batas.
+15
+2.9 Unified Modeling Language (UML)
+Unified Modeling Language (UML) adalah bahasa pemodelan visual
+standar yang digunakan untuk menggambarkan, merancang, dan
+mendokumentasikan arsitektur perangkat lunak berbasis objek. UML
+menyediakan berbagai jenis diagram untuk membantu pengembang memahami
+struktur dan perilaku sistem yang akan dibangun (Yasin & Zaini, 2024).
+Menurut Sonata (2019), UML banyak digunakan di industri untuk
+mendefinisikan kebutuhan, melakukan analisis dan desain, serta
+menggambarkan arsitektur dalam pemrograman berorientasi objek. Dalam
+perancangan sistem SIPETA TPK, jenis diagram UML yang digunakan
+meliputi Use Case Diagram, Activity Diagram, Class Diagram, dan Sequence
+Diagram.
+2.9.1 Use Case Diagram
+Use Case Diagram digunakan untuk menggambarkan interaksi antara
+pengguna (aktor) dengan fungsionalitas yang disediakan oleh sistem. Diagram
+ini membantu mengidentifikasi kebutuhan fungsional sistem berdasarkan peran
+masing-masing aktor. Dalam penggambarannya, digunakan berbagai simbol
+atau notasi untuk merepresentasikan hubungan antara aktor dan sistem (Fitria
+et al., 2020). Simbol-simbol yang digunakan dalam Use Case Diagram
+disajikan pada Tabel 2.x berikut.
+Tabel 2.x Simbol Use Case Diagram
+No Simbol Nama Keterangan
+1 [stick figure] Aktor Entitas eksternal (pengguna atau sistem lain) yang berinteraksi dengan sistem.
+2 [oval] Use Case Fungsionalitas atau layanan spesifik yang disediakan oleh sistem sebagai respons terhadap permintaan aktor.
+3 [garis lurus] Association (Asosiasi) Hubungan komunikasi atau interaksi antara aktor dan use case.
+4 [garis putus <<include>>] Include Relasi wajib di mana suatu use case selalu menyertakan fungsionalitas use case lain sebagai bagian dari prosesnya.
+5 [garis putus <<extend>>] Extend Relasi opsional di mana suatu use case dapat menambahkan perilaku tambahan jika kondisi tertentu terpenuhi.
+6 [garis + segitiga] Generalization (Generalisasi) Hubungan pewarisan di mana suatu elemen merupakan bentuk yang lebih khusus dari elemen induk yang lebih umum.
+Sumber: (Yasin & Zaini, 2024)
+2.9.2 Activity Diagram
+Activity Diagram digunakan untuk menggambarkan alur kerja
+(workflow) dari suatu proses dalam sistem. Diagram ini memiliki kemiripan
+dengan flowchart karena sama-sama menunjukkan alur kerja dari satu
+aktivitas ke aktivitas berikutnya. Namun, Activity Diagram memiliki
+kemampuan tambahan untuk menampilkan aktivitas secara paralel
+menggunakan jalur kolom (swimlane), sehingga dapat memisahkan aktivitas
+berdasarkan aktor yang berbeda (Ramasenjaya & Juman, 2022). Penyusunan
+Activity Diagram sejak awal pemodelan dapat membantu memahami
+keseluruhan proses yang ada serta menggambarkan interaksi antar beberapa
+use case.
+16
+2.9.3 Class Diagram
+Class Diagram menggambarkan struktur statis dari sebuah sistem
+berupa kelas-kelas objek, atribut yang dimiliki, operasi (metode) yang dapat
+dilakukan, serta hubungan antar-kelas. Diagram ini merupakan komponen
+inti dalam perancangan perangkat lunak berbasis objek (Ramasenjaya &
+Juman, 2022). Setiap class terdiri dari tiga bagian utama (Suendri, 2018):
+1) Nama: identitas unik yang wajib dimiliki oleh sebuah class.
+2) Atribut: seluruh properti atau karakteristik yang melekat pada class,
+di mana nilai dari class hanya dapat diolah sesuai dengan atribut yang
+dimilikinya.
+3) Operasi: sekumpulan fungsi atau metode yang dapat dilakukan oleh
+class tersebut, baik terhadap dirinya sendiri maupun terhadap class lain.
+2.9.4 Sequence Diagram
+Sequence Diagram digunakan untuk menggambarkan interaksi
+antara objek-objek dalam sistem berdasarkan urutan waktu. Diagram ini
+menunjukkan pesan yang dikirim dan diterima antar objek secara kronologis,
+sehingga dapat memodelkan bagaimana komponen-komponen sistem saling
+berkomunikasi dalam menyelesaikan suatu proses tertentu (Aprilisa & Aulia,
+2024). Dalam konteks SIPETA TPK, Sequence Diagram akan digunakan
+untuk memodelkan pertukaran pesan antara pengguna (melalui browser),
+antarmuka tampilan, kontrol aplikasi, dan basis data Supabase.
+17
+2.10 Penelitian Terdahulu
+Penelitian terdahulu menjadi rujukan utama dalam penyusunan penelitian ini
+guna mengetahui posisi, keunggulan, serta perbedaan inovasi yang ditawarkan
+dibandingkan dengan sistem yang sudah ada sebelumnya. Tinjauan terhadap beberapa
+literatur sebelumnya membantu dalam mengidentifikasi celah penelitian (research
+gap) yang akan diselesaikan. Berikut adalah beberapa penelitian terdahulu yang
+relevan:
+Menurut Agustine dan Handayani (2025) dengan judul "Rancang Bangun
+Aplikasi Inventory Produksi Kayu Berbasis Web dan Mobile: Studi Kasus UD Sulur
+Jati". Penelitian ini berfokus pada digitalisasi pencatatan logistik kayu untuk
+meminimalisir kesalahan data barang masuk dan keluar. Hasil dari penelitian tersebut
+membuktikan bahwa sistem informasi berbasis web sangat efektif dalam
+meningkatkan efisiensi pendataan stok kayu. Namun, kelemahan dari penelitian ini
+adalah pengelolaan data masih sebatas tabular (tabel teks) dan belum menyertakan
+representasi visual spasial (peta) untuk melacak letak fisik tumpukan kayu di
+lapangan.
+Penelitian kedua oleh Ramadhan, Irawan, dan Juardi (2023) yang berjudul
+"Penerapan Sistem Informasi Geografis Dengan Tools Qgis Dalam Pemetaan
+Penurunan Lahan Pertanian Kabupaten Karawang". Penelitian ini berhasil
+memanfaatkan QGIS sebagai alat pra-pemrosesan data spasial untuk mendigitasi dan
+memetakan wilayah secara akurat. Meskipun teknologi pemetaan spasial yang
+digunakan sangat presisi, penelitian ini hanya berfokus pada pemetaan objek statis
+(lahan pertanian) dan tidak terintegrasi dengan modul pergerakan barang logistik
+yang dinamis.
+18
+Penelitian ketiga dilakukan oleh Nugraha, Rianto, Rezkika, dan Haryono
+(2026) dengan judul "Rancang Bangun Aplikasi Manajemen Proyek Berbasis Web
+Menggunakan React dan Supabase Pada Yayasan Sa'adatul Atholibin". Penelitian ini
+mengimplementasikan kerangka kerja React.js pada sisi frontend dan Supabase
+sebagai Backend-as-a-Service (BaaS). Penggunaan kedua teknologi ini terbukti
+menghasilkan antarmuka yang sangat responsif serta kemampuan sinkronisasi data
+secara real-time tanpa perlu memuat ulang halaman secara penuh. Akan tetapi,
+implementasi pada penelitian ini difokuskan pada manajemen proyek, bukan untuk
+rendering peta digital (WebGIS).
+Berdasarkan ketiga penelitian terdahulu tersebut, dapat disimpulkan bahwa
+belum ada sistem yang mengintegrasikan pencatatan inventaris komoditas kayu
+secara real-time dengan visualisasi pemetaan geografis (WebGIS). Oleh karena itu,
+penelitian ini hadir untuk menjembatani celah tersebut dengan mengintegrasikan pilar
+manajemen logistik, teknologi Modern Web Stack (Next.js dan Supabase), serta
+pemetaan interaktif (QGIS dan Leaflet JS) ke dalam satu platform utuh.
+Untuk lebih memperjelas letak perbedaan dan kebaruan (novelty) dari
+penelitian ini dibandingkan dengan penelitian-penelitian sebelumnya, rangkuman
+perbandingannya disajikan
+19
+No Peneliti & Tahun Judul Penelitian Fokus & Teknologi
+Utama
+Perbedaan dengan
+Penelitian Ini
+1
+Agustine &
+Handayani (2025)
+Rancang Bangun
+Aplikasi Inventory
+Produksi Kayu
+Berbasis Web dan
+Mobile
+Fokus pada
+manajemen stok kayu.
+Menggunakan
+teknologi web
+konvensional.
+Tidak memiliki fitur
+WebGIS (peta) untuk
+pelacakan fisik
+kaveling tumpukan
+kayu.
+2
+Ramadhan,
+Irawan, & Juardi
+(2023)
+Penerapan Sistem
+Informasi Geografis
+Dengan Tools Qgis
+Dalam Pemetaan
+Penurunan Lahan
+Pertanian
+Fokus pada SIG dan
+pemetaan poligon
+wilayah menggunakan
+QGIS.
+Objek penelitian
+statis (lahan) dan
+tidak terintegrasi
+dengan modul
+manajemen
+inventaris barang.
+3
+Nugraha, Rianto,
+Rezkika, &
+Haryono (2026)
+Rancang Bangun
+Aplikasi Manajemen
+Proyek Berbasis Web
+Menggunakan React
+dan Supabase
+Fokus pada
+penggunaan React.js
+dan Supabase untuk
+fitur real-time.
+Diimplementasikan
+untuk manajemen
+proyek, tidak
+memiliki
+fungsionalitas
+visualisasi peta
+spasial (SIG).
+4
+Yolan Ibnu
+Prasetya
+(Penelitian Ini -
+2026)
+Rancang Bangun
+Website Sistem
+Informasi Geografis
+(SIG) Inventarisasi
+dan Pemetaan Stok
+Kayu Jati di TPK
+Cabak Berbasis
+Metode Web Development Life Cycle (WDLC)
+Integrasi WebGIS
+(QGIS +Leaflet),
+Inventaris Kayu,
+Next.js, dan database
+real-time Supabase.
+Menggabungkan
+sistem inventaris
+logistik yang
+dinamis dengan
+visualisasi pemetaan
+kaveling secara realtime dalam satu
+platform modern.
 Tabel 2.1 Perbandingan Penelitian Terdahulu dan Penelitian Saat Ini
-
-
-2.2 Sistem Informasi dan Inventarisasi
-Sistem informasi merepresentasikan sebuah ekosistem komputasi yang memfasilitasi proses pengumpulan, penyimpanan, pemrosesan, dan pendistribusian data menjadi keluaran informasi yang memiliki nilai guna bagi organisasi. Menurut Hafizah dan Agustin (2024), sebuah sistem informasi berbasis web yang ideal mengintegrasikan prosedur fungsional dengan infrastruktur teknologi untuk mengotomatisasi proses bisnis konvensional agar menjadi lebih efisien dan transparan. Dalam operasional suatu instansi, sistem ini bertindak sebagai tulang punggung yang menjamin kelancaran arus komunikasi data antardivisi, mereduksi potensi human error, serta menunjang percepatan pengambilan keputusan strategis oleh pihak manajerial.
-Sebagai salah satu instrumen turunan dari sistem informasi, inventarisasi atau manajemen persediaan memegang peranan krusial dalam pengendalian aset logistik. Menurut Asfari (2024), sistem informasi inventarisasi difungsikan secara spesifik untuk memonitor seluruh siklus pergerakan aset barang yang mencakup proses pemasukan, penyimpanan, hingga pengeluaran. Ketiadaan sistem inventarisasi yang valid kerap memicu terjadinya asimetri pelaporan antara pembukuan administratif dengan ketersediaan fisik di lapangan. Oleh karena itu, implementasi Sistem Pemetaan dan Inventarisasi Tempat Penimbunan Kayu (SIPETA TPK) diinisiasi guna memastikan bahwa pengelolaan stok kayu jati dan rimba di TPK Cabak terekam secara komprehensif, akurat, dan dapat dilacak jejak distribusinya secara terstruktur.
-2.3 Tempat Penimbunan Kayu (TPK) dan Pengelolaan Kayu
-Tempat Penimbunan Kayu (TPK) merupakan fasilitas logistik vital dalam ekosistem industri kehutanan yang difungsikan sebagai titik transit utama bagi hasil tebangan dari kawasan hutan produksi sebelum didistribusikan ke konsumen atau industri pengolahan lanjutan. TPK bertugas untuk menerima, mengukur, mengklasifikasi, dan menata kayu dalam bentuk log (gelondongan) berdasarkan spesifikasi mutu dan dimensinya. Karakteristik pengelolaan komoditas kayu menuntut presisi administratif yang tinggi, mengingat jenis kayu unggulan seperti Jati memiliki klasifikasi grade (A1, A2, A3) serta kubikasi volume yang sangat mempengaruhi nilai ekuilibrium ekonominya (Agustine & Handayani, 2025).
-Proses pengelolaan kayu secara konvensional sering kali berbenturan dengan berbagai permasalahan fundamental, seperti keterbatasan akurasi pencatatan manual, kesulitan melacak lokasi penempatan kaveling kayu spesifik di area penimbunan yang luas, hingga lambatnya proses sinkronisasi data stok akibat prosedur birokrasi yang panjang. Menurut Wiranata (2023), analisis manajemen persediaan kayu log yang tidak optimal berpotensi menyebabkan depresiasi kualitas kayu akibat waktu simpan yang terlalu lama atau memicu fenomena kekosongan stok. Dalam konteks TPK Cabak, permasalahan pelacakan tumpukan kayu dan pendataan aset inilah yang akan diselesaikan melalui digitalisasi beralaskan pemetaan geografis, sehingga alokasi spasial kayu jati di lapangan dapat selaras dengan basis data di tingkat manajerial.
-2.4 Sistem Informasi Geografis (SIG) dan WebGIS 
-Sistem Informasi Geografis (SIG) adalah sebuah kerangka teknologi berbasis komputer yang direkayasa untuk mengakuisisi, menyimpan, memanipulasi, dan memvisualisasikan data yang memiliki ikatan referensi koordinat spasial di permukaan bumi. Menurut Surachman (2024), fungsionalitas utama SIG terletak pada kemampuannya memadukan data geometri berupa titik (point), garis (line), maupun poligon (polygon) dengan data atribut deskriptif ke dalam sebuah antarmuka visual berlapis (layering). Melalui pendekatan spasial ini, proses identifikasi lokasi objek, pemetaan distribusi fasilitas, hingga kalkulasi jarak geografis dapat divisualisasikan secara holistik.
-Konvergensi antara kapabilitas analitik SIG dengan penetrasi jaringan internet melahirkan inovasi yang dikenal sebagai WebGIS. Menurut Ate (2024), WebGIS merepresentasikan sistem pemetaan interaktif di mana informasi spasial didistribusikan langsung ke sisi klien (client-side) dan dapat diakses murni melalui aplikasi peramban web (web browser). Arsitektur ini mengeliminasi kewajiban instalasi perangkat lunak sistem pemetaan yang berat pada perangkat pengguna, sehingga jangkauan aksesibilitasnya menjadi jauh lebih luas dan universal (Tarmizi & Ridha, 2021). Pada penelitian ini, arsitektur WebGIS didayagunakan untuk menghadirkan visualisasi real-time dari denah kaveling dan posisi tumpukan kayu di TPK Cabak tanpa membebani perangkat keras pengguna akhir.
-2.5 Teknologi Pengembangan Web 
-Pengembangan aplikasi berbasis web modern telah bertransformasi dari sekadar perancangan antarmuka dokumen statis menjadi orkestrasi rekayasa perangkat lunak interaktif yang mampu merespons masukan pengguna secara kompleks. Menurut Restu (2024), rancang bangun arsitektur web mensyaratkan kolaborasi antara lapisan antarmuka pengguna (frontend) yang intuitif dengan infrastruktur server yang tangguh agar fungsionalitas bisnis dapat berjalan secara optimal dan independen melintasi berbagai sistem operasi. Penggunaan teknologi web dipilih sebagai landasan platform sistem karena menawarkan sifat cross-platform, kemudahan deployment, serta skalabilitas yang tinggi.
-2.5.1 Next.js Next.js 
-merupakan kerangka kerja (framework) berbasis JavaScript yang direkayasa untuk mengoptimalkan performa aplikasi web modern melalui kapabilitas perenderan sisi peladen (Server-Side Rendering/SSR) dan pembuatan situs statis (Static Site Generation/SSG). Menurut Hanafi, Haq, dan Agustin (2024), pendekatan rendering berbasis Next.js terbukti secara empiris mampu mereduksi waktu muat halaman secara drastis, meningkatkan kinerja Search Engine Optimization (SEO), serta menjamin kehalusan navigasi antarhalaman berkat mekanisme pemuatan file-based routing. Lebih lanjut, Sanjaya dan Saputra (2023) menyatakan bahwa integrasi Next.js sangat ideal bagi sistem manajemen data yang mensyaratkan lalu lintas informasi berintensitas tinggi tanpa mengorbankan stabilitas klien.
-2.5.2 React.js
-React.js adalah pustaka antar-muka (library front-end) yang mempromosikan paradigma arsitektur berbasis komponen (component-based architecture), di mana setiap elemen visual web dibangun menjadi modul independen yang dapat digunakan kembali (reusable). Beroperasi di atas mekanisme Virtual DOM (Document Object Model), React memastikan bahwa hanya komponen yang mengalami modifikasi status (state) saja yang akan diperbarui di layar peramban. Menurut Rachman, Shalahudin, dan Radifa (2023), penggunaan pustaka React di dalam ekosistem Next.js memberdayakan pengembang untuk menciptakan interaktivitas pengguna yang sangat dinamis, reaktif, dan mulus secara visual.
-2.5.3 TypeScript 
-TypeScript hadir sebagai superset dari bahasa pemrograman JavaScript yang mengintroduksi fitur pengetikan statis opsional (static type-checking). Integrasi TypeScript pada fase kompilasi kode berfungsi sebagai protokol keamanan internal yang memitigasi anomali logika (bug) dan galat (error) tipe data sebelum aplikasi didistribusikan ke lingkungan produksi (Restu, 2024). Pengaplikasian bahasa ini menggaransi tingkat integritas struktur kode yang jauh lebih kokoh (type safety), membuat proses pemeliharaan serta pelacakan struktur aliran data spasial di dalam sistem WebGIS menjadi lebih terprediksi dan efisien.
-
-
-2.5.4 Tailwind CSS 
-Tailwind CSS merupakan kerangka kerja Cascading Style Sheets (CSS) yang mendobrak konvensi desain tradisional melalui paradigma utility-first. Alih-alih menulis ratusan baris kode style secara terpisah, pengembang dapat menyusun desain tata letak antarmuka secara presisi langsung pada penanda HyperText Markup Language (HTML) menggunakan kelas-kelas utilitas yang telah diprakonfigurasi. Menurut Azhariyah dan Mukhlis (2023), penerapan framework Tailwind CSS sangat efektif dalam mengakselerasi proses perancangan visual bagian front-end, sekaligus menjamin tercapainya responsivitas tampilan antarmuka yang presisi pada berbagai resolusi gawai.
-2.6 Backend dan Basis Data 
-2.6.1 Supabase 
-Supabase diposisikan sebagai platform Backend-as-a-Service (BaaS) sumber terbuka (open-source) yang mengintegrasikan serangkaian fungsionalitas vital arsitektur peladen tanpa mensyaratkan pengelolaan infrastruktur server secara manual. Menurut Nugraha et al. (2026), pemanfaatan Supabase sebagai solusi arsitektur backend terbukti sangat andal karena ia secara otomatis memfasilitasi kebutuhan modul Autentikasi (Auth), Penyimpanan Aset (Storage), dan Manajemen Basis Data yang skalabel. Fitur unggulan dari platform ini adalah Supabase Realtime yang mentransmisikan perubahan data seketika melalui protokol WebSocket, serta mekanisme Row Level Security (RLS) yang mengamankan otoritas akses data hingga ke tingkatan baris entri individual pengguna.
-2.6.2 PostgreSQL 
-Berfungsi sebagai mesin penggerak utama di balik kapabilitas Supabase, PostgreSQL merupakan sistem manajemen basis data relasional tingkat entitas korporat yang dikenal akan ketangguhannya menjaga integritas referensial. Menurut Nugraha et al. (2026), integrasi basis data modern sangat ditunjang oleh fleksibilitas PostgreSQL yang tidak hanya andal dalam mengeksekusi kueri relasional konvensional, tetapi juga mendukung manipulasi tipe data semistruktur seperti JSONB serta dukungan ragam ekstensi tingkat lanjut, termasuk ekstensi pemrosesan geometri spasial. Hubungan hierarkis antara PostgreSQL dan Supabase melahirkan ekosistem manajemen backend yang luar biasa adaptif untuk proyek berbasis data berat.
-2.7 Pemetaan dan Visualisasi Spasial 
-2.7.1 Leaflet.js 
-Leaflet.js adalah pustaka JavaScript open-source yang dirancang secara minimalis guna menyematkan komponen peta geografis berkinerja tinggi ke dalam aplikasi web. Menurut Uzlah et al. (2025), utilitas struktural Leaflet sangat mumpuni dalam mengeksekusi visualisasi interaktif seperti penyematan titik penanda (marker), pengikatan popup deskripsi objek, serta pembentukan geometri poligon area batas wilayah. Agar dapat berjalan harmonis di dalam ekosistem kerangka React, Leaflet diintegrasikan melalui paket react-leaflet. Menurut Lisakiyanto dan S (2024), manipulasi pustaka Leaflet merupakan metode yang paling rasional dan ringan dalam merender distribusi koordinat spasial (hotspot) dengan tanpa mendegradasi waktu muat aplikasi peramban.
-2.7.2 GeoJSON 
-Guna merender visualisasi topografi yang akurat pada antarmuka peta, diperlukan format transmisi pertukaran data keruangan yang disepakati secara global. Menurut Mauliza, Achmady, dan Nurfebruary (2024), GeoJSON (Geographic JavaScript Object Notation) adalah format representasi standar yang mendayagunakan struktur hierarki sintaks JSON untuk merumuskan fitur geografi beserta atribut meta-datanya. Dengan dukungannya terhadap berbagai tipe geometri seperti persendian titik (Point) hingga luasan area majemuk (MultiPolygon), GeoJSON berperan krusial sebagai jembatan yang menghubungkan raw data spasial dari sistem basis data menuju kerangka mesin perender Leaflet di lingkungan WebGIS.
-2.8 Metode Pengembangan Perangkat Lunak (Prototype) 
-Metodologi Prototype merupakan paradigma pengembangan perangkat lunak yang iteratif, berlandaskan pada prinsip pembuatan purwarupa aplikasi sedini mungkin untuk memfasilitasi demonstrasi visual kepada pengguna akhir sebelum sistem final diimplementasikan. Menurut Aprilisa dan Aulia (2024), siklus metode purwarupa mengizinkan klien untuk melihat, menguji, dan mengevaluasi cetak biru (blueprint) interaktif, sehingga pengembang dapat mengkalibrasi fungsionalitas fitur berdasarkan umpan balik empiris. Proses tahapan metode ini bergulir secara sekuensial meliputi analisis kebutuhan awal, perancangan desain kilat (quick design), pembentukan purwarupa, evaluasi pengguna pelanggan, penyempurnaan aplikasi, hingga tahapan rilis akhir.
-Kelebihan fundamental dari pendekatan ini adalah kapabilitasnya dalam mengakomodasi perubahan spesifikasi atau restrukturisasi kebutuhan (requirements) di tengah masa pengembangan dengan risiko yang terukur (Asfari, 2024). Namun, tantangan terbesarnya bermuara pada probabilitas terjadinya revisi yang berkepanjangan apabila batasan ruang lingkup purwarupa tidak disepakati secara tegas. Pemilihan metode Prototype pada studi kasus SIPETA TPK dilatarbelakangi oleh urgensi kebutuhan Admin dan Kepala TPK Cabak yang belum familiar dengan arsitektur WebGIS, sehingga komunikasi teknis melalui purwarupa interaktif dinilai sebagai strategi mitigasi miskomunikasi yang paling efektif. Alur kerja metode pengembangan ini dapat dilihat pada Gambar 2.1.
- 
-Gambar 2.1 Alur Metode Prototype
-2.9 Metode Pengujian Sistem 
-2.9.1 Black Box Testing 
-Pengujian Black Box merupakan paradigma validasi perangkat lunak yang sepenuhnya memusatkan observasi pada keselarasan keluaran fungsi (output) terhadap masukan fungsional (input) tanpa perlu membedah konstelasi logika internal atau sintaksis kode programnya. Menurut Suharyono, Kartini, dan Junaidi (2024), sasaran utama teknik ini adalah untuk memverifikasi apakah seluruh spesifikasi operasional aplikasi tereksekusi secara sempurna dan terbebas dari anomali fungsional. Teknik pengujian ini kerap kali didayagunakan bersamaan dengan pendekatan Boundary Value Analysis (BVA) untuk mengecek ketahanan sistem di nilai batas ekstrem, serta Equivalence Partitioning (EP) untuk memilah jenis kelas masukan data menjadi partisi yang terstruktur guna mendeteksi kecacatan validasi (validation bug).
-2.10 Pemodelan dan Perancangan Sistem 
-2.10.1 Data Flow Diagram (DFD) 
-Pemodelan Data Flow Diagram (DFD) didayagunakan sebagai instrumen kartografi logika untuk memetakan arah aliran perpindahan informasi dari lapisan antarmuka sistem menuju lapisan basis data maupun arah sebaliknya. Menurut Satyaninggrat, Hamijaya, dan Rahmah (2023), konstruksi visual DFD menggunakan sekumpulan simbol grafis (seperti terminator, proses, dan data store) untuk mengilustrasikan secara hierarkis darimana data diproduksi dan di titik operasional mana data tersebut dimutakhirkan. Pemodelan ini lazimnya diklasifikasikan dari tingkatan yang paling abstrak, yaitu Diagram Konteks (Level 0), hingga penjabaran logika rinci pada Diagram Level 1 dan seterusnya.
-
-2.10.2 Flowchart 
-Bagan alir (flowchart) adalah skematika representasi visual yang menjabarkan kronologi urutan prosedural dan percabangan logika penentuan keputusan di dalam alur suatu program atau subsistem operasional. Menurut Aprilisa dan Aulia (2024), penyusunan rancangan flowchart dengan mendayagunakan simbol-simbol geometris spesifik sangat esensial sebagai landasan dokumentasi untuk mengartikulasikan skenario logis sistem secara universal. Hal ini sejalan dengan pernyataan Yasin dan Zaini (2024) yang menegaskan bahwa rancang bangun sistem informasi yang sistematis mutlak membutuhkan bagan alir agar logika pemrograman lebih mudah dipahami dan dieksekusi oleh pengembang pada fase implementasi
-2.10.3 Unified Modeling Language (UML) 
-Unified Modeling Language (UML) merupakan kerangka standardisasi notasi pemodelan visual untuk merekayasa cetak biru rancangan arsitektur perangkat lunak berbasis objek, yang mendokumentasikan keseluruhan proses bisnis dari perspektif aktor hingga interaksi antarkomponen (Yasin & Zaini, 2024). Di dalam konstelasi arsitekturalnya, struktur fungsional sistem didefinisikan melalui Use Case Diagram untuk menjabarkan kapabilitas pengguna, diurai kronologi proseduralnya melalui Activity Diagram, serta dipetakan anatomi statis entitas database dan operasionalnya menggunakan pendekatan Class Diagram. Kesatuan instrumen pemodelan UML tersebut menggaransi tahapan konstruksi kode aplikasi menjadi jauh lebih presisi dan terintegrasi secara teknis.
-
-
-
-
- 
-BAB III
-ANALISIS DAN PERANCANGAN SISTEM
-3.1 Analisis Sistem yang Sedang Berjalan 
-Berdasarkan hasil observasi lapangan dan analisis terhadap alur proses bisnis di Tempat Penimbunan Kayu (TPK) Cabak, ditemukan bahwa mekanisme pengelolaan data inventaris stok kayu jati saat ini masih beroperasi secara konvensional dan semi-manual. Seluruh siklus pendataan—mulai dari penerimaan kayu masuk, pengukuran volume, pencatatan jumlah batang (log), klasifikasi kelas mutu (grade), hingga pencatatan distribusi logistik—masih sangat bergantung pada pencatatan fisik berupa buku besar atau spreadsheet sederhana yang tidak terintegrasi.
-Kelemahan fundamental dari sistem yang berjalan ini tidak hanya terletak pada tingginya risiko redundansi data, melainkan ketiadaan representasi spasial terkait letak kaveling tumpukan kayu di lapangan. Mengingat cakupan topografi TPK Cabak yang sangat luas, ketiadaan peta digital yang terintegrasi menyebabkan petugas lapangan (Staff) memerlukan waktu yang cukup lama hanya untuk melacak koordinat fisik dari tumpukan kayu yang tertera di dokumen kertas. Kondisi ini secara alamiah memicu terjadinya lag informasi (jeda waktu pembaruan data) antara kondisi riil di lapangan dengan laporan yang diterima oleh pihak manajemen, sehingga memperumit proses audit dan memperlambat laju pengambilan keputusan. Oleh karena itu, urgensi perancangan Sistem Informasi Geografis (SIG) berbasis antarmuka website yang dipadukan dengan basis data real-time menjadi solusi mutlak guna memetakan posisi geografis kayu secara presisi dan mengotomatisasi sinkronisasi data secara terpusat.
-3.2 Analisis Kebutuhan Sistem 
-Analisis kebutuhan sistem merupakan tahapan esensial dalam rekayasa perangkat lunak untuk mengidentifikasi dan mendokumentasikan spesifikasi teknis yang wajib dipenuhi oleh arsitektur sistem baru. Analisis ini diklasifikasikan ke dalam dua dimensi utama, yakni kebutuhan fungsional (functional requirements) dan kebutuhan non-fungsional (non-functional requirements).
-3.2.1 Kebutuhan Fungsional
-Kebutuhan fungsional mempresentasikan penjabaran kapabilitas, layanan, dan fungsi operasional yang harus mampu dieksekusi oleh sistem. Berdasarkan pemetaan peran (role) pengguna, sistem SIPETA TPK mendefinisikan batasan hak akses yang tegas antara dua entitas utama, yaitu Admin dan Staff, dengan rincian matriks fungsionalitas sebagai berikut:
-1)	Kebutuhan Fungsional Entitas Admin:
-•	Sistem wajib menyediakan modul autentikasi terpusat (login dan logout) guna memvalidasi sesi identitas pengguna.
-•	Sistem wajib menampilkan Dashboard Executive yang memuat agregasi analitik inventaris, seperti total blok kaveling, akumulasi volume kayu, dan rasio status ketersediaan komoditas (Available/Sold).
-•	Sistem wajib merender Peta Inventori (WebGIS) interaktif yang memvisualisasikan data spasial berupa poligon batas kaveling tumpukan kayu.
-•	Sistem wajib memfasilitasi interaktivitas klik pada area poligon blok kayu di peta untuk mengekstraksi dan menampilkan detail informasi stok.
-•	Sistem wajib memberikan otoritas manipulasi data (hak akses Write/Update) kepada Admin untuk memodifikasi atribut stok secara langsung (volume, jumlah log, grade, dan status logistik).
-•	Sistem wajib menyediakan modul User Management untuk mendaftarkan dan mengelola akun akses bagi Staff lapangan.
-•	Sistem wajib menyediakan modul System Settings untuk mengatur parameter profil operasional TPK Cabak (kapasitas, total area, dan zona).
-•	Sistem wajib merekam jejak audit (history) dari setiap transaksi pembaruan data dan menyediakan fitur ekstraksi laporan ke dalam format Microsoft Excel (.xlsx).
-2)	Kebutuhan Fungsional Entitas Staff:
-•	Sistem wajib menyediakan fasilitas autentikasi (login/logout) dengan rute akses (routing) yang dibatasi secara khusus untuk Staff.
-•	Sistem wajib menyajikan antarmuka pemantauan Dashboard dan Peta Inventori WebGIS guna memfasilitasi orientasi lapangan.
-•	Sistem wajib memungkinkan Staff untuk melihat detail informasi atribut stok pada blok kaveling dengan batasan hak akses murni sebagai pembaca (Read-Only Access), tanpa kapabilitas memodifikasi data.
-•	Sistem wajib memungkinkan Staff meninjau tabel kompilasi riwayat pergerakan stok dan mengekspor dokumen laporan administrasi lapangan.
-3)	Kebutuhan Fungsional Latar Belakang Sistem (System Backend):
-•	Lapisan backend sistem wajib memfasilitasi sinkronisasi (broadcast) pembaruan data stok secara otomatis ke seluruh terminal pengguna (client) yang aktif secara real-time memanfaatkan kapabilitas layanan Supabase Real-time.
-3.2.2 Kebutuhan Non-Fungsional
-Kebutuhan non-fungsional merumuskan parameter kualitas performa, keamanan, dan batasan ekosistem infrastruktur perangkat keras (hardware) maupun perangkat lunak (software) yang dibutuhkan agar sistem beroperasi secara optimal.
-1)	Spesifikasi Perangkat Keras (Hardware):
-•	Infrastruktur Server: Implementasi arsitektur web modern mengeliminasi kebutuhan pengadaan peladen fisik lokal (on-premise). Sistem mendelegasikan beban penyimpanan dan komputasi pada ekosistem komputasi awan (Cloud Hosting) dan layanan Backend-as-a-Service (BaaS).
-•	Perangkat Klien - Admin: Membutuhkan unit komputasi (Desktop/Laptop) dengan spesifikasi rasional untuk mengeksekusi rendering grafis pemetaan, direkomendasikan memiliki CPU minimal Dual-Core (setara Intel Core i3 / AMD Ryzen 3), RAM 4 GB, dan konektivitas pita lebar (broadband) yang stabil.
-•	Perangkat Klien - Staff: Membutuhkan perangkat yang mendukung mobilitas lapangan yang tinggi (Smartphone/Tablet) dengan kapabilitas koneksi jaringan nirkabel seluler (minimal 4G/LTE) untuk kelancaran pemuatan paket data GeoJSON secara dinamis.
-2)	Spesifikasi Perangkat Lunak (Software):
-•	Sistem Operasi Lintas Platform: Bersifat Platform Independent, klien dapat diakses secara optimal di atas ekosistem Windows, macOS, Linux, hingga ekosistem gawai mobile (Android dan iOS).
-•	Kompatibilitas Peramban (Web Browser): Membutuhkan peramban berstandar HTML5 dengan kapabilitas eksekusi JavaScript mutakhir (seperti Google Chrome, Mozilla Firefox, Microsoft Edge, atau Apple Safari).
-•	Tumpukan Teknologi Pengembangan (Development Stack): Lingkungan pengembangan dikonstruksi menggunakan framework Next.js, library React.js, Leaflet JS untuk visualisasi pemetaan, dan kerangka utilitas desain antarmuka Tailwind CSS. Manajemen relasi entitas ditangani oleh basis data PostgreSQL melalui layanan Supabase.
-•	Perangkat Pra-Pemrosesan Spasial: Perangkat lunak Sistem Informasi Geografis prapemrosesan, yakni Quantum GIS (QGIS) versi desktop, didayagunakan secara eksklusif dalam tahap digitasi untuk mendefinisikan batas poligon kaveling ke dalam format standar GeoJSON.
-
-3.3 Perancangan Alur Sistem (Flowchart)
-Perancangan flowchart mendokumentasikan seluruh alur kerja prosedural dari sistem SIPETA TPK secara kronologis, mulai dari proses autentikasi pengguna hingga mekanisme pembaruan data secara real-time. Bagan alir ini melibatkan tiga entitas utama, yaitu Admin, Staff dan Sistem Aplikasi yang berinteraksi dengan lapisan Database Supabase. Flowchart sistem SIPETA TPK disajikan pada Gambar 3.1.
-
-(Gambar 3.1 Flowchart Sistem SIPETA TPK)
-
-Berdasarkan Gambar 3.1, alur proses utama sistem SIPETA TPK dapat dijabarkan sebagai berikut:
-1.	Proses Autentikasi (Login): Pengguna (Admin atau Staff) memasukkan kredensial berupa username dan password melalui halaman login. Sistem terlebih dahulu memeriksa apakah sesi pengguna masih aktif di Session Storage. Apabila sesi masih aktif, pengguna langsung diarahkan ke Dashboard tanpa perlu melakukan login ulang. Jika sesi tidak aktif, sistem menampilkan formulir login dan melanjutkan proses validasi kredensial ke basis data AUTH.USERS di Supabase. Setelah kredensial terverifikasi, sistem mengambil data profil pengguna dari tabel PROFILES untuk menentukan peran (role) pengguna. Jika peran pengguna adalah Admin, sistem mengaktifkan seluruh fitur termasuk Edit dan Pengaturan. Jika peran pengguna adalah Staff, sistem mengaktifkan mode Read-Only.
-2.	Pemuatan Data Awal dan Realtime: Setelah autentikasi berhasil, sistem memuat data awal secara paralel dari dua tabel utama, yaitu STOK_KAYU dan SYSTEM_SETTINGS. Secara bersamaan, sistem mengaktifkan Realtime Subscription melalui protokol WebSocket milik Supabase untuk mendengarkan setiap perubahan data secara seketika.
-3.	Visualisasi Peta Inventori (WebGIS): Ketika pengguna mengakses menu "Map Inventory", sistem merender peta interaktif menggunakan Leaflet.js beserta poligon GeoJSON yang merepresentasikan blok kaveling tumpukan kayu. Pengguna dapat mengklik poligon untuk melihat detail informasi blok, meliputi ID Blok, Zona, Nama TPK, Jenis Kayu, Volume, Jumlah Log, Grade, dan Status. Bagi Admin, tombol "Edit" akan ditampilkan, sedangkan bagi Staff, informasi hanya ditampilkan dalam mode Read-Only.
-4.	Pembaruan Data Stok Kayu (Admin): Admin mengklik tombol "Edit" pada blok kayu tertentu, kemudian sistem menampilkan modal formulir edit berisi data terkini. Admin memasukkan data baru (Nama TPK, Zona, Jenis Kayu, Volume, Jumlah Log, Grade, dan Status), lalu mengklik tombol "Simpan". Sistem melakukan validasi input terlebih dahulu; jika tidak valid, pesan error ditampilkan. Jika valid, sistem menerapkan Optimistic Update (memperbarui antarmuka secara langsung sebelum respons server diterima), kemudian mengirimkan perintah UPDATE ke tabel STOK_KAYU di Supabase. Apabila proses update gagal, sistem melakukan rollback pada antarmuka dan menampilkan pesan error. Jika berhasil, sistem secara otomatis menyisipkan entri riwayat ke tabel STOK_KAYU_HISTORY dan menyiarkan (broadcast) pembaruan data secara real-time ke seluruh terminal pengguna yang aktif, termasuk perangkat Staff.
-5.	Laporan dan Ekspor Excel: Pengguna mengakses menu "Laporan" untuk melihat riwayat pergerakan stok. Admin atau Staff dapat memilih filter berdasarkan bulan tertentu, kemudian sistem mengambil data dari tabel STOK_KAYU_HISTORY berdasarkan rentang tanggal yang dipilih. Jika data ditemukan, tabel laporan ditampilkan beserta opsi untuk mengekspor data ke format Microsoft Excel (.xlsx) menggunakan library xlsx.
-6.	Pengaturan Sistem (Admin): Admin dapat mengakses halaman pengaturan untuk memperbarui parameter profil operasional TPK Cabak, meliputi Nama TPK, Lokasi, Kapasitas, Luas Area, dan Zona. Data pengaturan disimpan ke tabel SYSTEM_SETTINGS dengan operasi UPSERT, dan perubahan disebarkan secara real-time ke seluruh klien.
-7.	Mekanisme Auto-Logout: Sebagai protokol keamanan, sistem secara otomatis memutus sesi pengguna setelah 30 menit tanpa aktivitas. Proses ini melibatkan pembersihan Session Token di sisi Supabase (supabase.auth.signOut()), penghapusan state pengguna di sisi klien, dan pengalihan (redirect) ke halaman login.
-
-3.4 Perancangan Unified Modeling Language (UML)
-3.4.1 Use Case Diagram
-Use Case Diagram berfungsi untuk memodelkan interaksi antara aktor (pengguna) dengan fungsionalitas yang disediakan oleh sistem. Dalam konteks SIPETA TPK, terdapat tiga aktor utama yang berinteraksi dengan sistem, yaitu Admin, Staff, dan Supabase System (sebagai Backend-as-a-Service yang menangani autentikasi dan sinkronisasi data real-time). Use Case Diagram sistem SIPETA TPK disajikan pada Gambar 3.2.
-
-(Gambar 3.2 Use Case Diagram Sistem SIPETA TPK)
-
-Berdasarkan Gambar 3.2, sistem SIPETA TPK memiliki 13 (tiga belas) use case utama dengan penjelasan interaksi sebagai berikut:
-
-No	Kode	Use Case	Deskripsi	Aktor
-1	UC01	Login	Proses autentikasi untuk masuk ke dalam sistem	Admin, Staff, Supabase System
-2	UC02	Logout	Proses keluar dari sesi sistem	Admin, Staff
-3	UC03	Melihat Dashboard	Menampilkan ringkasan analitik inventaris (total blok, volume, status ketersediaan)	Admin, Staff
-4	UC04	Melihat Peta Inventori	Merender peta interaktif WebGIS dengan poligon blok kaveling kayu	Admin, Staff
-5	UC05	Melihat Detail Blok Kayu	Menampilkan informasi detail atribut stok pada blok tertentu melalui klik poligon	Admin, Staff
-6	UC06	Mengedit Data Stok Kayu	Memodifikasi atribut stok kayu (volume, jumlah log, grade, status)	Admin, Supabase System
-7	UC07	Melihat Data Stok Kayu	Menampilkan tabel kompilasi data stok kayu seluruh blok	Admin, Staff
-8	UC08	Melihat Riwayat Stok Kayu	Menampilkan jejak audit perubahan data stok historis	Admin, Staff
-9	UC09	Melihat Laporan Bulanan	Menampilkan laporan riwayat stok berdasarkan filter bulan	Admin, Staff
-10	UC10	Export Laporan ke Excel	Mengekstraksi data laporan ke dalam format file Microsoft Excel (.xlsx)	Admin, Staff
-11	UC11	Mengelola Pengaturan Sistem	Mengatur parameter profil operasional TPK (nama, lokasi, kapasitas, area, zona)	Admin
-12	UC12	Mengelola Akun Pengguna	Mendaftarkan dan mengelola akun Staff lapangan	Admin
-13	UC13	Menerima Update Realtime	Menerima pembaruan data secara otomatis melalui WebSocket tanpa memuat ulang halaman	Admin, Staff, Supabase System
-Tabel 3.5 Daftar Use Case Sistem SIPETA TPK
-
-Adapun relasi dependensi antar use case yang teridentifikasi meliputi:
-•	<<include>>: UC04 (Melihat Peta Inventori) include UC05 (Melihat Detail Blok Kayu), artinya setiap kali pengguna membuka peta inventori, detail blok kayu dapat dilihat sebagai bagian dari fungsionalitas peta. UC05 include UC06 (Mengedit Data Stok Kayu), artinya aksi pengeditan data hanya dapat dilakukan setelah detail blok ditampilkan. UC09 (Melihat Laporan Bulanan) include UC08 (Melihat Riwayat Stok Kayu), artinya laporan bulanan dibangun dari data riwayat stok.
-•	<<extend>>: UC10 (Export Laporan ke Excel) extend UC09 (Melihat Laporan Bulanan), artinya fitur ekspor bersifat opsional dan dapat dipicu dari halaman laporan. UC06 (Mengedit Data Stok Kayu) extend UC13 (Menerima Update Realtime), artinya setiap pengeditan data akan secara otomatis memicu pembaruan real-time ke seluruh klien.
-
-3.4.2 Class Diagram
-Class Diagram digunakan untuk memodelkan struktur statis dari entitas-entitas basis data beserta atribut, operasi, dan relasi antarkelasnya. Pada sistem SIPETA TPK, terdapat empat kelas utama yang saling berelasi. Class Diagram sistem SIPETA TPK disajikan pada Gambar 3.3.
-
-(Gambar 3.3 Class Diagram Sistem SIPETA TPK)
-
-Berdasarkan Gambar 3.3, keempat kelas yang membentuk arsitektur data sistem SIPETA TPK beserta atribut dan operasinya dapat dijabarkan sebagai berikut:
-
-1. Kelas User
-Kelas ini merepresentasikan entitas pengguna sistem yang tersimpan di tabel profiles pada basis data Supabase.
-
-No	Atribut	Tipe Data	Keterangan
-1	id	UUID	Primary Key, identifikasi unik pengguna
-2	username	String	Nama pengguna (unique)
-3	email	String	Alamat email pengguna
-4	full_name	String	Nama lengkap pengguna
-5	avatar_url	String	URL foto profil pengguna
-6	role	Enum (admin, staff)	Peran pengguna dalam sistem
-7	created_at	DateTime	Waktu pembuatan akun
-8	updated_at	DateTime	Waktu pembaruan terakhir
-Tabel 3.6 Atribut Kelas User
-
-Operasi: login(email, password), logout(), updateProfile(data).
-
-2. Kelas StokKayu
-Kelas ini merepresentasikan entitas data stok kayu pada setiap blok kaveling.
-
-No	Atribut	Tipe Data	Keterangan
-1	id	String	Primary Key, identifikasi blok kaveling
-2	zone	String	Zona lokasi blok
-3	tpk_name	String	Nama TPK
-4	wood_type	String	Jenis kayu (Jati/Rimba)
-5	volume	Numeric	Volume kayu dalam satuan m3
-6	log_count	Integer	Jumlah batang kayu (log)
-7	grade	String	Klasifikasi mutu kayu (A1, A2, A3)
-8	status	Enum (Available, Sold)	Status ketersediaan kayu
-9	updated_by	UUID	Foreign Key ke tabel User
-10	coordinates	JSONB	Koordinat spasial poligon blok (GeoJSON)
-11	tanggal	Date	Tanggal pencatatan
-12	created_at	DateTime	Waktu pembuatan data
-13	updated_at	DateTime	Waktu pembaruan terakhir
-Tabel 3.7 Atribut Kelas StokKayu
-
-Operasi: fetchAll(), fetchByZone(zone), update(id, data).
-
-3. Kelas StokKayuHistory
-Kelas ini merepresentasikan entitas riwayat perubahan data stok kayu yang berfungsi sebagai jejak audit (audit trail).
-
-No	Atribut	Tipe Data	Keterangan
-1	id	BigInt	Primary Key, auto-increment
-2	block_id	String	Foreign Key ke tabel StokKayu
-3	zone	String	Zona lokasi blok
-4	tpk_name	String	Nama TPK
-5	wood_type	String	Jenis kayu
-6	volume	Numeric	Volume kayu dalam satuan m3
-7	log_count	Integer	Jumlah batang kayu
-8	grade	String	Klasifikasi mutu kayu
-9	status	String	Status ketersediaan kayu
-10	updated_by	UUID	Foreign Key ke tabel User
-11	tanggal	Date	Tanggal perubahan
-12	created_at	DateTime	Waktu pencatatan riwayat
-Tabel 3.8 Atribut Kelas StokKayuHistory
-
-Operasi: insert(data), fetchByMonth(month), exportToExcel().
-
-4. Kelas SystemSettings
-Kelas ini merepresentasikan entitas pengaturan profil operasional TPK yang bersifat singular (hanya satu baris data dengan id = 1).
-
-No	Atribut	Tipe Data	Keterangan
-1	id	Integer	Primary Key, nilai tetap = 1
-2	tpk_name	String	Nama Tempat Penimbunan Kayu
-3	location	String	Lokasi alamat TPK
-4	capacity	String	Kapasitas tampung TPK
-5	total_area	String	Luas total area TPK
-6	zones	String	Daftar zona yang tersedia
-7	updated_by	UUID	Foreign Key ke tabel User
-8	updated_at	DateTime	Waktu pembaruan terakhir
-Tabel 3.9 Atribut Kelas SystemSettings
-
-Operasi: fetch(), update(data).
-
-Adapun relasi antar kelas yang teridentifikasi adalah sebagai berikut:
-•	User "1" — "0..*" StokKayu (mengupdate): Satu pengguna dapat memperbarui nol hingga banyak data stok kayu.
-•	User "1" — "0..*" StokKayuHistory (mencatat): Satu pengguna dapat menghasilkan nol hingga banyak entri riwayat perubahan.
-•	User "1" — "1" SystemSettings (mengelola): Satu pengguna (Admin) mengelola satu entitas pengaturan sistem.
-•	StokKayu "1" *— "0..*" StokKayuHistory (menghasilkan – composition): Satu blok stok kayu menghasilkan nol hingga banyak entri riwayat. Relasi ini bersifat komposisi, artinya riwayat bergantung pada keberadaan data induk stok kayu.
-
-3.5 Perancangan Basis Data
-Perancangan basis data merupakan tahap krusial dalam membangun fondasi penyimpanan data yang terstruktur, efisien, dan berintegritas. Sistem SIPETA TPK menggunakan PostgreSQL yang dikelola melalui layanan Supabase sebagai Backend-as-a-Service (BaaS). Skema basis data terdiri dari empat tabel utama yang saling berelasi. Rancangan struktur tabel basis data disajikan sebagai berikut:
-
-Tabel 3.10 Struktur Tabel profiles
-No	Nama Kolom	Tipe Data	Constraint	Keterangan
-1	id	UUID	PRIMARY KEY	Referensi ke auth.users.id Supabase
-2	username	VARCHAR	UNIQUE, NOT NULL	Nama pengguna
-3	email	VARCHAR	NOT NULL	Alamat email
-4	full_name	VARCHAR	—	Nama lengkap pengguna
-5	avatar_url	TEXT	—	URL foto profil
-6	role	VARCHAR	DEFAULT 'staff'	Peran (admin / staff)
-7	created_at	TIMESTAMPTZ	DEFAULT NOW()	Waktu pembuatan
-8	updated_at	TIMESTAMPTZ	DEFAULT NOW()	Waktu pembaruan
-
-Tabel 3.11 Struktur Tabel stok_kayu
-No	Nama Kolom	Tipe Data	Constraint	Keterangan
-1	id	VARCHAR	PRIMARY KEY	ID blok kaveling (misal: "A1", "B3")
-2	zone	VARCHAR	NOT NULL	Zona lokasi blok
-3	tpk_name	VARCHAR	—	Nama TPK
-4	wood_type	VARCHAR	NOT NULL	Jenis kayu (Jati / Rimba)
-5	volume	NUMERIC(10,2)	DEFAULT 0	Volume kayu (m3)
-6	log_count	INTEGER	DEFAULT 0	Jumlah batang log
-7	grade	VARCHAR	—	Grade mutu kayu (A1, A2, A3)
-8	status	VARCHAR	DEFAULT 'Available'	Status (Available / Sold)
-9	updated_by	UUID	FK → profiles.id	Pengguna yang memperbarui
-10	coordinates	JSONB	—	Koordinat poligon GeoJSON
-11	tanggal	DATE	—	Tanggal pencatatan
-12	created_at	TIMESTAMPTZ	DEFAULT NOW()	Waktu pembuatan
-13	updated_at	TIMESTAMPTZ	DEFAULT NOW()	Waktu pembaruan
-
-Tabel 3.12 Struktur Tabel stok_kayu_history
-No	Nama Kolom	Tipe Data	Constraint	Keterangan
-1	id	BIGINT	PRIMARY KEY, AUTO INCREMENT	ID riwayat
-2	block_id	VARCHAR	FK → stok_kayu.id	Referensi ke blok kaveling
-3	zone	VARCHAR	—	Zona lokasi blok
-4	tpk_name	VARCHAR	—	Nama TPK
-5	wood_type	VARCHAR	—	Jenis kayu
-6	volume	NUMERIC(10,2)	—	Volume kayu (m3)
-7	log_count	INTEGER	—	Jumlah batang log
-8	grade	VARCHAR	—	Grade mutu kayu
-9	status	VARCHAR	—	Status ketersediaan kayu
-10	updated_by	UUID	FK → profiles.id	Pengguna yang memperbarui
-11	tanggal	DATE	—	Tanggal perubahan
-12	created_at	TIMESTAMPTZ	DEFAULT NOW()	Waktu pencatatan riwayat
-
-Tabel 3.13 Struktur Tabel system_settings
-No	Nama Kolom	Tipe Data	Constraint	Keterangan
-1	id	INTEGER	PRIMARY KEY, DEFAULT 1	ID tunggal (singleton)
-2	tpk_name	VARCHAR	—	Nama TPK
-3	location	TEXT	—	Lokasi alamat TPK
-4	capacity	VARCHAR	—	Kapasitas tampung
-5	total_area	VARCHAR	—	Luas total area
-6	zones	VARCHAR	—	Daftar zona
-7	updated_by	UUID	FK → profiles.id	Admin yang memperbarui
-8	updated_at	TIMESTAMPTZ	DEFAULT NOW()	Waktu pembaruan
-
-3.6 Perancangan Antarmuka Pengguna (User Interface)
-Perancangan antarmuka pengguna (User Interface / UI) merupakan tahap visualisasi rancangan tata letak dan elemen interaktif yang akan ditampilkan kepada pengguna akhir. Rancangan antarmuka ini dikembangkan menggunakan pendekatan wireframe untuk memberikan gambaran struktural sistem sebelum memasuki fase implementasi. Berikut adalah rancangan antarmuka untuk setiap halaman utama sistem SIPETA TPK:
-
-3.6.1 Rancangan Halaman Login
-Halaman login merupakan gerbang autentikasi utama bagi seluruh pengguna sistem. Halaman ini menampilkan formulir input yang terdiri dari kolom Email dan Password, serta tombol "Login" untuk memproses validasi kredensial. Rancangan halaman login disajikan pada Gambar 3.4.
-
-(Gambar 3.4 Rancangan Halaman Login)
-
-3.6.2 Rancangan Halaman Dashboard
-Halaman Dashboard merupakan halaman utama yang ditampilkan setelah pengguna berhasil login. Halaman ini menampilkan ringkasan analitik inventaris berupa kartu informasi (card) yang memuat data agregasi seperti Total Blok Kaveling, Total Volume Kayu, Total Log, Rasio Status Ketersediaan (Available/Sold), serta informasi profil operasional TPK dari tabel System Settings. Rancangan halaman Dashboard disajikan pada Gambar 3.5.
-
-(Gambar 3.5 Rancangan Halaman Dashboard)
-
-3.6.3 Rancangan Halaman Peta Inventori (WebGIS)
-Halaman Peta Inventori merupakan fitur inti dari sistem SIPETA TPK yang menampilkan peta interaktif berbasis Leaflet.js. Peta ini memvisualisasikan poligon GeoJSON yang merepresentasikan batas area setiap blok kaveling tumpukan kayu. Pengguna dapat melakukan interaksi berupa klik pada poligon untuk melihat popup detail informasi blok dan, khusus Admin, mengakses modal edit data stok. Rancangan halaman Peta Inventori disajikan pada Gambar 3.6.
-
-(Gambar 3.6 Rancangan Halaman Peta Inventori)
-
-3.6.4 Rancangan Modal Edit Data Stok Kayu
-Modal Edit Data merupakan komponen antarmuka dialog yang muncul di atas halaman peta ketika Admin mengklik tombol "Edit" pada detail blok kayu. Modal ini menampilkan formulir input berisi data terkini dari blok yang dipilih, meliputi kolom Nama TPK, Zona, Jenis Kayu, Volume, Jumlah Log, Grade, dan Status. Terdapat tombol "Simpan" untuk menyimpan perubahan dan tombol "Batal" untuk membatalkan aksi. Rancangan modal edit disajikan pada Gambar 3.7.
-
-(Gambar 3.7 Rancangan Modal Edit Data Stok Kayu)
-
-3.6.5 Rancangan Halaman Data Stok Kayu
-Halaman Data Stok menampilkan seluruh data stok kayu dalam format tabel yang terstruktur. Tabel memuat kolom ID Blok, Zona, Nama TPK, Jenis Kayu, Volume (m3), Jumlah Log, Grade, Status, dan Tanggal Pembaruan. Halaman ini juga dilengkapi dengan tab navigasi untuk beralih antara tampilan data stok terkini dan data riwayat historis. Rancangan halaman Data Stok disajikan pada Gambar 3.8.
-
-(Gambar 3.8 Rancangan Halaman Data Stok Kayu)
-
-3.6.6 Rancangan Halaman Laporan
-Halaman Laporan menyajikan data riwayat pergerakan stok kayu berdasarkan filter bulan yang dipilih pengguna. Halaman ini memuat komponen dropdown pemilih bulan, tabel laporan riwayat, serta tombol "Export ke Excel" untuk mengunduh data laporan ke dalam format file .xlsx. Rancangan halaman Laporan disajikan pada Gambar 3.9.
-
-(Gambar 3.9 Rancangan Halaman Laporan)
-
-3.6.7 Rancangan Halaman Pengaturan Sistem
-Halaman Pengaturan Sistem hanya dapat diakses oleh Admin untuk memperbarui parameter profil operasional TPK Cabak. Halaman ini menampilkan formulir input berisi kolom Nama TPK, Lokasi, Kapasitas, Luas Area, dan Zona. Terdapat tombol "Simpan Pengaturan" untuk menyimpan konfigurasi. Rancangan halaman Pengaturan disajikan pada Gambar 3.10.
-
-(Gambar 3.10 Rancangan Halaman Pengaturan Sistem)
-
-3.7 Rencana Pengujian Sistem (Black Box Testing)
-Pengujian sistem dilakukan menggunakan metode Black Box Testing untuk memvalidasi bahwa seluruh fungsionalitas utama sistem SIPETA TPK berjalan sesuai dengan spesifikasi kebutuhan yang telah didefinisikan pada sub-bab 3.2. Metode Black Box Testing dipilih karena pendekatan ini memfokuskan pengujian pada keselarasan antara masukan (input) yang diberikan dengan keluaran (output) yang dihasilkan oleh sistem, tanpa perlu menganalisis struktur logika internal kode program.
-
-Skenario pengujian disusun berdasarkan fungsionalitas utama sistem dengan memanfaatkan teknik Equivalence Partitioning (EP) untuk memilah kelas masukan data menjadi partisi valid dan tidak valid, serta Boundary Value Analysis (BVA) untuk menguji ketahanan sistem pada nilai batas ekstrem. Rencana skenario pengujian Black Box Testing disajikan pada tabel-tabel berikut:
-
-Tabel 3.14 Rencana Pengujian Modul Autentikasi (Login/Logout)
-No	Skenario Pengujian	Data Masukan (Input)	Hasil yang Diharapkan (Expected Output)
-1	Login dengan data valid (Admin)	Email dan password Admin yang terdaftar	Sistem menampilkan Dashboard dengan akses penuh (fitur Edit dan Pengaturan aktif)
-2	Login dengan data valid (Staff)	Email dan password Staff yang terdaftar	Sistem menampilkan Dashboard dengan mode Read-Only
-3	Login dengan email yang tidak terdaftar	Email yang tidak ada di database	Sistem menampilkan pesan error "Kredensial tidak valid"
-4	Login dengan password salah	Email valid namun password salah	Sistem menampilkan pesan error "Kredensial tidak valid"
-5	Login dengan kolom kosong	Kolom email dan/atau password dikosongkan	Sistem menampilkan pesan validasi "Field wajib diisi"
-6	Logout dari sesi aktif	Klik tombol Logout	Sistem menghapus sesi, mengalihkan ke halaman Login
-7	Akses halaman Dashboard tanpa login	Membuka URL Dashboard secara langsung tanpa autentikasi	Sistem mengalihkan ke halaman Login
-
-Tabel 3.15 Rencana Pengujian Modul Dashboard
-No	Skenario Pengujian	Data Masukan (Input)	Hasil yang Diharapkan (Expected Output)
-1	Menampilkan data ringkasan Dashboard	Login dengan akun valid	Dashboard menampilkan kartu informasi: Total Blok, Total Volume, Total Log, Rasio Status
-2	Memvalidasi data Dashboard sesuai basis data	Data stok kayu yang ada di tabel stok_kayu	Nilai-nilai yang ditampilkan di Dashboard sesuai dengan hasil agregasi data di basis data
-3	Pembaruan Dashboard secara real-time	Admin memperbarui data stok dari perangkat lain	Data pada Dashboard diperbarui secara otomatis tanpa memuat ulang halaman
-
-Tabel 3.16 Rencana Pengujian Modul Peta Inventori (WebGIS)
-No	Skenario Pengujian	Data Masukan (Input)	Hasil yang Diharapkan (Expected Output)
-1	Menampilkan peta interaktif	Mengakses halaman Map Inventory	Peta Leaflet.js ditampilkan dengan poligon GeoJSON blok kaveling
-2	Klik poligon blok kayu	Klik pada area poligon tertentu di peta	Popup menampilkan detail blok: ID, Zona, Nama TPK, Jenis Kayu, Volume, Jumlah Log, Grade, Status
-3	Menampilkan tombol Edit (Admin)	Login sebagai Admin, klik poligon blok	Tombol "Edit" muncul pada popup detail blok
-4	Menyembunyikan tombol Edit (Staff)	Login sebagai Staff, klik poligon blok	Detail blok ditampilkan tanpa tombol "Edit" (Read-Only)
-5	Pewarnaan poligon berdasarkan status	Data blok dengan status "Available" dan "Sold"	Poligon berwarna hijau untuk "Available" dan merah untuk "Sold"
-
-Tabel 3.17 Rencana Pengujian Modul Edit Data Stok Kayu
-No	Skenario Pengujian	Data Masukan (Input)	Hasil yang Diharapkan (Expected Output)
-1	Membuka modal edit dari peta	Klik tombol "Edit" pada popup blok kayu	Modal edit terbuka dengan data terkini dari blok yang dipilih
-2	Menyimpan data dengan input valid	Mengisi semua kolom dengan data valid, klik "Simpan"	Data berhasil disimpan, modal tertutup, notifikasi "Data Berhasil Diperbarui" muncul
-3	Menyimpan data dengan kolom kosong	Mengosongkan kolom wajib (volume / jumlah log), klik "Simpan"	Sistem menampilkan pesan error validasi
-4	Menyimpan data dengan input tidak valid	Memasukkan teks alfabet pada kolom volume (numerik)	Sistem menampilkan pesan error validasi tipe data
-5	Membatalkan pengeditan	Klik tombol "Batal" pada modal edit	Modal tertutup tanpa perubahan pada data
-6	Verifikasi pencatatan riwayat otomatis	Menyimpan perubahan data stok	Entri baru tercatat di tabel stok_kayu_history
-7	Verifikasi pembaruan real-time	Memperbarui data dari perangkat Admin	Data pada perangkat Staff diperbarui secara otomatis
-
-Tabel 3.18 Rencana Pengujian Modul Data Stok dan Riwayat
-No	Skenario Pengujian	Data Masukan (Input)	Hasil yang Diharapkan (Expected Output)
-1	Menampilkan tabel data stok terkini	Mengakses halaman Data Stok	Tabel menampilkan seluruh data stok kayu dengan kolom lengkap
-2	Beralih ke tab Riwayat	Klik tab "Riwayat" pada halaman Data Stok	Tabel menampilkan data riwayat historis perubahan stok
-3	Memvalidasi konsistensi data	Membandingkan data di tabel dengan basis data	Data yang ditampilkan di antarmuka sesuai dengan data di basis data Supabase
-
-Tabel 3.19 Rencana Pengujian Modul Laporan dan Ekspor Excel
-No	Skenario Pengujian	Data Masukan (Input)	Hasil yang Diharapkan (Expected Output)
-1	Menampilkan halaman Laporan	Mengakses menu "Laporan"	Halaman laporan ditampilkan dengan filter pemilih bulan
-2	Filter laporan berdasarkan bulan	Memilih bulan tertentu yang memiliki data	Tabel laporan menampilkan data riwayat stok pada bulan tersebut
-3	Filter laporan bulan tanpa data	Memilih bulan yang tidak memiliki data riwayat	Sistem menampilkan pesan "Tidak Ada Data Untuk Bulan Ini"
-4	Ekspor laporan ke Excel	Klik tombol "Export ke Excel"	File .xlsx berhasil diunduh dengan nama laporan_stok_[bulan].xlsx berisi data sesuai filter
-
-Tabel 3.20 Rencana Pengujian Modul Pengaturan Sistem
-No	Skenario Pengujian	Data Masukan (Input)	Hasil yang Diharapkan (Expected Output)
-1	Menampilkan data pengaturan saat ini	Mengakses halaman Pengaturan	Formulir terisi dengan data konfigurasi TPK terkini dari basis data
-2	Menyimpan perubahan pengaturan	Memperbarui kolom (misal: Kapasitas), klik "Simpan Pengaturan"	Notifikasi "Pengaturan Berhasil Disimpan" muncul, data tersimpan ke basis data
-3	Akses pengaturan oleh Staff	Login sebagai Staff, mengakses menu Pengaturan	Sistem memblokir akses atau menyembunyikan menu Pengaturan dari navigasi Staff
-4	Verifikasi pembaruan real-time pengaturan	Admin memperbarui pengaturan	Data pengaturan di perangkat lain diperbarui secara otomatis
-
-Tabel 3.21 Rencana Pengujian Modul Keamanan dan Sesi
-No	Skenario Pengujian	Data Masukan (Input)	Hasil yang Diharapkan (Expected Output)
-1	Auto-logout setelah 30 menit tidak aktif	Tidak ada aktivitas selama 30 menit	Sistem secara otomatis menghapus sesi dan mengalihkan ke halaman Login
-2	Staff mengakses fitur Edit	Login sebagai Staff, mencoba mengakses fungsi edit	Sistem tidak menampilkan tombol Edit; akses hanya Read-Only
-3	Staff mengakses halaman Pengaturan	Login sebagai Staff, mencoba mengakses URL Pengaturan	Sistem memblokir akses atau mengalihkan ke halaman yang diizinkan
-
+20
+BAB III METODOLOGI PENELITIAN
+3.1 Kerangka Pemikiran
+Kerangka pemikiran adalah suatu model konseptual yang menjelaskan
+bagaimana suatu penelitian akan dilakukan, termasuk variabel-variabel yang terlibat
+dan hubungan antar variabel tersebut. Dalam konteks penelitian ini, kerangka
+pemikiran akan menggambarkan alur logis dari identifikasi masalah hingga
+penyelesaiannya melalui pengembangan sistem. Ini mencakup identifikasi masalah
+yang ada di TPK Cabak terkait inventarisasi dan pemetaan stok kayu jati, analisis
+kebutuhan sistem, perancangan sistem menggunakan teknologi modern, hingga
+implementasi dan pengujian sistem. Kerangka pemikiran ini akan menjadi panduan
+dalam setiap tahapan penelitian untuk memastikan bahwa tujuan penelitian tercapai
+secara sistematis dan terstruktur.
+21
+3.2 Analisis Sistem yang Sedang Berjalan
+Berdasarkan hasil observasi lapangan dan analisis terhadap alur proses bisnis
+di Tempat Penimbunan Kayu (TPK) Cabak, ditemukan bahwa mekanisme
+pengelolaan data inventaris stok kayu jati saat ini masih beroperasi secara
+konvensional dan semi-manual. Seluruh siklus pendataan—mulai dari penerimaan
+kayu masuk, pengukuran volume, pencatatan jumlah batang (log), klasifikasi kelas
+mutu (grade), hingga pencatatan distribusi logistik—masih sangat bergantung pada
+pencatatan fisik berupa buku besar atau spreadsheet sederhana yang tidak
+terintegrasi.
+Kelemahan fundamental dari sistem yang berjalan ini tidak hanya terletak
+pada tingginya risiko redundansi data, melainkan ketiadaan representasi spasial
+terkait letak kaveling tumpukan kayu di lapangan. Mengingat cakupan topografi TPK
+Cabak yang sangat luas, ketiadaan peta digital yang terintegrasi menyebabkan
+petugas lapangan (Staff) memerlukan waktu yang cukup lama hanya untuk melacak
+koordinat fisik dari tumpukan kayu yang tertera di dokumen kertas. Kondisi ini secara
+alamiah memicu terjadinya lag informasi (jeda waktu pembaruan data) antara kondisi
+riil di lapangan dengan laporan yang diterima oleh pihak manajemen, sehingga
+memperumit proses audit dan memperlambat laju pengambilan keputusan. Oleh
+karena itu, urgensi perancangan Sistem Informasi Geografis (SIG) berbasis
+antarmuka website yang dipadukan dengan basis data real-time menjadi solusi mutlak
+guna memetakan posisi geografis kayu secara presisi dan mengotomatisasi
+sinkronisasi data secara terpusat.
+22
+3.3 Analisis Kebutuhan Sistem
+Analisis kebutuhan sistem merupakan fase esensial dalam metodologi
+Web Development Life Cycle (WDLC) guna mendefinisikan secara komprehensif seluruh spesifikasi
+fungsionalitas dan infrastruktur penunjang yang diamanatkan oleh pengguna.
+Menurut Aprilisa dan Aulia (2024), pendefinisian kebutuhan yang akurat akan
+menekan probabilitas terjadinya perombakan besar pada saat purwarupa sistem
+diimplementasikan. Analisis kebutuhan pada Sistem Pemetaan dan Inventarisasi
+Tempat Penimbunan Kayu (SIPETA TPK) ini diklasifikasikan menjadi dua dimensi
+utama, yakni kebutuhan fungsional dan kebutuhan non-fungsional
+3.3.1 Kebutuhan Fungsional
+Kebutuhan fungsional merepresentasikan interaksi operasional yang
+wajib dieksekusi oleh sistem berdasarkan peran (role) entitas penggunanya.
+Dalam arsitektur SIPETA TPK, kebutuhan fungsional dijabarkan sebagai
+berikut: 1) Kebutuhan Fungsional Entitas Admin, yang meliputi modul
+autentikasi terenkripsi (login dan logout), serta kapabilitas untuk mengakses
+Dashboard Executive yang memuat matriks analitik seperti total blok,
+akumulasi volume, dan rasio status Available berbanding Sold. Admin
+memiliki otoritas penuh pada Peta Inventori WebGIS interaktif yang berisi
+poligon blok kaveling, di mana interaksi klik pada poligon akan memicu
+tampilan detail stok. Admin diberikan hak akses Write atau Update untuk
+mengedit data stok meliputi volume, jumlah log, grade, status, dan nama
+TPK. Selain itu, entitas ini dapat mengelola pengguna (User Management)
+untuk mendaftarkan akun Staff, mengatur konfigurasi sistem (System
+Settings) seperti kapasitas dan zona, serta meninjau riwayat audit (history)
+yang dilengkapi fitur ekspor laporan ke format Excel (.xlsx). 2) Kebutuhan
+Fungsional Entitas Staff, di mana pengguna pada peran ini diwajibkan
+melakukan autentikasi dengan tingkat akses yang dibatasi. Staff berhak
+melihat antarmuka Dashboard dan Peta WebGIS dalam mode Read-Only.
+Interaksi klik pada poligon kaveling hanya memfasilitasi peninjauan detail
+atribut tanpa adanya otoritas modifikasi data. Staff juga diberikan kapabilitas
+untuk meninjau tabel riwayat stok dan melakukan ekspor laporan operasional.
+3) Kebutuhan Fungsional Backend, yang mengamanatkan infrastruktur
+23
+peladen untuk secara otonom mengeksekusi sinkronisasi pembaruan data
+secara real-time kepada seluruh klien yang terhubung dengan
+mendayagunakan fitur Supabase Realtime melalui protokol komunikasi
+WebSocket (Restu, 2024).
+3.3.2 Kebutuhan Non-Fungsional
+Kebutuhan non-fungsional mendefinisikan parameter teknis terkait
+infrastruktur fisik dan piranti lunak yang memfasilitasi jalannya sistem
+(Rachman, Shalahudin, & Radifa, 2023). Parameter ini terbagi menjadi dua
+aspek teknis: 1) Spesifikasi Perangkat Keras (Hardware), yang mensyaratkan
+infrastruktur server berbasis Cloud hosting terintegrasi dengan layanan
+Backend-as-a-Service (BaaS) tanpa memerlukan presensi peladen lokal (on-
+premise). Pada sisi Klien Admin, dibutuhkan setidaknya unit Desktop atau
+Laptop berprosesor Dual-Core yang dilengkapi memori akses acak (RAM)
+minimum 4 GB serta koneksi internet broadband. Sementara itu, Klien Staff
+dapat beroperasi menggunakan Smartphone atau Tablet dengan konektivitas
+seluler minimal 4G/LTE. 2) Spesifikasi Perangkat Lunak (Software), di mana
+sistem harus bersifat lintas platform (cross-platform) sehingga kompatibel
+dengan berbagai sistem operasi seperti Windows, macOS, Linux, Android,
+maupun iOS. Sistem dirender murni melalui aplikasi browser berstandar
+HTML5 dan JavaScript seperti Chrome, Firefox, Edge, dan Safari. Ekosistem
+pengembangan (Dev Stack) SIPETA TPK ditopang oleh teknologi modern
+meliputi Next.js, React.js, TypeScript, Leaflet.js, kerangka Tailwind CSS,
+serta basis data PostgreSQL yang dikelola melalui platform Supabase.
+Adapun untuk prapemrosesan data spasial, dimanfaatkan perangkat lunak
+QGIS versi desktop untuk mengeksekusi proses digitasi batas area menjadi
+format GeoJSON.
+24
+3.4 Perancangan Alur Sistem (Flowchart)
+Perancangan bagan alir (flowchart) ditujukan untuk merepresentasikan
+visualisasi logis dari urutan kronologi prosedural yang terjadi di dalam perangkat
+lunak. Menurut Nugraha et al. (2026), pemodelan alur kerja sistem modern
+mengilustrasikan interaksi multidireksional antara pengguna dengan infrastruktur
+backend. Pada SIPETA TPK, flowchart melibatkan tiga entitas utama, yaitu Admin,
+Staff, dan Sistem Aplikasi yang terkoneksi langsung dengan basis data Supabase.
+Skematika alur prosedural tersebut didemonstrasikan pada Gambar 3.1.
+25
+Gambar 3.1 Flowchart Sistem SIPETA TPK
+Secara sistematis, alur proses utama sistem pada bagan alir dijabarkan ke
+dalam tujuh tahapan operasional berikut:
+26
+1. Proses Autentikasi (Login): Diawali dengan input surel dan kata sandi,
+dilanjutkan pengecekan sesi aktif melalui Session Storage. Jika aktif,
+pengguna diarahkan ke Dashboard, sedangkan jika tidak, form login
+ditampilkan untuk divalidasi ke tabel auth.users Supabase. Sistem
+mengambil profil dari pangkalan data dan menyeleksi rute: Admin
+diaktifkan semua fitur (Edit Stok, User Management, Pengaturan
+Sistem), sedangkan Staff diaktifkan fitur Edit Stok tanpa akses ke
+manajerial pengguna dan pengaturan.
+2. Pemuatan Data Awal dan Realtime: Terjadi saat sistem memuat data
+secara paralel dari tabel inventori dan pengaturan sistem, yang
+dilanjutkan dengan mengaktifkan subsripsi realtime via WebSocket.
+3. Visualisasi Peta Inventori (WebGIS): Memuat menu Map Inventory
+yang merender Leaflet.js berserta poligon GeoJSON. Interaksi klik pada
+poligon memunculkan detail atribut stok (ID, Zona, Nama TPK, Jenis
+Kayu, Volume, Log, Grade, Status), di mana Admin dan Staff sama-sama
+memiliki instrumen kendali penyuntingan data.
+4. Pembaruan Data Stok Kayu: Dilakukan oleh pengguna (Admin/Staff)
+dengan menekan tombol edit, memunculkan modal formulir, menginput
+spesifikasi baru, lalu memvalidasinya. Sistem menerapkan Optimistic
+Update sebelum pembaruan (UPDATE) ke pangkalan data. Jika berhasil,
+riwayat disisipkan (INSERT) ke tabel historis dan dipancarkan secara
+real-time ke semua klien; jika gagal, sistem memicu mekanisme rollback.
+5. Laporan dan Ekspor Excel: Memfasilitasi filter bulan untuk
+mengekstraksi riwayat dari database dan menampilkannya pada tabel,
+dilengkapi dengan opsi pengunduhan berkas ke ekstensi .xlsx
+mendayagunakan library spreadsheet.
+27
+6. Pengaturan Sistem (Admin): Fasilitas eksklusif di mana Admin dapat
+memperbarui parameter seperti Nama TPK, Lokasi, Kapasitas, Area, dan
+Zona menggunakan operasi UPSERT yang otomatis menyiarkan
+pembaruan visual secara real-time.
+7. Mekanisme Auto-Logout: Beroperasi sebagai protokol keamanan pasif
+yang menghapus status sesi pengguna dan mengalihkannya kembali ke
+halaman login jika tidak terdeteksi adanya interaksi operasional selama
+30 menit.
+3.5 Perancangan Unified Modeling Language (UML)
+3.5.1 Use Case Diagram
+Use Case Diagram merepresentasikan pemetaan interaksional antara
+entitas aktor dengan serangkaian fungsionalitas yang disediakan sistem (Yasin
+& Zaini, 2024). Pada SIPETA TPK, relasi operasional ini melibatkan tiga
+aktor utama, yakni Admin, Staff, dan Supabase System, yang divisualisasikan
+pada Gambar 3.2.
+28
+Gambar 3.2 Use Case Diagram Sistem SIPETA TPK
+No Kode Use Case Deskripsi Aktor
+1 UC01 Login Autentikasi pengguna untuk
+masuk ke dalam sistem
+Admin,
+Staff, Supabase
+System
+2 UC02 Logout Keluar dari sesi aktif sistem Admin, Staff
+29
+3 UC03 Melihat Dashboard Menampilkan ringkasan
+analitik inventaris kayu
+Admin, Staff
+4 UC04 Melihat Peta Inventori Menampilkan
+peta WebGIS interaktif
+dengan poligon blok kaveling
+Admin, Staff
+5 UC05 Melihat Detail Blok Kayu Menampilkan detail atribut
+stok kayu melalui klik
+poligon pada peta
+Admin, Staff
+6 UC06 Mengedit Data Stok Kayu Memodifikasi atribut data
+stok kayu pada blok kaveling
+Admin,
+Staff, Supabase
+System
+7 UC07 Melihat Data Stok Kayu Menampilkan tabel kompilasi
+data stok seluruh blok
+kaveling
+Admin, Staff
+30
+8 UC08 Melihat Riwayat Stok Menampilkan jejak audit
+perubahan data stok secara
+historis
+Admin, Staff
+9 UC09 Melihat Laporan Bulanan Menampilkan laporan riwayat
+perubahan data stok
+berdasarkan bulan
+Admin, Staff
+10 UC10 Export Laporan ke Excel Mengekstrak laporan data
+stok ke dalam format file .xlsx
+Admin, Staff
+11 UC11 Mengelola Pengaturan
+Sistem
+Mengatur profil operasional
+TPK (nama, lokasi, kapasitas,
+area, zona)
+Admin
+12 UC12 Mengelola Akun
+Pengguna
+Membuat dan mengelola akun
+Staff
+Admin
+31
+13 UC13 Menerima Update
+Realtime
+Menerima pembaruan data
+secara otomatis
+via WebSocket
+Admin,
+Staff, Supabase
+System
+Dalam pemodelan ini, terdapat pola relasi include di mana interaksi
+melihat peta inventori (UC04) mewajibkan kapabilitas melihat detail blok
+kayu (UC05), melihat detail blok menginklusi fungsi edit (UC06), serta
+melihat laporan bulanan (UC09) menginklusi melihat riwayat stok (UC08).
+Terdapat pula relasi opsional atau extend pada fungsionalitas ekspor laporan
+(UC10) yang dipicu dari laporan bulanan (UC09), serta aksi edit data stok
+(UC06) yang secara otomatis mengekstensi pembaruan realtime (UC13).
+3.5.2 Class Diagram
+Class Diagram merepresentasikan struktur arsitektur statis yang
+mendemonstrasikan kelas operasional, relasi objek, dan metode interaksinya
+(Yasin & Zaini, 2024). Model konseptual SIPETA TPK divisualisasikan pada
+Gambar 3.3.
+32
+
+ Gambar 3.3 Class Diagram Sistem SIPETA TPK
+33
+No Nama
+Atribut
+Tipe Data Keterangan
+1 id UUID Primary Key, Foreign Key → auth_users.id
+2 username String Unique, NOT NULL
+3 full_name String Nama lengkap pengguna
+4 avatar_url String URL foto profil pengguna
+5 role Enum Peran pengguna: admin atau staff (CHECK constraint)
+6 created_at DateTime Waktu pembuatan akun
+7 updated_at DateTime Waktu pembaruan terakhir
+Operasi: login(), logout(), updateProfile()
+Tabel 3.2 Atribut dan Operasi Kelas User (profiles)
+Atribut email tersimpan di tabel auth_users (internal Supabase Auth),
+bukan di tabel profiles.
+34
+No Nama Atribut Tipe Data Keterangan
+1 id String Primary Key
+2 zone String Zona blok kaveling, NOT NULL
+3 tpk_name String Nama TPK
+4 wood_type String Jenis kayu, NOT NULL
+5 volume Numeric Volume kayu (m³), DEFAULT 0
+6 log_count Integer Jumlah batang kayu, DEFAULT 0
+7 grade String Grade kualitas kayu
+8 status Enum Status blok: Available atau Sold (CHECK constraint)
+9 updated_by UUID Foreign Key → auth_users.id
+10 coordinates JSONB Koordinat poligon blok dalam format GeoJSON
+11 tanggal Date Tanggal pembaruan data, DEFAULT CURRENT_DATE
+12 created_at DateTime Waktu pembuatan data
+13 updated_at DateTime Waktu pembaruan terakhir
+Operasi: fetchAll(), fetchByZone(), update()
+Tabel 3.3 Atribut dan Operasi Kelas StokKayu (Tabel stok_kayu)
+35
+No Nama Atribut Tipe Data Keterangan
+1 id BigSerial Primary Key, Auto Increment
+2 block_id String Foreign Key → stok_kayu.id
+3 zone String Zona blok kaveling
+4 tpk_name String Nama TPK
+5 wood_type String Jenis kayu
+6 volume Numeric Volume kayu (m³)
+7 log_count Integer Jumlah batang kayu
+8 grade String Grade kualitas kayu
+9 status String Status blok saat perubahan
+10 updated_by UUID Foreign Key → auth_users.id
+11 tanggal Date Tanggal perubahan, DEFAULT
+CURRENT_DATE
+12 created_at DateTime Waktu pencatatan riwayat
+Operasi: insert(), fetchByMonth(), exportToExcel()
+Tabel 3.4 Atribut dan Operasi Kelas StokKayuHistory (Tabel stok_kayu_history)
+36
+No Nama Atribut Tipe Data Keterangan
+1 id Integer Primary Key, DEFAULT 1
+(singleton record)
+2 tpk_name String Nama TPK, NOT NULL
+3 location String Lokasi TPK, NOT NULL
+4 capacity String Kapasitas daya
+tampung TPK
+5 total_area String Luas area TPK, DEFAULT
+'250 Hektar'
+6 zones String Daftar zona, DEFAULT 'Zona
+A, Zona B'
+7 updated_by UUID Foreign Key →
+auth_users.id
+ID Admin yang
+melakukan
+pembaruan
+8 updated_at DateTime Waktu pembaruan terakhir
+Operasi: fetch(), update()
+Tabel 3.5 Atribut dan Operasi Kelas SystemSettings (Tabel system_settings)
+37
+Secara relasional, entitas internal auth_users memiliki kerelasian (has)
+one-to-one dengan User/profiles, serta kemampuan mengubah (updates) oneto-many terhadap StokKayu dan SystemSettings. Kelas User mencatat relasi
+one-to-many ke StokKayuHistory, sementara kelas StokKayu memiliki relasi
+komposisi parsial (has_history) terhadap StokKayuHistory.
+3.5.3 Activity Diagram
+Activity Diagram mendemonstrasikan aliran kerja dinamis dari sistem
+yang berjalan secara logis dari satu aktivitas ke aktivitas lainnya (Nugraha et
+al., 2026). Pemodelan pada SIPETA TPK menggunakan skema swimlane
+untuk memisahkan aktivitas Admin dan Staff yang berinteraksi dengan basis
+data PROFILES, STOK_KAYU, STOK_KAYU_HISTORY, dan
+SYSTEM_SETTINGS. Skema ini diilustrasikan pada Gambar 3.4.
+38
+ Gambar 3.4 Activity Diagram Sistem SIPETA TPK
+39
+Alur aktivitas secara naratif pada masing-masing entitas dijabarkan
+sebagai berikut:
+1. Alur Admin: Dimulai dari tahapan MULAI menuju proses
+Login dengan menginput surel dan kata sandi.
+o Terjadi verifikasi ke basis data PROFILES yang
+kemudian membukakan akses menuju Dashboard
+Admin untuk memantau analitik total blok, volume,
+dan status pemasaran.
+o Admin membuka laman Map Inventory,
+memvisualisasikan peta dan poligon blok kayu yang
+ditarik dari basis data STOK_KAYU.
+o Interaksi klik pada poligon menampilkan detail blok
+(ID, Zona, Nama TPK, Jenis Kayu, Volume, Log,
+Grade, Status).
+o Admin menekan tombol Edit, menginput spesifikasi
+data stok baru pada formulir, dan menyimpannya ke
+dalam STOK_KAYU berserta rekam jejak pada
+STOK_KAYU_HISTORY.
+o Admin memiliki kapabilitas navigasi ke halaman
+Laporan, memilih filter bulan dari pangkalan data
+histori, menampilkan tabel luaran, serta menginisiasi
+Export Laporan ke format .XLSX.
+o Secara khusus, Admin dapat mengeksekusi pembuatan
+akun Staff baru pada PROFILES serta mengonfigurasi
+SYSTEM_SETTINGS (Nama TPK, Lokasi,
+Kapasitas, Luas, Zona) yang diakhiri dengan
+40
+penerimaan notifikasi konfirmasi penyimpanan
+sebelum tahapan berkahir (END).
+2. Alur Staff:
+o Diinisiasi dari MULAI menuju tahapan Login berserta
+input kredensial.
+o Proses verifikasi PROFILES mengalihkan pengguna
+ke antarmuka Dashboard Staff untuk melihat statistik
+ringkasan.
+o Staff bernavigasi ke halaman Map Inventory, merender
+peta berbasis STOK_KAYU.
+o Mengklik poligon blok kayu untuk meninjau rincian
+atribut logistik.
+o Staff dapat mengakses instrumen Edit, memutakhirkan
+data, lalu menekan simpan agar sistem mengeksekusi
+modifikasi pada STOK_KAYU dan
+STOK_KAYU_HISTORY.
+o Staff membuka instrumen Laporan, memilih periode
+bulan, memantau tabel historis, dan menjalankan
+fungsi Export ke Excel (.XLSX) hingga proses
+bermuara pada kesimpulan akhir (END).
+o Perbedaan utamanya terletak pada ketiadaan aktivitas
+manajerial akun dan absennya otoritas untuk
+memodifikasi konfigurasi makro infrastruktur.
+41
+3.5.4 Sequence Diagram
+Sequence Diagram memodelkan interaksi pertukaran pesan
+antarobjek secara sekuensial berdasarkan urutan waktu operasional (Aprilisa
+& Aulia, 2024). Pada sistem ini terdapat lima lifeline utama: Admin
+(Browser), Staff (Browser), Tampilan (View), Kontrol Aplikasi, dan Database
+Supabase. Pemodelan interaksi ini divisualisasikan pada Gambar 3.5.
+Gambar 3.5 Sequence Diagram Sistem SIPETA TPK
+42
+Interaksi pertukaran pesan sekuensial ini diklasifikasikan ke dalam
+tiga fase utama:
+1) FASE 1: Login ke Sistem
+o Admin/Staff menginput kredensial dan menekan tombol
+"Masuk", memicu Tampilan untuk memanggil fungsi login
+(email, password) menuju Kontrol Aplikasi.
+o Kontrol Meneruskan Intruksi supabase.auth.signInWith
+Password Ke Database Supabase
+o Pada fragmen alternatif (ALT), jika gagal, fungsi
+mengembalikan pesan error dan Tampilan memunculkan
+notifikasi galat.
+o Jika sukses, Database menjalankan pemilihan data
+(SELECT * FROM profiles WHERE id = user.id) dan
+mengembalikan struktur profil pengguna.
+o Kontrol meregistrasi sesi pengguna (setUser), lalu memicu
+fragmen komputasi paralel (PAR) untuk menjalankan
+fungsi fetchAllStokKayu() dan fetchSystemSettings()
+secara bersamaan.
+o Pasca-ekstraksi data yang sukses, Tampilan mengalihkan
+(Redirect) layar menuju Dashboard.
+2) FASE 2: Admin Update Data Stok Kayu
+o Pengguna mengklik blok keruangan pada peta, membuat
+Tampilan memanggil getWoodBlock(id). Kontrol
+merespons dengan struktur data yang ditranslasikan
+menjadi popup informasi detail.
+43
+o Menekan tombol "Edit" menginisiasi munculnya modal
+penyuntingan. Pasca-modifikasi masukan, instruksi
+updateWoodBlock(id, updates) dilayangkan.
+o Kontrol melakukan render seketika (Optimistic Update)
+diiringi dengan kueri UPDATE ke tabel utama stok_kayu.
+o Keberhasilan kueri dilanjutkan dengan injeksi rekam jejak
+menggunakan INSERT INTO stok_kayu_history.
+o Kontrol mengeksekusi transmisi siaran (Broadcast
+realtime) ke perangkat Staff, disusul dengan penutupan
+modal dan peluncuran notifikasi keberhasilan pembaruan
+pada layar pengguna akhir.
+3) FASE 3: Lihat Laporan & Export Excel
+o Navigasi ke laman Laporan memicu seleksi bulan.
+Tampilan memanggil getHistory(month) ke Kontrol, yang
+direspons dengan pengiriman kueri SELECT * FROM
+stok_kayu_history WHERE tanggal BETWEEN....
+o Database mendistribusikan sekumpulan rekaman (array)
+yang dirender ke dalam struktur tabel tabular.
+o Eksekusi tombol "Export Excel" memicu Kontrol untuk
+mengolah data mendayagunakan pustaka (library) xlsx,
+membuahkan pengunduhan dokumen fisik
+laporan_stok_[bulan].xlsx.
+44
+3.6 Perancangan Basis Data
+Perancangan basis data memegang peranan vital untuk menjamin integritas
+relasional serta skalabilitas penyimpanan yang efisien. Pada sistem informasi
+geografis berskala besar, pemanfaatan arsitektur relasional tangguh seperti
+PostgreSQL yang dikelola melalui Supabase menjadi sangat krusial (Nugraha et al.,
+2026). Struktur relasi antar-entitas fisik digambarkan pada Entity Relationship
+Diagram (ERD) di Gambar 3.6.
+ Gambar 3.6 Entity Relationship Diagram (ERD) Sistem SIPETA TPK
+45
+ERD tersebut menampilkan lima entitas terstruktur: auth_users, profiles,
+stok_kayu, stok_kayu_history, dan system_settings. Terdapat relasi di mana
+auth_users memiliki relasi 1:1 (has) terhadap profiles, serta relasi 1:N (updates) untuk
+memanipulasi system_settings maupun stok_kayu. Pada saat yang sama, entitas
+stok_kayu merelasikan secara komposit (has_history) rekamannya ke
+stok_kayu_history dalam rasio 1:N. Entitas auth_users merepresentasikan komponen
+internal Supabase Auth penyimpan kredensial. Implementasi detail tipe data dari
+pangkalan ini dijabarkan dari Tabel 3.6 hingga Tabel 3.9.
+No Nama Kolom Tipe Data Constraint Keterangan
+1 id UUID PRIMARY KEY,
+FOREIGN KEY
+→ auth_users.id
+Identifikasi unik pengguna,
+merujuk ke tabel
+autentikasi Supabase
+2 username TEXT UNIQUE, NOT
+NULL
+Nama pengguna yang unik
+untuk identifikasi
+3 full_name TEXT - Nama lengkap pengguna
+4 avatar_url TEXT - URL foto profil pengguna
+5 role TEXT CHECK (admin,
+staff)
+Peran pengguna dalam
+sistem
+6 created_at TIMESTAMPTZ DEFAULT
+NOW()
+Waktu pembuatan akun
+7 updated_at TIMESTAMPTZ DEFAULT
+NOW()
+Waktu pembaruan terakhir
+Operasi: login(), logout(), updateProfile()
+Tabel 3.6 Struktur Tabel profiles
+46
+No Nama Kolom Tipe Data Constraint Keterangan
+1 id TEXT PRIMARY KEY Identifikasi unik
+blok kaveling
+2 zone TEXT NOT NULL Zona lokasi blok
+kaveling
+3 tpk_name TEXT - Nama TPK
+tempat blok
+berada
+4 wood_type TEXT NOT NULL Jenis kayu yang
+tersimpan
+5 volume NUMERIC DEFAULT 0 Volume kayu
+dalam satuan m³
+6 log_count INTEGER DEFAULT 0 Jumlah batang
+kayu
+7 grade TEXT - Grade kualitas
+kayu
+8 status TEXT CHECK (Available, Sold) Status
+ketersediaan blok
+kayu
+9 updated_by UUID FOREIGN KEY →
+auth_users.id
+ID pengguna yang
+melakukan
+pembaruan
+10 coordinates JSONB - Koordinat poligon
+blok dalam format
+GeoJSON
+11 tanggal DATE DEFAULT
+CURRENT_DATE
+Tanggal
+pembaruan data
+stok
+47
+12 created_at TIMESTAMPTZ DEFAULT NOW() Waktu pembuatan
+data
+13 updated_at TIMESTAMPTZ DEFAULT NOW() Waktu pembaruan
+terakhir
+Tabel 3.7 Struktur Tabel stok_kayu
+No Nama Kolom Tipe Data Constraint Keterangan
+1 id BIGSERIAL PRIMARY KEY Identifikasi unik
+riwayat, auto
+increment
+2 block_id TEXT FOREIGN KEY →
+stok_kayu.id
+Referensi ke blok
+kaveling yang
+diubah
+3 zone TEXT - Zona blok saat
+perubahan
+4 tpk_name TEXT - Nama TPK saat
+perubahan
+5 wood_type TEXT - Jenis kayu saat
+perubahan
+6 volume NUMERIC - Volume kayu saat
+perubahan (m³)
+7 log_count INTEGER - Jumlah batang
+kayu saat
+perubahan
+8 grade TEXT - Grade kualitas
+kayu saat
+perubahan
+9 status TEXT - Status blok saat
+perubahan
+48
+10 updated_by UUID FOREIGN KEY →
+auth_users.id
+ID pengguna yang
+melakukan
+perubahan
+11 tanggal DATE DEFAULT
+CURRENT_DATE
+Tanggal perubahan
+data
+12 created_at TIMESTAMPTZ DEFAULT NOW() Waktu pencatatan
+riwayat
+ Tabel 3.8 Struktur Tabel stok_kayu_history
+No Nama Kolom Tipe Data Constraint Keterangan
+1 id INTEGER PRIMARY KEY,
+DEFAULT 1
+Identifikasi unik,
+hanya satu baris
+(singleton)
+2 tpk_name TEXT NOT NULL Nama TPK
+3 location TEXT NOT NULL Lokasi TPK
+4 capacity TEXT NOT NULL Kapasitas daya
+tampung TPK
+5 total_area TEXT DEFAULT '250
+Hektar'
+Luas total area TPK
+6 zones TEXT DEFAULT 'Zona A,
+Zona B'
+Daftar zona yang
+tersedia
+7 updated_by UUID FOREIGN KEY →
+auth_users.id
+ID Admin yang
+melakukan
+pembaruan
+8 updated_at TIMESTAMPTZ DEFAULT NOW() Waktu pembaruan
+terakhir
+Tabel 3.9 Struktur Tabel system_settings
+49
+3.7 Perancangan Antarmuka Pengguna (User Interface)
+Perancangan antarmuka pengguna atau kerangka kawat (wireframe)
+merupakan translasi visual dari fungsionalitas sistem untuk memastikan bahwa tata
+letak elemen dapat dioperasikan secara ergonomis oleh pengguna (Azhariyah &
+Mukhlis, 2023). Arsitektur visual dari SIPETA TPK dijabarkan ke dalam tujuh modul
+rancangan.
+3.7.1 Rancangan Halaman Login
+Antarmuka ini menampilkan komponen input surel dan kata sandi,
+dilengkapi tombol otorisasi untuk memverifikasi kredensial pengguna ke
+dalam pangkalan data.
+ Gambar 3.7 Rancangan Halaman Login
+3.7.2 Rancangan Halaman Dashboard
+Menyajikan panel analitik komprehensif bagi operasional yang
+memuat kartu informasi seperti Total Blok, Volume, Log, matriks
+perbandingan status, serta ringkasan profil operasional.
+50
+Gambar 3.8 Rancangan Halaman Dashboard
+3.7.3 Rancangan Halaman Peta Inventori (WebGIS)
+Merupakan layar fungsionalitas spasial yang merender peta dasar
+Leaflet.js berserta poligon GeoJSON, dilengkapi jendela popup informasi dan
+instrumen modifikasi suntingan bagi akun yang berwenang.
+ Gambar 3.9 Rancangan Halaman Peta Inventori (WebGIS)
+51
+3.7.4 Rancangan Modal Edit Data Stok Kayu
+Sebuah bingkai antarmuka melayang yang menampung isian input
+seperti Nama TPK, Zona, Jenis Kayu, nilai numerik Volume dan Log, menu
+lungsur Grade serta Status, yang diakhiri opsi penyimpanan atau pembatalan.
+ Gambar 3.10 Rancangan Modal Edit Data Stok Kayu
+3.7.5 Rancangan Halaman Data Stok Kayu
+Antarmuka representasi tekstual dari data keruangan,
+memvisualisasikan seluruh blok persediaan dalam wujud tabular, yang
+disertai tuas navigasi menuju tab rekam jejak.
+[Gambar 3.11 Rancangan Halaman Data Stok Kayu]
+52
+3.7.6 Rancangan Halaman Laporan
+Dirancang untuk memfasilitasi kebutuhan audit administratif, memuat
+kontrol penyaringan berdasarkan bulan, tabel rekapitulasi riwayat, dan tombol
+khusus pengunduhan dokumen.
+Gambar 3.12 Rancangan Halaman Laporan
+3.7.7 Rancangan Halaman Pengaturan Sistem
+Modul manajemen infrastruktur yang menampilkan form masukan
+terstruktur untuk mengubah identitas lokasi, kapasitas logistik, dimensi area
+spasial, serta peta zonasi operasional TPK.
+[Gambar 3.13 Rancangan Halaman Pengaturan Sistem]
+53
+3.8 Rencana Pengujian Sistem (Black Box Testing)
+Rencana pengujian aplikasi direkayasa murni menggunakan paradigma Black
+Box Testing untuk memverifikasi kesesuaian eksekusi fungsionalitas sistem tanpa
+membedah konfigurasi logika internalnya (Suharyono et al., 2024). Validasi
+pengujian ini mendayagunakan teknik Equivalence Partitioning (EP) dan Boundary
+Value Analysis (BVA) yang direpresentasikan dalam Tabel 3.10 hingga Tabel 3.17.
+No Skenario Pengujian Data Masukan (Input) Hasil yang
+Diharapkan
+(Expected Output)
+1 Login dengan akun Admin
+yang valid
+Email dan password Admin yang terdaftar Berhasil masuk
+ke Dashboard dengan
+akses penuh (Edit
+Stok, User
+Management,
+Pengaturan Sistem)
+2 Login dengan akun Staff
+yang valid
+Email dan password Staff yang terdaftar Berhasil masuk
+ke Dashboard dengan
+akses Edit Stok,
+tanpa User
+Management dan
+Pengaturan Sistem
+3 Login dengan email yang
+tidak terdaftar
+Email yang belum terdaftar di sistem Menampilkan
+pesan error "Email
+tidak ditemukan"
+4 Login dengan password yang
+salah
+Email valid dengan password yang salah Menampilkan
+pesan error "Password
+salah"
+5 Login dengan kolom kosong Kolom email dan/atau password dikosongkan Menampilkan pesan
+validasi "Kolom wajib
+diisi"
+52
+6 Logout dari sistem Klik tombol Logout Sesi dihapus,
+pengguna diredirect ke
+halaman Login
+7 Mengakses halaman
+tanpa login
+Mengakses URL Dashboard tanpa sesi aktif Pengguna diredirect ke
+halaman Login
+Tabel 3.10 Skenario Pengujian Modul Autentikasi
+No Skenario Pengujian Data Masukan
+(Input)
+Hasil yang Diharapkan
+(Expected Output)
+1 Menampilkan ringkasan dashboard Pengguna
+berhasil login dan
+masuk
+ke Dashboard
+Kartu informasi Total Blok,
+Volume, Jumlah Log, dan Rasio
+Status (Available/Sold)
+ditampilkan
+2 Validasi
+data dashboard terhadap database
+Data statistik
+pada Dashboard
+Data yang ditampilkan sesuai
+dengan data di database Supabase
+3 Pembaruan realtime pada dashboard Data stok diubah
+oleh pengguna lain
+Kartu
+informasi dashboard diperbarui
+secara otomatis tanpa reload
+Tabel 3.11 Skenario Pengujian Modul Dashboard
+53
+No Skenario Pengujian Data Masukan
+(Input)
+Hasil yang Diharapkan (Expected Output)
+1 Menampilkan
+peta WebGIS
+Membuka
+halaman Map
+Inventory
+Peta Leaflet.js ditampilkan dengan
+poligon GeoJSON blok kaveling
+2 Klik poligon blok
+kaveling
+Klik pada poligon di
+peta
+Popup detail blok muncul (ID, Zona, Nama
+TPK, Jenis Kayu, Volume, Log, Grade,
+Status)
+3 Admin klik poligon
+blok
+Admin mengklik
+poligon di peta
+Tombol "Edit" muncul pada popup detail
+blok
+4 Staff klik poligon blok Staff mengklik poligon
+di peta
+Tombol "Edit" muncul pada popup detail
+blok (sama seperti Admin)
+5 Pewarnaan poligon
+berdasarkan status
+Data status blok
+di database
+Poligon berwarna hijau untuk
+status Available dan merah untuk status Sold
+Tabel 3.12 Skenario Pengujian Modul Peta Inventori
+No Skenario Pengujian Data Masukan (Input) Hasil yang Diharapkan
+(Expected Output)
+1 Membuka modal edit data stok Klik tombol "Edit"
+pada popup detail blok
+Modal formulir edit
+terbuka dengan data stok
+terkini terisi otomatis
+2 Menyimpan data stok yang valid Mengisi semua kolom
+formulir dengan data
+valid dan klik "Simpan"
+Data berhasil disimpan,
+notifikasi "toast" sukses
+muncul, modal tertutup
+3 Menyimpan data dengan kolom kosong Mengosongkan kolom
+wajib dan klik "Simpan"
+Menampilkan
+pesan error validasi pada
+kolom yang kosong
+54
+4 Menyimpan data dengan tipe tidak
+valid
+Mengisi kolom Volume
+dengan huruf (bukan
+angka)
+Menampilkan
+pesan error validasi tipe
+data
+5 Membatalkan edit data stok Klik tombol "Batal" pada
+modal edit
+Modal tertutup tanpa
+perubahan data
+6 Verifikasi pencatatan riwayat otomatis Menyimpan perubahan
+data stok yang valid
+Entri riwayat baru tercatat
+secara otomatis di tabel
+stok_kayu_history
+7 Pembaruan realtime setelah edit Admin/Staff menyimpan
+perubahan data stok
+Pengguna lain menerima
+pembaruan data secara
+otomatis tanpa reload
+Tabel 3.13 Skenario Pengujian Modul Edit Stok Kayu
+No Skenario Pengujian Data Masukan (Input) Hasil yang Diharapkan
+(Expected Output)
+1 Menampilkan tabel data stok
+kayu
+Membuka halaman Data Stok Tabel data stok seluruh
+blok kaveling
+ditampilkan secara
+lengkap
+2 Menampilkan tab riwayat
+perubahan
+Klik tab "Riwayat" pada halaman
+Data Stok
+Tabel data historis
+perubahan stok
+ditampilkan
+3 Validasi konsistensi data Membandingkan data pada tabel
+dengan database
+Data yang ditampilkan
+sesuai dan konsisten
+dengan data di database
+Tabel 3.14 Skenario Pengujian Modul Data Stok dan Riwayat
+55
+No Skenario Pengujian Data Masukan
+(Input)
+Hasil yang Diharapkan (Expected Output)
+1 Menampilkan halaman
+laporan
+Membuka
+halaman
+Laporan
+Halaman laporan ditampilkan dengan filter bulan
+tersedia
+2 Filter laporan bulan
+yang berisi data
+Memilih bulan
+yang memiliki
+data riwayat
+perubahan
+Tabel laporan riwayat stok ditampilkan sesuai bulan
+yang dipilih
+3 Filter laporan bulan
+yang kosong
+Memilih bulan
+yang tidak
+memiliki data
+riwayat
+Menampilkan pesan "Tidak ada data untuk bulan ini"
+4 Export laporan
+ke Excel
+Klik tombol
+"Export Excel"
+setelah filter
+bulan
+File laporan_stok_[bulan].xlsx berhasil diunduh
+Tabel 3.15 Skenario Pengujian Modul Laporan
+No Skenario Pengujian Data Masukan
+(Input)
+Hasil yang
+Diharapkan
+(Expected Output)
+1 Menampilkan halaman pengaturan Admin membuka
+halaman
+Pengaturan Sistem
+Formulir pengaturan
+ditampilkan dengan
+data terkini (Nama
+TPK, Lokasi,
+Kapasitas, Luas
+Area, Zona)
+2 Menyimpan perubahan pengaturan Admin mengubah
+data pengaturan dan
+klik "Simpan"
+Data berhasil
+disimpan, notifikasi
+"Pengaturan berhasil
+disimpan" muncul
+56
+3 Staff mengakses halaman pengaturan Staff mencoba
+membuka halaman
+Pengaturan Sistem
+Akses diblokir, Staff
+di-redirect atau
+menu tidak
+ditampilkan
+4 Pembaruan realtime pengaturan Admin menyimpan
+perubahan
+pengaturan
+Seluruh pengguna
+menerima
+pembaruan
+pengaturan secara
+otomatis
+Tabel 3.16 Skenario Pengujian Modul Pengaturan Sistem
+No Skenario Pengujian Data Masukan (Input) Hasil yang Diharapkan (Expected
+Output)
+1 Auto-logout setelah 30
+menit tidak aktif
+Pengguna tidak
+melakukan aktivitas
+selama 30 menit
+Sesi dihapus otomatis, pengguna diredirect ke halaman Login
+2 Staff mengakses
+menu User Management
+Staff mencoba mengakses
+fitur membuat akun
+pengguna baru
+Menu User Management tidak
+ditampilkan / akses diblokir
+3 Staff mengakses URL
+Pengaturan Sistem
+Staff memasukkan URL
+halaman Pengaturan
+Sistem secara langsung
+Akses diblokir, Staff di-redirect ke
+halaman Dashboard
+Tabel 3.17 Skenario Pengujian Modul Keamanan dan Otorisasi
+54
+3.9 Rencana Deployment dan Version Control
+Setelah tahap pengembangan dan pengujian sistem selesai dilakukan, sistem SIPETA TPK direncanakan akan didistribusikan (deploy) ke lingkungan produksi agar dapat diakses oleh pengguna akhir secara online. Strategi deployment yang akan diterapkan memanfaatkan dua platform utama, yaitu:
+1) Netlify, sebagai platform hosting frontend yang menyediakan layanan deployment otomatis berbasis Continuous Deployment (CD). Netlify dipilih karena kompatibilitasnya yang tinggi dengan framework Next.js serta kemampuannya dalam menyediakan sertifikat SSL/TLS secara gratis, distribusi aset statis melalui Content Delivery Network (CDN) global, serta mekanisme preview deployment untuk setiap perubahan kode sebelum dirilis ke lingkungan produksi.
+2) GitHub, sebagai platform version control berbasis Git yang akan digunakan untuk mengelola seluruh kode sumber (source code) sistem SIPETA TPK. Penggunaan GitHub memungkinkan pelacakan perubahan kode secara historis, kolaborasi pengembangan melalui mekanisme branching dan pull request, serta integrasi langsung dengan Netlify untuk proses deployment otomatis setiap kali terjadi perubahan pada branch utama (main/production).
+Integrasi antara GitHub dan Netlify akan membentuk alur kerja Continuous Integration/Continuous Deployment (CI/CD) yang efisien, di mana setiap perubahan kode yang di-push ke repository GitHub secara otomatis akan memicu proses build dan deployment ke Netlify tanpa memerlukan intervensi manual.
+55
+3.10 Alokasi Waktu Penelitian
+Penelitian ini direncanakan berlangsung selama enam bulan, mulai dari bulan September 2025 hingga Februari 2026. Rincian alokasi waktu untuk setiap tahapan penelitian disajikan pada Tabel 3.18 berikut.
+No	Kegiatan	Sep 2025	Okt 2025	Nov 2025	Des 2025	Jan 2026	Feb 2026
+1	Identifikasi Masalah dan Studi Literatur	✓	 	 	 	 	 
+2	Pengumpulan Data dan Wawancara	✓	✓	 	 	 	 
+3	Analisis Kebutuhan Sistem	 	✓	 	 	 	 
+4	Perancangan Sistem (UML, ERD, UI)	 	✓	✓	 	 	 
+5	Implementasi dan Pengembangan Sistem	 	 	✓	✓	 	 
+6	Prapemrosesan Data Spasial (QGIS)	 	 	✓	 	 	 
+7	Pengujian Sistem (Black Box Testing)	 	 	 	✓	✓	 
+8	Deployment ke Netlify dan GitHub	 	 	 	 	✓	 
+9	Penyusunan Laporan Skripsi	✓	✓	✓	✓	✓	✓
+10	Revisi dan Finalisasi	 	 	 	 	✓	✓
+Tabel 3.18 Alokasi Waktu Penelitian (Timeline)

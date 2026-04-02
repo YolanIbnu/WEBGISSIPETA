@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kerangka Penelitian - SIPETA TPK</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+
+  .container {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Box styles */
+  .box {
+    border: 2px solid #000;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.4;
+    background: #fff;
+    position: relative;
+    min-width: 200px;
+  }
+
+  .box-title {
+    font-weight: bold;
+    font-size: 13.5px;
+    margin-bottom: 2px;
+  }
+
+  .box-sub {
+    font-size: 12px;
+    color: #333;
+  }
+
+  /* Rounded box */
+  .rounded { border-radius: 25px; }
+
+  /* Rectangle */
+  .rect { border-radius: 0; }
+
+  /* Phase header */
+  .phase-header {
+    background: #d9e2f3;
+    border: 2px solid #000;
+    padding: 8px 24px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    width: 580px;
+    margin-bottom: 0;
+  }
+
+  /* WDLC container */
+  .wdlc-wrapper {
+    border: 2px solid #000;
+    border-top: none;
+    width: 580px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    background: #f7f9fc;
+  }
+
+  /* Arrow connector (vertical) */
+  .arrow-down {
+    width: 2px;
+    height: 28px;
+    background: #000;
+    position: relative;
+  }
+  .arrow-down::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid #000;
+  }
+
+  .arrow-down-short {
+    width: 2px;
+    height: 18px;
+    background: #000;
+    position: relative;
+  }
+  .arrow-down-short::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #000;
+  }
+
+  /* Side-by-side boxes */
+  .side-row {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .side-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Horizontal connector */
+  .h-connector {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .h-line {
+    width: 30px;
+    height: 2px;
+    background: #000;
+  }
+
+  /* Decision diamond */
+  .diamond-wrapper {
+    width: 140px;
+    height: 90px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .diamond {
+    width: 120px;
+    height: 80px;
+    background: #fff;
+    border: 2px solid #000;
+    transform: rotate(45deg);
+    position: absolute;
+  }
+
+  .diamond-text {
+    position: relative;
+    z-index: 2;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* WDLC step boxes */
+  .wdlc-step {
+    border: 2px solid #000;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 12.5px;
+    background: #fff;
+    min-width: 380px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .step-num {
+    background: #2b579a;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .step-content {
+    text-align: left;
+    flex: 1;
+  }
+
+  .step-name {
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  .step-detail {
+    font-size: 11.5px;
+    color: #444;
+    margin-top: 1px;
+  }
+
+  /* Feedback arrow */
+  .feedback-section {
+    position: relative;
+    width: 580px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .feedback-arrow {
+    position: absolute;
+    right: -45px;
+    top: -320px;
+    width: 40px;
+    height: 320px;
+    border: 2px solid #c00;
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+  }
+  .feedback-arrow::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 8px solid #c00;
+    transform: translateX(-50%);
+  }
+
+  .feedback-label {
+    position: absolute;
+    right: -90px;
+    top: -180px;
+    font-size: 11px;
+    color: #c00;
+    font-style: italic;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  /* Caption */
+  .caption {
+    margin-top: 14px;
+    font-size: 12px;
+    text-align: center;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- START -->
+  <div class="box rounded" style="min-width:150px; background:#e8f0e8;">
+    <div class="box-title">MULAI</div>
+  </div>
+  
+  <div class="arrow-down"></div>
+
+  <!-- Identifikasi Masalah -->
+  <div class="box rect" style="min-width:400px;">
+    <div class="box-title">Identifikasi Masalah</div>
+    <div class="box-sub">Observasi lapangan dan wawancara di TPK Cabak</div>
+  </div>
+
+  <div class="arrow-down"></div>
+
+  <!-- Studi Literatur -->
+  <div class="box rect" style="min-width:400px;">
+    <div class="box-title">Studi Literatur</div>
+    <div class="box-sub">Jurnal, artikel ilmiah, dan penelitian terdahulu terkait SIG, WebGIS, dan WDLC</div>
+  </div>
+
+  <div class="arrow-down"></div>
+
+  <!-- Pengumpulan Data -->
+  <div class="box rect" style="min-width:400px;">
+    <div class="box-title">Pengumpulan Data</div>
+    <div class="box-sub">Data primer (wawancara, observasi) dan data sekunder (dokumen TPK)</div>
+  </div>
+
+  <div class="arrow-down"></div>
+
+  <!-- WDLC Header -->
+  <div class="phase-header">
+    Metode Web Development Life Cycle (WDLC)
+  </div>
+
+  <!-- WDLC Steps -->
+  <div class="wdlc-wrapper">
+    
+    <!-- Step 1: Planning -->
+    <div class="wdlc-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-name">Planning (Perencanaan)</div>
+        <div class="step-detail">Menentukan ruang lingkup, tujuan, dan kebutuhan awal sistem</div>
+      </div>
+    </div>
+
+    <div class="arrow-down-short"></div>
+
+    <!-- Step 2: Analysis -->
+    <div class="wdlc-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-name">Analysis (Analisis)</div>
+        <div class="step-detail">Analisis kebutuhan fungsional, non-fungsional, dan sistem berjalan</div>
+      </div>
+    </div>
+
+    <div class="arrow-down-short"></div>
+
+    <!-- Step 3: Design -->
+    <div class="wdlc-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-name">Design (Perancangan)</div>
+        <div class="step-detail">Flowchart, UML, ERD, dan wireframe antarmuka pengguna</div>
+      </div>
+    </div>
+
+    <div class="arrow-down-short"></div>
+
+    <!-- Step 4: Development -->
+    <div class="wdlc-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-name">Development (Pengembangan)</div>
+        <div class="step-detail">Implementasi menggunakan Next.js, Supabase, Leaflet.js, dan QGIS</div>
+      </div>
+    </div>
+
+    <div class="arrow-down-short"></div>
+
+    <!-- Step 5: Testing -->
+    <div class="wdlc-step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-name">Testing (Pengujian)</div>
+        <div class="step-detail">Black Box Testing: Equivalence Partitioning dan Boundary Value Analysis</div>
+      </div>
+    </div>
+
+    <div class="arrow-down-short"></div>
+
+    <!-- Step 6: Deployment -->
+    <div class="wdlc-step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <div class="step-name">Deployment (Distribusi)</div>
+        <div class="step-detail">Deploy ke Netlify (hosting) dan GitHub (version control)</div>
+      </div>
+    </div>
+
+  </div>
+  <!-- End WDLC -->
+
+  <div class="arrow-down"></div>
+
+  <!-- Penyusunan Laporan -->
+  <div class="box rect" style="min-width:400px;">
+    <div class="box-title">Penyusunan Laporan Skripsi</div>
+    <div class="box-sub">Dokumentasi seluruh tahapan penelitian</div>
+  </div>
+
+  <div class="arrow-down"></div>
+
+  <!-- END -->
+  <div class="box rounded" style="min-width:150px; background:#e8f0e8;">
+    <div class="box-title">SELESAI</div>
+  </div>
+
+  <!-- Caption -->
+  <div class="caption">Gambar 3.1 Kerangka Penelitian</div>
+
+</div>
+
+</body>
+</html>

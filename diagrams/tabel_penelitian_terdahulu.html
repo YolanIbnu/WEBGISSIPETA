@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabel 2.1 Perbandingan Penelitian Terdahulu - Skripsi SIPETA TPK</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 20px;
+            color: #000;
+        }
+        h2 {
+            text-align: center;
+            font-size: 14pt;
+            margin-top: 40px;
+            margin-bottom: 5px;
+        }
+        .tabel-judul {
+            text-align: center;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-bottom: 8px;
+            margin-top: 20px;
+        }
+        .note {
+            font-style: italic;
+            font-size: 10pt;
+            color: #555;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 25px;
+            font-size: 11pt;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 6px 8px;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            text-align: center;
+        }
+        td.center {
+            text-align: center;
+        }
+        td.no {
+            text-align: center;
+            width: 30px;
+        }
+        /* Kolom lebar proporsional */
+        col.col-no { width: 4%; }
+        col.col-peneliti { width: 14%; }
+        col.col-judul { width: 22%; }
+        col.col-metode { width: 12%; }
+        col.col-teknologi { width: 16%; }
+        col.col-hasil { width: 16%; }
+        col.col-perbedaan { width: 16%; }
+
+        .section-divider {
+            border: none;
+            border-top: 2px solid #333;
+            margin: 50px 0;
+        }
+        .sumber {
+            font-size: 10pt;
+            font-style: italic;
+            margin-top: -15px;
+            margin-bottom: 30px;
+        }
+
+        /* Highlight baris penelitian ini */
+        tr.penelitian-ini td {
+            background-color: #f9f9f0;
+            font-weight: normal;
+        }
+
+        @media print {
+            body { margin: 0; padding: 10px; }
+            .note { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<h2>2.10 Penelitian Terdahulu</h2>
+
+<p class="note">Petunjuk: Buka file ini di browser → Select tabel → Ctrl+C → Paste di Word (Ctrl+V). Tabel akan langsung rapih.</p>
+
+<!-- ============================================ -->
+<!-- TABEL PERBANDINGAN PENELITIAN TERDAHULU      -->
+<!-- ============================================ -->
+
+<p class="tabel-judul">Tabel 2.1 Perbandingan Penelitian Terdahulu dan Penelitian Saat Ini</p>
+
+<table>
+    <colgroup>
+        <col class="col-no">
+        <col class="col-peneliti">
+        <col class="col-judul">
+        <col class="col-metode">
+        <col class="col-teknologi">
+        <col class="col-hasil">
+        <col class="col-perbedaan">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Peneliti (Tahun)</th>
+            <th>Judul Penelitian</th>
+            <th>Metode</th>
+            <th>Teknologi</th>
+            <th>Hasil Penelitian</th>
+            <th>Perbedaan dengan Penelitian Ini</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- PENELITIAN 1 -->
+        <tr>
+            <td class="no">1</td>
+            <td>Agustine &amp; Handayani (2025)</td>
+            <td>Rancang Bangun Aplikasi <i>Inventory</i> Produksi Kayu Berbasis <i>Web</i> dan <i>Mobile</i>: Studi Kasus UD Sulur Jati</td>
+            <td class="center"><i>Prototype</i></td>
+            <td>Teknologi <i>web</i> konvensional, basis data lokal</td>
+            <td>Sistem informasi berbasis <i>web</i> terbukti efektif meningkatkan efisiensi pencatatan stok kayu masuk dan keluar secara digital.</td>
+            <td>Tidak memiliki fitur <i>WebGIS</i> (peta) untuk pelacakan lokasi fisik kaveling tumpukan kayu di lapangan. Pengelolaan data masih sebatas tabular.</td>
+        </tr>
+
+        <!-- PENELITIAN 2 -->
+        <tr>
+            <td class="no">2</td>
+            <td>Okyusmarianto, Sadjati, &amp; Ikhsani (2024)</td>
+            <td>Pembangunan Sistem Informasi <i>WebGIS</i> untuk Evaluasi Lahan dan Hutan</td>
+            <td class="center">Analisis Spasial</td>
+            <td><i>WebGIS</i>, peta digital, data spasial</td>
+            <td>Pembangunan <i>WebGIS</i> sangat krusial untuk evaluasi lahan dan hutan secara visual dengan peta digital interaktif.</td>
+            <td>Berfokus pada evaluasi lahan hutan secara umum, tidak terintegrasi dengan modul manajemen inventaris barang logistik yang dinamis.</td>
+        </tr>
+
+        <!-- PENELITIAN 3 -->
+        <tr>
+            <td class="no">3</td>
+            <td>Ramadhan, Irawan, &amp; Juardi (2023)</td>
+            <td>Penerapan Sistem Informasi Geografis dengan <i>Tools</i> QGIS dalam Pemetaan Penurunan Lahan Pertanian Kabupaten Karawang</td>
+            <td class="center">SIG (QGIS)</td>
+            <td>QGIS, pemetaan poligon, data vektor</td>
+            <td>QGIS efektif sebagai alat pra-pemrosesan data spasial untuk mendigitasi dan memetakan wilayah secara akurat menggunakan poligon.</td>
+            <td>Objek penelitian bersifat statis (lahan pertanian) dan tidak terintegrasi dengan modul pencatatan pergerakan barang inventaris.</td>
+        </tr>
+
+        <!-- PENELITIAN 4 -->
+        <tr>
+            <td class="no">4</td>
+            <td>Nugraha, Rianto, Rezkika, &amp; Haryono (2026)</td>
+            <td>Rancang Bangun Aplikasi Manajemen Proyek Berbasis <i>Web</i> Menggunakan <i>React</i> dan <i>Supabase</i> pada Yayasan Sa'adatul Atholibin</td>
+            <td class="center"><i>Agile</i></td>
+            <td>React.js, Supabase, <i>Realtime WebSocket</i></td>
+            <td>Penggunaan React.js dan Supabase menghasilkan antarmuka yang responsif serta sinkronisasi data secara <i>real-time</i> tanpa <i>reload</i> halaman.</td>
+            <td>Diimplementasikan untuk manajemen proyek, tidak memiliki fungsionalitas visualisasi peta spasial (SIG/<i>WebGIS</i>).</td>
+        </tr>
+
+        <!-- PENELITIAN 5 -->
+        <tr>
+            <td class="no">5</td>
+            <td>Aprilisa &amp; Aulia (2024)</td>
+            <td>Perancangan Sistem Inventaris Menggunakan Metode <i>Web Development Life Cycle</i> (WDLC)</td>
+            <td class="center">WDLC</td>
+            <td>Teknologi <i>web</i>, <i>Flowchart</i>, <i>Sequence Diagram</i></td>
+            <td>Metode WDLC mampu menghasilkan perangkat lunak yang sesuai kebutuhan operasional, meminimalisir kesalahan fungsional.</td>
+            <td>Tidak menerapkan teknologi <i>modern web stack</i> (Next.js, Supabase) dan tidak memiliki fitur pemetaan geografis (<i>WebGIS</i>).</td>
+        </tr>
+
+        <!-- PENELITIAN INI (PENULIS) -->
+        <tr class="penelitian-ini">
+            <td class="no">6</td>
+            <td>Yolan Ibnu Prasetya (Penelitian Ini &mdash; 2026)</td>
+            <td>Rancang Bangun <i>Website</i> Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak Menggunakan Metode <i>Web Development Life Cycle</i> (WDLC)</td>
+            <td class="center">WDLC</td>
+            <td>Next.js, React, TypeScript, Leaflet.js, QGIS, GeoJSON, Supabase <i>Realtime</i>, Tailwind CSS</td>
+            <td><b>Mengintegrasikan</b> sistem inventaris logistik kayu yang dinamis dengan visualisasi pemetaan kaveling secara <i>real-time</i> dalam satu platform <i>modern web</i>.</td>
+            <td>&mdash;</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="sumber">Sumber: Diolah oleh Penulis (2026)</p>
+
+<hr class="section-divider">
+
+<!-- ============================================ -->
+<!-- NARASI PARAGRAF PENELITIAN TERDAHULU         -->
+<!-- (Copy ke skripsi.txt bagian 2.10)            -->
+<!-- ============================================ -->
+
+<h2>Narasi Paragraf untuk Sub-Bab 2.10</h2>
+<p class="note">Teks di bawah ini bisa di-copy paste ke skripsi.txt sebagai pengganti narasi 2.10 yang lama.</p>
+
+<div style="text-align: justify; font-size: 12pt; line-height: 2;">
+
+<p style="text-indent: 40px;">
+Penelitian terdahulu menjadi rujukan penting dalam penyusunan penelitian ini guna mengetahui posisi, keunggulan, serta perbedaan inovasi yang ditawarkan dibandingkan dengan penelitian yang sudah ada. Tinjauan terhadap beberapa literatur sebelumnya membantu mengidentifikasi celah penelitian (<i>research gap</i>) yang akan diselesaikan.
+</p>
+
+<p style="text-indent: 40px;">
+Penelitian pertama oleh Agustine dan Handayani (2025) berjudul "Rancang Bangun Aplikasi <i>Inventory</i> Produksi Kayu Berbasis <i>Web</i> dan <i>Mobile</i>: Studi Kasus UD Sulur Jati". Penelitian ini berfokus pada digitalisasi pencatatan logistik kayu untuk meminimalisir kesalahan data barang masuk dan keluar. Hasilnya membuktikan bahwa sistem berbasis <i>web</i> sangat efektif dalam meningkatkan efisiensi pendataan stok kayu. Namun, pengelolaan data masih sebatas tabular dan belum menyertakan representasi visual spasial (peta) untuk melacak letak fisik tumpukan kayu.
+</p>
+
+<p style="text-indent: 40px;">
+Penelitian kedua oleh Okyusmarianto, Sadjati, dan Ikhsani (2024) mengenai pembangunan sistem informasi <i>WebGIS</i> untuk evaluasi lahan dan hutan. Penelitian ini menegaskan bahwa <i>WebGIS</i> sangat krusial untuk evaluasi lahan secara visual melalui peta digital interaktif. Meskipun demikian, penelitian ini berfokus pada evaluasi lahan hutan secara umum dan tidak terintegrasi dengan modul manajemen inventaris barang.
+</p>
+
+<p style="text-indent: 40px;">
+Penelitian ketiga oleh Ramadhan, Irawan, dan Juardi (2023) berjudul "Penerapan Sistem Informasi Geografis dengan <i>Tools</i> QGIS dalam Pemetaan Penurunan Lahan Pertanian Kabupaten Karawang". Penelitian ini berhasil memanfaatkan QGIS sebagai alat pra-pemrosesan data spasial untuk mendigitasi dan memetakan wilayah secara akurat. Meskipun teknologi pemetaan yang digunakan sangat presisi, objek penelitiannya bersifat statis (lahan pertanian) dan tidak terintegrasi dengan modul pergerakan barang logistik.
+</p>
+
+<p style="text-indent: 40px;">
+Penelitian keempat oleh Nugraha, Rianto, Rezkika, dan Haryono (2026) berjudul "Rancang Bangun Aplikasi Manajemen Proyek Berbasis <i>Web</i> Menggunakan <i>React</i> dan <i>Supabase</i> pada Yayasan Sa'adatul Atholibin". Penelitian ini mengimplementasikan React.js dan Supabase sebagai <i>Backend-as-a-Service</i> (BaaS), menghasilkan antarmuka yang responsif serta sinkronisasi data secara <i>real-time</i>. Akan tetapi, implementasinya difokuskan pada manajemen proyek dan tidak memiliki fungsionalitas visualisasi peta spasial.
+</p>
+
+<p style="text-indent: 40px;">
+Penelitian kelima oleh Aprilisa dan Aulia (2024) mengenai perancangan sistem inventaris menggunakan metode WDLC. Penelitian ini membuktikan bahwa metode WDLC mampu menghasilkan perangkat lunak yang sesuai dengan kebutuhan operasional perusahaan dan meminimalisir kesalahan fungsional. Namun, penelitian ini tidak menerapkan teknologi <i>modern web stack</i> dan tidak memiliki fitur pemetaan geografis.
+</p>
+
+<p style="text-indent: 40px;">
+Berdasarkan kelima penelitian terdahulu tersebut, dapat disimpulkan bahwa belum ada sistem yang mengintegrasikan pencatatan inventaris komoditas kayu secara <i>real-time</i> dengan visualisasi pemetaan geografis (<i>WebGIS</i>) dalam satu platform modern. Oleh karena itu, penelitian ini hadir untuk menjembatani celah tersebut dengan menggabungkan pilar manajemen logistik, teknologi <i>modern web stack</i> (Next.js, Supabase <i>Realtime</i>), serta pemetaan interaktif (QGIS dan Leaflet.js) ke dalam satu sistem utuh bernama SIPETA TPK. Untuk lebih memperjelas letak perbedaan dan kebaruan (<i>novelty</i>) dari penelitian ini, rangkuman perbandingannya disajikan pada Tabel 2.1.
+</p>
+
+</div>
+
+</body>
+</html>

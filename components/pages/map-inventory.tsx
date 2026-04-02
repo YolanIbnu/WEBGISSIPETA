@@ -9,6 +9,7 @@ import { EditModal } from "@/components/edit-modal";
 import { MapPin, Info, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { WOOD_TYPES, getWoodTypeColor } from "@/lib/geojson-data";
 
 interface MapInventoryProps {
   onEditBlock: (id: string) => void;
@@ -23,6 +24,17 @@ const MapContent = dynamic(() => import("@/components/map-content"), {
     </div>
   ),
 });
+
+// Helper: get status color for badge
+function getStatusColor(status: string) {
+  switch (status) {
+    case "HARA": return "bg-amber-500 text-white";
+    case "LOKAL": return "bg-green-500 text-white";
+    case "INDUSTRI": return "bg-blue-500 text-white";
+    case "VINIR": return "bg-purple-500 text-white";
+    default: return "bg-slate-500 text-white";
+  }
+}
 
 export function MapInventory({ onEditBlock }: MapInventoryProps) {
   const { geoJsonData } = useApp();
@@ -63,6 +75,18 @@ export function MapInventory({ onEditBlock }: MapInventoryProps) {
     // Kita tidak mereset editingId agar info panel tetap menampilkan data terakhir
   };
 
+  // Helper: format panjang
+  const formatPanjang = (p1?: number, p2?: number) => {
+    if (p1 == null && p2 == null) return "-";
+    return `${p1 ?? "-"} — ${p2 ?? "-"}`;
+  };
+
+  // Helper: format diameter
+  const formatDiameter = (d1?: number, d2?: number) => {
+    if (d1 == null && d2 == null) return "-";
+    return `${d1 ?? "-"} — ${d2 ?? "-"}`;
+  };
+
   return (
     <div className="relative w-full h-[calc(100vh-4rem)] lg:h-screen overflow-hidden bg-slate-100">
       {/* Map Container */}
@@ -81,17 +105,13 @@ export function MapInventory({ onEditBlock }: MapInventoryProps) {
       )}>
         <div className="flex sm:flex-col items-center sm:items-start gap-4 sm:gap-2">
           <p className="text-[10px] sm:text-sm font-bold text-emerald-900 uppercase tracking-wider">Legend</p>
-          <div className="flex sm:flex-col items-center sm:items-start gap-3 sm:gap-1.5 text-[10px] sm:text-xs">
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-green-500 rounded-sm shadow-sm"></div>
-              <span className="text-slate-700 font-medium font-bold">A</span>
-              <span className="text-slate-600">Available</span>
-            </div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 bg-red-500 rounded-sm shadow-sm"></div>
-              <span className="text-slate-700 font-medium font-bold">S</span>
-              <span className="text-slate-600">Sold</span>
-            </div>
+          <div className="flex flex-wrap sm:flex-col items-center sm:items-start gap-3 sm:gap-1.5 text-[10px] sm:text-xs">
+            {WOOD_TYPES.map(wood => (
+              <div key={wood} className="flex items-center gap-1.5 sm:gap-2">
+                <div className="w-2.5 h-2.5 sm:w-4 sm:h-4 rounded-sm shadow-sm" style={{ backgroundColor: getWoodTypeColor(wood) }}></div>
+                <span className="text-slate-600">{wood}</span>
+              </div>
+            ))}
           </div>
         </div>
       </Card>
@@ -104,9 +124,9 @@ export function MapInventory({ onEditBlock }: MapInventoryProps) {
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="absolute bottom-0 left-0 right-0 z-20 sm:top-6 sm:right-6 sm:left-auto sm:bottom-auto sm:w-80"
+            className="absolute bottom-0 left-0 right-0 z-20 sm:top-6 sm:right-6 sm:left-auto sm:bottom-auto sm:w-96"
           >
-            <Card className="bg-white/95 backdrop-blur-xl shadow-2xl border-t sm:border border-emerald-100 rounded-t-2xl sm:rounded-xl overflow-hidden">
+            <Card className="bg-white/95 backdrop-blur-xl shadow-2xl border-t sm:border border-emerald-100 rounded-t-2xl sm:rounded-xl overflow-hidden max-h-[70vh] sm:max-h-[85vh] overflow-y-auto">
               {/* Drag Handle for Mobile */}
               <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mt-3 mb-1 sm:hidden" />
 
@@ -153,19 +173,53 @@ export function MapInventory({ onEditBlock }: MapInventoryProps) {
                   </div>
 
                   <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100">
+                    <p className="text-[10px] text-slate-500 font-medium mb-1">Sortimen</p>
+                    <p className="font-bold text-slate-900 text-sm">{selectedFeature.grade || "-"}</p>
+                  </div>
+
+                  <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100">
                     <p className="text-[10px] text-slate-500 font-medium mb-1">Volume Stok</p>
                     <p className="font-bold text-slate-900 text-sm">{selectedFeature.volume} <span className="text-[10px] font-normal text-slate-500">m³</span></p>
                   </div>
+
+                  <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100">
+                    <p className="text-[10px] text-slate-500 font-medium mb-1">Jumlah Batang</p>
+                    <p className="font-bold text-slate-900 text-sm">{selectedFeature.logCount} <span className="text-[10px] font-normal text-slate-500">pcs</span></p>
+                  </div>
+
+                  <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100">
+                    <p className="text-[10px] text-slate-500 font-medium mb-1">Panjang (m)</p>
+                    <p className="font-bold text-slate-900 text-sm">{formatPanjang(selectedFeature.panjang1, selectedFeature.panjang2)}</p>
+                  </div>
+
+                  <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100">
+                    <p className="text-[10px] text-slate-500 font-medium mb-1">Diameter (cm)</p>
+                    <p className="font-bold text-slate-900 text-sm">{formatDiameter(selectedFeature.diameter1, selectedFeature.diameter2)}</p>
+                  </div>
+
+
+                  <div className="bg-slate-50/50 p-3 rounded-xl border border-slate-100">
+                    <p className="text-[10px] text-slate-500 font-medium mb-1">Cacat Kayu</p>
+                    <p className="font-bold text-slate-900 text-sm">{selectedFeature.cacatKayu || "-"}</p>
+                  </div>
+
+                  {selectedFeature.tahunProduksi && (
+                    <div className="col-span-2 bg-slate-50/50 p-3 rounded-xl border border-slate-100">
+                      <p className="text-[10px] text-slate-500 font-medium mb-1">Tahun Produksi</p>
+                      <p className="font-bold text-slate-900 text-sm">{selectedFeature.tahunProduksi}</p>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-center justify-between py-2 px-3 rounded-xl bg-emerald-50/50 border border-emerald-100">
                   <span className="text-xs font-medium text-emerald-800">Status Saat Ini</span>
-                  <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm ${selectedFeature.status === 'Available'
-                    ? 'bg-emerald-500 text-white'
-                    : 'bg-red-500 text-white'
-                    }`}>
-                    {selectedFeature.status.toUpperCase()}
-                  </span>
+                  <div className="flex flex-wrap gap-1 justify-end">
+                    {(selectedFeature.status || "").split(", ").map((statusStr: string) => (
+                      <span key={statusStr} className={`text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm ${getStatusColor(statusStr)}`}>
+                        {statusStr}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <Button

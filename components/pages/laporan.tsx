@@ -45,10 +45,15 @@ export function Laporan() {
       "Tanggal": block.tanggal || "-",
       "TPK / Zona": block.tpkName || block.zone,
       "Jenis Kayu": block.woodType,
+      "Sortimen": block.grade,
       "Volume (m³)": block.volume,
       "Jumlah Batang": block.logCount,
+      "Panjang (m)": block.panjang1 != null && block.panjang2 != null ? `${block.panjang1}-${block.panjang2}` : "-",
+      "Diameter (cm)": block.diameter1 != null && block.diameter2 != null ? `${block.diameter1}-${block.diameter2}` : "-",
       "Grade": block.grade,
+      "Cacat Kayu": block.cacatKayu || "-",
       "Status": block.status,
+      "Tahun Produksi": block.tahunProduksi || "-",
     }));
 
     // 2. Create Worksheet
@@ -56,8 +61,9 @@ export function Laporan() {
 
     // 3. Format width
     const wscols = [
-      { wch: 10 }, { wch: 15 }, { wch: 20 }, { wch: 15 },
-      { wch: 12 }, { wch: 15 }, { wch: 10 }, { wch: 10 },
+      { wch: 10 }, { wch: 15 }, { wch: 20 }, { wch: 15 }, { wch: 12 },
+      { wch: 12 }, { wch: 15 }, { wch: 12 }, { wch: 12 },
+      { wch: 10 }, { wch: 12 }, { wch: 10 }, { wch: 12 },
     ];
     worksheet['!cols'] = wscols;
 
@@ -87,16 +93,22 @@ export function Laporan() {
         "Tanggal Record": h.tanggal,
         "TPK / Zona": h.tpkName || h.zone,
         "Jenis Kayu": h.woodType,
+        "Sortimen": h.grade,
         "Volume (m³)": h.volume,
         "Batang": h.logCount,
+        "Panjang (m)": h.panjang1 != null && h.panjang2 != null ? `${h.panjang1}-${h.panjang2}` : "-",
+        "Diameter (cm)": h.diameter1 != null && h.diameter2 != null ? `${h.diameter1}-${h.diameter2}` : "-",
         "Grade": h.grade,
-        "Status": h.status
+        "Cacat Kayu": h.cacatKayu || "-",
+        "Status": h.status,
+        "Tahun Produksi": h.tahunProduksi || "-",
       }));
 
       const worksheet = XLSX.utils.json_to_sheet(dataToExport);
       worksheet['!cols'] = [
-        { wch: 12 }, { wch: 15 }, { wch: 20 }, { wch: 15 },
-        { wch: 12 }, { wch: 10 }, { wch: 10 }, { wch: 10 }
+        { wch: 12 }, { wch: 15 }, { wch: 20 }, { wch: 15 }, { wch: 12 },
+        { wch: 12 }, { wch: 10 }, { wch: 12 }, { wch: 12 },
+        { wch: 10 }, { wch: 12 }, { wch: 10 }, { wch: 12 },
       ];
 
       const workbook = XLSX.utils.book_new();
@@ -128,17 +140,20 @@ export function Laporan() {
       block.tanggal || "-",
       block.tpkName || block.zone || "-",
       block.woodType,
+      block.grade,
       block.volume.toFixed(1),
       block.logCount.toString(),
       block.grade,
-      block.status
+      block.cacatKayu || "-",
+      block.status,
+      block.tahunProduksi?.toString() || "-",
     ]);
 
     autoTable(doc, {
-      head: [["ID", "Tanggal", "TPK / Zona", "Jenis", "Volume (m³)", "Batang", "Grade", "Status"]],
+      head: [["ID", "Tanggal", "TPK / Zona", "Jenis", "Sortimen", "Volume", "Batang", "Grade", "Cacat", "Status", "Thn"]],
       body: tableData,
       startY: 40,
-      styles: { fontSize: 8 },
+      styles: { fontSize: 7 },
       headStyles: { fillColor: [5, 89, 65] },
     });
 
@@ -177,17 +192,20 @@ export function Laporan() {
         h.tanggal || "-",
         h.tpkName || h.zone || "-",
         h.woodType || "-",
+        h.grade || "-",
         h.volume.toFixed(1),
         h.logCount.toString(),
         h.grade || "-",
-        h.status || "-"
+        h.cacatKayu || "-",
+        h.status || "-",
+        h.tahunProduksi?.toString() || "-",
       ]);
 
       autoTable(doc, {
-        head: [["ID", "Tanggal", "TPK / Zona", "Jenis", "Volume (m³)", "Batang", "Grade", "Status"]],
+        head: [["ID", "Tanggal", "TPK / Zona", "Jenis", "Sortimen", "Volume", "Batang", "Grade", "Cacat", "Status", "Thn"]],
         body: tableData,
         startY: 40,
-        styles: { fontSize: 8 },
+        styles: { fontSize: 7 },
         headStyles: { fillColor: [30, 58, 138] },
       });
 
@@ -201,8 +219,10 @@ export function Laporan() {
 
   const totalVolume = woodBlocks.reduce((sum, b) => sum + b.volume, 0);
   const totalLogs = woodBlocks.reduce((sum, b) => sum + b.logCount, 0);
-  const availableCount = woodBlocks.filter((b) => b.status === "Available").length;
-  const soldCount = woodBlocks.filter((b) => b.status === "Sold").length;
+  const haraCount = woodBlocks.filter((b) => b.status?.includes("HARA")).length;
+  const lokalCount = woodBlocks.filter((b) => b.status?.includes("LOKAL")).length;
+  const industriCount = woodBlocks.filter((b) => b.status?.includes("INDUSTRI")).length;
+  const vinirCount = woodBlocks.filter((b) => b.status?.includes("VINIR")).length;
 
   // Extract numeric capacity for percentage calculation (e.g., "750 m3" -> 750)
   const capacityValue = parseFloat(settings.capacity) || 500;
@@ -218,7 +238,7 @@ export function Laporan() {
       {/* Report Summary */}
       <Card className="bg-gradient-to-r from-emerald-50 to-white p-6 border-emerald-200">
         <h2 className="text-2xl font-bold text-emerald-950 mb-4">Ringkasan Laporan</h2>
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <div>
             <p className="text-sm text-slate-600 mb-1">Total Volume</p>
             <p className="text-2xl font-bold text-emerald-950">{totalVolume.toFixed(1)} m³</p>
@@ -228,12 +248,20 @@ export function Laporan() {
             <p className="text-2xl font-bold text-blue-950">{totalLogs}</p>
           </div>
           <div>
-            <p className="text-sm text-slate-600 mb-1">Tersedia</p>
-            <p className="text-2xl font-bold text-green-950">{availableCount}</p>
+            <p className="text-sm text-slate-600 mb-1">HARA</p>
+            <p className="text-2xl font-bold text-amber-600">{haraCount}</p>
           </div>
           <div>
-            <p className="text-sm text-slate-600 mb-1">Terjual</p>
-            <p className="text-2xl font-bold text-red-950">{soldCount}</p>
+            <p className="text-sm text-slate-600 mb-1">LOKAL</p>
+            <p className="text-2xl font-bold text-green-600">{lokalCount}</p>
+          </div>
+          <div>
+            <p className="text-sm text-slate-600 mb-1">INDUSTRI</p>
+            <p className="text-2xl font-bold text-blue-600">{industriCount}</p>
+          </div>
+          <div>
+            <p className="text-sm text-slate-600 mb-1">VINIR</p>
+            <p className="text-2xl font-bold text-purple-600">{vinirCount}</p>
           </div>
         </div>
       </Card>

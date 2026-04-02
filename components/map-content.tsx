@@ -8,7 +8,7 @@ import {
   useMap,
   ZoomControl,
 } from "react-leaflet";
-import { GeoJSONCollection } from "@/lib/geojson-data";
+import { GeoJSONCollection, getWoodTypeColor } from "@/lib/geojson-data";
 import { Search, X, MapPin, Loader2 } from "lucide-react";
 
 interface MapContentProps {
@@ -278,9 +278,10 @@ function GeoJSONLayer({
 
     const geoJsonLayer = L.geoJSON(data as any, {
       style: (feature: any) => {
-        const status = feature?.properties?.status;
+        const woodType = feature?.properties?.woodType || "";
+        const fillColor = getWoodTypeColor(woodType);
         return {
-          fillColor: status === "Available" ? "#10b981" : "#ef4444",
+          fillColor,
           weight: 3,
           opacity: 1,
           color: "#ffffff",
@@ -290,6 +291,14 @@ function GeoJSONLayer({
       },
       onEachFeature: (feature: any, layer) => {
         const props = feature.properties;
+
+        // Add permanent label showing block name
+        const labelText = props.zone || props.id;
+        layer.bindTooltip(labelText, {
+          permanent: true,
+          direction: "center",
+          className: "blok-label",
+        });
 
         // Hover effects
         layer.on({
@@ -307,7 +316,7 @@ function GeoJSONLayer({
           },
         });
 
-        // Popup content removed in favor of side panel but keeping for desktop click fallback if needed
+        // Click to select feature
         layer.on("click", (e) => {
           onSelectFeature(props.id);
         });
@@ -406,6 +415,21 @@ export default function MapContent({
         }
         .animate-spin {
           animation: spin 1s linear infinite;
+        }
+        .blok-label {
+          background: rgba(0, 0, 0, 0.65) !important;
+          border: 1px solid rgba(255,255,255,0.4) !important;
+          border-radius: 4px !important;
+          padding: 2px 6px !important;
+          font-size: 11px !important;
+          font-weight: 700 !important;
+          color: #ffffff !important;
+          text-shadow: none !important;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+          white-space: nowrap !important;
+        }
+        .blok-label::before {
+          display: none !important;
         }
       `}</style>
 
