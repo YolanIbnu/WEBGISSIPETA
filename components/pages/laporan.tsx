@@ -4,14 +4,15 @@ import { useApp } from "@/context/app-context";
 import { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FileDown, Calendar, FileSpreadsheet, FileText, CalendarDays, Filter } from "lucide-react";
+import { FileDown, Calendar, FileSpreadsheet, FileText, CalendarDays, Filter, Lock } from "lucide-react";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
 export function Laporan() {
-  const { woodBlocks, settings, getHistory } = useApp();
+  const { woodBlocks, settings, getHistory, user } = useApp();
+  const isAdmin = user?.role === "admin";
   const [isExportingHistory, setIsExportingHistory] = useState(false);
   const [reportMonthFilter, setReportMonthFilter] = useState<string>("all");
 
@@ -266,10 +267,21 @@ export function Laporan() {
         </div>
       </Card>
 
+      {/* Staff Role Restriction Notice */}
+      {!isAdmin && (
+        <Card className="p-4 bg-amber-50 border-2 border-amber-300 flex items-center gap-3">
+          <Lock className="h-5 w-5 text-amber-600 shrink-0" />
+          <div>
+            <p className="text-sm font-semibold text-amber-900">Akses Export Dibatasi</p>
+            <p className="text-xs text-amber-700">Anda login sebagai <strong>Staff</strong>. Hanya Admin yang dapat mengunduh laporan dalam format PDF dan Excel. Hubungi administrator untuk mendapatkan akses export.</p>
+          </div>
+        </Card>
+      )}
+
       {/* Export Options */}
       <div className="grid md:grid-cols-2 gap-6">
         {/* Excel Export */}
-        <Card className="p-6 border-2 border-emerald-200 hover:shadow-lg transition-shadow">
+        <Card className={`p-6 border-2 border-emerald-200 transition-shadow ${isAdmin ? 'hover:shadow-lg' : 'opacity-60 cursor-not-allowed'}`}>
           <div className="flex items-start justify-between mb-4">
             <div>
               <h3 className="text-lg font-semibold text-emerald-950 mb-1">Export Stok Saat Ini</h3>
@@ -277,29 +289,40 @@ export function Laporan() {
                 Unduh status persediaan terbaru dalam format Excel atau PDF
               </p>
             </div>
-            <FileSpreadsheet className="h-8 w-8 text-emerald-600" />
+            {isAdmin ? (
+              <FileSpreadsheet className="h-8 w-8 text-emerald-600" />
+            ) : (
+              <Lock className="h-8 w-8 text-slate-400" />
+            )}
           </div>
           <div className="space-y-2">
             <Button
               onClick={handleExportExcel}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+              disabled={!isAdmin}
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
+              {!isAdmin && <Lock className="h-4 w-4 mr-2" />}
               <FileSpreadsheet className="h-4 w-4 mr-2" />
               Download Excel (.xlsx)
             </Button>
             <Button
               onClick={handleExportPDF}
+              disabled={!isAdmin}
               variant="outline"
-              className="w-full border-emerald-600 text-emerald-700 hover:bg-emerald-50"
+              className="w-full border-emerald-600 text-emerald-700 hover:bg-emerald-50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
+              {!isAdmin && <Lock className="h-4 w-4 mr-2" />}
               <FileText className="h-4 w-4 mr-2" />
               Download PDF
             </Button>
           </div>
+          {!isAdmin && (
+            <p className="text-xs text-red-500 mt-2 text-center font-medium">🔒 Hanya Admin yang bisa export</p>
+          )}
         </Card>
 
         {/* Historical Export */}
-        <Card className="p-6 border-2 border-blue-200 hover:shadow-lg transition-shadow">
+        <Card className={`p-6 border-2 border-blue-200 transition-shadow ${isAdmin ? 'hover:shadow-lg' : 'opacity-60 cursor-not-allowed'}`}>
           <div className="flex items-start justify-between mb-4">
             <div>
               <h3 className="text-lg font-semibold text-blue-950 mb-1">Riwayat Perubahan (History)</h3>
@@ -307,7 +330,11 @@ export function Laporan() {
                 Laporan catatan perubahan stok dari waktu ke waktu
               </p>
             </div>
-            <Calendar className="h-8 w-8 text-blue-600" />
+            {isAdmin ? (
+              <Calendar className="h-8 w-8 text-blue-600" />
+            ) : (
+              <Lock className="h-8 w-8 text-slate-400" />
+            )}
           </div>
 
           {/* Month Filter for Report */}
@@ -318,7 +345,8 @@ export function Laporan() {
               <select
                 value={reportMonthFilter}
                 onChange={(e) => setReportMonthFilter(e.target.value)}
-                className="w-full pl-8 pr-3 py-2 bg-slate-50 border rounded-md text-sm outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer"
+                disabled={!isAdmin}
+                className="w-full pl-8 pr-3 py-2 bg-slate-50 border rounded-md text-sm outline-none focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value="all">📅 Semua Bulan (Lengkap)</option>
                 {monthOptions.map((m) => (
@@ -347,25 +375,31 @@ export function Laporan() {
           <div className="space-y-2">
             <Button
               onClick={handleExportHistory}
-              disabled={isExportingHistory}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+              disabled={isExportingHistory || !isAdmin}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
+              {!isAdmin && <Lock className="h-4 w-4 mr-2" />}
               <FileSpreadsheet className="h-4 w-4 mr-2" />
               {isExportingHistory ? "Memproses..." : `Download Excel${reportMonthFilter !== "all" ? " (" + getMonthLabel(reportMonthFilter) + ")" : ""}`}
             </Button>
             <Button
               onClick={handleExportHistoryPDF}
-              disabled={isExportingHistory}
+              disabled={isExportingHistory || !isAdmin}
               variant="outline"
-              className="w-full border-blue-600 text-blue-700 hover:bg-blue-50"
+              className="w-full border-blue-600 text-blue-700 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
+              {!isAdmin && <Lock className="h-4 w-4 mr-2" />}
               <FileText className="h-4 w-4 mr-2" />
               {isExportingHistory ? "Memproses..." : `Download PDF${reportMonthFilter !== "all" ? " (" + getMonthLabel(reportMonthFilter) + ")" : ""}`}
             </Button>
           </div>
-          <p className="text-xs text-slate-500 mt-2 text-center">
-            {isExportingHistory ? "Mengambil data dari database..." : "Pilih bulan di atas untuk cetak laporan per bulan."}
-          </p>
+          {!isAdmin ? (
+            <p className="text-xs text-red-500 mt-2 text-center font-medium">🔒 Hanya Admin yang bisa export</p>
+          ) : (
+            <p className="text-xs text-slate-500 mt-2 text-center">
+              {isExportingHistory ? "Mengambil data dari database..." : "Pilih bulan di atas untuk cetak laporan per bulan."}
+            </p>
+          )}
         </Card>
       </div>
 

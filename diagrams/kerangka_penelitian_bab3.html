@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerangka Penelitian - BAB III</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Times New Roman', 'Noto Serif', serif;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .page {
+            width: 720px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .box {
+            border: 1.8px solid #000; border-radius: 6px;
+            padding: 10px 26px; background: #fff;
+            text-align: center; font-size: 13px; font-weight: bold;
+            min-width: 200px; z-index: 2; position: relative;
+        }
+        .box-sm { padding: 8px 18px; font-size: 12px; min-width: auto; }
+        .box-step {
+            border: 1.8px solid #000; border-radius: 6px;
+            padding: 9px 20px; background: #fff;
+            text-align: center; font-size: 12.5px; font-weight: bold;
+            min-width: 240px; z-index: 2; position: relative;
+        }
+        .box-pill { border-radius: 22px; }
+
+        .diamond-wrap {
+            position: relative; width: 160px; height: 105px;
+            display: flex; align-items: center; justify-content: center; z-index: 2;
+        }
+        .diamond-bg {
+            position: absolute; width: 135px; height: 88px;
+            border: 1.8px solid #000; background: #fff;
+            transform: rotate(45deg); border-radius: 3px;
+        }
+        .diamond-text {
+            position: relative; z-index: 2;
+            font-size: 11.5px; font-weight: bold;
+            text-align: center; line-height: 1.35;
+        }
+
+        .arr {
+            width: 2px; background: #000; position: relative; z-index: 1;
+        }
+        .arr::after {
+            content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+            border-left: 5.5px solid transparent; border-right: 5.5px solid transparent;
+            border-top: 7px solid #000;
+        }
+        .h12 { height: 12px; }
+        .h16 { height: 16px; }
+        .h20 { height: 20px; }
+
+        .group-box {
+            border: 2.2px solid #000; border-radius: 8px;
+            padding: 30px 40px 22px; position: relative;
+            display: flex; flex-direction: column; align-items: center;
+            background: #fcfcfc; width: 420px;
+        }
+        .group-label {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: #fff; padding: 3px 18px;
+            font-size: 13px; font-weight: bold;
+            border: 1.8px solid #000; border-radius: 4px;
+            white-space: nowrap; z-index: 3;
+        }
+
+        .split3 { position: relative; width: 278px; height: 22px; }
+        .split3::before { content:''; position:absolute; top:0; left:50%; width:2px; height:8px; background:#000; }
+        .split3::after { content:''; position:absolute; top:8px; left:calc(50% - 138px); width:278px; height:2px; background:#000; }
+        .split3 .b { position:absolute; top:10px; width:2px; height:12px; background:#000; }
+        .split3 .b::after { content:''; position:absolute; bottom:-1px; left:50%; transform:translateX(-50%); border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #000; }
+        .split3 .b1{left:0} .split3 .b2{left:50%;transform:translateX(-50%)} .split3 .b3{right:0}
+
+        .merge3 { position:relative; width:278px; height:20px; }
+        .merge3 .bu { position:absolute; top:0; width:2px; height:7px; background:#000; }
+        .merge3 .bu1{left:0} .merge3 .bu2{left:50%;transform:translateX(-50%)} .merge3 .bu3{right:0}
+        .merge3::before { content:''; position:absolute; top:7px; left:0; width:278px; height:2px; background:#000; }
+        .merge3::after { content:''; position:absolute; top:9px; left:50%; width:2px; height:11px; background:#000; transform:translateX(-50%); }
+        .merge3 .ma { position:absolute; bottom:-1px; left:50%; transform:translateX(-50%); border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid #000; }
+
+        .data-row { display:flex; gap:10px; justify-content:center; }
+        .vflow { display:flex; flex-direction:column; align-items:center; }
+        .caption { text-align:center; font-size:12px; margin-top:18px; }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- ① Identifikasi Masalah -->
+    <div class="box">Identifikasi Masalah</div>
+    <div class="arr h20"></div>
+
+    <!-- ② Studi Literatur -->
+    <div class="box">Studi Literatur</div>
+    <div class="arr h20"></div>
+
+    <!-- ③ Pengumpulan Data -->
+    <div class="box">Pengumpulan Data</div>
+
+    <div class="split3">
+        <div class="b b1"></div><div class="b b2"></div><div class="b b3"></div>
+    </div>
+    <div class="data-row">
+        <div class="box box-sm">Observasi</div>
+        <div class="box box-sm">Wawancara</div>
+        <div class="box box-sm">Studi Dokumen</div>
+    </div>
+    <div class="merge3">
+        <div class="bu bu1"></div><div class="bu bu2"></div><div class="bu bu3"></div>
+        <div class="ma"></div>
+    </div>
+
+    <!-- ====== WDLC BOX ====== -->
+    <div class="group-box" id="wdlc-box">
+        <div class="group-label">Metode WDLC</div>
+
+        <div class="vflow" style="width:100%;">
+
+            <div class="box-step">Planning (Perencanaan)</div>
+            <div class="arr h12"></div>
+
+            <div class="box-step">Analysis (Analisis)</div>
+            <div class="arr h12"></div>
+
+            <div class="box-step" id="design-node">Design (Perancangan)</div>
+            <div class="arr h12"></div>
+
+            <div class="box-step">Development (Pengembangan)</div>
+            <div class="arr h12"></div>
+
+            <div class="box-step">Testing (Pengujian)</div>
+            <div class="arr h16"></div>
+
+            <!-- Decision Diamond -->
+            <div style="position:relative;">
+                <div class="diamond-wrap">
+                    <div class="diamond-bg"></div>
+                    <div class="diamond-text">Skor SUS<br>≥ 68?</div>
+                </div>
+            </div>
+
+            <div style="font-size:11.5px; font-weight:bold;">Ya</div>
+            <div class="arr h12"></div>
+
+            <div class="box-step">Deployment (Distribusi)</div>
+
+        </div>
+    </div>
+
+    <div class="arr h20"></div>
+
+    <!-- ⑧ Penulisan Laporan -->
+    <div class="box box-pill">Penulisan Laporan</div>
+
+    <div class="caption">
+        <strong>Gambar 3.1</strong> Kerangka Penelitian
+    </div>
+
+    <!-- ====== SVG OVERLAY — Feedback loop OUTSIDE the box ====== -->
+    <!--
+        The WDLC box is 420px wide, centered in a 720px page.
+        Box left edge: (720-420)/2 = 150px,  right edge: 570px.
+        
+        Diamond center Y: need to calculate from top of page.
+        Approximate positions (px from top of page):
+        - top of group-box: ~268px
+        - Design box center: ~268 + 30 + 35 + 12+7 + 35 + 12+7 + 18 = ~268 + 156 = ~424px
+        - Diamond center: ~268 + 30 + (35+12+7)*4 + 35 + 16 + 52 = ~268 + 30 + 216 + 35 + 16 + 52 = ~617
+        
+        We need the arrow to:
+        1. Start from right edge of diamond (~490px from left) at diamond Y (~617)
+        2. Go right to outside box (~590px)
+        3. Go UP to Design Y level (~424)
+        4. Go left back into Design box right edge (~490px) with arrowhead
+        
+        Let me use relative percentages or just absolute positions.
+        Actually let me just use a full-page SVG with approximate coordinates.
+    -->
+    <svg style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:3;"
+         viewBox="0 0 720 1100">
+        <defs>
+            <marker id="ah" markerWidth="9" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                <polygon points="0 0, 9 3.5, 0 7" fill="#000" />
+            </marker>
+        </defs>
+
+        <!-- Horizontal line from diamond right to outside box -->
+        <!-- Diamond right tip approx x=445, y=635 -->
+        <!-- Box right edge = 570, go a bit further to x=595 -->
+        <!-- Design box right edge approx x=450, y=420 -->
+
+        <!-- "Tidak" horizontal line from diamond -->
+        <line x1="443" y1="636" x2="600" y2="636" stroke="#000" stroke-width="1.8" />
+        
+        <!-- "Tidak" label -->
+        <text x="460" y="628" font-size="11.5" font-weight="bold" font-family="'Times New Roman', serif" fill="#000">Tidak</text>
+
+        <!-- Vertical line going up (outside the box) -->
+        <line x1="600" y1="636" x2="600" y2="422" stroke="#000" stroke-width="1.8" />
+
+        <!-- Horizontal line going back to Design box with arrowhead -->
+        <line x1="600" y1="422" x2="455" y2="422" stroke="#000" stroke-width="1.8" marker-end="url(#ah)" />
+
+        <!-- "Iterasi Perbaikan" label on the vertical segment -->
+        <text x="612" y="535" font-size="10.5" font-weight="bold" font-family="'Times New Roman', serif"
+              fill="#000" transform="rotate(90, 612, 535)" text-anchor="middle">Iterasi Perbaikan</text>
+
+    </svg>
+
+</div>
+
+</body>
+</html>

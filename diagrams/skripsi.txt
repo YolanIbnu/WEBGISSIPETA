@@ -106,73 +106,15 @@ DAFTAR LAMPIRAN
 1
 BAB I PENDAHULUAN
 1.1Latar Belakang Masalah
-Industri kehutanan memegang peranan vital dalam perekonomian global dan
-keseimbangan ekologis, menuntut pengelolaan sumber daya alam yang transparan,
-akurat, dan berkelanjutan. Pengelolaan hasil hutan, khususnya kayu, memerlukan
-mekanisme monitoring yang ketat mulai dari penebangan hingga distribusi ke Tempat
-Penimbunan Kayu (TPK). Ketidakakuratan data dalam rantai pasok ini sering kali
-menyebabkan kerugian finansial yang signifikan bagi negara maupun perusahaan
-pengelola. Oleh karena itu, modernisasi sistem pencatatan dan pemetaan Stok Kayu Jati
-menjadi kebutuhan mendesak di era transformasi digital saat ini.
-Indonesia sebagai salah satu negara penghasil kayu tropis terbesar di dunia
-menghadapi tantangan besar dalam manajemen logistik kehutanan. Pengelolaan Stok
-Kayu Jati di TPK sering kali masih mengandalkan metode konvensional yang rentan
-terhadap human error dan manipulasi data. Kondisi ini memperlambat proses
-pengambilan keputusan strategis terkait penjualan dan distribusi kayu.
-TPK Cabak, sebagai salah satu pusat penimbunan kayu, menghadapi tantangan
-nyata dalam hal efisiensi pencarian lokasi kaveling dan pembaruan data stok yang masih
-bersifat semi-manual. Petugas lapangan sering kali kesulitan menemukan lokasi spesifik
-tumpukan kayu tertentu karena luasnya area dan minimnya petunjuk visual secara digital.
-Ketiadaan peta digital yang terintegrasi dengan data stok menyebabkan waktu pelayanan
-menjadi lama dan audit stok menjadi proses yang melelahkan.
-Permasalahan di TPK Cabak tersebut menuntut adanya sistem yang tidak hanya
-sekadar mencatat angka persediaan, tetapi juga memetakan posisi kayu secara visual.
-Perkembangan teknologi informasi, khususnya Sistem Informasi Geografis (SIG),
-menawarkan solusi komprehensif. Okyusmarianto, Sadjati, dan Ikhsani (2024)
-menegaskan bahwa pembangunan sistem informasi WebGIS sangat krusial untuk
-2
-evaluasi lahan dan hutan. Pemanfaatan WebGIS ini juga dapat diimplementasikan secara
-mikro untuk pemetaan lokasi spesifik seperti persebaran stok barang. Ate (2024) dalam
-penelitiannya menunjukkan bahwa WebGIS mampu memetakan lokasi secara presisi,
-yang dalam konteks ini sangat ideal untuk memetakan tumpukan kayu (kaveling) di area
-TPK yang luas.
-Sistem inventarisasi merupakan komponen krusial lain yang harus bersinergi
-dengan pemetaan spasial. Yasin dan Zaini (2024) menyoroti bahwa sistem inventarisasi
-manual memiliki banyak kelemahan, sehingga migrasi ke sistem berbasis web menjadi
-solusi yang tidak terelakkan. Transformasi digital dalam inventarisasi kayu memerlukan
-pendekatan spesifik mengingat kompleksitas variabel seperti jenis kayu, volume, dan
-kelas kualitas yang memerlukan basis data terstruktur. Hal ini didukung oleh Agustine
-dan Handayani (2025) yang berhasil membuktikan bahwa digitalisasi aplikasi inventory
-produksi kayu sangat efektif untuk meningkatkan efisiensi pencatatan barang masuk dan
-keluar.
-Integrasi antara data tabular inventaris dan data spasial lokasi kaveling menjadi
-kunci penyelesaian masalah ini. Diperlukan sebuah arsitektur sistem modern yang
-mampu menangani beban data besar sekaligus menyajikan antarmuka peta yang
-responsif. Pengembangan sistem ini akan memanfaatkan teknologi web modern yang
-berfokus pada kecepatan rendering halaman dan pengelolaan basis data secara real-time.
-Dengan fitur pembaruan seketika (real-time), saat petugas memperbarui status stok atau
-memindahkan lokasi kaveling, informasi tersebut akan langsung diketahui oleh
-administrator atau pimpinan tanpa adanya jeda waktu (lag informasi).
-Untuk memastikan kebutuhan pengguna terpenuhi secara bertahap,
-pengembangan sistem informasi ini akan menggunakan Metode Web Development Life Cycle (WDLC). Pendekatan
-ini memungkinkan interaksi intensif antara pengembang dan pengguna akhir selama
-proses perancangan. Aprilisa dan Aulia (2024) serta Asfari (2024) menyatakan bahwa
-perancangan sistem inventaris menggunakan metode Web Development Life Cycle (WDLC) mampu menghasilkan
-3
-perangkat lunak yang sesuai dengan kebutuhan operasional perusahaan, meminimalisir
-kesalahan fungsional, dan meningkatkan akurasi data stok barang secara signifikan.
-Penelitian ini berusaha mengisi celah penelitian (research gap) dengan
-mengintegrasikan teknologi pemetaan WebGIS interaktif dan manajemen inventaris
-logistik yang berjalan secara real-time. Sebagian besar penelitian sebelumnya, seperti
-yang dilakukan Agustine dan Handayani (2025), berfokus pada inventaris kayu namun
-belum menyertakan aspek pemetaan spasial mendetail. Sementara penelitian WebGIS
-lainnya sering kali terpisah dari modul inventaris logistik yang dinamis.
-Berdasarkan urgensi modernisasi di TPK Cabak dan potensi teknologi yang ada,
-penelitian ini bertujuan merancang sebuah sistem komprehensif. Solusi yang ditawarkan
-diharapkan mampu menjawab tantangan efisiensi dan akurasi data. Atas dasar pemikiran
-tersebut, penulis mengangkat judul penelitian: "Rancang Bangun Website Sistem
-Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak
-Menggunakan Metode Web Development Life Cycle (WDLC)".
+Industri kehutanan memiliki peran penting dalam perekonomian dan keseimbangan lingkungan. Pengelolaan hasil hutan, khususnya kayu, membutuhkan pemantauan yang ketat dari proses penebangan hingga distribusi ke Tempat Penimbunan Kayu (TPK). Kesalahan data dalam rantai pasok ini sering kali menimbulkan kerugian finansial yang besar. Oleh karena itu, perbaikan sistem pencatatan dan pemetaan stok kayu jati sangat dibutuhkan pada era digital saat ini.
+Pengelolaan stok kayu jati di TPK sering kali masih menggunakan cara konvensional yang rentan terhadap kesalahan manusia (human error) dan manipulasi data. Hal ini memperlambat proses pengambilan keputusan terkait penjualan dan distribusi kayu.
+TPK Cabak, Kecamatan Jiken, Kabupaten Blora, Provinsi Jawa Tengah, sebagai salah satu pusat penimbunan kayu, menghadapi masalah dalam pencarian lokasi kaveling dan pembaruan data stok yang masih dilakukan secara semi-manual. Petugas lapangan sering kesulitan menemukan tumpukan kayu tertentu karena area yang luas dan tidak adanya petunjuk lokasi digital. Tidak adanya peta digital yang terhubung dengan data stok membuat pelayanan menjadi lambat dan proses pemeriksaan stok menjadi sulit.
+Meskipun TPK Cabak telah mengoperasikan Sistem Informasi Hasil Kayu (SISHK) yang merupakan sistem pencatatan nasional milik Perum Perhutani, sistem tersebut masih bersifat tabular dan terbatas pada pencatatan data administratif hasil hutan tanpa menyediakan fitur visualisasi peta atau pelacakan lokasi kaveling secara spasial. Dengan demikian, terdapat kebutuhan akan sistem pendukung yang mampu melengkapi keterbatasan SISHK dengan menghadirkan representasi geografis dari posisi tumpukan kayu di lapangan.
+Masalah di TPK Cabak ini membutuhkan sistem yang tidak hanya mencatat jumlah persediaan, tetapi juga menampilkan posisi kayu secara visual. Sistem Informasi Geografis (SIG) menawarkan solusi yang tepat untuk hal ini. Okyusmarianto et al. (2024) menyatakan bahwa pembangunan sistem informasi WebGIS sangat penting untuk evaluasi lahan dan hutan. Pemanfaatan WebGIS juga dapat digunakan untuk memetakan lokasi barang secara spesifik. Ate et al. (2024a) menunjukkan bahwa WebGIS mampu memetakan lokasi dengan akurat, yang sangat cocok untuk memetakan tumpukan kayu di area TPK.
+Sistem inventarisasi juga merupakan bagian penting yang harus digabungkan dengan pemetaan lokasi. Yasin & Baijuri (2024) menyebutkan bahwa sistem inventarisasi manual memiliki banyak kekurangan, sehingga peralihan ke sistem berbasis web menjadi solusi utama. Hal ini sejalan dengan Nofita Agustine & Handayani (2025) yang membuktikan bahwa digitalisasi aplikasi inventaris kayu sangat efektif untuk meningkatkan efisiensi pencatatan barang.
+Penggabungan antara data inventaris dan data lokasi kaveling menjadi kunci penyelesaian masalah ini. Dibutuhkan sistem yang mampu menangani data besar sekaligus menampilkan peta yang cepat dan responsif. Pengembangan sistem ini akan memanfaatkan teknologi web modern untuk mempercepat pemuatan halaman dan pengelolaan basis data secara real-time. Dengan fitur pembaruan seketika, saat petugas mengubah status stok atau lokasi kaveling, informasi tersebut akan langsung diketahui oleh pimpinan tanpa ada jeda waktu (lag informasi).
+Untuk memastikan kebutuhan pengguna terpenuhi, pengembangan sistem ini akan menggunakan Metode Web Development Life Cycle (WDLC). Aprilisa & Aulia (2024a) serta Ilyas Asfari (2024) menyatakan bahwa perancangan sistem menggunakan metode ini mampu menghasilkan perangkat lunak yang sesuai dengan kebutuhan perusahaan, mengurangi kesalahan fungsi, dan meningkatkan akurasi data stok.
+Penelitian ini bertujuan merancang sistem terpadu untuk menjawab masalah efisiensi dan akurasi data di TPK Cabak. Atas dasar pemikiran tersebut, penulis mengangkat judul penelitian: "Rancang Bangun Website Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak Menggunakan Metode Web Development Life Cycle (WDLC)".
 1.2Rumusan Masalah
 Berdasarkan identifikasi masalah di atas, maka rumusan masalah dalam penelitian
 ini adalah:
@@ -184,6 +126,10 @@ peta interaktif agar mempermudah pelacakan fisik di lapangan?
 3. Siapa saja pengguna yang akan berinteraksi dengan sistem ini, serta bagaimana
 merancang pembagian hak akses (role) mereka dalam proses pengelolaan data
 inventaris kayu?
+4. Bagaimana tingkat usability (kemudahan penggunaan) Website Sistem Informasi
+Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak yang
+telah dibangun berdasarkan pengukuran menggunakan metode System Usability
+Scale (SUS)?
 4
 1.3Tujuan Penelitian
 Berdasarkan rumusan masalah di atas, tujuan dari penelitian ini adalah sebagai berikut:
@@ -195,6 +141,9 @@ interaktif berbasis WebGIS guna mempermudah pelacakan fisik di lapangan.
 3. Merancang pembagian hak akses (role) pengguna dalam sistem untuk
 mengelola proses pengelolaan data inventaris kayu secara terstruktur dan
 aman.
+4. Mengukur tingkat usability (kemudahan penggunaan) Website Sistem Informasi
+Geografis (SIG) yang telah dibangun menggunakan metode System Usability
+Scale (SUS) untuk mengevaluasi penerimaan pengguna terhadap sistem.
 1.4 Manfaat Penelitian
 Adapun manfaat yang diharapkan dari penelitian ini adalah sebagai berikut:
 1.4.1 Manfaat Teoritis
@@ -229,6 +178,11 @@ Real-time Subscription.
 5. Sistem hanya mencakup proses inventarisasi (barang masuk, mutasi lokasi,
 barang keluar) dan pemetaan, tidak membahas aspek transaksi keuangan atau
 penggajian pegawai.
+1.6 Lokasi Penelitian
+Penelitian ini dilaksanakan di Tempat Penimbunan Kayu (TPK) Cabak yang berlokasi di Jl. Cabak – Nglobo Km 0.7 Ds. Cabak, Kecamatan Jiken, Kabupaten Blora, Provinsi Jawa Tengah. TPK Cabak merupakan salah satu unit fasilitas penimbunan kayu yang dikelola oleh Perum Perhutani dan difungsikan sebagai titik transit utama bagi hasil tebangan kayu jati dari kawasan hutan produksi di wilayah Kesatuan Pemangkuan Hutan (KPH) Cepu sebelum didistribusikan ke konsumen atau industri pengolahan lanjutan.
+Secara geografis, area TPK Cabak mencakup kawasan seluas kurang lebih 250 hektar yang terbagi ke dalam beberapa blok kaveling tumpukan kayu. Untuk memberikan gambaran visual yang lebih jelas mengenai cakupan dan lokasi penelitian, peta lokasi Tempat Penimbunan Kayu (TPK) Cabak yang telah didigitasi menggunakan perangkat lunak QGIS disajikan pada Gambar 1.1 berikut.
+[Sisipkan Gambar Peta Lokasi TPK Cabak]
+Gambar 1.1 Peta Lokasi Tempat Penimbunan Kayu (TPK) Cabak Tahun 2026
 6
 BAB II TINJAUAN PUSTAKA DAN LANDASAN TEORI
 2.1 Sistem Informasi dan Inventarisasi
@@ -648,7 +602,29 @@ platform modern.
 Tabel 2.1 Perbandingan Penelitian Terdahulu dan Penelitian Saat Ini
 20
 BAB III METODOLOGI PENELITIAN
-3.1 Kerangka Pemikiran
+3.1 Objek Penelitian
+3.1.1 Profil Tempat Penimbunan Kayu (TPK) Cabak
+Tempat Penimbunan Kayu (TPK) Cabak merupakan salah satu unit fasilitas logistik kehutanan yang berada di bawah naungan Perum Perhutani. TPK ini berlokasi di Jl. Cabak – Nglobo Km 0.7 Ds. Cabak, Kecamatan Jiken, Kabupaten Blora, Provinsi Jawa Tengah. Dalam hierarki organisasi Perum Perhutani, TPK Cabak berada di bawah Kesatuan Pemangkuan Hutan (KPH) Cepu yang merupakan bagian dari Divisi Regional Jawa Tengah.
+TPK Cabak difungsikan sebagai titik transit dan penimbunan utama bagi hasil tebangan kayu jati dan rimba dari kawasan hutan produksi di wilayah Blora dan sekitarnya. Kegiatan operasional di TPK Cabak meliputi penerimaan kayu dari petak tebangan, pengukuran dan pengujian mutu (grading), penomoran batang (barcode), pencatatan administrasi, penyimpanan dalam kaveling tumpukan, hingga proses distribusi atau penjualan kepada konsumen dan industri pengolahan lanjutan.
+Area TPK Cabak mencakup kawasan seluas kurang lebih 250 hektar yang terbagi ke dalam beberapa blok kaveling tumpukan kayu, meliputi Blok A hingga Blok I dengan pembagian zona yang terstruktur. Setiap blok memiliki kapasitas penyimpanan yang telah ditentukan dan dikelola oleh petugas lapangan yang bertanggung jawab sesuai dengan jabatannya masing-masing.
+3.1.2 Struktur Organisasi TPK Cabak
+Berikut ini adalah struktur organisasi yang terdapat pada TPK Cabak:
+[Sisipkan Gambar Bagan Struktur Organisasi TPK Cabak]
+Gambar 3.2 Struktur Organisasi TPK Cabak
+Sumber: Dokumentasi TPK Cabak, 2026
+Gambar 3.2 menunjukkan struktur organisasi kepengurusan TPK Cabak, Kecamatan Jiken, Kabupaten Blora. Berikut adalah penjelasan mengenai tugas dan tanggung jawab dari masing-masing bagian dalam kepengurusan tersebut:
+1. Kepala TPK: bertanggung jawab untuk memimpin dan mengawasi seluruh kegiatan operasional pengelolaan kayu di TPK Cabak, mulai dari perencanaan, pelaksanaan, hingga pelaporan. Selain itu, Kepala TPK menjadi penghubung utama dengan pihak Kesatuan Pemangkuan Hutan (KPH) Cepu dan bertanggung jawab atas pengambilan keputusan strategis terkait distribusi dan penjualan kayu.
+2. Penguji: bertanggung jawab dalam melakukan pengukuran dimensi (panjang, diameter, dan kubikasi) serta pengujian mutu kualitas (grading) terhadap setiap batang kayu yang masuk ke TPK Cabak. Hasil pengujian ini menjadi dasar dalam menentukan klasifikasi sortimen kayu yaitu AI, AII, dan AIII yang mempengaruhi nilai jual kayu.
+3. Mandor Penyerahan: bertanggung jawab atas proses penyerahan dan distribusi kayu kepada pembeli atau pihak industri pengolahan lanjutan. Mandor Penyerahan memastikan bahwa kayu yang diserahkan sesuai dengan dokumen administrasi dan spesifikasi yang telah disepakati.
+4. SP TU Keuangan: bertanggung jawab atas pengelolaan administrasi keuangan TPK, mulai dari pencatatan pemasukan dan pengeluaran, pengelolaan pembayaran, hingga penyusunan laporan keuangan secara transparan dan terdokumentasi.
+5. Operator SISHK: bertugas mengoperasikan Sistem Informasi Hasil Kayu (SISHK) milik Perum Perhutani untuk pencatatan resmi hasil hutan. SISHK bersifat tabular dan belum memiliki fitur visualisasi peta, sehingga menjadi salah satu latar belakang dibangunnya sistem SIPETA TPK sebagai pelengkap berbasis WebGIS.
+6. Operator Komputer: bertugas membantu pengolahan data secara digital, pembuatan dokumen administrasi, serta mendukung kebutuhan komputasi operasional harian TPK Cabak.
+7. Mandor Penerimaan: bertanggung jawab terhadap proses penerimaan kayu masuk dari petak tebangan hutan produksi. Mandor Penerimaan melakukan verifikasi jumlah batang, jenis kayu, dan kelengkapan dokumen angkutan sebelum kayu ditempatkan di area kaveling.
+8. Mandor Barcode: bertugas melakukan penomoran dan pelabelan barcode pada setiap batang kayu untuk keperluan identifikasi, pelacakan, dan pencatatan dalam sistem inventaris.
+9. Mandor AI, AII, dan AIII: merupakan mandor kaveling yang bertanggung jawab atas pengelolaan dan penataan tumpukan kayu pada masing-masing area kaveling berdasarkan sortimen. Sortimen AI merupakan kayu kualitas terbaik, AII kualitas menengah, dan AIII kualitas standar.
+10. Mandor Angkutan: bertanggung jawab atas proses pengangkutan dan mobilisasi kayu, baik perpindahan kayu di dalam area TPK maupun pengiriman distribusi kayu ke luar TPK Cabak.
+11. Penjaga: bertugas menjaga keamanan seluruh area TPK Cabak untuk mencegah terjadinya pencurian, kerusakan, maupun gangguan terhadap aset kayu yang tersimpan di area penimbunan.
+3.2 Kerangka Pemikiran
 Kerangka pemikiran adalah suatu model konseptual yang menjelaskan
 bagaimana suatu penelitian akan dilakukan, termasuk variabel-variabel yang terlibat
 dan hubungan antar variabel tersebut. Dalam konteks penelitian ini, kerangka
@@ -1528,17 +1504,18 @@ Setelah tahap pengembangan dan pengujian sistem selesai dilakukan, sistem SIPETA
 2) GitHub, sebagai platform version control berbasis Git yang akan digunakan untuk mengelola seluruh kode sumber (source code) sistem SIPETA TPK. Penggunaan GitHub memungkinkan pelacakan perubahan kode secara historis, kolaborasi pengembangan melalui mekanisme branching dan pull request, serta integrasi langsung dengan Netlify untuk proses deployment otomatis setiap kali terjadi perubahan pada branch utama (main/production).
 Integrasi antara GitHub dan Netlify akan membentuk alur kerja Continuous Integration/Continuous Deployment (CI/CD) yang efisien, di mana setiap perubahan kode yang di-push ke repository GitHub secara otomatis akan memicu proses build dan deployment ke Netlify tanpa memerlukan intervensi manual.
 55
-3.10 Alokasi Waktu Penelitian
-Penelitian ini direncanakan berlangsung selama enam bulan, mulai dari bulan September 2025 hingga Februari 2026. Rincian alokasi waktu untuk setiap tahapan penelitian disajikan pada Tabel 3.18 berikut.
+3.11 Alokasi Waktu Penelitian
+Penelitian ini direncanakan berlangsung selama enam bulan, mulai dari bulan September 2025 hingga Februari 2026. Rincian alokasi waktu untuk setiap tahapan penelitian disajikan pada Tabel 3.19 berikut.
 No	Kegiatan	Sep 2025	Okt 2025	Nov 2025	Des 2025	Jan 2026	Feb 2026
 1	Identifikasi Masalah dan Studi Literatur	✓	 	 	 	 	 
-2	Pengumpulan Data dan Wawancara	✓	✓	 	 	 	 
+2	Pengumpulan Data (Observasi dan Wawancara)	✓	✓	 	 	 	 
 3	Analisis Kebutuhan Sistem	 	✓	 	 	 	 
 4	Perancangan Sistem (UML, ERD, UI)	 	✓	✓	 	 	 
 5	Implementasi dan Pengembangan Sistem	 	 	✓	✓	 	 
 6	Prapemrosesan Data Spasial (QGIS)	 	 	✓	 	 	 
 7	Pengujian Sistem (Black Box Testing)	 	 	 	✓	✓	 
-8	Deployment ke Netlify dan GitHub	 	 	 	 	✓	 
-9	Penyusunan Laporan Skripsi	✓	✓	✓	✓	✓	✓
-10	Revisi dan Finalisasi	 	 	 	 	✓	✓
-Tabel 3.18 Alokasi Waktu Penelitian (Timeline)
+8	Usability Testing (System Usability Scale/SUS)	 	 	 	 	✓	 
+9	Deployment ke Netlify dan GitHub	 	 	 	 	✓	 
+10	Penyusunan Laporan Skripsi	✓	✓	✓	✓	✓	✓
+11	Revisi dan Finalisasi	 	 	 	 	✓	✓
+Tabel 3.19 Alokasi Waktu Penelitian (Timeline)

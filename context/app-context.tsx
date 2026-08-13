@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from "react";
 import { TPK_GEOJSON_DATA, WoodBlock, GeoJSONCollection } from "@/lib/geojson-data";
 import {
   fetchAllStokKayu,
@@ -146,9 +146,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       ]);
 
       if (dbData && dbData.length > 0) {
+        // Use Map for O(n) lookup instead of O(n²) find
+        const dbMap = new Map(dbData.map(d => [d.id, d]));
         setWoodBlocks((prevBlocks) => {
           return prevBlocks.map(block => {
-            const dbItem = dbData.find(d => d.id === block.id);
+            const dbItem = dbMap.get(block.id);
             return dbItem ? { ...block, ...dbItem } : block;
           });
         });
@@ -225,9 +227,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
         if (dbData && dbData.length > 0) {
           console.log("✅ AppProvider: Stocks loaded", dbData.length);
+          // Use Map for O(n) lookup instead of O(n²) find
+          const dbMap = new Map(dbData.map(d => [d.id, d]));
           setWoodBlocks((prevBlocks) => {
             return prevBlocks.map(block => {
-              const dbItem = dbData.find(d => d.id === block.id);
+              const dbItem = dbMap.get(block.id);
               return dbItem ? { ...block, ...dbItem } : block;
             });
           });
@@ -386,16 +390,18 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, [user, logout]);
 
   // Update GeoJSON when wood blocks change (Reactive)
-  const geoJsonData: GeoJSONCollection = {
+  // Use Map for O(n) lookup instead of O(n²) find
+  const woodBlocksMap = useMemo(() => new Map(woodBlocks.map(b => [b.id, b])), [woodBlocks]);
+  const geoJsonData: GeoJSONCollection = useMemo(() => ({
     type: "FeatureCollection",
     features: TPK_GEOJSON_DATA.features.map((feature) => {
-      const updatedBlock = woodBlocks.find((b) => b.id === feature.properties.id);
+      const updatedBlock = woodBlocksMap.get(feature.properties.id);
       return {
         ...feature,
         properties: updatedBlock || feature.properties,
       };
     }),
-  };
+  }), [woodBlocksMap]);
 
   return (
     <AppContext.Provider

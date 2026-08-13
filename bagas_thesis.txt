@@ -1,0 +1,1495 @@
+Universitas Bakrie 
+1 
+ 
+BAB I 
+PENDAHULUAN 
+ 
+1.1 Latar Belakang 
+Organisasi Rukun Tetangga (RT) dan Rukun Warga (RW) merupakan mitra 
+pemerintah kelurahan. Menurut Peraturan Menteri Dalam Negeri (Permendagri) 
+No. 5 tahun 2007, RT/RW adalah lembaga yang dibentuk melalui musyawarah 
+masyarakat setempat dalam rangka pelayanan pemerintahan dan kemasyarakatan 
+yang ditetapkan oleh Pemerintah Desa atau Lurah. RT/RW mempunyai fungsi 
+sebagai pengkoordinasi antar warga, jembatan aspirasi antar sesama masyarakat 
+dengan pemerintah daerah, menjadi penengah penyelesaian masalah masalah 
+kemasyarakatan yang dihadapi warga, sedangkan tugas RT/RW antara lain 
+membantu pemerintah dalam tugas-tugas pelayanan kepada masyarakat yang 
+menjadi tanggung jawab pemerintah kota, memelihara kerukunan hidup warga, 
+menyusun rencana dan melak-sanakan pembangunan dengan mengembangkan 
+aspirasi dan swadaya murni masyarakat (Zuhdi et al., 2019). 
+Perkembangan teknologi informasi dan komunikasi memberikan peluang 
+besar bagi perbaikan tata kelola pemerintahan dan pelayanan publik. Di Indonesia, 
+upaya digitalisasi telah digalakkan melalui inisiatif Desa Digital yang bertujuan 
+menciptakan pelayanan masyarakat yang modern, transparan, efisien, dan 
+responsif. Program ini menjadi langkah nyata dalam mendukung transformasi 
+digital di berbagai aspek pemerintahan desa, seperti administrasi, penyebaran 
+informasi, dan pelayanan publik. Dalam era Revolusi Industri 4.0, sektor 
+pemerintahan menjadi salah satu bidang yang terdampak signifikan (Imamah F & 
+Wicaksono I, 2023). 
+Berdasarkan hasil wawancara yang dilakukan dengan Ketua RT 02 RW 023 
+Perumahan Cluster Alamanda, Bapak Toto Sobari, diketahui bahwa struktur 
+organisasi RT saat ini sudah memiliki pembagian tugas yang jelas. Namun, 
+pelaksanaan tugas tersebut masih menghadapi sejumlah kendala operasional yang
+Universitas Bakrie 
+1 
+ 
+menghambat kinerja pengurus. Permasalahan mendasar terletak pada pengelolaan 
+administrasi dan komunikasi yang masih dijalankan secara konvensional, sehingga 
+efisiensi dan transparansi pelayanan belum optimal Pengelolaan keuangan RT saat 
+ini masih dilakukan secara manual dan belum terintegrasi dalam suatu sistem 
+informasi, sehingga proses pencatatan, rekapitulasi, serta pemantauan iuran warga 
+belum berjalan secara optimal. Hal ini berpotensi menimbulkan ketidakteraturan 
+data serta menyulitkan pengelolaan informasi warga secara berkelanjutan. 
+Selain aspek keuangan, urgensi digitalisasi juga didorong oleh pola 
+penggunaan teknologi di lingkungan warga. Berdasarkan hasil observasi lapangan 
+dan wawancara dengan pengurus, teridentifikasi bahwa dari total 67 Kepala 
+Keluarga aktif / terdata, diperkirakan lebih dari 95% warga memiliki dan aktif 
+menggunakan smartphone dalam aktivitas sehari-hari. Sebaliknya, penggunaan 
+perangkat komputer atau laptop cenderung terbatas pada kalangan pelajar dan 
+pekerja, dengan estimasi ketersediaan di rumah tangga hanya berkisar 30-40%. 
+Kesenjangan aksesibilitas perangkat ini, ditambah dengan tidak tersedianya fasilitas 
+komputer inventaris di kantor RT, menjadi landasan utama mengapa pengembangan 
+sistem informasi berbasis mobile menjadi solusi yang paling relevan dibandingkan 
+sistem berbasis desktop atau website. 
+Pengarsipan dokumen dan surat masih dilakukan dalam bentuk fisik, yang 
+meningkatkan risiko kehilangan, kerusakan, dan keterbatasan akses terhadap 
+dokumen penting. Kemudian mekanisme penyampaian informasi kepada warga 
+belum didukung oleh media digital yang terpusat, sehingga informasi sering kali 
+tidak tersampaikan secara merata dan tepat waktu. Belum adanya sistem informasi 
+yang terintegrasi menyebabkan beban pengelolaan kegiatan RT bertumpu pada 
+pengurus tertentu, sehingga efektivitas koordinasi dan pelayanan kepada warga 
+menjadi kurang optimal. 
+Berdasarkan permasalahan tersebut, diperlukan sebuah rancangan sistem 
+informasi manajemen lingkungan warga berbasis mobile yang mampu 
+mengintegrasikan pengelolaan data, administrasi, dan penyampaian informasi 
+secara terstruktur. Perancangan sistem ini dilakukan dengan pendekatan User 
+Centered Design agar solusi yang dihasilkan sesuai dengan kebutuhan dan 
+Universitas Bakrie 
+ 
+2 
+ 
+karakteristik pengguna. 
+Metode yang dipilih dalam perancangan sistem ini adalah User Centered 
+Design (UCD). UCD dinilai paling tepat karena karakteristik pengguna sistem ini 
+sangat spesifik, yaitu pengurus RT yang terbiasa dengan pola kerja manual dan 
+warga dengan beragam latar belakang. Dengan melibatkan pengguna sejak tahap 
+awal (wawancara) hingga evaluasi desain, diharapkan sistem yang dirancang benar-
+benar usable (dapat digunakan), mudah dipahami, dan sesuai dengan kebutuhan 
+nyata warga RT 02 RW 023 Perumahan Cluster Alamanda. 
+ 
+1.2 Identifikasi Masalah 
+Dari uraian latar belakang tersebut, dapat disimpulkan adanya beberapa 
+masalah yang dihadapi, yaitu: 
+• Pencatatan keuangan di RT 02 RW 023 Perumahan Cluster Alamanda masih 
+dilakukan dengan aplikasi sederhana di ponsel tanpa sistem pengelompokan 
+otomatis. Pendataan warga juga masih menggunakan buku besar. Kondisi ini 
+menyulitkan proses pencarian data, menyebabkan keterlambatan dalam 
+pembaruan informasi, serta berpotensi menghasilkan kesalahan pencatatan 
+yang bisa mengurangi transparansi dan akurasi data. 
+• Pengelolaan data di lingkungan RT masih dilakukan secara tradisional, seperti 
+pencatatan manual dan penyimpanan dokumen dalam bentuk fisik. Hal ini 
+menyebabkan proses administrasi menjadi lambat, data sulit diperbarui atau 
+dicari kembali, serta meningkatkan risiko kehilangan atau kerusakan dokumen 
+penting. 
+• Arsip surat masih disimpan dalam bentuk fisik, meskipun proses pembuatan 
+surat berjalan cukup cepat. Kondisi ini rentan terhadap kerusakan akibat faktor 
+luar, seperti banjir yang pernah terjadi sebelumnya. 
+ 
+1.3 Rumusan Masalah 
+Berdasarkan identifikasi masalah dari Penelitian ini, maka rumusan masalah 
+sebagai berikut: 
+Universitas Bakrie 
+ 
+3 
+ 
+1. Bagaimana merancang prototipe Sistem Informasi Manajemen Lingkungan 
+Warga berbasis mobile berdasarkan kebutuhan pengguna menggunakan 
+metode User Centered Design? 
+2. Bagaimana tingkat usability dari prototipe yang dirancang berdasarkan hasil 
+pengujian System Usability Scale (SUS)? 
+ 
+1.4 Batasan Penelitian 
+Adapun batasan dari penelitian ini berdasarkan latar belakang yang telah 
+diuraikan diatas, yaitu: 
+1. Penelitian ini hanya mencakup wilayah RT 02 RW 023, Karang Satria, 
+Tambun Utara, Kabupaten Bekasi. Tidak mencakup wilayah lain seperti RT 
+atau kelurahan yang berbeda. 
+2. Penelitian berfokus pada tiga fitur utama yaitu pengelolaan keuangan, 
+pengajuan surat RT, dan pendataan warga secara online. 
+3. Hasil akhir penelitian ini terbatas pada desain antarmuka (User Interface) 
+dan prototipe interaktif (High-Fidelity Prototype), sehingga tidak mencakup 
+tahap penulisan kode program (coding), pembuatan database fungsional, 
+maupun penerapan aspek keamanan sistem (system security) dan enkripsi 
+data. 
+4. Pengujian sistem dilakukan terbatas pada pengujian kegunaan (usability 
+testing) terhadap prototipe yang dirancang, bukan pengujian fungsi sistem 
+secara keseluruhan (black box/white box testing). 
+5. Arus kas dalam penelitian ini dibatasi pada pencatatan pemasukan iuran 
+warga. 
+6. Pemodelan sistem menggunakan Unified Modeling Language (UML) 
+dibatasi pada pembuatan Use Case Diagram, Activity Diagram, dan Class 
+Diagram untuk menggambarkan fungsionalitas dan struktur data inti sistem. 
+ 
+1.5 Tujuan Penelitian 
+Berdasarkan fokus penelitian pada manfaat aplikasi mobile lingkup RT, 
+tujuan penelitian dapat dijabarkan sebagai berikut: 
+Universitas Bakrie 
+ 
+4 
+ 
+1. Merancang desain solusi berupa High-Fidelity Prototype (prototipe 
+interaktif) untuk Sistem Informasi Manajemen Lingkungan Warga berbasis 
+mobile menggunakan metode User Centered Design (UCD). 
+2. Melakukan pengujian (evaluation) terhadap rancangan desain prototipe 
+tersebut menggunakan metode Usability Testing untuk mengukur tingkat 
+kemudahan penggunaan, efisiensi, dan kepuasan pengguna sebelum tahap 
+pengembangan lebih lanjut. 
+ 
+1.6 Manfaat Penelitian 
+Penelitian ini diharapkan dapat memberikan manfaat sebagai berikut: 
+1. Secara Teoritis 
+• Memberikan kontribusi dalam pengembangan ilmu pengetahuan di 
+bidang sistem informasi, khususnya terkait penerapan metode User 
+Centered Design (UCD) dalam merancang aplikasi berbasis mobile. 
+• Menjadi bahan acuan bagi penelitian selanjutnya dalam mengkaji strategi 
+perancangan sistem digital yang berorientasi pada kebutuhan pengguna. 
+2. Secara Akademis 
+• Menjadi referensi bagi mahasiswa atau peneliti lain dalam menyusun 
+penelitian serupa, khususnya yang berkaitan dengan digitalisasi 
+administrasi pada lingkungan masyarakat skala kecil. 
+• Memberikan contoh implementasi nyata dari konsep pengembangan 
+sistem informasi berbasis kebutuhan pengguna, sehingga dapat dijadikan 
+bahan pembelajaran dalam bidang akademik. 
+3. Bagi Lingkungan 
+• Membantu pengurus dan warga RT 02 RW 023 Perumahan Cluster 
+Alamanda dalam meningkatkan efisiensi pengelolaan administrasi, 
+keuangan, dan pendataan warga melalui sistem informasi berbasis mobile. 
+• Mendorong terciptanya lingkungan masyarakat yang lebih transparan, 
+partisipatif, dan terorganisasi melalui digitalisasi proses administrasi RT. 
+Universitas Bakrie 
+ 
+5 
+ 
+• Menjadi contoh penerapan transformasi digital di tingkat komunitas kecil 
+(RT) yang dapat diadaptasi oleh wilayah lain dalam meningkatkan 
+pelayanan administrasi dan komunikasi antarwarga. 
+4. Bagi Peneliti 
+• Memberikan pengalaman langsung dalam penerapan metode User 
+Centered Design (UCD) pada pengembangan sistem informasi berbasis 
+mobile. 
+• Menambah wawasan dan keterampilan peneliti dalam menganalisis 
+kebutuhan pengguna, merancang antarmuka yang berorientasi pada 
+pengalaman pengguna (user experience), serta melakukan evaluasi 
+usability secara sistematis. 
+• Menjadi bekal akademik dan profesional bagi peneliti dalam 
+mengembangkan solusi digital berbasis masyarakat yang relevan dengan 
+bidang keahlian Sistem Informasi. 
+ 
+1.7 Sistematika Penulisan 
+Berikut ini merupakan penjabaran sistematika penulisan dalam penelitian 
+sebagai berikut. 
+BAB I PENDAHULUAN 
+Bab ini berisi latar belakang masalah yang mendasari dilakukannya 
+penelitian, yang mencakup permasalahan yang dihadapi oleh pengurus RT 
+02 RW 023 dalam pengelolaan keuangan, administrasi, dan pendataan 
+warga. Identifikasi masalah dilakukan melalui wawancara dengan pengurus 
+RT untuk mengetahui kendala dalam sistem yang ada. Perumusan masalah 
+mengacu pada permasalahan utama yang ditemukan, yaitu pencatatan 
+manual, kurangnya transparansi, serta komunikasi yang belum maksimal 
+antar pengurus dan warga. Batasan masalah difokuskan pada perancangan 
+sistem informasi berbasis mobile yang mencakup pengelolaan keuangan, 
+administrasi surat, dan pendataan warga di RT 02 RW 023. 
+BAB II TINJAUAN PUSTAKA 
+Bab ini berisi kajian teori yang relevan dengan topik penelitian, 
+Universitas Bakrie 
+ 
+6 
+ 
+meliputi teori tentang sistem informasi, administrasi RT, pencatatan 
+keuangan digital, pengelolaan surat menyurat, pengumuman digital, dan 
+metode User Centered Design. Selain itu, bab ini juga memuat tinjauan 
+penelitian terdahulu yang memiliki kesamaan atau relevansi dengan 
+penelitian ini. 
+BAB III METODOLOGI PENELITIAN 
+Bab ini menjelaskan secara rinci metode penelitian yang digunakan, 
+yaitu User Centered Design, meliputi tahapan-tahapan metode, teknik 
+pengumpulan data (wawancara, observasi, studi pustaka), analisis kebutuhan 
+pengguna, serta perancangan sistem yang akan dibangun. 
+BAB IV HASIL DAN PEMBAHASAN 
+Bab ini membahas hasil analisis sistem yang sedang berjalan 
+berdasarkan data wawancara dan observasi, analisis permasalahan, 
+kebutuhan sistem, serta perancangan sistem usulan. Perancangan mencakup 
+diagram UML (Use Case Diagram, Activity Diagram, Sequence Diagram), 
+desain prototipe, dan rancangan basis data. 
+BAB V KESIMPULAN DAN SARAN 
+Bab ini berisi kesimpulan dari hasil penelitian yang telah dilakukan 
+dan saran untuk pengembangan sistem lebih lanjut agar dapat memberikan 
+manfaat yang lebih optimal bagi pengurus RT dan warga 
+ 
+ 
+Universitas Bakrie 
+7 
+ 
+BAB II 
+TINJAUAN PUSTAKA 
+ 
+2.1 
+Sistem Informasi 
+Sistem informasi adalah seperangkat terstruktur dari perangkat keras, 
+perangkat lunak, sumber daya data, jaringan komunikasi, dan orang-orang yang 
+mengumpulkan, memproses, dan mendistribusikan informasi di dalam suatu 
+organisasi (Irviani & Anggraeni, 2017). 
+Sistem informasi dapat disebut juga sebagai sistem buatan manusia yang 
+terdiri dari komponen-komponen di dalam suatu organisasi yang dirancang untuk 
+melakukan tugas tertentu, seperti menyediakan informasi. Elemen-elemen ini, 
+yang bekerja sama untuk mengumpulkan, memproses, menyimpan, dan 
+mendistribusikan informasi, terdiri dari perangkat keras, perangkat lunak, data, 
+protokol, dan sumber daya manusia. Mendukung manajemen, operasional, dan 
+pengambilan keputusan di dalam suatu organisasi merupakan tujuan utama sistem 
+informasi (Waluyo & Fatich, 2017). 
+Dari sudut pandang lain, sistem informasi adalah sekumpulan komponen 
+yang bekerja sama untuk mengumpulkan, memproses, menyimpan, dan 
+menyebarluaskan informasi di dalam perusahaan. Mendukung pengambilan 
+keputusan organisasi dan pengendalian proses merupakan tujuan utamanya. 
+Sistem informasi juga penting untuk membantu manajer dan karyawan 
+menganalisis masalah, menemukan solusi, dan mengembangkan produk baru. 
+(Kaleb et al., 2019). 
+Berdasarkan pengertian-pengertian yang telah dijabarkan, secara garis besar sistem informasi 
+merupakan suatu kesatuan yang terdiri dari komponen-komponen seperti perangkat keras, 
+perangkat lunak, data, jaringan komunikasi, dan pengguna yang saling terhubung. Sistem ini 
+memiliki peran untuk mengumpulkan, memproses, menyimpan, dan menyebarkan informasi 
+yang selanjutnya digunakan untuk mendukung pengambilan keputusan, pengendalian, serta 
+peningkatan efisiensi dalam suatu organisasi. 
+Universitas Bakrie 
+8 
+ 
+ 
+2.2 
+Analisis dan Perancangan 
+Tahap awal dalam pengembangan sistem adalah analisis dan perancangan, 
+yang bertujuan untuk mengidentifikasi kebutuhan yang harus dipenuhi, 
+mengantisipasi permasalahan yang mungkin timbul saat sistem diterapkan, serta 
+menetapkan spesifikasi sesuai dengan kebutuhan sistem yang akan dikembangkan. 
+(Azis et al., 2020). Perancangan sistem berfungsi sebagai kelanjutan dari hasil 
+analisis, yang kemudian dipadukan ke dalam suatu kesatuan sistem dengan tujuan 
+menghasilkan sistem yang lebih optimal (Rukun & Hayadi, 2018). 
+Berdasarkan pengertian yang telah dijabarkan, analisis dan perancangan 
+sistem merupakan tahap awal yang sangat penting dalam pengembangan sistem. 
+Analisis dilakukan untuk memahami kebutuhan pengguna, mengidentifikasi 
+masalah, serta menentukan batasan dan spesifikasi sistem. Sementara itu, 
+perancangan berfungsi sebagai tindak lanjut dari analisis untuk menyusun solusi 
+dalam bentuk sistem yang lebih terstruktur, utuh, dan mampu memenuhi 
+kebutuhan secara optimal. 
+ 
+2.3 
+Aplikasi 
+Aplikasi didefinisikan sebagai program atau perangkat lunak yang berisi 
+serangkaian instruksi terstruktur untuk memberikan perintah kepada komputer 
+agar menjalankan tugas tertentu serta menampilkan antarmuka sesuai kebutuhan 
+pengguna. Aplikasi dirancang guna meningkatkan produktivitas dan mendukung 
+penyelesaian berbagai aktivitas pribadi. 
+Adapun aplikasi terbagi menjadi tiga jenis, diantaranya adalah sebagai berikut: 
+a) Aplikasi Web 
+Aplikasi web adalah jenis aplikasi yang dijalankan melalui peramban 
+seluler dengan memanfaatkan bahasa pemrograman seperti HTML, JavaScript, 
+dan CSS. Aplikasi ini bersifat responsif karena tampilan situs dapat 
+menyesuaikan ukuran layar perangkat pengguna. Namun, penggunaannya 
+membutuhkan koneksi internet agar dapat berfungsi. 
+ 
+Universitas Bakrie 
+ 
+9 
+ 
+b) Aplikasi Native 
+Aplikasi native adalah aplikasi yang dikembangkan secara khusus untuk 
+suatu platform dengan menggunakan bahasa pemrograman tertentu. Aplikasi 
+ini bersifat spesifik pada sistem operasi, misalnya jika dibuat untuk iOS maka 
+tidak dapat dijalankan di Android, begitu pula sebaliknya. Keunggulan aplikasi 
+native terletak pada performa yang lebih cepat serta pengalaman pengguna yang 
+optimal, karena pengembang menekankan desain antarmuka yang intuitif dan 
+mudah digunakan. 
+c) Aplikasi Hybrid 
+Aplikasi hybrid adalah aplikasi yang dapat berjalan di berbagai platform 
+karena bersifat multiplatform. Jenis aplikasi ini merupakan perpaduan antara 
+aplikasi native dan web, dikembangkan menggunakan bahasa pemrograman 
+seperti HTML, CSS, dan JavaScript. Meskipun serupa dengan website, aplikasi 
+hybrid hanya dapat diakses melalui aplikasi khusus pada smartphone. 
+Kekurangannya, performa aplikasi hybrid cenderung lebih lambat dibandingkan 
+dengan aplikasi native (Cashman, 2016). 
+2.4 
+User Centered Design 
+User Centered Design (UCD), yang juga dikenal sebagai Human Centered 
+Design (HCD), adalah metode pengembangan sistem yang berfokus pada 
+pengguna sebagai pusat utama. Perbedaan keduanya terletak pada cakupannya, di 
+mana HCD memiliki ruang lingkup yang lebih luas karena melibatkan seluruh 
+stakeholders, sedangkan UCD lebih spesifik pada pengguna sistem saja. Meski 
+begitu, keduanya melalui tahapan proses yang serupa. Dalam penerapan UCD, 
+terdapat beberapa aspek penting yang harus diperhatikan, seperti pengembangan 
+sistem yang berorientasi pada kebutuhan pengguna, perancangan yang terstruktur 
+dan terintegrasi, serta keterlibatan pengguna sejak awal hingga akhir, termasuk 
+dalam proses perancangan interaksi (Hakim et al., 2022). 
+User Centered Design adalah sebuah proses desain interface (antarmuka) 
+yang fokus terhadap tujuan kegunaan, karakteristik pengguna, lingkungan, tugas, 
+dan alur kerja di dalam desainnya. UCD adalah sebuah proses iterative (berulang-
+Universitas Bakrie 
+ 
+10 
+ 
+ulang), dimana desain dan evaluasi dibangun dari langkah awal hingga implementasi 
+secara terus menerus. Prinsip yang harus diperhatikan dalam UCD adalah: 
+a. Fokus pada pengguna 
+b. Perancangan terintegrasi 
+c. Dari awal berlanjut pada pengujian pengguna 
+d. Perancangan interaktif 
+Dalam proses User Centered Design ini, ada 4 langkah yang dilakukan secara 
+iterasi seperti Gambar 2.1 (Saputri et al., 2017). 
+ 
+ 
+Gambar 2. 1 Tahapan-Tahapan User Centered Design 
+Sumber : ISO 13409 dalam (Saputri et al., 2017) 
+Keterangan Gambar: 
+1. 
+Specify the context of use 
+Mengidentifikasi orang yang akan menggunakan sistem. Ini akan menjelaskan 
+untuk apa dan dalam kondisi seperti apa, mereka akan menggunakan sistem. 
+2. 
+Specify User and Organizational Requirements 
+Mengidentifikasi kebutuhan pengguna dan kebutuhan organisasi. 
+3. 
+Produce Design Solutions 
+Membangun desain sebagai solusi dari sistem yang sedang dianalisis. 
+4. 
+Evaluate Design 
+Melakukan evaluasi terhadap desain yang dilakukan pada tahap sebelumnya. 
+ 
+ 
+Universitas Bakrie 
+ 
+11 
+ 
+2.5 
+Unified Modelling Language 
+Unified Modeling Language (UML) merupakan salah satu model yang 
+banyak digunakan dalam perancangan perangkat lunak berbasis object oriented. 
+UML menyediakan standar untuk pembuatan blueprint sistem yang mencakup 
+berbagai elemen, seperti konsep bisnis, definisi kelas dalam bahasa pemrograman, 
+skema basis data, hingga komponen perangkat lunak yang diperlukan. Dalam 
+proses perancangan, UML mencakup beberapa diagram penting, antara lain use 
+case diagram untuk menunjukkan interaksi antara aktor dan sistem, Activity 
+Diagram, serta sequence diagram yang menggambarkan alur atau urutan proses 
+dalam sistem. UML menjadi metode yang umum dipakai untuk memvisualisasikan 
+sekaligus mendokumentasikan desain perangkat lunak (Sonata, 2019). 
+UML adalah standar bahasa yang banyak digunakan di industri untuk 
+mendefinisikan kebutuhan, melakukan analisis dan desain, serta menggambarkan 
+arsitektur dalam pemrograman berorientasi objek. Kehadiran UML didasari oleh 
+kebutuhan 
+akan 
+pemodelan 
+visual 
+yang 
+dapat 
+membantu 
+dalam 
+menspesifikasikan, memvisualisasikan, membangun, dan mendokumentasikan 
+sistem perangkat lunak (Fitria et al., 2020). 
+2.5.1 Use Case Diagram 
+Menurut beberapa ahli, use case diagram adalah bentuk visualisasi 
+yang terdiri dari komponen seperti aktor, use case, serta hubungan antar 
+komponen. Dalam penggambarannya digunakan berbagai simbol atau notasi 
+untuk merepresentasikan fungsionalitas sistem seperti tabel 2.1. Use case 
+diagram berperan penting dalam membantu analis menyusun kebutuhan 
+(requirement) dalam proses pengembangan sistem. Selain itu, diagram ini 
+juga digunakan untuk menjelaskan rancangan sistem kepada pengguna serta 
+merancang seluruh fitur yang akan dibangun dalam sistem (Fitria et al., 
+2020). 
+ 
+ 
+ 
+ 
+Universitas Bakrie 
+ 
+12 
+ 
+Tabel 2. 1 Simbol Use Case Diagram 
+Simbol 
+Nama 
+Keterangan 
+ 
+ 
+Aktor 
+Menyimbolkan 
+entitas eksternal, 
+baik itu 
+pengguna 
+(manusia), 
+perangkat keras, 
+atau sistem lain, 
+yang 
+berinteraksi secara 
+aktif dengan sistem 
+yang 
+sedang dianalisis. 
+ 
+ 
+Use Case 
+Sebuah representasi 
+dari urutan tindakan 
+atau 
+fungsionalitas spesifik 
+yang disediakan 
+sistem sebagai 
+respons terhadap 
+permintaan dari 
+seorang 
+Aktor. 
+ 
+ 
+ 
+Association 
+(Asosiasi) 
+Menggambarkan jalur 
+komunikasi atau 
+hubungan interaksi 
+standar yang 
+terjadi antara sebuah 
+Aktor dan sebuah Use 
+Case. 
+Universitas Bakrie 
+ 
+13 
+ 
+ 
+Sumber : (Susilowati & Pakusadewa, 2023) 
+Simbol 
+Nama 
+Keterangan 
+ 
+ 
+ 
+Include 
+Sebuah relasi yang 
+menandakan bahwa 
+suatu use case (basis) 
+akan selalu 
+menyertakan 
+fungsionalitas dari 
+use case lain sebagai 
+bagian wajib dan 
+tidak 
+terpisahkan dari 
+alurnya. 
+ 
+ 
+Extend 
+Sebuah relasi yang 
+menunjukkan bahwa 
+suatu use case dapat 
+menambahkan 
+fungsionalitas opsional 
+ke use case lain, 
+namun hanya jika 
+sebuah kondisi atau 
+titik perluasan tertentu 
+terpenuhi. 
+ 
+Generalization 
+(Generalisasi) 
+Menandakan adanya 
+hubungan warisan, di 
+mana satu elemen 
+(baik Aktor maupun 
+Use Case) merupakan 
+bentuk yang lebih 
+khusus dari elemen 
+induk yang lebih 
+umum. 
+Universitas Bakrie 
+ 
+14 
+ 
+2.5.2 Activity Diagram 
+Activity Diagram digunakan untuk memodelkan rangkaian alur suatu 
+aktivitas dan juga dapat diterapkan pada aktivitas lainnya. Diagram ini 
+memiliki kemiripan dengan flowchart karena sama-sama menunjukkan alur 
+kerja, baik dari satu aktivitas ke aktivitas berikutnya maupun dari aktivitas 
+menuju suatu keadaan. Penyusunan Activity Diagram sejak awal pemodelan 
+dapat membantu memahami keseluruhan proses yang ada. Selain itu, diagram 
+ini juga bermanfaat untuk menggambarkan interaksi antar beberapa use case 
+(Ramasenjaya & Juman, 2022). 
+2.5.3 Class Diagram 
+Class 
+Diagram 
+menggambarkan 
+bentuk 
+sistem 
+dari 
+bidang 
+pendefinisian kelas-kelas yang dibuat untuk membuat suatu sistem. Kategori 
+memiliki karakteristik dan prosedur atau operasi. Atribut merupakan variabel 
+yang masuk dalam suatu kategori, sedangkan operasi atau prosedur 
+merupakan fungsi yang masuk dalam suatu kategori (Ramasenjaya & Juman, 
+2022). 
+Class memiliki tiga bagian utama (Suendri, 2018), yaitu: 
+1) Nama, yaitu identitas yang wajib dimiliki oleh sebuah class. 
+2) Atribut, yakni seluruh karakteristik yang melekat pada class, di mana 
+nilai dari class hanya dapat diolah sesuai dengan atribut yang 
+dimilikinya. 
+3) Operasi, yaitu sekumpulan tindakan atau fungsi yang dapat dilakukan 
+oleh classs tersebut, baik terhadap dirinya sendiri maupun terhadap class 
+lain. 
+ 
+2.6 
+User Interface dan User Experience 
+User Interface merupakan antarmuka visual dari sebuah produk yang 
+berfungsi sebagai penghubung antara pengguna dengan produk tersebut. 
+Antarmuka ini terdiri atas berbagai elemen, seperti tata letak (layout), ilustrasi 
+berupa gambar atau logo, warna, bentuk, serta tipografi (text). Perpaduan yang 
+tepat dari elemen-elemen tersebut akan menghasilkan desain user interface yang 
+Universitas Bakrie 
+ 
+15 
+ 
+selaras dan mampu memberikan pengalaman positif bagi pengguna terhadap 
+produk. 
+User Experience adalah keseluruhan pengalaman yang dirasakan pengguna 
+ketika berinteraksi dengan sebuah produk. Hal ini mencakup sejauh mana produk 
+mudah dipahami dan digunakan, atau sebaliknya justru menyulitkan dalam 
+melakukan hal-hal sederhana. Untuk menciptakan desain User Experience yang 
+efisien dan mudah dipahami (user-friendly), penting untuk memahami kebutuhan 
+serta harapan pengguna, merancang alur interaksi yang sederhana dan lancar, serta 
+menonjolkan elemen-elemen penting agar mudah diakses (Jenniffer, 2022). 
+2.7 
+Arus Kas 
+Laporan arus kas pada hakikatnya merupakan catatan mengenai arus masuk 
+dan arus keluar kas beserta setara kas, yang berfungsi sebagai sarana komunikasi 
+antara aktivitas perusahaan dengan para pihak yang berkepentingan, baik internal 
+maupun eksternal (Ati, 2018). 
+Laporan arus kas yang disusun secara efektif dapat membantu perusahaan 
+dalam memenuhi kewajiban jangka pendek maupun jangka panjang, mendukung 
+kegiatan operasional, serta memungkinkan dilakukannya investasi strategis 
+(Wulan et al., 2024).  
+2.8 
+Manajemen Administrasi 
+Manajemen administrasi adalah proses pengelolaan sumber daya dalam 
+rangka mencapai tujuan tertentu pada sebuah organisasi atau perusahaan. Fokus 
+utamanya ialah membentuk struktur formal yang dapat mendukung keberhasilan 
+organisasi melalui tata kelola yang efektif dan efisien. Administrasi merupakan 
+keseluruhan proses kerja sama antara dua orang atau lebih yang dilandasi oleh 
+pertimbangan rasional tertentu (Wardhani, 2025). 
+Administrasi surat-menyurat adalah serangkaian kegiatan yang mencakup 
+penyusunan, pengiriman, penerimaan, pendistribusian, penyimpanan, hingga 
+penyelesaian surat. Kegiatan ini memiliki peranan penting karena menjadi bagian 
+yang diperlukan dalam melengkapi dokumen serta mendukung pelaksanaan tugas 
+atau aktivitas tertentu (Rahayu et al., 2024). 
+Universitas Bakrie 
+ 
+16 
+ 
+Sistem persuratan adalah salah satu aspek penting dalam administrasi yang 
+berhubungan dengan pengelolaan surat-menyurat di suatu organisasi. Penerapan 
+sistem persuratan yang baik dapat menjamin efisiensi, kejelasan, serta keteraturan 
+dalam proses pertukaran informasi tertulis (Darmansah et al., 2025). 
+2.9 Business Process Modeling dan Notation (BPMN) 
+Business Process Model and Notation (BPMN) adalah standar pemodelan proses 
+bisnis yang menyediakan notasi grafis untuk merinci setiap tahap dalam Business 
+Process Diagram. Tujuan utama dari standar ini adalah menyediakan bahasa yang mudah 
+dipahami oleh seluruh pemangku kepentingan—mulai dari analis bisnis, pengembang 
+teknis, hingga manajer bisnis—guna menjembatani kesenjangan komunikasi antara 
+desain dan implementasi proses. 
+Dalam praktiknya, BPMN menggunakan elemen utama berupa objek aliran (flow 
+objects) yang terdiri dari Events untuk melambangkan kejadian, Activities untuk 
+menunjukkan pekerjaan, dan Gateways untuk mengontrol percabangan aliran. Seluruh 
+elemen tersebut saling terhubung melalui Sequence Flow, Message Flow, maupun 
+Association, sebagaimana yang dirinci pada Tabel 2.2 Notasi Business Process Modeling 
+dan Notation (BPMN) berikut ini: 
+ 
+Tabel 2. 2 Notasi Business Process Modeling dan Notation (BPMN) 
+Simbol 
+Objek 
+Keterangan 
+ 
+Event 
+Ketiga event ini dapat 
+digunakan untuk 
+menggambarkan aliran 
+kerja pada BPMN. 
+ 
+ 
+ 
+ 
+Universitas Bakrie 
+ 
+17 
+ 
+Simbol 
+Objek 
+Keterangan 
+ 
+Task/Activity 
+Task dapat digunakan 
+untuk aktivitas rendah 
+sedangkan subproses 
+dapat 
+digunakan untuk aktivitas-
+aktivitas yang 
+besar/menggambarkan 
+bagian yang lebih detail 
+dalam suatu proses. 
+ 
+Gateway 
+Gateway merupakan suatu 
+elemen yang mengatur 
+aliran dalam proses bisnis. 
+ 
+Penghubung 
+ketiga aliran ini dapat 
+membantu berintraksi, 
+komunikasi dan urutan 
+aktivitas dalam suatu 
+proses lebih rinci. Tidak 
+hanya itu masing-masing 
+saja memiliki tugas yang 
+berbeda dalam 
+mengartikan berbagai 
+aspek proses yang bisnis 
+yang dimodelkan. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Universitas Bakrie 
+ 
+18 
+ 
+Simbol 
+Objek 
+Keterangan 
+ 
+Jalur 
+Jalur digunakan untuk 
+mengatur suatu 
+aktivitas 
+kegiatan atau 
+menggambarkan aliran 
+data objek-objek dalam 
+suatu proses 
+ 
+Wadah 
+Wadah merupakan 
+suatu elemen untuk 
+menggambarkan suatu 
+proses 
+ 
+2.10 Usability Testing 
+Usability Testing adalah proses pengukuran tingkat kemudahan suatu sistem 
+ketika digunakan, sekaligus mengidentifikasi kendala yang dialami pengguna. Hasil 
+dari pengujian ini dievaluasi untuk menghasilkan data yang relevan terkait kinerja 
+dan kualitas sistem (Dyayu et al., 2023). 
+Metode usability testing perlu mencakup lima hal, yaitu (Hakim et al., 2022): 
+1) Learnability, sistem harus mudah dipelajari agar pengguna dapat segera 
+mulai menyelesaikan pekerjaannya dengan menggunakan sistem. 
+2) Efficiency, sistem harus digunakan dengan efisien sehingga pengguna yang 
+telah mempelajari sistem dapat mencapai tingkat produktivitas yang tinggi. 
+3) Memorability, sistem seharusnya mudah diingat sehingga pengguna dapat 
+menggunakannya kembali tanpa harus mempelajari dari awal seteah 
+meninggalkan sistem untuk beberapa waktu. 
+4) Errors, sistem seharusnya memiliki kesalahan yang rendah sehingga 
+pengguna akan sedikit melakukan kesalahan saat menggunakan sistem dan 
+dapat dengan mudah memperbaiki kesalahan jika terjadi. 
+5) Satisfaction, sistem harus nyaman digunakan sehingga dapat memuaskan 
+penggunanya. 
+Universitas Bakrie 
+ 
+19 
+ 
+ 
+2.11  System Usability Scale 
+Kuesioner SUS dapat digunakan untuk mengukur tingkat kepuasan 
+pengguna pada suatu produk. Dalam melakukan perhitungan SUS menggunakan 
+lima skala Likert. Responden akan memberikan penilaian subjektifnya melalui 10 
+pernyataan SUS yang diberikan. (John Brook dalam (Aisyah et al., 2021)). 
+System Usability Scale (SUS) adalah cara untuk menilai sejauh mana 
+keberhasilan sebuah website, diperlukan pengukuran untuk mengevaluasi 
+usability. Salah satu kuesioner yang umum digunakan untuk mengukur usability. 
+SUS banyak digunakan untuk mengukur usability dan menunjukkan beberapa 
+keunggulan, antara lain: SUS mudah digunakan, karena hasilnya berupa skor 0 – 
+100. SUS sangat mudah digunakan, tidak membutuhkan perhitungan yang rumit. 
+SUS tersedia secara gratis, tidak membutuhkan biaya tambahan, dan SUS terbukti 
+valid dan reliable, walau dengan ukuran sampel yang kecil. (Kurniawan et al., 
+2022).  
+Metode ini digunakan sebagai alat ukur yang menilai usability suatu produk 
+dan memiliki beberapa karakteristik yang berbeda dari kuesioner lainnya, yaitu: 
+1) SUS terdiri dari sepuluh pertanyaan, sehingga relatif cepat dan mudah bagi 
+responden untuk menyelesaikan. 
+2) SUS menggunakan teknologi agnostic, yang berarti dapat digunakan secara 
+luas dan mengevaluasi hampir semua jenis antarmuka, termasuk website, 
+smartphone, respon suara interaktif (IVR), systems (touch-tone dan speech), 
+TV, dan lain-lain. 
+3) Hasil kuesioner SUS adalah nilai tunggal, mulai dari skor 0 sampai 100, dan 
+relatif mudah dipahami oleh berbagai individu maupun kelompok. 
+2.12  Non Probability Sampling dan Purposive Sampling 
+Nonprobability sampling adalah teknik pengambilan sampel yang tidak 
+memberi peluang yang sama bagi setiap anggota populasi untuk dipilih menjadi 
+anggota sampel. 
+Purposive sampling menurut (Sugiono, 2015) adalah “Pengambilan sampel 
+sumber data dengan pertimbangan tertentu. Pertimbangan tertentu ini, misalnya 
+Universitas Bakrie 
+ 
+20 
+ 
+orang tersebut yang dianggap paling tahu tentang apa yang kita harapkan, atau 
+mungkin dia sebagai penguasa sehingga akan memudahkan peneliti menjelajahi 
+obyek atau situasi sosial yang diteliti (Suryani et al., 2023).
+Universitas Bakrie 
+ 
+21 
+ 
+2.13  Penelitian Terdahulu 
+Berikut pada tabel 2.3 terdapat penelitian terdahulu yang digunakan sebagai acuan penulis untuk melakukan 
+penelitian ini: 
+Tabel 2. 3 Penelitian Terdahulu 
+No 
+Sumber 
+Judul 
+Metode 
+Penelitian 
+Hasil Penelitian 
+Perbedaan 
+1 
+Indonesian Journal on Software 
+Engineering (IJSE), Vol. 7, No. 1, 
+Juni 2021. (Kristania, 2021) 
+Sistem Informasi 
+Pelayanan 
+Administrasi 
+Kependudukan 
+Desa (M-Desa) 
+Dengan Metode 
+User Centered 
+Design. 
+User 
+Centered 
+Design 
+Digitalisasi 
+layanan 
+kependudukan 
+desa (e-KTP, KK, 
+e-surat) berbasis 
+web yang 
+memudahkan 
+pemantauan 
+dokumen dan 
+meningkatkan 
+efisiensi 
+pendataan 
+dibanding sistem 
+manual. 
+Penelitian terdahulu 
+berfokus pada sistem 
+kependudukan desa 
+berbasis web tanpa 
+modul keuangan, 
+sedangkan penelitian 
+ini mengembangkan 
+aplikasi mobile 
+tingkat RT yang 
+mengintegrasikan 
+administrasi 
+kependudukan dan 
+keuangan serta 
+dilengkapi evaluasi 
+usability 
+menggunakan SUS. 
+Universitas Bakrie 
+ 
+22 
+ 
+No 
+Sumber 
+Judul 
+Metode 
+Penelitian 
+Hasil Penelitian 
+Perbedaan 
+2 
+REPOSITOR, Vol. 2, No. 4, April 
+2020. (Rahman et al., 2020) 
+Rancang Bangun 
+Prototype Sistem 
+Informasi 
+Manajemen 
+Program Studi 
+Informatika 
+Menggunakan 
+Pendekatan User 
+Centered 
+Design. 
+User 
+Centered 
+Design 
+Prototipe 
+sistem 
+akademik 
+berbasis UCD 
+untuk 
+mengatasi 
+masalah 
+informasi 
+jadwal, 
+divalidasi 
+dengan 
+Heuristic 
+Evaluation 
+guna 
+meminimalisir 
+kesalahan 
+kegunaan. 
+Penelitian 
+terdahulu fokus 
+pada manajemen 
+akademik 
+dengan evaluasi 
+Heuristic, 
+sedangkan 
+penelitian ini 
+pada manajemen 
+RT 
+(kependudukan 
+& keuangan) 
+menggunakan 
+metode SUS. 
+ 
+ 
+ 
+Universitas Bakrie 
+ 
+23 
+ 
+No 
+Sumber 
+Judul 
+Metode 
+Penelitian 
+Hasil Penelitian 
+Perbedaan 
+3 
+Buletin Sistem Informasi Dan 
+Teknologi Islam (BUSITI), Vol. 2, 
+No. 4, November 2021. (Ramadhan 
+et al., 2021) 
+Pemanfaatan User 
+Centered Design 
+(UCD) Untuk 
+Pengembangan 
+Website Pelayanan 
+Administrasi 
+Domisili 
+Penduduk 
+Kecamatan Tomia. 
+User-
+Centered 
+Design 
+Penelitian ini 
+menghasilkan 
+sistem 
+administrasi 
+domisili 
+berbasis 
+website tingkat 
+kecamatan 
+dengan skor 
+kepuasan 
+89,3% pada uji 
+beta, 
+menunjukkan 
+sistem 
+fungsional dan 
+mudah 
+dipahami 
+pengguna. 
+Penelitian terdahulu 
+mengembangkan sistem 
+berbasis website di level 
+kecamatan untuk 
+administrasi domisili 
+penduduk, sedangkan 
+penelitian ini menargetkan 
+level RT dengan 
+mengembangkan aplikasi 
+mobile yang 
+mengintegrasikan 
+pendataan kependudukan, 
+pengelolaan keuangan, 
+dan evaluasi usability 
+formal menggunakan 
+metode SUS.  
+ 
+ 
+ 
+ 
+ 
+Universitas Bakrie 
+ 
+24 
+ 
+No 
+Sumber 
+Judul 
+Metode 
+Penelitian 
+Hasil Penelitian 
+Perbedaan 
+4 
+The Indonesian Journal of 
+Computer Science, 14(1), 
+2025.(Fachri Munandar & Harry 
+Budi Santoso, 2025) 
+User Interface 
+Improvement by 
+Evaluating 
+Usability and 
+User 
+Experience: 
+Case Study of 
+Indonesia’s 
+Government 
+Financial 
+Management 
+Information 
+System. 
+User 
+Centered 
+Design 
+Identifikasi 12 
+masalah 
+usability 
+dengan skor 
+SUS awal 
+67,39 (grade 
+C). Melalui 
+perbaikan 
+prototipe 
+berbasis UCD, 
+skor SUS 
+meningkat 
+drastis menjadi 
+84,35 (grade 
+A+), yang 
+menunjukkan 
+peningkatan 
+signifikan pada 
+pengalaman 
+pengguna. 
+Penelitian terdahulu 
+berfokus pada 
+peningkatan 
+antarmuka sistem 
+keuangan pemerintah 
+skala besar berbasis 
+web, sedangkan 
+penelitian ini 
+mengimplementasikan 
+aplikasi mobile untuk 
+manajemen 
+lingkungan tingkat 
+RT yang 
+mengintegrasikan 
+administrasi 
+kependudukan, 
+persuratan digital, dan 
+pengelolaan keuangan 
+warga secara 
+transparan. 
+Universitas Bakrie 
+ 
+25 
+ 
+No 
+Sumber 
+Judul 
+Metode 
+Penelitian 
+Hasil Penelitian 
+Perbedaan 
+5 
+Jurnal Syntax Admiration, Vol. 5, 
+No. 6, Juni 2024. (Arumsari et al., 
+2024) 
+Perancangan 
+Aplikasi Sistem 
+Tata Kelola 
+Rukun Tetangga 
+Menggunakan 
+Pendekatan 
+Design Thinking. 
+Design 
+Thinking 
+Penelitian ini 
+menghasilkan 
+prototipe 
+antarmuka aplikasi 
+layanan RT yang 
+mencakup fitur 
+iuran, e-surat, dan 
+pengaduan warga. 
+Hasil perancangan 
+tersebut dinilai 
+dapat 
+mempermudah 
+proses administrasi 
+dan tata kelola 
+layanan di tingkat 
+Rukun Tetangga. 
+Penelitian terdahulu 
+menggunakan pendekatan 
+Design Thinking untuk 
+merancang sistem tata 
+kelola RT dengan fitur 
+layanan umum , 
+sedangkan penelitian ini 
+menerapkan metode User 
+Centered Design (UCD) 
+yang difokuskan pada 
+integrasi pendataan 
+kependudukan, modul 
+keuangan transparan, dan 
+administrasi persuratan 
+berbasis mobile di RT 
+02/023, serta 
+menyertakan evaluasi 
+usability formal 
+menggunakan metode 
+System Usability Scale. 
+Universitas Bakrie 
+26 
+ 
+BAB III 
+METODE PENELITIAN 
+ 
+3.1  Kerangka Penelitian 
+Gambar 3.1 menggambarkan tahapan-tahapan penelitian yang dilakukan dengan 
+menggunakan metode User Centered Design (UCD). Setiap tahap berfokus pada 
+keterlibatan pengguna secara langsung agar sistem yang dirancang benar-benar sesuai 
+dengan kebutuhan dan konteks penggunaan di lingkungan RT 02 RW 023 Perumahan 
+Cluster Alamanda. 
+ 
+Gambar 3. 1 Kerangka Penelitian
+Universitas Bakrie 
+27 
+ 
+ 
+3.1.1 Identifikasi Masalah 
+Tahap awal penelitian ini dimulai dengan identifikasi masalah melalui 
+wawancara bersama Ketua RT 02 RW 023 Perumahan Cluster Alamanda. 
+Wawancara ini bertujuan untuk mengetahui permasalahan serta kelemahan dalam 
+proses administrasi, pengelolaan keuangan, dan pendataan warga yang sedang 
+berjalan. Hasil wawancara menunjukkan masih adanya pencatatan manual yang 
+menyebabkan keterlambatan, kurangnya transparansi, serta komunikasi yang 
+belum maksimal kepada warga. Berdasarkan temuan tersebut, penelitian ini 
+difokuskan pada perancangan solusi berupa sistem informasi manajemen yang 
+sesuai dengan kebutuhan, dengan batasan dan tujuan yang jelas agar tetap terarah 
+pada permasalahan utama. 
+3.1.2 Studi Literatur 
+Setelah masalah teridentifikasi, dilakukan tahap Studi Literatur yang 
+berfungsi sebagai landasan teoritis dalam pengembangan sistem. Pada tahap ini, 
+peneliti mempelajari berbagai referensi dari jurnal, artikel ilmiah, dan penelitian 
+terdahulu yang relevan dengan topik penelitian. Hasil dari studi literatur 
+digunakan untuk memperkuat konsep sistem yang akan dirancang, khususnya 
+mengenai penerapan metode User Centered Design (UCD), teori usability 
+testing, serta desain sistem informasi berbasis mobile. 
+3.1.3 Pengumpulan Data 
+Tahap selanjutnya adalah pengumpulan data yang menjadi dasar utama 
+sebelum memasuki tahapan analisis User Centered Design. Proses ini dilakukan 
+melalui observasi langsung di lapangan dan wawancara mendalam dengan para 
+pemangku kepentingan (stakeholders) di RT 02 RW 023. Data yang dikumpulkan 
+meliputi data primer berupa alur kerja pengurus saat ini, kendala operasional, dan 
+aspirasi warga, serta data sekunder berupa dokumen arsip RT yang relevan. 
+Informasi yang diperoleh pada tahap ini akan digunakan sebagai bahan masukan 
+(input) untuk tahap analisis kebutuhan sistem. 
+Universitas Bakrie 
+ 
+28 
+ 
+3.1.4 Analisis Kebutuhan 
+Tahap ini merupakan langkah awal dalam siklus User Centered Design 
+(UCD), di mana peneliti melakukan analisis mendalam terhadap dua aspek 
+utama: konteks penggunaan dan kebutuhan pengguna. Pertama, peneliti 
+menetapkan spesifikasi konteks pengguna dengan mengidentifikasi peran 
+pengguna sistem, yaitu Ketua RT, Bendahara, Sekretaris, Humas, Karang Taruna, 
+dan warga, beserta tanggung jawab masing-masing. Kedua, dilakukan analisis 
+kebutuhan fungsional dan non-fungsional. Berdasarkan data yang diperoleh, 
+pengurus membutuhkan sistem rekapitulasi keuangan dan surat-menyurat, 
+sedangkan warga mengharapkan kemudahan akses informasi dan pembayaran 
+digital. Hasil analisis ini menjadi landasan spesifikasi sistem yang harus dipenuhi 
+dalam perancangan solusi. 
+3.1.5 Perancangan Prototipe 
+Tahap berikutnya adalah pembuatan desain solusi permasalahan berupa 
+perancangan prototipe (Design Solution). Desain sistem disusun berdasarkan 
+informasi dan kebutuhan yang telah diperoleh dari hasil analisis sebelumnya. 
+Rancangan ini mencakup alur interaksi sistem untuk pencatatan keuangan, rekap 
+tunggakan otomatis, pendataan warga berbasis digital, serta distribusi informasi. 
+Desain sistem divisualisasikan melalui pemodelan UML (Unified Modeling 
+Language) 
+dan 
+diimplementasikan 
+menjadi 
+High-Fidelity 
+Prototype 
+menggunakan tools Figma. Prototipe ini dibuat sedemikian rupa agar interaktif 
+dan siap untuk diuji coba. 
+3.1.6 Pengujian 
+Tahap ini merupakan evaluasi terhadap desain solusi yang telah 
+dirancang. Pengujian dilakukan menggunakan metode Usability Testing dengan 
+instrumen pengukuran System Usability Scale (SUS) untuk mengukur tingkat 
+kegunaan (usability) dan kepuasan pengguna secara subjektif. Pengujian ini 
+melibatkan perwakilan pengguna yang terdiri dari Ketua RT, Bendahara, 
+Sekretaris, Humas, anggota Karang Taruna, dan warga. 
+Dalam pelaksanaannya, setiap pengguna diminta menyelesaikan 
+serangkaian skenario tugas (task scenarios) yang telah dirancang sebelumnya. 
+Universitas Bakrie 
+ 
+29 
+ 
+Setelah menyelesaikan tugas, pengguna diwajibkan mengisi kuesioner SUS 
+yang terdiri dari 10 butir pertanyaan. Hasil kuesioner tersebut akan dihitung 
+untuk menghasilkan nilai kuantitatif dengan standar skor rata-rata minimal 68 
+(kategori Acceptable). 
+Sesuai dengan alur penelitian, hasil evaluasi akan dianalisis untuk 
+menentukan keputusan perancangan: 
+a. Jika Desain Belum Sesuai (Skor < 68): Maka alur penelitian akan kembali 
+ke tahap Analisis Kebutuhan untuk dilakukan perbaikan (iterasi) pada 
+fitur atau antarmuka yang bermasalah. 
+b. Jika Desain Sesuai (Skor ≥ 68): Maka desain dinyatakan valid dan 
+penelitian berlanjut ke tahap penulisan laporan. 
+3.1.7 Evaluasi Desain 
+Tahap akhir dalam penelitian ini adalah penulisan laporan, yang berisi 
+dokumentasi dari seluruh tahapan penelitian mulai dari identifikasi masalah, 
+studi literatur, analisis kebutuhan, perancangan sistem, hingga hasil evaluasi. 
+3.2  Metode Pengumpulan Data 
+3.2.1 Observasi 
+Tahap observasi dilaksanakan dengan melakukan kunjungan langsung ke 
+lingkungan RT 02 RW 023 Perumahan Cluster Alamanda. Kegiatan ini bertujuan 
+untuk memperoleh data serta informasi faktual mengenai aktivitas pengurus 
+dalam mengelola administrasi, keuangan, dan pendataan warga. Melalui observasi 
+tersebut, peneliti dapat melihat secara langsung alur proses bisnis yang 
+berlangsung, mulai dari pencatatan pemasukan dan pengeluaran, mekanisme 
+penagihan iuran warga, pencatatan data kependudukan, hingga metode 
+penyebaran informasi yang dilakukan oleh pengurus RT. 
+3.2.2 Wawancara 
+Tahap wawancara dilakukan dengan mengajukan sejumlah pertanyaan 
+kepada calon pengguna sistem untuk memperoleh pemahaman yang lebih 
+mendalam mengenai kondisi lapangan. Teknik wawancara yang digunakan 
+bersifat semi-terstruktur, di mana peneliti telah menyiapkan pertanyaan utama 
+namun tetap memberikan fleksibilitas untuk mengembangkan pertanyaan sesuai 
+Universitas Bakrie 
+ 
+30 
+ 
+alur diskusi. 
+Wawancara pertama dilakukan dengan Ketua RT 02 RW 023 Perumahan 
+Cluster Alamanda, Bapak Toto Sobari, guna menggali informasi terkait proses 
+bisnis yang sedang berjalan, kendala yang dihadapi dalam pengelolaan 
+administrasi, keuangan, serta pendataan warga. Selain Ketua RT, wawancara juga 
+melibatkan sejumlah pengurus lain, yaitu bendahara, sekretaris, humas, serta 
+perwakilan karang taruna dan warga. 
+Hasil wawancara menunjukkan bahwa permasalahan utama terletak pada 
+pencatatan keuangan yang masih dilakukan secara manual menggunakan aplikasi 
+catatan di ponsel tanpa dukungan sistem rekap otomatis, pendataan warga yang 
+masih berbasis buku besar, serta distribusi informasi yang belum merata sehingga 
+sebagian warga tidak selalu memperoleh informasi tepat waktu. Selain itu, 
+ditemukan pula potensi dari anggota karang taruna yang memiliki keterampilan 
+dalam bidang teknologi informasi, namun belum dimanfaatkan secara optimal 
+akibat keterbatasan fasilitas. 
+Temuan dari wawancara ini menjadi acuan dalam menetapkan kebutuhan 
+sistem yang akan dikembangkan sekaligus menentukan arah utama Analisis dan 
+Perancangan Sistem Informasi Manajemen Lingkungan Warga di RT 02 RW 023 
+Perumahan Cluster Alamanda. Dengan demikian, hasil wawancara berperan 
+penting sebagai dasar dalam proses analisis hingga tahap perancangan agar solusi 
+yang dihasilkan benar-benar sesuai dengan kebutuhan pengguna. 
+3.2.3 Studi Literatur 
+Tahap studi literatur dilakukan untuk memperoleh dasar teori sekaligus 
+pemahaman yang komprehensif mengenai analisis dan perancangan sistem 
+informasi manajemen, terutama yang berhubungan dengan aspek keuangan, 
+administrasi, dan pendataan warga. Kegiatan ini dilaksanakan dengan menelaah 
+berbagai sumber relevan, seperti jurnal ilmiah, artikel penelitian, buku teks, serta 
+referensi akademik lainnya. Melalui studi literatur tersebut, diharapkan peneliti 
+memperoleh pemahaman yang lebih mendalam terkait topik penelitian yang 
+sedang dikaji. 
+Universitas Bakrie 
+ 
+31 
+ 
+3.3  Sumber Data 
+3.3.1 Data Primer 
+Data primer adalah data yang diperoleh secara langsung dari sumber 
+aslinya tanpa melalui perantara. Dalam penelitian ini, data primer dikumpulkan 
+melalui kegiatan wawancara mendalam (in-depth interview) dengan pengurus RT 
+02 RW 023 (Ketua RT, Sekretaris, Bendahara, Humas) dan perwakilan Karang 
+Taruna untuk menggali kebutuhan sistem, serta observasi langsung terhadap alur 
+administrasi yang sedang berjalan. Selain itu, data primer juga diperoleh dari 
+hasil pengisian kuesioner System Usability Scale (SUS) yang dibagikan kepada 
+responden (pengurus dan warga) setelah mereka menyelesaikan uji coba 
+prototipe aplikasi yang dirancang. 
+3.3.2 Populasi dan Sampel Penelitian 
+a. Teknik Pengambilan Sampel 
+Teknik pengambilan sampel pada penelitian ini menggunakan teknik 
+purposive sampling. Metode pengambilan sampel ini mengharuskan peneliti 
+untuk benar-benar memahami karakteristik responden yang ditargetkan 
+sebagai sampel pengujian, sehingga dapat memberikan informasi dan evaluasi 
+yang valid terhadap desain sistem yang dirancang. Untuk memastikan sampel 
+yang digunakan memenuhi kebutuhan data penelitian, maka diperlukan 
+kriteria sampel penelitian. Pada penelitian ini yang bertujuan untuk 
+mengevaluasi usability dan user experience, maka kriteria yang diperlukan 
+yaitu: 
+1) Berdomisili tetap di RT 02 RW 023 Perumahan Cluster Alamanda. 
+2) Memiliki dan mampu mengoperasikan perangkat smartphone. 
+3) Merepresentasikan peran pengguna sistem (Pengurus, Karang Taruna, 
+atau Warga). 
+b. Populasi 
+Penelitian ini melibatkan warga dan pengurus RT 02 RW 023 Perumahan 
+Cluster Alamanda sebagai populasi. Berdasarkan data kependudukan tahun 
+2023, terdapat kurang lebih 67 Kepala Keluarga (KK) yang menjadi populasi 
+pengguna sistem. 
+Universitas Bakrie 
+ 
+32 
+ 
+c. Sampel 
+Sampel adalah bagian dari jumlah dan karakteristik yang dimiliki oleh 
+populasi tersebut. Untuk menentukan jumlah sampel minimal yang 
+representatif, penelitian ini menggunakan Rumus Slovin. Alasan penggunaan 
+rumus Slovin adalah karena jumlah populasi diketahui secara pasti (𝑁= 67). 
+Perhitungan sampel dilakukan dengan tingkat batas toleransi kesalahan 
+(margin of error) sebesar 10% (𝑒= 0,1).  
+𝑛=
+𝑁
+1+𝑁(𝑒)2 …( 1 ) 
+Keterangan: 
+𝑛= Jumlah Sampel 
+𝑁= Jumlah Populasi 
+(67) 
+𝑒= Batas toleransi kesalahan (10% atau 0,1) 
+𝑛=
+67
+1+67(0,1)2 …( 2 ) 
+𝑛=
+67
+1 + 67(0,01) 
+𝑛=
+67
+1 + 0,67 
+𝑛= 67
+1,67 
+𝑛= 40,11 
+Berdasarkan hasil perhitungan di atas, diperoleh angka 40,11. Maka, 
+jumlah sampel dalam penelitian ini dibulatkan menjadi 40 responden. Jumlah 
+ini dianggap cukup representatif untuk mewakili populasi warga RT 02 RW 
+023 dalam pengujian evaluasi desain sistem. 
+Penentuan ukuran sampel dalam penelitian ini menggunakan Rumus 
+Slovin dengan tingkat toleransi kesalahan (margin of error) sebesar 10% (𝑒=
+0,1) merujuk pada (Sugiyono, 2018), yang menyatakan bahwa Tingkat 
+kesalahan dalam penelitian dapat ditetapkan sebesar 1%, 5%, atau 10%. 
+Pemilihan batas 10% ini dianggap wajar dan dapat diterima secara ilmiah 
+Universitas Bakrie 
+ 
+33 
+ 
+mengingat populasi penelitian yang relatif terbatas, yaitu 67 responden, serta 
+bersifat homogen, sehingga penggunaan MoE tersebut bertujuan untuk 
+mencapai efisiensi pengambilan sampel tanpa mengurangi keterwakilan data. 
+Selain itu, jumlah sampel sebanyak 40 responden yang dihasilkan melalui 
+perhitungan ini telah melampaui standar minimal pengujian usability sistem 
+informasi untuk mendeteksi masalah pada antarmuka pengguna secara 
+signifikan, sehingga hasil pengujian menggunakan metode User Centered 
+Design (UCD) ini tetap memiliki tingkat validitas yang tinggi. 
+d. System Usability Scale (SUS) 
+Proses ini akan diuji dengan menggunakan metode System Usability 
+Scale sebagai alat ukur dalam pengujian sebuah desain. Tujuannya adalah 
+untuk mengukur apakah desain yang baru dirancang sudah sesuai dengan 
+persepsi kebutuhan pengguna. Jika hasilnya terdapat kekurangan maka dapat 
+dilakukan kembali ke tahap design solution. Metode uji pengguna system 
+scale memiliki 10 komponen pertanyaan dan 5 pilihan jawaban, mulai dari 
+sangat tidak setuju sampai sangat setuju, serta memiliki skor minimal 0 dan 
+maksimal 100. 
+Berikut ini pada tabel 3.1 ada beberapa pertanyaan questioner yang akan 
+ditanyakan pada calon pengguna dalam metode System Usability Scale. 
+Tabel 3. 1 Sepuluh pertanyaan SUS 
+No 
+Pertanyaan 
+1 
+Saya berpikir akan menggunakan sistem ini lagi. 
+2 
+Saya merasa sistem ini rumit untuk digunakan. 
+3 
+Saya merasa ini mudah digunakan 
+4 
+Saya membutuhkan bantuan dari orang lain atau teknisi dalam 
+menggunakan sistem ini. 
+5 
+Saya merasa fitur-fitur sistem ini berjalan dengan semestinya. 
+6 
+Saya merasa ada banyak hal yang tidak konsisten (tidak serasi 
+pada sistem ini). 
+ 
+Universitas Bakrie 
+ 
+34 
+ 
+No 
+Pertanyaan 
+7 
+Saya merasa orang lain akan memahami cara menggunakan 
+sistem ini dengan cepat. 
+8 
+Saya merasa sistem ini membingungkan. 
+9 
+Saya merasa tidak ada hambatan dalam menggunakan sistem ini. 
+10 
+Saya perlu membiasakan diri terlebih dahulu sebelum 
+menggunakan sistem ini. 
+Sumber: (Aisyah et al., 2021) 
+Di setiap pernyataan memiliki skor keterlibatan, setiap skor akan berkisar antara 
+0 sampai 4. Dengan pernyataan bernomor ganjil (1,3,5,7, dan 9) skor kontribusinya 
+adalah posisi skala dikurangi 1. Dan item bernomor genap (2,4,6,8 dan 10), skor 
+kontribusinya adalah 5 dikurangi posisi skala. Selanjutnya, kalikan jumlah skor SUS 
+dengan 2.5. Hasil dari perhitungan ratarata dari skor SUS untuk grade scale dapat 
+dilihat pada Tabel 3.2 di bawah ini. 
+ 
+Tabel 3. 2 Grade SUS 
+Score 
+Grade 
+Adjective 
+Acceptable 
+84,1 – 100 
+A 
+Best Imaginable 
+Acceptable 
+78,9 – 80,7 
+A 
+Excellent 
+Acceptable 
+72,6 – 78,8 
+B 
+Excellent 
+Acceptable 
+71,1 – 72,5 
+C 
+Good 
+Acceptable 
+62,6 – 71,0 
+C 
+Good 
+Marginal 
+38,9 – 62,6 
+D 
+Ok 
+Marginal 
+Sumber : (Aisyah et al., 2021) 
+Penggunaan grade, adjective dan acceptable pada score sus adalah cara untuk menilai 
+kualitas sistem. Grade merupakan suatu skala nilai dalam bentuk angka yaitu A,B,C dan D. 
+kemudian adjective adalah konteks penilaian score sus dengan menggunakan istilah “Best 
+Imaginable, Excellent, Good dan Ok”. Sedangkan acceptable ialah score sus dengan konteks 
+skala penilaian “Acceptable dan Marginal”. Dari gambaran tersebut ialah penjelasan untuk 
+mengetahui tentang kualitas sistem yang akan dinilai. 
+Berikut rumus perhitungan skor System Usability Scale: 
+Universitas Bakrie 
+ 
+35 
+ 
+𝒙̄ =
+∑𝑥
+𝑛  … ( 3 ) 
+Keterangan: 
+x̄  
+= Skor rata-rata 
+𝑥 
+= Jumlah skor SUS 
+𝑛 
+= Jumlah responden 
+ 
+Skor 
+SUS 
+= 
+{(𝑄1 −1) + (5 −𝑄2) + (𝑄3 −1) + (5 −𝑄4) + (𝑄5 −1) + (5 −
+𝑄6) + (𝑄7 −1) + (5 −𝑄8) + (𝑄9 −1) + (5 −𝑄10)} 2.5  
+ 
+3.4  Objek Penelitian 
+Penelitian ini dilaksanakan di RT 02 RW 023 Perumahan Cluster Alamanda, 
+Kabupaten Bekasi, yang dijadikan sebagai objek penelitian. Perumahan Cluster 
+Alamanda sendiri berlokasi di Desa Karang Satria, Kecamatan Tambun Utara, 
+Kabupaten Bekasi. Struktur kepengurusan RT 02 RW 023 terdiri atas enam bagian, 
+yaitu Ketua RT, Wakil Ketua RT, Sekretaris, Bendahara, Humas, serta dukungan 
+Karang Taruna yang berperan aktif dalam penyelenggaraan kegiatan sosial warga. 
+Berdasarkan data tahun 2023, RT 02 RW 023 memiliki jumlah penduduk sekitar 115 
+Kepala Keluarga. 
+3.4.1 Visi dan Misi 
+Visi 
+Terwujudnya lingkungan RT yang aman, tertib, sejahtera, gotong royong, 
+dan harmonis melalui partisipasi aktif seluruh warga. 
+Misi 
+1. Meningkatkan kebersamaan dan gotong royong dalam setiap 
+kegiatan kemasyarakatan. 
+2. Membangun komunikasi yang transparan dan terbuka antara pengurus 
+RT dengan warga. 
+3. Mewujudkan lingkungan yang aman dan nyaman melalui kerja sama 
+dalam menjaga keamanan, ketertiban, serta kebersihan. 
+4. Mendorong partisipasi warga dalam setiap program pembangunan 
+Universitas Bakrie 
+ 
+36 
+ 
+dan pemberdayaan masyarakat. 
+5. Mengoptimalkan administrasi kependudukan dan keuangan RT 
+secara tertib, rapi, dan akuntabel. 
+6. Mengembangkan kegiatan sosial, budaya, dan keagamaan untuk 
+mempererat hubungan antarwarga. 
+3.4.2 Struktur Organisasi 
+Berikut merupakan struktur organisasi kepengurus an RT 02 RW 023 
+Perumahan Cluster Alamanda: 
+Gambar 3. 2 Struktur Organisasi 
+Gambar 3.2 Menunjukan strutktur organisasi kepengurus an RT 02 RW 
+023 Perumahan Cluster Alamanda. Berikut adalah penjelasan mengenai tugas 
+dan tanggung jawab dari masing masing bagian dalam kepengurus an tersebut: 
+1 Ketua dan Wakil Ketua: bertanggung jawab untuk memimpin dan 
+memonitoring seluruh kegiatan kepengurusan agar berjalan sesuai dengan 
+tugas masing-masing. Selain itu, menerima masukan dan keluhan warga 
+terkait administrasi, keuangan, maupun lingkungan RT dengan sifat 
+membangun, serta menjadi penghubung utama dengan pihak RW maupun 
+Universitas Bakrie 
+ 
+37 
+ 
+kelurahan. 
+2 Sekretaris: bertanggung jawab dalam urusan administrasi surat-menyurat, 
+termasuk membuat undangan rapat, notulen, dan arsip dokumen. Sekretaris 
+juga melakukan pendataan warga tetap maupun tidak tetap, pembaruan data 
+kependudukan, serta pengelolaan dokumen penting seperti Kartu Keluarga, 
+KTP, atau surat keterangan domisili. Selain itu, sekretaris dapat mewakili 
+Ketua dalam rapat RW. 
+3 Bendahara: bertanggung jawab atas pengelolaan keuangan RT, mulai dari 
+pencatatan pemasukan dan pengeluaran, pengelolaan iuran warga, hingga 
+penyusunan laporan keuangan secara transparan. Bendahara juga 
+melakukan penagihan iuran serta memastikan seluruh transaksi memiliki 
+bukti yang terdokumentasi dengan baik. 
+4 Humas: bertugas menyebarkan informasi kepada warga terkait kegiatan RT, 
+pengumuman, maupun kebijakan terbaru melalui media komunikasi yang 
+efektif. Humas juga membantu menjaga hubungan baik antara pengurus dan 
+warga, serta dapat terlibat dalam pengumpulan iuran atau mendukung 
+sosialisasi program RT. 
+5 Seksi Jasmani: bertanggung jawab untuk mengkoordinasikan kegiatan 
+jasmani seperti kerja bakti, olahraga, serta acara lingkungan yang 
+melibatkan kesehatan, kebersihan, dan keamanan. Jasmani juga berperan 
+dalam mendukung terciptanya lingkungan yang sehat dan nyaman bagi 
+seluruh warga RT. 
+6 Karang Taruna: berperan sebagai wadah pemuda dalam menggerakkan 
+kegiatan sosial, budaya, dan teknologi di lingkungan RT. Karang Taruna 
+membantu aspek teknis, termasuk pemanfaatan teknologi informasi untuk 
+mendukung program RT, serta meningkatkan kreativitas dan partisipasi 
+pemuda dalam kegiatan masyarakat 
+3.5  Alokasi Waktu Penelitian 
+Pelaksanaan penelitian ini berlangsung dari bulan Agustus 2025 hingga Januari 
+2026, yang direncanakan dengan target dan alokasi waktu penelitian yang sesuai dengan 
+Lampiran 3.

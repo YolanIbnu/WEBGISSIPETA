@@ -32,17 +32,24 @@ ON public.profiles FOR UPDATE USING (auth.uid() = id);
 -- ==========================================
 CREATE TABLE IF NOT EXISTS public.stok_kayu (
     id TEXT PRIMARY KEY, -- ID Blok, misal: 'TPK-A01'
-    zone TEXT NOT NULL,
-    wood_type TEXT NOT NULL,
+    zone TEXT,
+    wood_type TEXT,
     volume NUMERIC DEFAULT 0,
     log_count INTEGER DEFAULT 0,
     grade TEXT,
-    status TEXT CHECK (status IN ('Available', 'Sold')) DEFAULT 'Available',
+    status TEXT,
     updated_by UUID REFERENCES auth.users(id),
     coordinates JSONB, -- Simpan koordinat polygon GeoJSON
     tanggal DATE DEFAULT CURRENT_DATE, -- Tanggal entry/update
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
+    tpk_name VARCHAR,
+    cacat_kayu TEXT,
+    panjang1 NUMERIC,
+    panjang2 NUMERIC,
+    diameter1 NUMERIC,
+    diameter2 NUMERIC,
+    tahun_produksi INTEGER
 );
 
 -- Enable RLS for stok_kayu
@@ -111,7 +118,14 @@ CREATE TABLE IF NOT EXISTS public.stok_kayu_history (
     status TEXT,
     updated_by UUID REFERENCES auth.users(id),
     tanggal DATE DEFAULT CURRENT_DATE,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW())
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
+    tpk_name VARCHAR,
+    cacat_kayu TEXT,
+    panjang1 NUMERIC,
+    panjang2 NUMERIC,
+    diameter1 NUMERIC,
+    diameter2 NUMERIC,
+    tahun_produksi INTEGER
 );
 
 -- Enable RLS

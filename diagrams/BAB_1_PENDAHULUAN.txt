@@ -1,0 +1,51 @@
+BAB I PENDAHULUAN
+
+1.1 Latar Belakang Masalah
+Industri kehutanan memegang peranan vital dalam perekonomian global dan keseimbangan ekologis, menuntut pengelolaan sumber daya alam yang transparan, akurat, dan berkelanjutan. Pengelolaan hasil hutan, khususnya kayu, memerlukan mekanisme monitoring yang ketat mulai dari penebangan hingga distribusi ke Tempat Penimbunan Kayu (TPK). Ketidakakuratan data dalam rantai pasok ini sering kali menyebabkan kerugian finansial yang signifikan bagi negara maupun perusahaan pengelola. Oleh karena itu, modernisasi sistem pencatatan dan pemetaan Stok Kayu Jati menjadi kebutuhan mendesak di era transformasi digital saat ini.
+
+Indonesia sebagai salah satu negara penghasil kayu tropis terbesar di dunia menghadapi tantangan besar dalam manajemen logistik kehutanan. Pengelolaan Stok Kayu Jati di TPK sering kali masih mengandalkan metode konvensional yang rentan terhadap human error dan manipulasi data. Kondisi ini memperlambat proses pengambilan keputusan strategis terkait penjualan dan distribusi kayu.
+
+TPK Cabak, sebagai salah satu pusat penimbunan kayu, menghadapi tantangan nyata dalam hal efisiensi pencarian lokasi kaveling dan pembaruan data stok yang masih bersifat semi-manual. Petugas lapangan sering kali kesulitan menemukan lokasi spesifik tumpukan kayu tertentu karena luasnya area dan minimnya petunjuk visual secara digital. Ketiadaan peta digital yang terintegrasi dengan data stok menyebabkan waktu pelayanan menjadi lama dan audit stok menjadi proses yang melelahkan.
+
+Permasalahan di TPK Cabak tersebut menuntut adanya sistem yang tidak hanya sekadar mencatat angka persediaan, tetapi juga memetakan posisi kayu secara visual. Perkembangan teknologi informasi, khususnya Sistem Informasi Geografis (SIG), menawarkan solusi komprehensif. Okyusmarianto, Sadjati, dan Ikhsani (2024) menegaskan bahwa pembangunan sistem informasi WebGIS sangat krusial untuk evaluasi lahan dan hutan. Pemanfaatan WebGIS ini juga dapat diimplementasikan secara mikro untuk pemetaan lokasi spesifik seperti persebaran stok barang. Ate (2024) dalam penelitiannya menunjukkan bahwa WebGIS mampu memetakan lokasi secara presisi, yang dalam konteks ini sangat ideal untuk memetakan tumpukan kayu (kaveling) di area TPK yang luas.
+
+Sistem inventarisasi merupakan komponen krusial lain yang harus bersinergi dengan pemetaan spasial. Yasin dan Zaini (2024) menyoroti bahwa sistem inventarisasi manual memiliki banyak kelemahan, sehingga migrasi ke sistem berbasis web menjadi solusi yang tidak terelakkan. Transformasi digital dalam inventarisasi kayu memerlukan pendekatan spesifik mengingat kompleksitas variabel seperti jenis kayu, volume, dan kelas kualitas yang memerlukan basis data terstruktur. Hal ini didukung oleh Agustine dan Handayani (2025) yang berhasil membuktikan bahwa digitalisasi aplikasi inventory produksi kayu sangat efektif untuk meningkatkan efisiensi pencatatan barang masuk dan keluar.
+
+Integrasi antara data tabular inventaris dan data spasial lokasi kaveling menjadi kunci penyelesaian masalah ini. Diperlukan sebuah arsitektur sistem modern yang mampu menangani beban data besar sekaligus menyajikan antarmuka peta yang responsif. Pengembangan sistem ini akan memanfaatkan teknologi web modern yang berfokus pada kecepatan rendering halaman dan pengelolaan basis data secara real-time. Dengan fitur pembaruan seketika (real-time), saat petugas memperbarui status stok atau memindahkan lokasi kaveling, informasi tersebut akan langsung diketahui oleh administrator atau pimpinan tanpa adanya jeda waktu (lag informasi).
+
+Untuk memastikan kebutuhan pengguna terpenuhi secara bertahap, pengembangan sistem informasi ini akan menggunakan Metode Web Development Life Cycle (WDLC). Pendekatan ini memungkinkan interaksi intensif antara pengembang dan pengguna akhir selama proses perancangan. Aprilisa dan Aulia (2024) serta Asfari (2024) menyatakan bahwa perancangan sistem inventaris menggunakan metode Web Development Life Cycle (WDLC) mampu menghasilkan perangkat lunak yang sesuai dengan kebutuhan operasional perusahaan, meminimalisir kesalahan fungsional, dan meningkatkan akurasi data stok barang secara signifikan.
+
+Penelitian ini berusaha mengisi celah penelitian (research gap) dengan mengintegrasikan teknologi pemetaan WebGIS interaktif dan manajemen inventaris logistik yang berjalan secara real-time. Sebagian besar penelitian sebelumnya, seperti yang dilakukan Agustine dan Handayani (2025), berfokus pada inventaris kayu namun belum menyertakan aspek pemetaan spasial mendetail. Sementara penelitian WebGIS lainnya sering kali terpisah dari modul inventaris logistik yang dinamis.
+
+Berdasarkan urgensi modernisasi di TPK Cabak dan potensi teknologi yang ada, penelitian ini bertujuan merancang sebuah sistem komprehensif. Solusi yang ditawarkan diharapkan mampu menjawab tantangan efisiensi dan akurasi data. Atas dasar pemikiran tersebut, penulis mengangkat judul penelitian: "Rancang Bangun Website Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak Menggunakan Metode Web Development Life Cycle (WDLC)".
+
+1.2 Rumusan Masalah
+Berdasarkan identifikasi masalah di atas, maka rumusan masalah dalam penelitian ini adalah:
+1. Bagaimana merancang dan membangun Website Sistem Informasi Geografis (SIG) Inventarisasi dan Pemetaan Stok Kayu Jati di TPK Cabak menggunakan Metode Web Development Life Cycle (WDLC)?
+2. Bagaimana memvisualisasikan letak dan status kaveling tumpukan kayu pada peta interaktif agar mempermudah pelacakan fisik di lapangan?
+3. Siapa saja pengguna yang akan berinteraksi dengan sistem ini, serta bagaimana merancang pembagian hak akses (role) mereka dalam proses pengelolaan data inventaris kayu?
+
+1.3 Tujuan Penelitian
+Berdasarkan rumusan masalah di atas, tujuan dari penelitian ini adalah sebagai berikut:
+1. Merancang dan membangun Website Sistem Informasi Geografis (SIG) untuk inventarisasi dan pemetaan Stok Kayu Jati di TPK Cabak menggunakan Metode Web Development Life Cycle (WDLC).
+2. Memvisualisasikan letak dan status kaveling tumpukan kayu pada peta interaktif berbasis WebGIS guna mempermudah pelacakan fisik di lapangan.
+3. Merancang pembagian hak akses (role) pengguna dalam sistem untuk mengelola proses pengelolaan data inventaris kayu secara terstruktur dan aman.
+
+1.4 Manfaat Penelitian
+Adapun manfaat yang diharapkan dari penelitian ini adalah sebagai berikut:
+
+1.4.1 Manfaat Teoritis
+Penelitian ini diharapkan dapat memperkaya khazanah keilmuan di bidang Sistem Informasi Geografis (SIG) dan Teknologi Informasi, khususnya mengenai integrasi antara manajemen inventaris komoditas kehutanan dengan pemetaan spasial berbasis web modern (Modern Web Stack). Selain itu, hasil penelitian ini dapat menjadi rujukan akademis bagi penelitian selanjutnya terkait efektivitas implementasi basis data real-time dan Metode Web Development Life Cycle (WDLC) dalam merancang bangun sistem informasi operasional berskala industri.
+
+1.4.2 Manfaat Praktis
+1) Bagi TPK Cabak: Memberikan solusi aplikasi yang dapat mempermudah proses administrasi, mempercepat pencarian lokasi kayu, dan meningkatkan akurasi laporan stok.
+2) Bagi Petugas: Membantu petugas lapangan dan administrator dalam mengelola data kayu secara efisien, transparan, dan mengurangi risiko kesalahan pencatatan.
+3) Bagi Penulis: Sebagai sarana implementasi ilmu yang telah didapatkan selama perkuliahan serta pengalaman dalam mengembangkan sistem skala industri.
+
+1.5 Ruang Lingkup Penelitian
+Agar penelitian ini lebih terarah dan fokus, penulis menetapkan batasan masalah sebagai berikut:
+1. Objek penelitian dilakukan di TPK Cabak Kec Jiken, Kab Blora, Provinsi Jawa Tengah dengan fokus pada inventarisasi dan pemetaan Stok Kayu Jati.
+2. Sistem dibangun berbasis web menggunakan framework Next.js dan React untuk sisi frontend.
+3. Pemetaan geografis menggunakan library Leaflet JS dengan fitur penandaan lokasi (marker) dan poligon area kaveling.
+4. Basis data menggunakan Supabase (PostgreSQL) dengan memanfaatkan fitur Real-time Subscription.
+5. Sistem hanya mencakup proses inventarisasi (barang masuk, mutasi lokasi, barang keluar) dan pemetaan, tidak membahas aspek transaksi keuangan atau penggajian pegawai.
